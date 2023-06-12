@@ -12,11 +12,11 @@ export default function AvaDrop({setarDrop}: dropInfo) {
         
         const dropdown = document.getElementById('AvaDrop');
         const rus = document.querySelectorAll('#AvaDrop button');
-        const ct = document.getElementById('ct');
+        const central = document.getElementById('central');
         const page = document.getElementById('AvaPage');
 
-        if(dropdown && (rus[0]===ct) && ct) dropdown.style.height = '21.2vh';
-        else if(dropdown) dropdown.style.height = '26.5vh';
+        if(dropdown && (rus[0]=== central) && central) dropdown.style.height = `${5.3*rus.length}vh`;
+        else if(dropdown) dropdown.style.height = `${5.3*(rus.length)}vh`;
 
         rus.forEach((ru: any) => {
             if(!ru.classList.contains('ruAva')) {
@@ -60,7 +60,7 @@ export default function AvaDrop({setarDrop}: dropInfo) {
 
         if(dropdown) dropdown.style.height = '5.3vh';
         rus.forEach((ru: any) => {
-            ru.style.transform = `translateY(0)`;
+            ru.style.transform = `translateY(0vh)`;
         })
 
         if(elem && (elem !== padrao)) {
@@ -88,7 +88,7 @@ export default function AvaDrop({setarDrop}: dropInfo) {
             <DropIcon src={arrowDown}/>
             <DropItemAva id='NA' type="button" className="ruAva">Selecione um restaurante</DropItemAva>
             <DropItemAva id='central' type="button">Central</DropItemAva>
-            <DropItemAva id='ct' type="button">CT</DropItemAva>
+            <DropItemAva id='ct' type="button">Centro de Tecnologia</DropItemAva>
             <DropItemAva id='letras' type="button">Letras</DropItemAva>
             <DropItemAva id='ifcs' type="button">IFCS</DropItemAva>
             <DropItemAva id='pv' type="button">Praia Vermelha</DropItemAva>
