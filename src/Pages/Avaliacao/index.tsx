@@ -27,8 +27,6 @@ export default function Avaliacao() {
     const RUsValidos = ['central', 'ct', 'letras', 'ifcs', 'pv', 'dc', 'mc'];
 
     const validar = () => {
-        // toast.error('Mensagem de erro');
-        toast.success('Sua avaliação foi enviada com sucesso!');
         const erro = document.getElementById('ErroAva') as HTMLElement;
         const comentario = document.getElementById('ComentInput') as HTMLInputElement;
         while (comentario.value.charAt(0) === '=') {
@@ -51,17 +49,30 @@ export default function Avaliacao() {
             return;
         }
 
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', process.env.REACT_APP_PLANILHA_API_URL || '');
-	    xhr.setRequestHeader("Content-Type", "application/json");
         const infos = JSON.stringify({
             nota: value,
             comentario: comentario.value.trim(),
             restaurante: ru
         });
-	    xhr.send(infos);
 
-        // TODO Avisar o usuário que foi enviado ou nao
+        fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`, {
+            method: 'post',
+            body: infos,
+            mode: 'cors',
+            headers: new Headers({
+              'Content-Type': 'application/json'
+            })
+          })
+          .then(response => response.text())
+          .then((text) =>{
+            if (text == 'OK') {
+                toast.success('Sua avaliação foi enviada com sucesso!');
+            } 
+            else {
+                toast.error(text);
+
+            }});
+
         // history.push("/Cardapio");
     }
 
