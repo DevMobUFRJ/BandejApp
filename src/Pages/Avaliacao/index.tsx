@@ -63,16 +63,23 @@ export default function Avaliacao() {
               'Content-Type': 'application/json'
             })
           })
-          .then(response => response.text())
+          .then(response => {
+            if (!response.ok)
+            // Importante checar porque a fetch só é rejeitada em caso de erro de rede
+                return "Erro ao acessar o servidor"
+            
+            return response.text();
+        })
           .then((text) =>{
             if (text == 'OK') {
                 toast.success('Sua avaliação foi enviada com sucesso!');
             } 
             else {
                 toast.error(text);
-
-            }});
-
+            }})
+            .catch(err => {
+                toast.error("Erro de rede");
+            });
         // history.push("/Cardapio");
     }
 
