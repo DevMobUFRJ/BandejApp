@@ -14,6 +14,9 @@ import { ICardapioProps, ISemana } from "../../Types/storage";
 import FontSize from "../../Functions/FontSize";
 import SideBar from "../../Components/SideBar";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
 
@@ -37,8 +40,6 @@ export default function Cardapio() {
     const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);    
     
     useEffect(() => {
-        // Checks if should display install popup notification:
-        console.log('isIos: ' + isIos())
         if (isIos() && !isInStandaloneMode()) { 
             setShowInstallMessage(true);
         } else{
@@ -52,7 +53,7 @@ export default function Cardapio() {
             setLoading(false);
         }
         
-        fetch('https://get-cardapio.onrender.com/api')
+        fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`)
             .then((data) => {
                 return data.json();
             })
@@ -62,7 +63,7 @@ export default function Cardapio() {
                 setLoading(false)
             })
             .catch((error) => {
-                //alert(error)
+                toast.error("Erro de rede. Tente novamente mais tarde");
             });
 
     }, []);
@@ -134,6 +135,7 @@ export default function Cardapio() {
 
     return(
         <CardapioDiv id="cardapio">
+            <ToastContainer />
             <ActionsDiv>
                 <HeaderDiv>
                     <SideBar/>
