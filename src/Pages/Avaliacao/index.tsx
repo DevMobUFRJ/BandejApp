@@ -52,7 +52,7 @@ export default function Avaliacao() {
         }
 
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', process.env.REACT_APP_PLANILHA_API_URL || '');
+        xhr.open('POST', `${process.env.REACT_APP_PLANILHA_API_URL}`);
 	    xhr.setRequestHeader("Content-Type", "application/json");
         const infos = JSON.stringify({
             nota: value,
