@@ -1,26 +1,43 @@
+import { useEffect, useState } from "react";
 import SideBar from "../../Components/SideBar";
 import { HeaderDiv, PageTitle } from "../Cardapio/style";
 import { Avadiv, Card, Container, CardMensagem, CardData, TextMensagem, TextData} from "./style";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+    
+type aviso = {
+    comunicado: String,
+    data: String
+};
 
 export default function Avaliacao() {
 
-    const comentarios = [
-        {
-            text: 'Hoje o Central vai abrir mais cedo',
-            date: '19/12/2023 10:00',
-        },
-        {
-            text: 'Amanhã o CT vai abrir mais cedo, porque Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but',
-            date: '18/12/2023 11:00',
-        },
-        {
-            text: 'PV está fechado',
-            date: '17/12/2023 12:00',
-        }
-    ]
+    const [comentarios, setComentarios] = useState<aviso[]>([]);
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
+            .then((data) => {
+                return data.json();
+            })
+            .then((post) => {
+                for (let aviso of post)
+                {
+                    let dataFormatada;
+                    dataFormatada = aviso.data.substring(0, 10);
+                    dataFormatada = dataFormatada.split('-').reverse().join('/');
+                    aviso.data = dataFormatada;
+                }
+                setComentarios(post);
+                localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(post.pop().data));    
+            })
+            .catch((error) => {
+                toast.error("Erro de rede. Tente novamente mais tarde");
+            });
+    }, []);
 
     return (
         <Avadiv id="AvaPage">
+            <ToastContainer />
             <HeaderDiv>
                 <SideBar/>
                 <PageTitle>Comunicados</PageTitle>
@@ -29,8 +46,8 @@ export default function Avaliacao() {
             <Container>
                 {comentarios.map((comentario, index) => (
                     <Card key={index}>
-                        <CardMensagem><TextMensagem>{comentario.text}</TextMensagem></CardMensagem>
-                        <CardData><TextData>{comentario.date}</TextData></CardData>
+                        <CardMensagem><TextMensagem>{comentario.comunicado}</TextMensagem></CardMensagem>
+                        <CardData><TextData>{comentario.data}</TextData></CardData>
                     </Card>
                 ))}
             </Container>

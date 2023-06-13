@@ -55,7 +55,7 @@ export default function Avaliacao() {
             restaurante: ru
         });
 
-        fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`, {
+        fetch(`${process.env.REACT_APP_PLANILHA_API_URL}`, {
             method: 'post',
             body: infos,
             mode: 'cors',
@@ -78,7 +78,7 @@ export default function Avaliacao() {
                 toast.error(text);
             }})
             .catch(err => {
-                toast.error("Erro de rede");
+                toast.error("Erro de rede. Tente novamente mais tarde");
             });
         // history.push("/Cardapio");
     }
