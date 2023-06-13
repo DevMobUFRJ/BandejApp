@@ -1,5 +1,3 @@
-import { useHistory } from "react-router-dom";
-
 import { 
     Avadiv, 
     Enviarbutton, 
@@ -20,7 +18,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Avaliacao() {
-    const history = useHistory();
     const [value, setValue] = useState(0);
     const [ru, setRu] = useState('NA');
 
