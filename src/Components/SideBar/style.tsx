@@ -71,17 +71,15 @@ export const SideHeader = styled.header `
     justify-content: space-between;
 `;
 
-export const SideTitle = styled.h1 `
-    font-family: ${global.fonts.nunito};
-    font-weight: 800;
-    font-size: 7vw;
-    color: white;
+export const LogoImg = styled.img `
+    width: ;
 `;
 
 /*-----------------------------------------------------------*/
 
 export const SideItem = styled.div `
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
     width: 80%;
 
     padding: 2.3vh 0 2.3vh 10%;
@@ -98,8 +96,14 @@ export const SideItem = styled.div `
 `;
 
 export const SideIcon = styled.img `
-    width: 7vw;
+    width: 6.67vw;
     margin: 0 3vw 0 0;
+`;
+
+export const ItemName = styled.p `
+    font-family: ${global.fonts.quickSand};
+    font-weight: 700;
+    font-size: ;
 `;
 
 export const SideFillDiv = styled.div `

@@ -1,11 +1,13 @@
-import { CloseImg, SideBarDiv, SideDiv, SideFillDiv, SideHeader, SideIcon, SideImg, SideItem, SideTitle } from "./style";
+import { CloseImg, SideBarDiv, SideDiv,
+    SideFillDiv, SideHeader, SideIcon,
+    SideImg, SideItem } from "./style";
 
-import Menu from '../../Assets/Cardapio/Menu.svg';
-import Close from '../../Assets/Cardapio/Close.svg';
+import Menu from '../../Assets/SideBar/menu.svg';
+import Close from '../../Assets/SideBar/close.svg';
+import Home from '../../Assets/SideBar/cardapio.svg';
+import Aval from '../../Assets/SideBar/avaliacao.svg';
+import Comun from '../../Assets/SideBar/comunicados.svg';
 
-import Home from '../../Assets/Cardapio/Home.svg';
-import Aval from '../../Assets/Cardapio/AvaliacaoIcon.svg';
-import Comun from '../../Assets/Cardapio/Notification.svg';
 import { useHistory } from "react-router-dom";
 import { BlurDiv } from "../../Pages/Cardapio/style";
 
@@ -48,7 +50,7 @@ export default function SideBar() {
             <SideImg onClick={OpenSide} src={Menu}/>
             <SideBarDiv id="sidebar">
                 <SideHeader>
-                    <SideTitle>MENU</SideTitle>
+                    
                     <CloseImg id="closeButton" src={Close} onClick={CloseSide}/>
                 </SideHeader>
 
@@ -56,7 +58,7 @@ export default function SideBar() {
 
                 <SideItem onClick={() => {(history.location.pathname !== '/Cardapio') ? history.push('/Cardapio') : CloseSide()}}>
                     <SideIcon src={Home}/>
-                    Início
+                    
                 </SideItem>
 
                 <SideFillDiv/>
