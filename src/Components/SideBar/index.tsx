@@ -1,7 +1,8 @@
-import { CloseImg, SideBarDiv, SideDiv,
-    SideFillDiv, SideHeader, SideIcon,
+import { CloseImg, ItemName, ItemsDiv, LogoImg, SideBarDiv,
+    SideDiv, SideHeader, SideIcon,
     SideImg, SideItem } from "./style";
 
+import Logo from '../../Assets/SideBar/logo.svg';
 import Menu from '../../Assets/SideBar/menu.svg';
 import Close from '../../Assets/SideBar/close.svg';
 import Home from '../../Assets/SideBar/cardapio.svg';
@@ -50,30 +51,28 @@ export default function SideBar() {
             <SideImg onClick={OpenSide} src={Menu}/>
             <SideBarDiv id="sidebar">
                 <SideHeader>
-                    
+                    <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
                     <CloseImg id="closeButton" src={Close} onClick={CloseSide}/>
                 </SideHeader>
 
 {/*--------------------------------------------------------------------------*/}
 
-                <SideItem onClick={() => {(history.location.pathname !== '/Cardapio') ? history.push('/Cardapio') : CloseSide()}}>
-                    <SideIcon src={Home}/>
-                    
-                </SideItem>
+                <ItemsDiv>
+                    <SideItem onClick={() => {(history.location.pathname !== '/Cardapio') ? history.push('/Cardapio') : CloseSide()}}>
+                        <SideIcon src={Home}/>
+                        <ItemName></ItemName>
+                    </SideItem>
 
-                <SideFillDiv/>
+                    <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
+                        <SideIcon src={Aval}/>
+                        <ItemName></ItemName>
+                    </SideItem>
 
-                <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
-                    <SideIcon src={Aval}/>
-                    Avaliação
-                </SideItem>
-
-                <SideFillDiv/>
-
-                <SideItem onClick={() => {(history.location.pathname !== '/Notificacao') ? history.push('/Notificacao') : CloseSide()}}>
-                    <SideIcon src={Comun}/>
-                    Comunicados
-                </SideItem>
+                    <SideItem onClick={() => {(history.location.pathname !== '/Notificacao') ? history.push('/Notificacao') : CloseSide()}}>
+                        <SideIcon src={Comun}/>
+                        <ItemName></ItemName>
+                    </SideItem>
+                </ItemsDiv>
             </SideBarDiv>
         </SideDiv>
     );

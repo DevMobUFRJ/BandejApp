@@ -36,8 +36,8 @@ export const SideImg = styled.img `
 `;
 
 export const SideBarDiv = styled.div `
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 30% 30%;
     min-width: 0vw;
     width: 0vw;
     height: 100vh;
@@ -49,7 +49,7 @@ export const SideBarDiv = styled.div `
 
     align-items: center;
 
-    background: ${global.colors.laranja};
+    background: white;
 
     overflow: hidden;
     transition: width 0.3s ease;
@@ -72,10 +72,16 @@ export const SideHeader = styled.header `
 `;
 
 export const LogoImg = styled.img `
-    width: ;
+    width: 26.66vw;
 `;
 
 /*-----------------------------------------------------------*/
+
+export const ItemsDiv = styled.ul `
+    display: grid;
+    grid-auto-rows: auto;
+    background-color: pink;
+`;
 
 export const SideItem = styled.div `
     display: grid;
@@ -103,14 +109,9 @@ export const SideIcon = styled.img `
 export const ItemName = styled.p `
     font-family: ${global.fonts.quickSand};
     font-weight: 700;
-    font-size: ;
-`;
+    font-size: 4.44vw;
 
-export const SideFillDiv = styled.div `
-    width: 85%;
-    height: 2px;
-    border-radius: 5px;
-    background: white;
+    background-color: green;
 `;
 
 /*-----------------------------------------------------------*/
