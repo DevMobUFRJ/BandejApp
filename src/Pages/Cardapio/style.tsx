@@ -34,27 +34,6 @@ export const ActionsDiv = styled.div `
 
 /*-----------------------------------------------------------*/
 
-export const HeaderDiv = styled.header `
-    display: inline-flex;
-    width: 76.63vw;
-
-    margin: 2.59vh 0 2.37vh 0;
-`;
-
-export const PageTitle = styled.h1 `
-    width: fit-content;
-    position: relative;
-    left: 25%;
-
-    font-size: 5.5vw;
-    font-family: ${global.fonts.nunito};
-    font-weight: 600;
-
-    color: ${global.colors.cinzaTitulo};
-`;
-
-/*-----------------------------------------------------------*/
-
 export const DropHeader = styled.div `
     display: block;
     flex-direction: column;

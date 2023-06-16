@@ -11,11 +11,11 @@ import {
 import mailIcon from '../../Assets/Avaliacao/MailIcon.svg';
 import Nota from "../../Components/Nota";
 import AvaDrop from "../../Components/AvaDrop";
-import { HeaderDiv, PageTitle } from "../Cardapio/style";
 import SideBar from "../../Components/SideBar";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cabecalho from "../../Components/Cabecalho";
 
 export default function Avaliacao() {
     const [value, setValue] = useState(0);
@@ -89,10 +89,8 @@ export default function Avaliacao() {
     return (
         <Avadiv id="AvaPage">
             <ToastContainer />
-            <HeaderDiv>
-                <SideBar/>
-                <PageTitle>Avaliação</PageTitle>
-            </HeaderDiv>
+
+            <Cabecalho nome='Avaliação'/>
 
             <FormDiv>
                 <AvaDrop setarDrop={setRu}/>
