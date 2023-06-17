@@ -59,7 +59,7 @@ export const SideItem = styled.li `
     grid-template-columns: 16% auto;
     
     align-items: center;
-    margin: 0 0 0 6vw;
+    padding: 0 0 0 6vw;
     
     font-family: ${global.fonts.nunito};
     font-size: 5.5vw;
