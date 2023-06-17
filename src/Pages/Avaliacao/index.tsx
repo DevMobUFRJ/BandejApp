@@ -67,7 +67,7 @@ export default function Avaliacao() {
             return response.text();
         })
           .then((text) =>{
-            if (text == 'OK') {
+            if (text === 'OK') {
                 toast.success('Sua avaliação foi enviada com sucesso!');
             } 
             else {
