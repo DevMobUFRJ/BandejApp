@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import SideBar from "../../Components/SideBar";
 import { Avadiv, Card, Container, CardMensagem, CardData, TextMensagem, TextData} from "./style";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

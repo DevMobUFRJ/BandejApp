@@ -2,15 +2,16 @@ import { CloseImg, ItemName, ItemsDiv, LogoImg, SideBarDiv,
     SideDiv, SideHeader, SideIcon,
     SideImg, SideItem } from "./style";
 
-import Logo from '../../Assets/SideBar/logo.svg';
 import Menu from '../../Assets/SideBar/menu.svg';
+import Logo from '../../Assets/SideBar/logo.svg';
 import Close from '../../Assets/SideBar/close.svg';
 import Home from '../../Assets/SideBar/cardapio.svg';
 import Aval from '../../Assets/SideBar/avaliacao.svg';
 import Comun from '../../Assets/SideBar/comunicados.svg';
+import Info from '../../Assets/SideBar/sobrenos.svg';
+import Fale from '../../Assets/SideBar/faleconosco.svg';
 
 import { useHistory } from "react-router-dom";
-import { BlurDiv } from "../../Pages/Cardapio/style";
 
 export default function SideBar() {
     const history = useHistory();
@@ -25,7 +26,7 @@ export default function SideBar() {
 
         requestAnimationFrame(() => {
             blurdiv?.classList.add('sideBlur');
-            if(sidebar) sidebar.style.width = '71.96vw';
+            if(sidebar) sidebar.style.width = '72.22vw';
         });
     }
 
@@ -47,7 +48,6 @@ export default function SideBar() {
 
     return (
         <SideDiv>      
-            <BlurDiv id="blurdiv"/>
             <SideImg onClick={OpenSide} src={Menu}/>
             <SideBarDiv id="sidebar">
                 <SideHeader>
@@ -60,17 +60,27 @@ export default function SideBar() {
                 <ItemsDiv>
                     <SideItem onClick={() => {(history.location.pathname !== '/Cardapio') ? history.push('/Cardapio') : CloseSide()}}>
                         <SideIcon src={Home}/>
-                        <ItemName></ItemName>
-                    </SideItem>
-
-                    <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
-                        <SideIcon src={Aval}/>
-                        <ItemName></ItemName>
+                        <ItemName>Cardápio</ItemName>
                     </SideItem>
 
                     <SideItem onClick={() => {(history.location.pathname !== '/Notificacao') ? history.push('/Notificacao') : CloseSide()}}>
                         <SideIcon src={Comun}/>
-                        <ItemName></ItemName>
+                        <ItemName>Comunicados</ItemName>
+                    </SideItem>
+
+                    <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
+                        <SideIcon src={Aval}/>
+                        <ItemName>Avaliação</ItemName>
+                    </SideItem>
+
+                    <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
+                        <SideIcon src={Info}/>
+                        <ItemName>Informações</ItemName>
+                    </SideItem>
+
+                    <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
+                        <SideIcon src={Fale}/>
+                        <ItemName>Sobre</ItemName>
                     </SideItem>
                 </ItemsDiv>
             </SideBarDiv>

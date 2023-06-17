@@ -11,7 +11,6 @@ import {
 import mailIcon from '../../Assets/Avaliacao/MailIcon.svg';
 import Nota from "../../Components/Nota";
 import AvaDrop from "../../Components/AvaDrop";
-import SideBar from "../../Components/SideBar";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

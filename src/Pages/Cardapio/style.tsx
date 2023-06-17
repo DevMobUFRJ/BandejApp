@@ -12,17 +12,6 @@ export const CardapioDiv = styled.div `
     background: #E3E3E3;
 `;
 
-export const BlurDiv = styled.div `
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    background: rgb(0, 0, 0, 0.05);
-`;
-
 export const ActionsDiv = styled.div `
     display: flex;
     flex-direction: column;
