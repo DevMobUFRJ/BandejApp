@@ -5,7 +5,7 @@ import '@fontsource/quicksand';
 export const global = {
     colors: {
         laranja: '#fd720f',
-        cinza: '#353637',
+        cinza: '#3E3E3E',
         cinzaTexto: 'rgb(0, 0, 0, .49)',
         cinzaTitulo: '#818181',
         cinza1: '#f4f4f4',

@@ -6,7 +6,7 @@ import Tutorial from '../Pages/Tutorial';
 import Restaurante from '../Pages/Restaurante';
 import Notificacao from '../Pages/Notificacao';
 import Informacoes from '../Pages/Informacoes';
-import FaleConosco from '../Pages/Fale';
+import FaleConosco from '../Pages/FaleConosco';
 
 export default function Routes() {
     return (

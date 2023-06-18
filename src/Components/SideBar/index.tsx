@@ -73,14 +73,14 @@ export default function SideBar() {
                         <ItemName>Avaliação</ItemName>
                     </SideItem>
 
-                    <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
+                    <SideItem onClick={() => {(history.location.pathname !== '/Informacoes') ? history.push('/Informacoes') : CloseSide()}}>
                         <SideIcon src={Info}/>
                         <ItemName>Informações</ItemName>
                     </SideItem>
 
-                    <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
+                    <SideItem onClick={() => {(history.location.pathname !== '/FaleConosco') ? history.push('/FaleConosco') : CloseSide()}}>
                         <SideIcon src={Fale}/>
-                        <ItemName>Sobre</ItemName>
+                        <ItemName>Fale conosco</ItemName>
                     </SideItem>
                 </ItemsDiv>
             </SideBarDiv>

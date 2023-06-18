@@ -5,11 +5,17 @@ export default function Informacoes() {
     return (
         <InformDiv>
             <Cabecalho nome="Informações"/>
-            <h1 style={{margin: '10vh 0 0 0'}}>
+            <h3 style={{margin: '10vh 0 0 0'}}>
                 ESSA PÁGINA ESTÁ EM ANDAMENTO,
-                VOLTE MAIS TARDE OU CONSULTE
-                SEU DESENVOLVEDOR MAIS PRÓXIMO :)
-            </h1>
+                VOLTE MAIS TARDE :)
+            </h3>
+
+            
+            <h2>OU</h2>
+
+            <h3>
+                CONSULTE SEU DESENVOLVEDOR MAIS PRÓXIMO :)
+            </h3>
         </InformDiv>
     );
 }
