@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import SideBar from "../../Components/SideBar";
-import { HeaderDiv, PageTitle } from "../Cardapio/style";
 import { Avadiv, Card, Container, CardMensagem, CardData, TextMensagem, TextData} from "./style";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cabecalho from "../../Components/Cabecalho";
     
 type aviso = {
     comunicado: String,
@@ -36,10 +35,8 @@ export default function Avaliacao() {
     return (
         <Avadiv id="AvaPage">
             <ToastContainer />
-            <HeaderDiv>
-                <SideBar/>
-                <PageTitle>Comunicados</PageTitle>
-            </HeaderDiv>
+
+            <Cabecalho nome='Comunicados'/>
 
             <Container>
                 {comentarios.map((comentario, index) => (

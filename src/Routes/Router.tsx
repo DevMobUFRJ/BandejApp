@@ -1,9 +1,12 @@
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+
 import Avaliacao from '../Pages/Avaliacao';
 import Cardapio from '../Pages/Cardapio';
 import Tutorial from '../Pages/Tutorial';
 import Restaurante from '../Pages/Restaurante';
 import Notificacao from '../Pages/Notificacao';
+import Informacoes from '../Pages/Informacoes';
+import FaleConosco from '../Pages/FaleConosco';
 
 export default function Routes() {
     return (
@@ -32,6 +35,14 @@ export default function Routes() {
 
                 <Route path="/Notificacao">
                     <Notificacao/>
+                </Route>
+
+                <Route path='/Informacoes'>
+                    <Informacoes/>
+                </Route>
+
+                <Route path='/FaleConosco'>
+                    <FaleConosco/>
                 </Route>
             </Switch>
         </HashRouter>

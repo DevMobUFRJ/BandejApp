@@ -5,17 +5,17 @@ import RUselect from "../../Components/RUselect";
 
 import Dia from "../../Components/Dia";
 import { ActionsDiv, AvisoAtt, CardapioDiv,
-        DropHeader, HeaderDiv, PageTitle} from "./style";
+        DropHeader} from "./style";
 
 import DownPop from "../../Components/PopUp";
 import Load from "../../Components/Load";
 import { ICardapioProps, ISemana } from "../../Types/storage";
 
 import FontSize from "../../Functions/FontSize";
-import SideBar from "../../Components/SideBar";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cabecalho from "../../Components/Cabecalho";
 
 export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
@@ -137,10 +137,7 @@ export default function Cardapio() {
         <CardapioDiv id="cardapio">
             <ToastContainer />
             <ActionsDiv>
-                <HeaderDiv>
-                    <SideBar/>
-                    <PageTitle>Cardápio</PageTitle>
-                </HeaderDiv>
+                <Cabecalho nome="Cardapio"/>
 
                 <DropHeader>
                     <RUselect text={localStorage.getItem("bandejapp:ruDefault") || ''} selecionaRU={selecionaRU}/>

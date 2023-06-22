@@ -1,13 +1,17 @@
-import { CloseImg, SideBarDiv, SideDiv, SideFillDiv, SideHeader, SideIcon, SideImg, SideItem, SideTitle } from "./style";
+import { CloseImg, ItemName, ItemsDiv, LogoImg, SideBarDiv,
+    SideDiv, SideHeader, SideIcon,
+    SideImg, SideItem } from "./style";
 
-import Menu from '../../Assets/Cardapio/Menu.svg';
-import Close from '../../Assets/Cardapio/Close.svg';
+import Menu from '../../Assets/SideBar/menu.svg';
+import Logo from '../../Assets/SideBar/logo.svg';
+import Close from '../../Assets/SideBar/close.svg';
+import Home from '../../Assets/SideBar/cardapio.svg';
+import Aval from '../../Assets/SideBar/avaliacao.svg';
+import Comun from '../../Assets/SideBar/comunicados.svg';
+import Info from '../../Assets/SideBar/sobrenos.svg';
+import Fale from '../../Assets/SideBar/faleconosco.svg';
 
-import Home from '../../Assets/Cardapio/Home.svg';
-import Aval from '../../Assets/Cardapio/AvaliacaoIcon.svg';
-import Comun from '../../Assets/Cardapio/Notification.svg';
 import { useHistory } from "react-router-dom";
-import { BlurDiv } from "../../Pages/Cardapio/style";
 
 export default function SideBar() {
     const history = useHistory();
@@ -22,7 +26,7 @@ export default function SideBar() {
 
         requestAnimationFrame(() => {
             blurdiv?.classList.add('sideBlur');
-            if(sidebar) sidebar.style.width = '71.96vw';
+            if(sidebar) sidebar.style.width = '72.22vw';
         });
     }
 
@@ -44,34 +48,41 @@ export default function SideBar() {
 
     return (
         <SideDiv>      
-            <BlurDiv id="blurdiv"/>
             <SideImg onClick={OpenSide} src={Menu}/>
             <SideBarDiv id="sidebar">
                 <SideHeader>
-                    <SideTitle>MENU</SideTitle>
+                    <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
                     <CloseImg id="closeButton" src={Close} onClick={CloseSide}/>
                 </SideHeader>
 
 {/*--------------------------------------------------------------------------*/}
 
-                <SideItem onClick={() => {(history.location.pathname !== '/Cardapio') ? history.push('/Cardapio') : CloseSide()}}>
-                    <SideIcon src={Home}/>
-                    Início
-                </SideItem>
+                <ItemsDiv>
+                    <SideItem onClick={() => {(history.location.pathname !== '/Cardapio') ? history.push('/Cardapio') : CloseSide()}}>
+                        <SideIcon src={Home}/>
+                        <ItemName>Cardápio</ItemName>
+                    </SideItem>
 
-                <SideFillDiv/>
+                    <SideItem onClick={() => {(history.location.pathname !== '/Notificacao') ? history.push('/Notificacao') : CloseSide()}}>
+                        <SideIcon src={Comun}/>
+                        <ItemName>Comunicados</ItemName>
+                    </SideItem>
 
-                <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
-                    <SideIcon src={Aval}/>
-                    Avaliação
-                </SideItem>
+                    <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
+                        <SideIcon src={Aval}/>
+                        <ItemName>Avaliação</ItemName>
+                    </SideItem>
 
-                <SideFillDiv/>
+                    <SideItem onClick={() => {(history.location.pathname !== '/Informacoes') ? history.push('/Informacoes') : CloseSide()}}>
+                        <SideIcon src={Info}/>
+                        <ItemName>Informações</ItemName>
+                    </SideItem>
 
-                <SideItem onClick={() => {(history.location.pathname !== '/Notificacao') ? history.push('/Notificacao') : CloseSide()}}>
-                    <SideIcon src={Comun}/>
-                    Comunicados
-                </SideItem>
+                    <SideItem onClick={() => {(history.location.pathname !== '/FaleConosco') ? history.push('/FaleConosco') : CloseSide()}}>
+                        <SideIcon src={Fale}/>
+                        <ItemName>Fale conosco</ItemName>
+                    </SideItem>
+                </ItemsDiv>
             </SideBarDiv>
         </SideDiv>
     );
