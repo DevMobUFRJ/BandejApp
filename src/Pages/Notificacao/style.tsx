@@ -59,6 +59,7 @@ export const Container = styled.div `
 
 export const TextMensagem = styled.p `
     font-family: ${global.fonts.nunito};
+    word-wrap: break-word;
 `;
 
 export const TextData = styled.p `
