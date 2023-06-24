@@ -166,7 +166,7 @@ export default function Cardapio() {
             />
 
             <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
-            <AvisoAtt>Versão 0.0.1</AvisoAtt>
+            <AvisoAtt>Versão 0.0.2</AvisoAtt>
             {
                 showInstallMessage &&
                 <DownPop/>
