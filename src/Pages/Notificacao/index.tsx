@@ -18,6 +18,7 @@ export default function Avaliacao() {
         fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
             .then((data) => data.json())
             .then((post) => {
+                // post = []
                 for (let aviso of post)
                 {
                     let dataFormatada;
@@ -26,7 +27,8 @@ export default function Avaliacao() {
                     aviso.data = dataFormatada;
                 }
                 setComentarios(post);
-                localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(post[post.length - 1].data));    
+                if(post.length > 0)
+                    localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(post[post.length - 1].data));    
             })
             .catch((error) => {
                 toast.error("Erro de rede. Tente novamente mais tarde");
