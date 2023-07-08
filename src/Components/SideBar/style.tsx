@@ -27,6 +27,16 @@ export const SideImg = styled.img `
     width: 6.3vw;
 `;
 
+export const NotifDiv = styled.div `
+    display: flex;
+    position: relative;
+`;
+
+export const NotifIcon = styled.div `
+    display: flex;
+
+`;
+
 /*-----------------------------------------------------------*/
 
 export const SideHeader = styled.section `

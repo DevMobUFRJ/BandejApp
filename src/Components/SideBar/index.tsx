@@ -1,4 +1,4 @@
-import { CloseImg, ItemName, ItemsDiv, LogoImg, SideBarDiv,
+import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, SideBarDiv,
     SideDiv, SideHeader, SideIcon,
     SideImg, SideItem } from "./style";
 
@@ -48,7 +48,10 @@ export default function SideBar() {
 
     return (
         <SideDiv>      
-            <SideImg onClick={OpenSide} src={Menu}/>
+            <NotifDiv>
+                
+                <SideImg onClick={OpenSide} src={Menu}/>
+            </NotifDiv>
             <SideBarDiv id="sidebar">
                 <SideHeader>
                     <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
