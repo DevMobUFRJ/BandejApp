@@ -33,4 +33,5 @@ para que o usuário possa realizar sua consulta e fornecer feedback de maneira f
 Universitário.
 
 Além disso, para futuras implementações e desenvolvimento para outras plataformas, o React Native seria a primeira o opção já que serve tanto
-para IOS quanto para Android e o projeto poderia ser inteiramente reutilizado, somente com adições específicas para cada plataforma.
+para IOS <img width="15em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" /> quanto para Android <img width="15em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-plain.svg" /> e o projeto poderia ser inteiramente reutilizado, somente
+com adições específicas para cada plataforma.
