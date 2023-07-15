@@ -26,9 +26,11 @@ aplicação do Restaurante Universitário, concluiu-se que seria a mellhor das o
 - Acesso às funcionalidades, ainda que limitada, de cada dispositivo.
 
 A partir destas motivações iniciais, junto à vontade dos integrantes do time, e familiridade de alguns, foi escolhido construir a plataforma
-em **React.js** <img width="15em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"/> baseado em **Typescript** <img width="15em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" /> objetivando a construção de uma aplicação escalonável, de fácil adapatação e utilizando uma tecnologia
-moderna, com um design visualmente apelativo e experiência simplificada para que o usuário possa realizar sua consulta e fornecer feedback de
-maneira fácil, rápida e efetiva tanto para ele quanto para o Restaurante Universitário.
+em **React.js** <img width="15em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"/> baseado em **Typescript**
+<img width="15em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" /> objetivando a construção de
+uma aplicação escalonável, de fácil adapatação e utilizando uma tecnologia moderna, com um design visualmente apelativo e experiência simplificada
+para que o usuário possa realizar sua consulta e fornecer feedback de maneira fácil, rápida e efetiva tanto para ele quanto para o Restaurante
+Universitário.
 
 Além disso, para futuras implementações e desenvolvimento para outras plataformas, o React Native seria a primeira o opção já que serve tanto
 para IOS quanto para Android e o projeto poderia ser inteiramente reutilizado, somente com adições específicas para cada plataforma.
