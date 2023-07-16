@@ -58,6 +58,12 @@ export default function Cardapio() {
                 return data.json();
             })
             .then((post) => {
+                // post = {}
+                if(JSON.stringify(post) === "{}"){
+                    toast.error("Objeto nulo. Tente entrar novamente no app.");
+                    setLoading(false)
+                    return;
+                }
                 setCardapio(post);
                 localStorage.setItem("bandejapp:ultimoCardapio", JSON.stringify(post));    
                 setLoading(false)
@@ -157,6 +163,7 @@ export default function Cardapio() {
             />
 
             <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
+            <AvisoAtt>Versão 0.0.2</AvisoAtt>
             {
                 showInstallMessage &&
                 <DownPop/>

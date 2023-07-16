@@ -25,7 +25,7 @@ export default function Avaliacao() {
     const validar = () => {
         const erro = document.getElementById('ErroAva') as HTMLElement;
         const comentario = document.getElementById('ComentInput') as HTMLInputElement;
-        while (comentario.value.charAt(0) === '=') {
+        while (comentario.value && comentario.value.charAt(0) === '=') {
             comentario.value = comentario.value.substring(1);
         }
         if(comentario.value.trim() === '') {
