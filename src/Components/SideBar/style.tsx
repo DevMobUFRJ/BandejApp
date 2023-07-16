@@ -74,7 +74,7 @@ export const SideItem = styled.li `
     font-family: ${global.fonts.nunito};
     font-size: 5.5vw;
 
-    &:active {
+    :active {
 		background-color: ${global.colors.cinza1};
 	}
 `;

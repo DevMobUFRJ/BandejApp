@@ -32,6 +32,7 @@ export default function RUselect({text, selecionaRU}: DropDownProps) {
         })
 
         blurdiv?.addEventListener('click', DropHandler);
+        seta?.addEventListener('click', DropHandler);
         options.forEach((option) => {option.addEventListener('click', DropHandler)});
     }
 
@@ -40,9 +41,10 @@ export default function RUselect({text, selecionaRU}: DropDownProps) {
 
         evento.stopPropagation();
         blurdiv?.removeEventListener('click', DropHandler);
+        seta?.removeEventListener('click', DropHandler);
         options.forEach((option) => {option.removeEventListener('click', DropHandler)});
 
-        if(triggerElem === blurdiv) {
+        if(triggerElem === blurdiv || triggerElem === seta) {
             CloseDrop();
             return;
         }
