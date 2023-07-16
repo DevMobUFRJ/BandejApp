@@ -1,21 +1,43 @@
 import Cabecalho from "../../Components/Cabecalho";
-import { InformDiv } from "./style";
+import { BalaoInfo } from "../FaleConosco/style";
+import { InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, InfoUndertitle, InformDiv } from "./style";
 
 export default function Informacoes() {
     return (
         <InformDiv>
             <Cabecalho nome="Informações"/>
-            <h3 style={{margin: '10vh 0 0 0'}}>
-                ESSA PÁGINA ESTÁ EM ANDAMENTO,
-                VOLTE MAIS TARDE :)
-            </h3>
 
-            
-            <h2>OU</h2>
+            <BalaoInfo>
+                <InfoTitle>Horário de funcionamento</InfoTitle>
 
-            <h3>
-                CONSULTE SEU DESENVOLVEDOR MAIS PRÓXIMO :)
-            </h3>
+                <InfoGrid>
+                    <InfoSubtitle>Segunda a Sexta:</InfoSubtitle>
+                    <InfoArea>
+                        <InfoBalao>
+                            <InfoUndertitle>Almoço</InfoUndertitle>
+                            <InfoTitle>10:30h às 15h</InfoTitle>
+                        </InfoBalao>
+                        <InfoBalao>
+                            <InfoUndertitle>Janta</InfoUndertitle>
+                            <InfoTitle>17:30 às 20h</InfoTitle>
+                        </InfoBalao>
+                    </InfoArea>
+                </InfoGrid>
+
+                <InfoGrid>
+                    <InfoSubtitle>Finais de semana e feriados:</InfoSubtitle>
+                    <InfoArea>
+                        <InfoBalao>
+                            <InfoUndertitle>Almoço</InfoUndertitle>
+                            <InfoTitle>10:30h às 15h</InfoTitle>
+                        </InfoBalao>
+                        <InfoBalao>
+                            <InfoUndertitle>Janta</InfoUndertitle>
+                            <InfoTitle>17:30 às 20h</InfoTitle>
+                        </InfoBalao>
+                    </InfoArea>
+                </InfoGrid>
+            </BalaoInfo>
         </InformDiv>
     );
 }
