@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Avadiv, Card, Container, CardMensagem, CardData, TextMensagem, TextData, MensagensNaoLidas, DataRelativa, SemMensagens} from "./style";
 import { ToastContainer, toast } from 'react-toastify';
+import Load from "../../Components/Load";
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
     
@@ -12,6 +13,7 @@ type aviso = {
 export default function Avaliacao() {
 
     const [comentarios, setComentarios] = useState<aviso[]>([]);
+    const [loading, setLoading] = useState(true);
 
     const bordaRedonda = (indice: number, tamanho: number) => {
         if (tamanho == 1)
@@ -77,7 +79,6 @@ export default function Avaliacao() {
         fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
             .then((data) => data.json())
             .then((post) => {
-                // post = []
                 for (let aviso of post)
                 {
                     let dataFormatada;
@@ -86,6 +87,7 @@ export default function Avaliacao() {
                     aviso.data = dataFormatada;
                 }
                 setComentarios(post);
+                setLoading(false);
                 if(post.length > 0)
                     localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(post[post.length - 1].data));    
             })
@@ -93,6 +95,9 @@ export default function Avaliacao() {
                 toast.error("Erro de rede. Tente novamente mais tarde");
             });
     }, []);
+
+    if(loading)
+        return <Load />
 
     return (
         <Avadiv id="AvaPage">
