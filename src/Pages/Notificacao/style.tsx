@@ -31,16 +31,17 @@ export const AvalImg = styled.img `
 `;
 
 export const Card = styled.div `
-    padding: 10px;
+    padding: 6.6vw;
     background: ${global.colors.branco};
     font-family: ${global.fonts.nunito};
 `;
 
 export const CardMensagem = styled.div `
+
 `;
 
 export const CardData = styled.div `
-    margin-top: 15px;
+
 `;
 
 export const Container = styled.div `
