@@ -92,6 +92,7 @@ export default function Avaliacao() {
                     localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(post[post.length - 1].data));    
             })
             .catch((error) => {
+                setLoading(false);
                 toast.error("Erro de rede. Tente novamente mais tarde");
             });
     }, []);
