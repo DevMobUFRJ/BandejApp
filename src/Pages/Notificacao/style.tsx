@@ -5,8 +5,10 @@ export const Avadiv = styled.div `
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     align-items: center;
+
+    background: ${global.colors.fundo};
 `;
 
 export const Titulo = styled.h1 `
@@ -29,41 +31,70 @@ export const AvalImg = styled.img `
 `;
 
 export const Card = styled.div `
-    margin-top: 10px;
-    position: relative;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: rgba(217, 217, 217, 0.38);
+    padding: 6.6vw;
+    background: ${global.colors.branco};
     font-family: ${global.fonts.nunito};
-    &:before{
-        content: "";
-        position: absolute;
-        top: 10px;
-        left: -20px;
-        border-width: 10px;
-        border-style: solid;
-        border-color: transparent rgba(217, 217, 217, 0.38) transparent transparent;
-    }
 `;
 
 export const CardMensagem = styled.div `
+
 `;
 
 export const CardData = styled.div `
-    margin-top: 15px;
+
 `;
 
 export const Container = styled.div `
-    width: 80%;
+    width: 89.85vw;
 `;
 
 export const TextMensagem = styled.p `
-    font-family: ${global.fonts.nunito};
+    font-family: ${global.fonts.quickSand};
+    color: ${global.colors.cinza};
+    margin-top: 3vh;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px; /* 175% */
     word-wrap: break-word;
 `;
 
 export const TextData = styled.p `
-    font-family: ${global.fonts.nunito};
-    font-size: 12px;
-    color: #666666;
+    font-family: ${global.fonts.quickSand};
+    color: ${global.colors.cinza};
+    margin-top: 0.5vh;
+    font-size: 16px;
+    font-weight: 500;    
+`;
+
+export const MensagensNaoLidas = styled.button `
+    width: 91vw;
+    height: 6vh;
+    margin-top: 2vh;
+    background: ${global.colors.laranja};
+
+    border-radius: 16px;
+    border:none;
+
+    text-align: center;
+    color: ${global.colors.branco};
+    font-family: ${global.fonts.quickSand};
+    font-size: 16px;
+    font-weight: 700;
+`;
+
+export const DataRelativa = styled.h3 `
+    font-family: ${global.fonts.quickSand};
+    color: ${global.colors.cinza};
+    font-size: 20px;
+    font-weight: 700;
+`;
+
+export const SemMensagens = styled.p `
+    margin-top: 2vh;
+
+    font-family: ${global.fonts.quickSand};
+    color: ${global.colors.cinza};
+
+    font-size: 16px;
 `;

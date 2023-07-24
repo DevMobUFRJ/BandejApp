@@ -3,9 +3,13 @@ import { global } from "../../globalStyle";
 
 export const CabecaDiv = styled.header `
     display: inline-flex;
-    width: 76.63vw;
+    align-items: center;
+    padding-top: 4.5vh;
 
-    margin: 2.59vh 0 2.37vh 0;
+    width: 100vw;
+    height: 8vh;
+
+    background: ${global.colors.branco};
 
     .sideBlur {
         display: flex;
@@ -33,17 +37,17 @@ export const CabecaDiv = styled.header `
 `;
 
 export const PageTitle = styled.h1 `
-    width: fit-content;
-    position: relative;
-    left: 25%;
+    width: 100vw;
+    position: absolute;
+    left:0;
 
     font-size: 5.5vw;
-    font-family: ${global.fonts.nunito};
-    font-weight: 600;
+    font-family: ${global.fonts.quickSand};
+    font-weight: 700;
+    text-align: center;
 
-    color: ${global.colors.cinzaTitulo};
-`;
-
+    color: ${global.colors.cinza};
+`; 
 
 export const BlurDiv = styled.div `
     display: none;

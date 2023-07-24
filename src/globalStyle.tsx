@@ -8,6 +8,8 @@ export const global = {
         cinza: '#3E3E3E',
         cinzaTexto: 'rgb(0, 0, 0, .49)',
         desativado: '#C2C3C4',
+        fundo: '#EBECED',
+        branco: '#FFF',
 /*---------------------------------------------------- */
         cinzaTitulo: '#818181',
         cinza1: '#f4f4f4',
