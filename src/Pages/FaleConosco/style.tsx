@@ -18,7 +18,7 @@ export const BalaoInfo = styled.section `
     grid-row-gap: 2vh;
     width: 82.23vw;
 
-    margin: 0 0 2vh 0;
+    margin: 2vh 0 0 0;
     padding: 3.33vw 4.44vw;
 
     border-radius: 4.44vw;

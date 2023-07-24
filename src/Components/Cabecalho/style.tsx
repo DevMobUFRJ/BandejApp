@@ -41,7 +41,7 @@ export const PageTitle = styled.h1 `
     position: absolute;
     left:0;
 
-    font-size: 5.5vw;
+    font-size: 16px;
     font-family: ${global.fonts.quickSand};
     font-weight: 700;
     text-align: center;
