@@ -16,13 +16,13 @@ export default function Avaliacao() {
     const [loading, setLoading] = useState(true);
 
     const bordaRedonda = (indice: number, tamanho: number) => {
-        if (tamanho == 1)
+        if (tamanho === 1)
             return "16px";
         
-        if (indice == 0)
+        if (indice === 0)
             return "16px 16px 0 0";
 
-        if (indice == tamanho - 1)
+        if (indice === tamanho - 1)
             return "0 0 16px 16px";
         
         return "0";
@@ -43,10 +43,10 @@ export default function Avaliacao() {
         let diasPassados = Math.floor((hoje.getTime() - diaDaMensagem.getTime()) / (24 * 60 * 60 * 1000));
 
 
-        if (diasPassados == 0)
+        if (diasPassados === 0)
             return "Hoje";
 
-        if (diasPassados == 1)
+        if (diasPassados === 1)
             return "Ontem"
 
         if (diasPassados < 7)
@@ -57,9 +57,9 @@ export default function Avaliacao() {
 
         const semanasString = `Há ${semanasPassadas} semana${semanasPassadas > 1 ? 's' : ''}`
 
-        if (diasPassados == 0)
+        if (diasPassados === 0)
             return semanasString;
-        if (diasPassados == 1)
+        if (diasPassados === 1)
             return semanasString + ` e um dia`;
 
         return semanasString + ` e ${diasPassados} dias`;
@@ -110,7 +110,7 @@ export default function Avaliacao() {
             <Container>
                 {
                 comentarios.map((comentario, index) => (
-                    <Card key={index} style={{borderRadius: `${bordaRedonda(index, comentarios.length)}`, marginTop: index == 0 ? '2vh' : '0.1vh'}}>
+                    <Card key={index} style={{borderRadius: `${bordaRedonda(index, comentarios.length)}`, marginTop: index === 0 ? '2vh' : '0.1vh'}}>
                         <CardData>
                             <DataRelativa>{`${diaRelativo(comentario.data)}`}</DataRelativa>
                             <TextData>{`${diaPorExtenso(comentario.data)}`}</TextData>
