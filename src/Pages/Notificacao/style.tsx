@@ -51,7 +51,7 @@ export const Container = styled.div `
 export const TextMensagem = styled.p `
     font-family: ${global.fonts.quickSand};
     color: ${global.colors.cinza};
-    margin-top: 2.9vh;
+    margin-top: 3vh;
 
     font-size: 16px;
     font-weight: 500;
@@ -62,14 +62,14 @@ export const TextMensagem = styled.p `
 export const TextData = styled.p `
     font-family: ${global.fonts.quickSand};
     color: ${global.colors.cinza};
-    margin-top: 0.2vh;
+    margin-top: 0.5vh;
     font-size: 16px;
     font-weight: 500;    
 `;
 
 export const MensagensNaoLidas = styled.button `
     width: 91vw;
-    height: 5.8vh;
+    height: 6vh;
     margin-top: 2vh;
     background: ${global.colors.laranja};
 

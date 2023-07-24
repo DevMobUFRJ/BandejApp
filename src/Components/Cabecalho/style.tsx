@@ -4,10 +4,10 @@ import { global } from "../../globalStyle";
 export const CabecaDiv = styled.header `
     display: inline-flex;
     align-items: center;
-    padding-top: 4.3vh;
+    padding-top: 4.5vh;
 
     width: 100vw;
-    height: 7.75vh;
+    height: 8vh;
 
     background: ${global.colors.branco};
 
