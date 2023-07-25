@@ -2,8 +2,10 @@ import styled from "styled-components";
 import { global } from "../../globalStyle";
 
 export const NavDiv = styled.div `
-    display: inline-flex;
-    min-width: 91.1vw;
+    display: flex;
+    padding-left: 8.9vw;
+    width: 91.1vw;
+    overflow-x: hidden;
     
     .diaSelect {
         background-color: ${global.colors.laranja} !important;
@@ -16,6 +18,8 @@ export const NavDiv = styled.div `
 export const NavButton = styled.button `
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
+
     width: 24.1vw;
     height: 11.5vh;
     
