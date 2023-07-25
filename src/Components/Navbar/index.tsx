@@ -4,7 +4,7 @@ import { ISemana } from "../../Types/storage";
 
 type switchDia = { 
     tggDia: Function
-    semana: ISemana
+    semana: string[]
 };
 
 export default function NavBar({tggDia, semana}: switchDia) {
@@ -35,7 +35,8 @@ export default function NavBar({tggDia, semana}: switchDia) {
 
     const meses = [' ', 'JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN',
                    'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-
+    const diasSemana = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex',
+                        'Sáb', 'Dom'];
 
 
     useEffect(() => {
@@ -64,131 +65,29 @@ export default function NavBar({tggDia, semana}: switchDia) {
 
     return (
         <NavDiv>
-            <NavButton id="seg" value='1'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">Seg</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.terca.substring(0, 2)} 
-                ${meses[Number(semana?.segunda.substring(3, 5))]}`}</DiaMes>
-                <DiaRelativo>
-                    {
-                        `${diaRelativo(hoje, 
-                            diaDoCardapio(
-                            Number(semana?.segunda.substring(0, 2)), 
-                            Number(semana?.segunda.substring(3, 5)),
-                            hoje.getFullYear()
-                            )
-                            )}`
-                    }
-                </DiaRelativo>
-            </NavButton>
-
-            <NavButton id="ter" value='2'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">Ter</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.terca.substring(0, 2)} 
-                ${meses[Number(semana?.terca.substring(3, 5))]}`}</DiaMes>
-                <DiaRelativo>
-                    {
-                        `${diaRelativo(hoje, 
-                            diaDoCardapio(
-                            Number(semana?.terca.substring(0, 2)), 
-                            Number(semana?.terca.substring(3, 5)),
-                            hoje.getFullYear()
-                            )
-                            )}`
-                    }
-                </DiaRelativo>
-            </NavButton>
-
-            <NavButton id="qua" value='3'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">Qua</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.quarta.substring(0, 2)} 
-                ${meses[Number(semana?.quarta.substring(3, 5))]}`}</DiaMes>
-                <DiaRelativo>
-                {
-                    `${diaRelativo(hoje, 
-                        diaDoCardapio(
-                        Number(semana?.quarta.substring(0, 2)), 
-                        Number(semana?.quarta.substring(3, 5)),
-                        hoje.getFullYear()
-                        )
-                        )}`
-                }
-                </DiaRelativo>
-            </NavButton>
-
-            <NavButton id="qui" value='4'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">Qui</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.quinta.substring(0, 2)} 
-                ${meses[Number(semana?.quinta.substring(3, 5))]}`}</DiaMes>
-                <DiaRelativo>
-                    {
-                        `${diaRelativo(hoje, 
-                            diaDoCardapio(
-                            Number(semana?.quinta.substring(0, 2)), 
-                            Number(semana?.quinta.substring(3, 5)),
-                            hoje.getFullYear()
-                            )
-                            )}`
-                    }
-                </DiaRelativo>
-            </NavButton>
-
-            <NavButton id="sex" value='5'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">Sex</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.sexta.substring(0, 2)} 
-                ${meses[Number(semana?.sexta.substring(3, 5))]}`}</DiaMes>
-                <DiaRelativo>
-                    {
-                        `${diaRelativo(hoje, 
-                            diaDoCardapio(
-                            Number(semana?.sexta.substring(0, 2)), 
-                            Number(semana?.sexta.substring(3, 5)),
-                            hoje.getFullYear()
-                            )
-                            )}`
-                    }
-                </DiaRelativo>
-            </NavButton>
-
-            <NavButton id="sab" value='6'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">Sáb</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.sabado.substring(0, 2)} 
-                ${meses[Number(semana?.sabado.substring(3, 5))]}`}</DiaMes>
-                <DiaRelativo>
-                    {
-                        `${diaRelativo(hoje, 
-                            diaDoCardapio(
-                            Number(semana?.sabado.substring(0, 2)), 
-                            Number(semana?.sabado.substring(3, 5)),
-                            hoje.getFullYear()
-                            )
-                            )}`
-                    }
-                </DiaRelativo>
-            </NavButton>
-
-            <NavButton id="dom" value='0'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">Dom</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.domingo.substring(0, 2)} 
-                ${meses[Number(semana?.domingo.substring(3, 5))]}`}</DiaMes>
-                <DiaRelativo>
-                    {
-                        `${diaRelativo(hoje, 
-                            diaDoCardapio(
-                            Number(semana?.domingo.substring(0, 2)), 
-                            Number(semana?.domingo.substring(3, 5)),
-                            hoje.getFullYear()
-                            )
-                            )}`
-                    }
-                </DiaRelativo>
-            </NavButton>
+            {
+                semana.map((e, indice) => 
+                    <NavButton key={indice} id={diasSemana[indice]} value={indice + 1}
+                    onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
+                        <DiaSemana id="diaSemana">{diasSemana[indice]}</DiaSemana>
+                        <DiaMes id="diaSemana">
+                            {`${e.substring(0, 2)} 
+                            ${meses[Number(e.substring(3, 5))]}`}
+                        </DiaMes>
+                        <DiaRelativo>
+                            {
+                                `${diaRelativo(hoje, 
+                                    diaDoCardapio(
+                                    Number(e.substring(0, 2)), 
+                                    Number(e.substring(3, 5)),
+                                    hoje.getFullYear()
+                                    )
+                                    )}`
+                            }
+                        </DiaRelativo>
+                    </NavButton>
+                )
+            }  
         </NavDiv>
     )
 }

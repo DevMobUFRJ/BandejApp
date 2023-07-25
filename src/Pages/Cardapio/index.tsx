@@ -139,6 +139,21 @@ export default function Cardapio() {
         return temp;
     }
 
+    function passaSemana (semana: ISemana): string[] {
+        const lista = [''];
+        lista.pop();
+
+        lista.push(semana?.segunda);
+        lista.push(semana?.terca);
+        lista.push(semana?.quarta);
+        lista.push(semana?.quinta);
+        lista.push(semana?.sexta);
+        lista.push(semana?.sabado);
+        lista.push(semana?.domingo);
+
+        return lista;
+    }
+
 /* - - - - - Fim das funções - - - - - */
 
     if(loading)
@@ -159,7 +174,7 @@ export default function Cardapio() {
 
                 <NavBar
                 tggDia={tggDia}
-                semana={cardapio?.semana as ISemana}/>
+                semana={passaSemana(cardapio?.semana as ISemana)}/>
                 <Horario
                 hora={tggHora}/>
             </ActionsDiv>
