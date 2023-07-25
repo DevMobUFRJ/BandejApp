@@ -9,7 +9,7 @@ export const CardapioDiv = styled.div `
 
     align-items: center;
 
-    background: #E3E3E3;
+    background: ${global.colors.fundo};
 `;
 
 export const ActionsDiv = styled.div `
@@ -37,6 +37,21 @@ export const DropHeader = styled.div `
 
 /*-----------------------------------------------------------*/
 
+export const IconeAjustes = styled.img `
+    position: absolute;
+    right: 4.4vw;
+    top: 6.5vh;
+`;
+
+
+export const Sombra = styled.div `
+    width: 100vw;
+    height: 1px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+
+/*-----------------------------------------------------------*/
+
 /* Não faço a menor ideia do motivo desse aviso */
 export const Aviso = styled.h1 `
     margin: 3vh 0 0 0;
@@ -47,7 +62,8 @@ export const Aviso = styled.h1 `
 `;
 
 export const AvisoAtt = styled.h1 `
-    font-family: ${global.fonts.nunito};
-    font-size: 2.7vw;
+    padding-top: 0.2vh;
+    font-family: ${global.fonts.quickSand};
+    font-size: 11px;
     color: ${global.colors.laranja};
 `;

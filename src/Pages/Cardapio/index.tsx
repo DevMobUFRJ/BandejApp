@@ -5,13 +5,14 @@ import RUselect from "../../Components/RUselect";
 
 import Dia from "../../Components/Dia";
 import { ActionsDiv, AvisoAtt, CardapioDiv,
-        DropHeader} from "./style";
+        DropHeader, IconeAjustes, Sombra} from "./style";
 
 import DownPop from "../../Components/PopUp";
 import Load from "../../Components/Load";
 import { ICardapioProps, ISemana } from "../../Types/storage";
 
 import FontSize from "../../Functions/FontSize";
+import Ajustes from '../../Assets/Ajustes.svg';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,6 +26,7 @@ export default function Cardapio() {
     const [showInstallMessage, setShowInstallMessage] = useState<boolean>()
     const [ruAtual, setRuAtual] = useState<string>();
 
+    const [opcoes, setOpcoes] = useState(true);
     const [loading, setLoading] = useState(true);
 
     function selecionaRU(restaurante : string){
@@ -144,10 +146,13 @@ export default function Cardapio() {
 
     return(
         <CardapioDiv id="cardapio">
+            
             <ToastContainer />
-            <ActionsDiv>
-                <Cabecalho nome="Cardapio"/>
+            <Cabecalho nome="Cardapio"/>
+            <IconeAjustes src={Ajustes} onClick={() => setOpcoes(!opcoes)}/>
+            <Sombra style={{display: opcoes ? 'none' : ''}}/>
 
+            <ActionsDiv style={{display: `${opcoes ? '' : 'none'}`}}>
                 <DropHeader>
                     <RUselect text={localStorage.getItem("bandejapp:ruDefault") || ''} selecionaRU={selecionaRU}/>
                 </DropHeader>
@@ -155,11 +160,9 @@ export default function Cardapio() {
                 <NavBar
                 tggDia={tggDia}
                 semana={cardapio?.semana as ISemana}/>
-
                 <Horario
                 hora={tggHora}/>
             </ActionsDiv>
-
             <Dia
             hora={hora}
             cardapio={makePath(dia)}
