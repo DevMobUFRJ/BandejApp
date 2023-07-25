@@ -74,7 +74,7 @@ export default function NavBar({tggDia, semana}: switchDia) {
                             {`${e.substring(0, 2)} 
                             ${meses[Number(e.substring(3, 5))]}`}
                         </DiaMes>
-                        <DiaRelativo>
+                        <DiaRelativo id="diaSemana">
                             {
                                 `${diaRelativo(hoje, 
                                     diaDoCardapio(
