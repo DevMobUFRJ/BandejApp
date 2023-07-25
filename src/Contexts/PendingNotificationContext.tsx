@@ -7,7 +7,7 @@ interface INotificationContext {
 
 export const NotificationContext = createContext<INotificationContext>({pendingNotification: false, setPendingNotification: () => {}});
 
-export const NotificationProvider = ( {children} : any ) => {
+export const NotificationProvider : React.FC<{ children: React.ReactNode }> = ( {children} ) => {
     const [pendingNotification, setPendingNotification] = useState<boolean>(false);
 
     useEffect(() => {
