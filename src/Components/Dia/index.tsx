@@ -29,43 +29,43 @@ export default function Dia({hora, cardapio}: horario) {
 
             <Menu style={{display: hora===0? 'flex':'none'}}>
                 <Prato
-                emoji={1}
+                emoji={0}
                 descricao={clean_str(cardapio?.almoco.entrada)}/>
                 <Prato
-                emoji={2}
+                emoji={1}
                 descricao={clean_str(cardapio?.almoco.pratoPrincipal)}/>
                 <Prato
-                emoji={3}
+                emoji={2}
                 descricao={clean_str(cardapio?.almoco.pratoVeg)}/>
                 <Prato
-                emoji={4}
+                emoji={3}
                 descricao={clean_str(cardapio?.almoco.guarnicao)}/>
                 <Prato
-                emoji={5}
+                emoji={4}
                 descricao={clean_str(cardapio?.almoco.acompanhamento)}/>
                 <Prato
-                emoji={6}
+                emoji={5}
                 descricao={clean_str(cardapio?.almoco.sobremesa)}/>
             </Menu>
             
             <Menu style={{display: hora===1? 'flex':'none'}}>
                 <Prato
-                emoji={1}
+                emoji={0}
                 descricao={clean_str(cardapio?.janta.entrada)}/>
                 <Prato
-                emoji={2}
+                emoji={1}
                 descricao={clean_str(cardapio?.janta.pratoPrincipal)}/>
                 <Prato
-                emoji={3}
+                emoji={2}
                 descricao={clean_str(cardapio?.janta.pratoVeg)}/>
                 <Prato
-                emoji={4}
+                emoji={3}
                 descricao={clean_str(cardapio?.janta.guarnicao)}/>
                 <Prato
-                emoji={5}
+                emoji={4}
                 descricao={clean_str(cardapio?.janta.acompanhamento)}/>
                 <Prato
-                emoji={6}
+                emoji={5}
                 descricao={clean_str(cardapio?.janta.sobremesa)}/>
             </Menu>
         </DiaDiv>

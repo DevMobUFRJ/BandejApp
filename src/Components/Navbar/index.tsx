@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { DiaMes, DiaSemana, DiaRelativo, NavButton, NavDiv } from "./style";
-import { ISemana } from "../../Types/storage";
 
 type switchDia = { 
     tggDia: Function
