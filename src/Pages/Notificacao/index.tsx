@@ -90,9 +90,7 @@ export default function Avaliacao() {
                     aviso.data = dataFormatada;
                 }
                 setComentarios(post);
-                setLoading(false);
-                if(post.length > 0)
-                    localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(post[post.length - 1].data));    
+                setLoading(false); 
             })
             .catch(() => {
                 setLoading(false);
@@ -109,7 +107,7 @@ export default function Avaliacao() {
 
             <Cabecalho nome='Comunicados'/>
             <SemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>Não há nenhum comunicado.</SemMensagens>
-            <MensagensNaoLidas onClick={()=>setPendingNotification(false)} style={{display: comentarios.length ? '' : 'none'}}>{`Marcar tudo como lido (${comentarios.length})`}</MensagensNaoLidas>
+            <MensagensNaoLidas onClick={() => {setPendingNotification(false); localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(comentarios[0].data))}} style={{display: comentarios.length ? '' : 'none'}}>{`Marcar tudo como lido (${comentarios.length})`}</MensagensNaoLidas>
             <Container>
                 {
                 comentarios.map((comentario, index) => (
