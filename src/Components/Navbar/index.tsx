@@ -10,7 +10,9 @@ type switchDia = {
 export default function NavBar({tggDia, semana}: switchDia) {
 
     const diaDoCardapio = (dia: number, mes:number, ano:number) => {
-        const data = new Date (ano, mes - 1, dia);
+        // O mês vem 1-indexado e o construtor espera 0-indexado
+        const data = new Date (ano, mes - 1, dia); 
+        console.log(`${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`);
         return data;
     };
 
@@ -66,23 +68,24 @@ export default function NavBar({tggDia, semana}: switchDia) {
     return (
         <NavDiv>
             {
-                semana.map((e, indice) => 
+                semana.map((stringDia, indice) => 
                     <NavButton key={indice} id={diasSemana[indice]} value={indice + 1}
-                    onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
+                    onClick={(e) => {switchDia(e.currentTarget.id); tggDia(parseInt(e.currentTarget.value))}}>
                         <DiaSemana id="diaSemana">{diasSemana[indice]}</DiaSemana>
                         <DiaMes id="diaSemana">
-                            {`${e.substring(0, 2)} 
-                            ${meses[Number(e.substring(3, 5))]}`}
+                            {`${stringDia.substring(0, 2)} 
+                            ${meses[Number(stringDia.substring(3, 5))]}`}
                         </DiaMes>
                         <DiaRelativo id="diaSemana">
                             {
+                            
                                 `${diaRelativo(hoje, 
                                     diaDoCardapio(
-                                    Number(e.substring(0, 2)), 
-                                    Number(e.substring(3, 5)),
-                                    hoje.getFullYear()
-                                    )
-                                    )}`
+                                        Number(stringDia.substring(0, 2)), 
+                                        Number(stringDia.substring(3, 5)),
+                                        Number(stringDia.substring(6, 10))
+                                        )
+                                        )}`
                             }
                         </DiaRelativo>
                     </NavButton>

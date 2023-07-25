@@ -3,6 +3,7 @@ import { global } from "../../globalStyle";
 
 export const NavDiv = styled.div `
     display: flex;
+    margin-top: 2vh;
     padding-left: 8.9vw;
     width: 91.1vw;
     overflow-x: hidden;
@@ -26,7 +27,7 @@ export const NavButton = styled.button `
     margin-left: 2.2vw;
     align-items: center;
 
-    background: rgba(62, 62, 62, .07);
+    background: ${global.colors.cinzaOpaco(.07)};
     
     outline: none;
     border: none;

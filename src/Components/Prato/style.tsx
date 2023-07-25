@@ -35,7 +35,7 @@ export const Linha = styled.div `
     width: 82.2vw;
     height: 1px;
     align-self: center;
-    background: rgb(62, 62, 62, .16);
+    background: ${global.colors.cinzaOpaco(.16)};
 `;
 
 export const Tipo = styled.p `

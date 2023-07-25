@@ -27,10 +27,10 @@ export const HoraButton = styled.button `
     font-size: 16px;
     font-weight: 500;
 
-    color: rgba(62, 62, 62, 0.6);
+    color: ${global.colors.cinzaOpaco(.6)};
 
     outline: none;
     border: none;
-    border-bottom: 0.5vh solid rgba(62, 62, 62, 0.4);
+    border-bottom: 0.5vh solid ${global.colors.cinzaOpaco(.4)};
     transition: transform 0.5s ease;
 `;

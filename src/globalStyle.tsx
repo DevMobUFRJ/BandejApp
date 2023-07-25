@@ -6,6 +6,7 @@ export const global = {
     colors: {
         laranja: '#fd720f',
         cinza: '#3E3E3E',
+        cinzaOpaco: (opacidade: number) => `rgba(62, 62, 62, ${opacidade})`,
         cinzaClaro: '#989796',
         cinzaPratos: '#666768',
         cinzaTexto: 'rgb(0, 0, 0, .49)',
