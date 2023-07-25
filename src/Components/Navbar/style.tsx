@@ -3,14 +3,11 @@ import { global } from "../../globalStyle";
 
 export const NavDiv = styled.div `
     display: inline-flex;
-    width: 76.63vw;
-
-    justify-content: space-between;
+    min-width: 91.1vw;
     
     .diaSelect {
-        transform: scale(1.1, 1.1);
         background-color: ${global.colors.laranja} !important;
-        color: white;
+        color: ${global.colors.branco};
     }
 `;
 
@@ -19,17 +16,17 @@ export const NavDiv = styled.div `
 export const NavButton = styled.button `
     display: flex;
     flex-direction: column;
-    width: 12.5%;
-    height: 100%;
+    width: 24.1vw;
+    height: 11.5vh;
     
+    margin-left: 2.2vw;
     align-items: center;
-    justify-content: center;
 
-    background: ${global.colors.cinzaOF};
+    background: rgba(62, 62, 62, .07);
     
     outline: none;
     border: none;
-    border-radius: 2.33vw;
+    border-radius: 16px;
 
     transition: transform 0.5s ease;  
 `;
@@ -37,31 +34,34 @@ export const NavButton = styled.button `
 /*-----------------------------------------------------------*/
 
 export const DiaSemana = styled.p `
-    margin: 0.3vh 0 0 0;
+    margin-top: 1.5vh;
+    text-align: center;
 
-    font-family: ${global.fonts.nunito};
-    font-weight: 800;
-    font-size: 3.73vw;
+    font-family: ${global.fonts.quickSand};
+    font-weight: 700;
+    font-size: 16px;
 
-    color: ${global.colors.cinzaTitulo};
+    color: ${global.colors.cinza};
 `;
 
 export const DiaMes = styled.p `
-    margin: 0.3vh 0 0 0;
+    text-align: center;
 
-    font-family: ${global.fonts.nunito};
-    font-weight: 500;
-    font-size: 2.57vw;
+    font-family: ${global.fonts.quickSand};
+    font-weight: 700;
+    font-size: 12px;
 
-    color: ${global.colors.cinzaTitulo};
+    color: ${global.colors.cinza};
 `;
 
-export const Mes = styled.p `
-    margin: 0 0 0.3vh 0;
+export const DiaRelativo = styled.p `
+    margin-top: auto;
+    margin-bottom: 1.75vh;
+    text-align: center;
 
-    font-family: ${global.fonts.nunito};
-    font-weight: 500;
-    font-size: 2.57vw;
+    font-family: ${global.fonts.quickSand};
+    font-weight: 700;
+    font-size: 12px;
 
-    color: ${global.colors.cinzaTitulo};
+    color: ${global.colors.cinza};
 `;
