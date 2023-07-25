@@ -8,66 +8,51 @@ import { global } from "../../globalStyle";
 
 export const DropDiv = styled.div `
     display: block;
-    flex-direction: column;
+    flex-direction: row;
     width: 76.63vw;
-    min-height: 5.18vh;
-    height: 5.18vh;
+    height: 7.5vh;
 
-    overflow: hidden;
+    align-items: center;
+    overflow-y: hidden;
     z-index: 1;
-    position: absolute;
 
-    border-radius: 2vw;
-    background: ${global.colors.laranja};
-
-    transition: height 0.5s ease;
-
-    .selected {
-        top: 0;
-        border: none;
-        height: 5.18vh;
-        text-shadow: none;
-    }
+    border-radius: 16px;
+    background: ${global.colors.branco};
 `;
 
-export const ItemsDiv = styled.div `
+export const Opcoes = styled.div `
     display: flex;
+    width: 100%;
+    flex-direction: column;
 `;
 
 export const DropItem = styled.button `
     display: flex;
-    height: 5.18vh;
-    min-width: 85%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 
-    position: absolute;
-    top: 5.18vh;
+    height: 7.5vh;
+    width: 100%;
+
     z-index: 3;
 
-    margin: 0 0 0 1.5vw;
-    padding: 0 0 0 1.5vw;
-    align-items: center;
+    font-size: 16px;
+    font-family: ${global.fonts.quickSand};
+    font-weight: 700;
+    border: 2px solid ${global.colors.cinzaOpaco(0.24)};
+    
+    color: ${global.colors.cinza};
 
-    font-size: 4.3vw;
-    font-family: ${global.fonts.nunito};
-    font-weight: bold;
-
-    outline: none;
     border: none;
-    border-top: solid 0.25vh #EB4600;
-
-    color: white;
-    transition: transform 0.6s ease;
 `;
 
 export const DropArrow = styled.img `
-    display: flex;
-    height: 2.7vh;
-    max-width: 15%;
+    width: 3.33vw;
+    margin-right: 6.1vw;
+`;
 
-    position: absolute;
-    right: 3vw;
-    top: 1.4vh;
-
-    transition: transform 0.3s ease;
-    transform: rotate(-90deg);
+export const PinLugar = styled.img `
+    width: 3.88vw;
+    margin-left: 6.1vw;
 `;

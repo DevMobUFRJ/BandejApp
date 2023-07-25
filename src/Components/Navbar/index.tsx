@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { DiaMes, DiaSemana, DiaRelativo, NavButton, NavDiv } from "./style";
+import { Formatacao } from "../../Functions/Formatacao";
 
 type switchDia = { 
     tggDia: Function
@@ -11,34 +12,15 @@ export default function NavBar({tggDia, semana}: switchDia) {
     const diaDoCardapio = (dia: number, mes:number, ano:number) => {
         // O mês vem 1-indexado e o construtor espera 0-indexado
         const data = new Date (ano, mes - 1, dia); 
-        console.log(`${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`);
         return data;
     };
 
-    const diaRelativo = (diaDeHoje: Date, dataCardapio:Date):string => {
-        let diasPassados = Math.floor((diaDeHoje.getTime() - dataCardapio.getTime()) / (24 * 60 * 60 * 1000));
-        
-        if (diasPassados === 0)
-            return "Hoje";
-        if (diasPassados === 1)
-            return "Ontem";
-        if (diasPassados === -1)
-            return "Amanhã";
-
-        if (diasPassados > 1) {
-            return `Há ${diasPassados} dias`;
-        }
-        return `Em ${-diasPassados} dias`;
-    };
-
-    const hoje = new Date();
-    const dia = hoje.getDay();
+    const dia = new Date().getDay();
 
     const meses = [' ', 'JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN',
                    'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
     const diasSemana = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex',
                         'Sáb', 'Dom'];
-
 
     useEffect(() => {
         const diaSem = document.querySelector(`button[value="${dia}"]`);
@@ -47,9 +29,6 @@ export default function NavBar({tggDia, semana}: switchDia) {
         diaSem?.classList.add('diaSelect');
         datas.forEach((data) => { data.classList.add('diaSelect')})
         tggDia(dia);
-
-        console.log();
-        
     }, [dia, tggDia]);
 
     const switchDia = (id: string) => {
@@ -78,13 +57,7 @@ export default function NavBar({tggDia, semana}: switchDia) {
                         <DiaRelativo id="diaSemana">
                             {
                             
-                                `${diaRelativo(hoje, 
-                                    diaDoCardapio(
-                                        Number(stringDia.substring(0, 2)), 
-                                        Number(stringDia.substring(3, 5)),
-                                        Number(stringDia.substring(6, 10))
-                                        )
-                                        )}`
+                                `${Formatacao.diaRelativo(stringDia)}`
                             }
                         </DiaRelativo>
                     </NavButton>

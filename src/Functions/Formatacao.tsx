@@ -29,15 +29,12 @@ export const Formatacao = {
         if (diasPassados === 0)
             return "Hoje";
 
-        let futuro = false;
-        if (diasPassados < 0) {
-            futuro = true;
+        const futuro = (diasPassados < 0) ? true : false;
+        if (futuro)
             diasPassados *= -1;
-        }
 
-        if (diasPassados === 1) {
+        if (diasPassados === 1) 
             return futuro ? 'Amanhã' : 'Ontem';
-        }
 
         if (diasPassados < 7)
             return `${futuro ? 'Em' : 'Há'} ${diasPassados} dias`
@@ -53,7 +50,6 @@ export const Formatacao = {
             return semanasString + ` e um dia`;
     
         return semanasString + ` e ${diasPassados} dias`;
-            
     },
 
     diaPorExtenso: (dia: String) => {
