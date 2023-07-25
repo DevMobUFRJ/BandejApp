@@ -2,16 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import Routes from './Routes/Router';
+import Router from './Routes/Router';
+import { NotificationProvider } from './Contexts/PendingNotificationContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-root.render(
-  <React.StrictMode>
-    <Routes/>
-  </React.StrictMode>
-);
+
+const App = () => {
+  return (
+    <React.StrictMode>
+      <NotificationProvider>
+        <Router />
+      </NotificationProvider>
+    </React.StrictMode>
+  );
+};
+
+root.render(<App />);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

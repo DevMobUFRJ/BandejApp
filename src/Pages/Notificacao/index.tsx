@@ -5,6 +5,8 @@ import Load from "../../Components/Load";
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
 import { Formatacao } from "../../Functions/Formatacao";
+import { useContext } from "react";
+import { NotificationContext } from "../../Contexts/PendingNotificationContext";
     
 type aviso = {
     comunicado: String,
@@ -15,6 +17,7 @@ export default function Avaliacao() {
 
     const [comentarios, setComentarios] = useState<aviso[]>([]);
     const [loading, setLoading] = useState(true);
+    const { setPendingNotification } = useContext(NotificationContext);
 
 
     useEffect(() => {
@@ -29,11 +32,9 @@ export default function Avaliacao() {
                     aviso.data = dataFormatada;
                 }
                 setComentarios(post);
-                setLoading(false);
-                if(post.length > 0)
-                    localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(post[post.length - 1].data));    
+                setLoading(false); 
             })
-            .catch((error) => {
+            .catch(() => {
                 setLoading(false);
                 toast.error("Erro de rede. Tente novamente mais tarde");
             });
@@ -48,7 +49,7 @@ export default function Avaliacao() {
 
             <Cabecalho nome='Comunicados'/>
             <SemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>Não há nenhum comunicado.</SemMensagens>
-            <MensagensNaoLidas style={{display: comentarios.length ? '' : 'none'}}>{`Marcar tudo como lido (${comentarios.length})`}</MensagensNaoLidas>
+            <MensagensNaoLidas onClick={() => {setPendingNotification(false); localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(comentarios[0].data))}} style={{display: comentarios.length ? '' : 'none'}}>{`Marcar tudo como lido (${comentarios.length})`}</MensagensNaoLidas>
             <Container>
                 {
                 comentarios.map((comentario, index) => (

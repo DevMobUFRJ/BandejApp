@@ -2,7 +2,9 @@ import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, SideBarDiv,
     SideDiv, SideHeader, SideIcon,
     SideImg, SideItem } from "./style";
 
+import Pending from '../../Assets/SideBar/pending.svg';
 import Menu from '../../Assets/SideBar/menu.svg';
+import MenuNot from '../../Assets/SideBar/menuNot.svg';
 import Logo from '../../Assets/SideBar/logo.svg';
 import Close from '../../Assets/SideBar/close.svg';
 import Home from '../../Assets/SideBar/cardapio.svg';
@@ -12,9 +14,12 @@ import Info from '../../Assets/SideBar/sobrenos.svg';
 import Fale from '../../Assets/SideBar/faleconosco.svg';
 
 import { useHistory } from "react-router-dom";
+import { NotificationContext } from "../../Contexts/PendingNotificationContext";
+import { useContext } from "react";
 
 export default function SideBar() {
     const history = useHistory();
+    const { pendingNotification } = useContext(NotificationContext); 
 
     const OpenSide = () => {
         const sidebar = document.getElementById('sidebar');
@@ -49,8 +54,7 @@ export default function SideBar() {
     return (
         <SideDiv>      
             <NotifDiv>
-                
-                <SideImg onClick={OpenSide} src={Menu}/>
+                <SideImg onClick={OpenSide} src={(pendingNotification) ? MenuNot : Menu}/>
             </NotifDiv>
             <SideBarDiv id="sidebar">
                 <SideHeader>
@@ -66,9 +70,13 @@ export default function SideBar() {
                         <ItemName>Cardápio</ItemName>
                     </SideItem>
 
-                    <SideItem onClick={() => {(history.location.pathname !== '/Notificacao') ? history.push('/Notificacao') : CloseSide()}}>
+                    <SideItem style={{gridTemplateColumns: "16% auto auto"}} onClick={() => {(history.location.pathname !== '/Notificacao') ? history.push('/Notificacao') : CloseSide()}}>
                         <SideIcon src={Comun}/>
                         <ItemName>Comunicados</ItemName>
+                        {pendingNotification ?
+                            <SideIcon src={Pending} />
+                            : null
+                        }
                     </SideItem>
 
                     <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
