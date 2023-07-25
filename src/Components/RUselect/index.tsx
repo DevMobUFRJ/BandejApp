@@ -73,7 +73,7 @@ export default function RUselect({text, selecionaRU}: DropDownProps) {
                     else {
                         clearInterval(fading);
                         if (!abrindo) {
-                            containerOpcoes.style.display = 'flex';
+                            containerOpcoes.style.display = 'none';
                         }
                     }
                 })

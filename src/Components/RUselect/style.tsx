@@ -60,7 +60,7 @@ export const DropItem = styled.button `
     width: 75.5vw;
     height: 7.5vh;
 
-    z-index: 3;
+    z-index: 1;
 
     font-size: 16px;
     font-family: ${global.fonts.quickSand};
