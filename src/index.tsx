@@ -2,14 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import Routes from './Routes/Router';
+import Router from './Routes/Router';
+import { NotificationProvider } from './Contexts/PendingNotificationContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Routes/>
+    <NotificationProvider>
+      <Router />
+    </NotificationProvider>
   </React.StrictMode>
 );
 
