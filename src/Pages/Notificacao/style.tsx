@@ -11,60 +11,13 @@ export const Avadiv = styled.div `
     background: ${global.colors.fundo};
 `;
 
-export const Titulo = styled.h1 `
-    margin-top: 4.5vh;
-    margin-bottom: 30px;
-    font-family: ${global.fonts.nunito};
-    font-size: 7vw;
-    font-weight: 600;
-`;
+export const SemMensagens = styled.p `
+    margin-top: 2vh;
 
-export const AvalImg = styled.img `
-    width: 6.3vw;
-    //padding: 0 4.9vw 0 9.6vw;
-    display: flex;
-    position: absolute;
-    top: 5vh;
-    left: 6.3vw;
-    outline: none;
-    border: none;
-`;
-
-export const Card = styled.div `
-    padding: 6.6vw;
-    background: ${global.colors.branco};
-    font-family: ${global.fonts.nunito};
-`;
-
-export const CardMensagem = styled.div `
-
-`;
-
-export const CardData = styled.div `
-
-`;
-
-export const Container = styled.div `
-    width: 89.85vw;
-`;
-
-export const TextMensagem = styled.p `
     font-family: ${global.fonts.quickSand};
     color: ${global.colors.cinza};
-    margin-top: 3vh;
 
     font-size: 16px;
-    font-weight: 500;
-    line-height: 28px; /* 175% */
-    word-wrap: break-word;
-`;
-
-export const TextData = styled.p `
-    font-family: ${global.fonts.quickSand};
-    color: ${global.colors.cinza};
-    margin-top: 0.5vh;
-    font-size: 16px;
-    font-weight: 500;    
 `;
 
 export const MensagensNaoLidas = styled.button `
@@ -82,19 +35,45 @@ export const MensagensNaoLidas = styled.button `
     font-size: 16px;
     font-weight: 700;
 `;
+    
+export const Container = styled.div `
+    width: 89.85vw;
+`;
+
+export const Card = styled.div `
+    padding: 2.125vh 0 2vh 0;
+    background: ${global.colors.branco};
+    font-family: ${global.fonts.quickSand};
+`;
 
 export const DataRelativa = styled.h3 `
+    margin-left: 6.66vw;
+
     font-family: ${global.fonts.quickSand};
     color: ${global.colors.cinza};
     font-size: 20px;
     font-weight: 700;
 `;
 
-export const SemMensagens = styled.p `
-    margin-top: 2vh;
+export const TextData = styled.p `
+    margin-top: 0.5vh;
+    margin-left: 6.66vw;
+    
+    font-family: ${global.fonts.quickSand};
+    color: ${global.colors.cinza};
+    font-size: 16px;
+    font-weight: 500;    
+`;
+
+export const TextMensagem = styled.p `
+    margin-left: 6.66vw;
+    margin-top: 3vh;
 
     font-family: ${global.fonts.quickSand};
     color: ${global.colors.cinza};
 
     font-size: 16px;
+    font-weight: 500;
+    line-height: 28px; /* 175% */
+    word-wrap: break-word;
 `;

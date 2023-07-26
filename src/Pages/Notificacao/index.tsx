@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Avadiv, Card, Container, CardMensagem, CardData, TextMensagem, TextData, MensagensNaoLidas, DataRelativa, SemMensagens} from "./style";
+import { Avadiv, SemMensagens, MensagensNaoLidas, Container, Card, 
+        DataRelativa, TextData, TextMensagem } from "./style";
 import { ToastContainer, toast } from 'react-toastify';
 import Load from "../../Components/Load";
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,20 +47,18 @@ export default function Avaliacao() {
     return (
         <Avadiv id="AvaPage">
             <ToastContainer />
-
             <Cabecalho nome='Comunicados'/>
             <SemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>Não há nenhum comunicado.</SemMensagens>
             <MensagensNaoLidas onClick={() => {setPendingNotification(false); localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(comentarios[0].data))}} style={{display: comentarios.length ? '' : 'none'}}>{`Marcar tudo como lido (${comentarios.length})`}</MensagensNaoLidas>
             <Container>
                 {
                 comentarios.map((comentario, index) => (
-                    <Card key={index} style={{borderRadius: `${Formatacao.bordaRedonda(index, comentarios.length)}`, marginTop: index === 0 ? '2vh' : '0.1vh'}}>
-                        <CardData>
-                            <DataRelativa>{`${Formatacao.diaRelativo(comentario.data)}`}</DataRelativa>
-                            <TextData>{`${Formatacao.diaPorExtenso(comentario.data)}`}</TextData>
-                        </CardData>
-                        
-                        <CardMensagem><TextMensagem>{comentario.comunicado}</TextMensagem></CardMensagem>
+                    <Card key={index} style={{borderRadius: 
+                    `${Formatacao.bordaRedonda(index, comentarios.length)}`, 
+                    marginTop: index === 0 ? '2vh' : '1px'}}>
+                        <DataRelativa>{`${Formatacao.diaRelativo(comentario.data)}`}</DataRelativa>
+                        <TextData>{`${Formatacao.diaPorExtenso(comentario.data)}`}</TextData>
+                        <TextMensagem>{comentario.comunicado}</TextMensagem>
                     </Card>
                 ))}
             </Container>

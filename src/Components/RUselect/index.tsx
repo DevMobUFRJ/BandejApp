@@ -60,8 +60,7 @@ export default function RUselect({text, selecionaRU}: DropDownProps) {
                 containerOpcoes.style.opacity = '0';
             containerOpcoes.style.display = 'flex';
 
-            if (fading)
-                clearInterval(fading);
+            clearInterval(fading);
 
             fading = setInterval (() => {
                 requestAnimationFrame(() => {
