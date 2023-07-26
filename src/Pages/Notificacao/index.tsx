@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Avadiv, Card, Container, CardMensagem, CardData, TextMensagem, TextData, MensagensNaoLidas, DataRelativa, SemMensagens} from "./style";
+import { Avadiv, Card, Container, CardMensagem, CardData, TextMensagem, TextData, MensagensNaoLidas, DataRelativa, SemMensagens, SideIcon, CardTop} from "./style";
 import { ToastContainer, toast } from 'react-toastify';
 import Load from "../../Components/Load";
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
 import { useContext } from "react";
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
+import Pending from '../../Assets/SideBar/pending.svg';
     
 type aviso = {
     comunicado: String,
@@ -78,6 +79,23 @@ export default function Avaliacao() {
         return `${partes[0]} de ${mes} de ${partes[2]}`;
     };
 
+    const verificaPrecedenciaData = (data: String) => {
+        let dataArmazenadaString = localStorage.getItem("bandejapp:ultimoAviso");
+        let dataArmazenadaDate;
+        if(dataArmazenadaString){
+            let dataArmazenadaQuebrada=dataArmazenadaString.substring(1, 11).split("/")
+            dataArmazenadaDate=new Date(parseInt(dataArmazenadaQuebrada[2]), parseInt(dataArmazenadaQuebrada[1]) - 1, parseInt(dataArmazenadaQuebrada[0]))
+        }
+
+        let dataComentarioQuebrada=data.substring(0, 10).split("/")
+        let dataComentarioDate=new Date(parseInt(dataComentarioQuebrada[2]), parseInt(dataComentarioQuebrada[1]) - 1, parseInt(dataComentarioQuebrada[0]))
+
+        if(dataArmazenadaDate && dataComentarioDate <= dataArmazenadaDate)
+            return false
+        else 
+            return true    
+    };
+
     useEffect(() => {
         fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
             .then((data) => data.json())
@@ -116,16 +134,31 @@ export default function Avaliacao() {
             }
             <Container>
                 {
-                comentarios.map((comentario, index) => (
-                    <Card key={index} style={{borderRadius: `${bordaRedonda(index, comentarios.length)}`, marginTop: index === 0 ? '2vh' : '0.1vh'}}>
-                        <CardData>
-                            <DataRelativa>{`${diaRelativo(comentario.data)}`}</DataRelativa>
-                            <TextData>{`${diaPorExtenso(comentario.data)}`}</TextData>
-                        </CardData>
-                        
-                        <CardMensagem><TextMensagem>{comentario.comunicado}</TextMensagem></CardMensagem>
-                    </Card>
-                ))}
+                comentarios.map((comentario, index) => { 
+                    let isNew = verificaPrecedenciaData(comentario.data);
+                    return (
+                        <Card 
+                            key={index}
+                            style={{borderRadius: `${bordaRedonda(index, comentarios.length)}`, marginTop: index === 0 ? '2vh' : '0.1vh'}}
+                            new={isNew}
+                        >
+                            <CardData>
+                                <CardTop>
+                                    <DataRelativa new={isNew}>
+                                        {`${diaRelativo(comentario.data)}`}
+                                    </DataRelativa>
+                                    {
+                                        isNew && <SideIcon src={Pending} />
+                                    }
+                                </CardTop>
+                                <TextData new={isNew}>
+                                    {`${diaPorExtenso(comentario.data)}`}
+                                </TextData>
+                            </CardData>
+                            
+                            <CardMensagem><TextMensagem>{comentario.comunicado}</TextMensagem></CardMensagem>
+                        </Card>
+                    )})}
             </Container>
         </Avadiv>
     );

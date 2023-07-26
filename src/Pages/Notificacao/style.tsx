@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
+interface CardProps {
+    new?: boolean;
+}
+
 export const Avadiv = styled.div `
     display: flex;
     flex-direction: column;
@@ -30,9 +34,9 @@ export const AvalImg = styled.img `
     border: none;
 `;
 
-export const Card = styled.div `
+export const Card = styled.div<CardProps>`
     padding: 6.6vw;
-    background: ${global.colors.branco};
+    background: ${(props) => props.new ? global.colors.branco : global.colors.cinza1};
     font-family: ${global.fonts.nunito};
 `;
 
@@ -59,9 +63,9 @@ export const TextMensagem = styled.p `
     word-wrap: break-word;
 `;
 
-export const TextData = styled.p `
+export const TextData = styled.p<CardProps>`
     font-family: ${global.fonts.quickSand};
-    color: ${global.colors.cinza};
+    color: ${(props) => props.new ? global.colors.laranja : global.colors.cinza};
     margin-top: 0.5vh;
     font-size: 16px;
     font-weight: 500;    
@@ -83,9 +87,9 @@ export const MensagensNaoLidas = styled.button `
     font-weight: 700;
 `;
 
-export const DataRelativa = styled.h3 `
+export const DataRelativa = styled.h3<CardProps>`
     font-family: ${global.fonts.quickSand};
-    color: ${global.colors.cinza};
+    color: ${(props) => props.new ? global.colors.laranja : global.colors.cinza};
     font-size: 20px;
     font-weight: 700;
 `;
@@ -97,4 +101,13 @@ export const SemMensagens = styled.p `
     color: ${global.colors.cinza};
 
     font-size: 16px;
+`;
+
+export const SideIcon = styled.img `
+    width: 4vw;
+`;
+
+export const CardTop = styled.section`
+    display: grid;
+    grid-template-columns: 90% auto;
 `;
