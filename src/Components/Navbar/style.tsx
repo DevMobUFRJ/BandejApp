@@ -4,10 +4,12 @@ import { global } from "../../globalStyle";
 export const NavDiv = styled.div `
     display: flex;
     margin-top: 2vh;
-    padding-left: 8.9vw;
-    width: 91.1vw;
-    overflow-x: hidden;
-    
+    padding: 0 9vw;
+    width: 82vw;
+    overflow-x: scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
     .diaSelect {
         background-color: ${global.colors.laranja} !important;
         color: ${global.colors.branco};
@@ -24,7 +26,6 @@ export const NavButton = styled.button `
     width: 24.1vw;
     height: 11.5vh;
     
-    margin-left: 2.2vw;
     align-items: center;
 
     background: ${global.colors.cinzaOpaco(.07)};

@@ -7,27 +7,28 @@ type switchDia = {
     semana: string[]
 };
 
+const meses = [' ', 'JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN',
+               'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+const diasSemana = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex',
+                    'Sáb', 'Dom'];
+
 export default function NavBar({tggDia, semana}: switchDia) {
 
-    const diaDoCardapio = (dia: number, mes:number, ano:number) => {
-        // O mês vem 1-indexado e o construtor espera 0-indexado
-        const data = new Date (ano, mes - 1, dia); 
-        return data;
-    };
 
     const dia = new Date().getDay();
 
-    const meses = [' ', 'JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN',
-                   'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-    const diasSemana = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex',
-                        'Sáb', 'Dom'];
 
     useEffect(() => {
         const diaSem = document.querySelector(`button[value="${dia}"]`);
         const datas = document.querySelectorAll(`button[value="${dia}"] #diaSemana`);
+        const passo = window.innerWidth * 0.252;
 
         diaSem?.classList.add('diaSelect');
         datas.forEach((data) => { data.classList.add('diaSelect')})
+
+        const nav = document.getElementById('nav');
+        if (nav) 
+            nav.scrollTo({left: (dia - 2) * passo, behavior: 'smooth'});
         tggDia(dia);
     }, [dia, tggDia]);
 
@@ -43,12 +44,25 @@ export default function NavBar({tggDia, semana}: switchDia) {
         datas.forEach((data) => { data.classList.add('diaSelect')})
     }
 
+    const seleciona = (clique: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const pos = parseInt(clique.currentTarget.value);
+        const passo = window.innerWidth * 0.252;
+
+        switchDia(clique.currentTarget.id); 
+        tggDia(pos);
+
+        const nav = document.getElementById('nav');
+        if (nav) 
+            nav.scrollTo({left: (pos - 2) * passo, behavior: 'smooth'});
+    }
+
     return (
-        <NavDiv>
+        <NavDiv id="nav">
             {
                 semana.map((stringDia, indice) => 
                     <NavButton key={indice} id={diasSemana[indice]} value={indice + 1}
-                    onClick={(e) => {switchDia(e.currentTarget.id); tggDia(parseInt(e.currentTarget.value))}}>
+                    style={{marginLeft: indice === 0 ? '0' : '2.2vw'}}
+                    onClick={seleciona}>
                         <DiaSemana id="diaSemana">{diasSemana[indice]}</DiaSemana>
                         <DiaMes id="diaSemana">
                             {`${stringDia.substring(0, 2)} 
@@ -56,7 +70,6 @@ export default function NavBar({tggDia, semana}: switchDia) {
                         </DiaMes>
                         <DiaRelativo id="diaSemana">
                             {
-                            
                                 `${Formatacao.diaRelativo(stringDia)}`
                             }
                         </DiaRelativo>
