@@ -4,8 +4,8 @@ import Horario from "../../Components/Horario";
 import RUselect from "../../Components/RUselect";
 
 import Dia from "../../Components/Dia";
-import { ActionsDiv, AvisoAtt, CardapioDiv,
-        DropHeader, IconeAjustes, Sombra} from "./style";
+import { CardapioDiv, IconeAjustes, Sombra, ActionsDiv, 
+        DropHeader, AvisoAtt, Conteudo} from "./style";
 
 import DownPop from "../../Components/PopUp";
 import Load from "../../Components/Load";
@@ -17,7 +17,8 @@ import Ajustes from '../../Assets/Ajustes.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
-import { displayPartsToString } from "typescript";
+
+let fading: NodeJS.Timer;
 
 export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
@@ -148,14 +149,51 @@ export default function Cardapio() {
         return lista;
     }
 
-    const toggleOpcoes = () => {
-        const acoes = document.getElementById('acoes');
-        
-        if (acoes) {
-            acoes.style.display = opcoes ? 'none' : '';
-        }
-        setOpcoes(!opcoes);
-    }
+    const fade = (abrindo: boolean) => {
+        const direcao = abrindo ? 1 : -1;
+        requestAnimationFrame(() => {
+            const acoes = document.getElementById('acoes');
+            const conteudo = document.getElementById('conteudo');
+            if (!acoes || !conteudo)
+                return;
+
+            if (!acoes.style.opacity)
+                acoes.style.opacity = '1';
+                
+            clearInterval(fading);
+            acoes.style.display = 'flex';
+
+            requestAnimationFrame (() => {
+                conteudo.style.transition = '0.25s ease';
+                conteudo.style.transform = `translateY(${28.5 * direcao}vh)`;
+            });
+            fading = setInterval (() => {
+                requestAnimationFrame(() => {
+                    let opacidade = parseFloat(acoes.style.opacity);
+    
+                    if ((abrindo && opacidade < 1) || !abrindo && opacidade > 0)
+                        acoes.style.opacity = `${opacidade + 0.02 * direcao}`
+                    else {
+                        clearInterval(fading);
+                        requestAnimationFrame(() => {
+                            if (!abrindo) {
+                                acoes.style.display = 'none';
+                                conteudo.style.marginTop = '0';
+                            }
+                            else {
+                                conteudo.style.marginTop = '28.5vh';
+                            }
+                            conteudo.style.transition = '';
+                            conteudo.style.transform = `translateY(0px)`;
+                        })
+                    }
+                })
+            }, 5);
+        })
+        setOpcoes(abrindo);
+    };
+
+
 /* - - - - - Fim das funções - - - - - */
 
     if(loading)
@@ -166,7 +204,7 @@ export default function Cardapio() {
             
             <ToastContainer />
             <Cabecalho nome="Cardapio"/>
-            <IconeAjustes src={Ajustes} onClick={toggleOpcoes}/>
+            <IconeAjustes src={Ajustes} onClick={() => fade(!opcoes)}/>
             <Sombra style={{display: opcoes ? 'none' : ''}}/>
 
             <ActionsDiv id='acoes'>
@@ -181,16 +219,18 @@ export default function Cardapio() {
                 <Horario
                 hora={tggHora}/>
             </ActionsDiv>
-            <Dia
-            hora={hora}
-            cardapio={makePath(dia)}
-            />
-            <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
-            <AvisoAtt>Versão 0.0.2</AvisoAtt>
-            {
-                showInstallMessage &&
-                <DownPop/>
-            }
+            <Conteudo id='conteudo'>
+                <Dia
+                hora={hora}
+                cardapio={makePath(dia)}
+                />
+                <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
+                <AvisoAtt>Versão 0.0.2</AvisoAtt>
+                {
+                    showInstallMessage &&
+                    <DownPop/>
+                }
+            </Conteudo>
         </CardapioDiv>
     );
 }

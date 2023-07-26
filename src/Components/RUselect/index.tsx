@@ -66,7 +66,7 @@ export default function RUselect({text, selecionaRU}: DropDownProps) {
                 requestAnimationFrame(() => {
                     let opacidade = parseFloat(containerOpcoes.style.opacity);
     
-                    if ((abrindo && opacidade < 1) || !abrindo && opacidade > 0)
+                    if ((abrindo && opacidade < 1) || (!abrindo && opacidade > 0))
                         containerOpcoes.style.opacity = `${opacidade + 0.02 * direcao}`
                     else {
                         clearInterval(fading);
