@@ -15,7 +15,8 @@ const diasSemana = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex',
 export default function NavBar({tggDia, semana}: switchDia) {
 
 
-    const dia = new Date().getDay();
+    const indiceDia = new Date().getDay();
+    const dia = indiceDia === 0 ? 7 : indiceDia;
 
 
     useEffect(() => {
@@ -29,7 +30,9 @@ export default function NavBar({tggDia, semana}: switchDia) {
         const nav = document.getElementById('nav');
         if (nav) 
             nav.scrollTo({left: (dia - 2) * passo, behavior: 'smooth'});
-        tggDia(dia);
+
+        console.log('dia', dia)
+        tggDia(dia); // O getDay tem o domingo como 0
     }, [dia, tggDia]);
 
     const switchDia = (id: string) => {
@@ -50,6 +53,7 @@ export default function NavBar({tggDia, semana}: switchDia) {
 
         switchDia(clique.currentTarget.id); 
         tggDia(pos);
+        console.log('dia', pos)
 
         const nav = document.getElementById('nav');
         if (nav) 

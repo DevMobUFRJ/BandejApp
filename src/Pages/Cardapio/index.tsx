@@ -104,8 +104,6 @@ export default function Cardapio() {
         }
 
         switch (indexDia) {
-        case 0:
-            return temp?.domingo;
         case 1:
             return temp?.segunda;
         case 2:
@@ -118,6 +116,8 @@ export default function Cardapio() {
             return temp?.sexta;
         case 6:
             return temp?.sabado;
+        case 7:
+            return temp?.domingo;
         }
     }
 
