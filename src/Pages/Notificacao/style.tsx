@@ -41,13 +41,12 @@ export const Container = styled.div `
 `;
 
 export const Card = styled.div `
-    padding: 2.125vh 0 2vh 0;
+    padding: 2.125vh 6.66vw 2vh 6.66vw;
     background: ${global.colors.branco};
     font-family: ${global.fonts.quickSand};
 `;
 
 export const DataRelativa = styled.h3 `
-    margin-left: 6.66vw;
 
     font-family: ${global.fonts.quickSand};
     color: ${global.colors.cinza};
@@ -57,7 +56,6 @@ export const DataRelativa = styled.h3 `
 
 export const TextData = styled.p `
     margin-top: 0.5vh;
-    margin-left: 6.66vw;
     
     font-family: ${global.fonts.quickSand};
     color: ${global.colors.cinza};
@@ -66,7 +64,6 @@ export const TextData = styled.p `
 `;
 
 export const TextMensagem = styled.p `
-    margin-left: 6.66vw;
     margin-top: 3vh;
 
     font-family: ${global.fonts.quickSand};
