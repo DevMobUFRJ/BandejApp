@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
 
 let fading: NodeJS.Timer;
+let interromper = false;
 
 export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
@@ -150,6 +151,14 @@ export default function Cardapio() {
     }
 
     const fade = (abrindo: boolean) => {
+        if (interromper)
+            return;
+        
+        interromper = true;
+        setTimeout(() => {
+            interromper = false;
+        }, 350)
+
         const direcao = abrindo ? 1 : -1;
         requestAnimationFrame(() => {
             const acoes = document.getElementById('acoes');
