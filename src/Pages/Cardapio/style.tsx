@@ -62,7 +62,7 @@ export const Aviso = styled.h1 `
 `;
 
 export const AvisoAtt = styled.h1 `
-    padding-top: 0.2vh;
+    padding-top: 0.5vh;
     font-family: ${global.fonts.quickSand};
     font-size: 11px;
     color: ${global.colors.laranja};

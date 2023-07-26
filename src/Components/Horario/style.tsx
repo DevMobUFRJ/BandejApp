@@ -3,6 +3,7 @@ import { global } from "../../globalStyle";
 
 export const HorarioDiv = styled.div `
     display: flex;
+    margin-top: 2vh;
     width: 100vw;
 
     height: 6vh;

@@ -24,7 +24,6 @@ export const Selecionado = styled.div `
     
     width: 75.5vw;
     height: 7.5vh;
-    justify-content: space-between;
     
     background: ${global.colors.branco};
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
@@ -54,8 +53,8 @@ export const Opcoes = styled.div `
 export const DropItem = styled.button `
     display: flex;
     flex-direction: row;
+    padding-left: 3.6vw;
     align-items: center;
-    justify-content: center;
 
     width: 75.5vw;
     height: 7.5vh;

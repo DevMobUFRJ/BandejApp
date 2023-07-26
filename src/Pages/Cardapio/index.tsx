@@ -17,6 +17,7 @@ import Ajustes from '../../Assets/Ajustes.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
+import { displayPartsToString } from "typescript";
 
 export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
@@ -81,7 +82,7 @@ export default function Cardapio() {
 
     FontSize();
 
-    function makePath(indexDia : Number){
+    function makePath(indexDia : Number) {
         let ru = localStorage.getItem("bandejapp:ruDefault");
         let temp;
 
@@ -118,25 +119,18 @@ export default function Cardapio() {
         }
     }
 
-    function getAtt (restaurante: string)
-    {
-        let temp;
+    function getAtt (restaurante: string) {
         switch(restaurante)
         {
-            case 'ct':
-                temp = cardapio?.ct.ultimaAtt;
-                break;
-            case 'pv':
-                temp = cardapio?.pv.ultimaAtt;
-                break;
-            case 'dc':
-                temp = cardapio?.dc.ultimaAtt;
-                break;
-            case 'mc':
-                temp = cardapio?.mc.ultimaAtt;
-                break;
+        case 'ct':
+            return cardapio?.ct.ultimaAtt;
+        case 'pv':
+            return cardapio?.pv.ultimaAtt;
+        case 'dc':
+            return cardapio?.dc.ultimaAtt;
+        case 'mc':
+            return cardapio?.mc.ultimaAtt;
         }
-        return temp;
     }
 
     function passaSemana (semana: ISemana): string[] {
@@ -154,6 +148,14 @@ export default function Cardapio() {
         return lista;
     }
 
+    const toggleOpcoes = () => {
+        const acoes = document.getElementById('acoes');
+        
+        if (acoes) {
+            acoes.style.display = opcoes ? 'none' : '';
+        }
+        setOpcoes(!opcoes);
+    }
 /* - - - - - Fim das funções - - - - - */
 
     if(loading)
@@ -164,12 +166,13 @@ export default function Cardapio() {
             
             <ToastContainer />
             <Cabecalho nome="Cardapio"/>
-            <IconeAjustes src={Ajustes} onClick={() => setOpcoes(!opcoes)}/>
+            <IconeAjustes src={Ajustes} onClick={toggleOpcoes}/>
             <Sombra style={{display: opcoes ? 'none' : ''}}/>
 
-            <ActionsDiv style={{display: `${opcoes ? '' : 'none'}`}}>
+            <ActionsDiv id='acoes'>
                 <DropHeader>
-                    <RUselect text={localStorage.getItem("bandejapp:ruDefault") || ''} selecionaRU={selecionaRU}/>
+                    <RUselect text={localStorage.getItem("bandejapp:ruDefault") || ''}
+                    selecionaRU={selecionaRU}/>
                 </DropHeader>
 
                 <NavBar
@@ -182,7 +185,6 @@ export default function Cardapio() {
             hora={hora}
             cardapio={makePath(dia)}
             />
-
             <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
             <AvisoAtt>Versão 0.0.2</AvisoAtt>
             {

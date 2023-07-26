@@ -66,7 +66,6 @@ export default function RUselect({text, selecionaRU}: DropDownProps) {
                 requestAnimationFrame(() => {
                     let opacidade = parseFloat(containerOpcoes.style.opacity);
     
-                    console.log(opacidade)
                     if ((abrindo && opacidade < 1) || !abrindo && opacidade > 0)
                         containerOpcoes.style.opacity = `${opacidade + 0.02 * direcao}`
                     else {
@@ -89,15 +88,20 @@ export default function RUselect({text, selecionaRU}: DropDownProps) {
 
     const DropHandler = (evento: Event) => { // Remove os listeners e manipula o CloseDrop
         const triggerElem = evento.currentTarget;
+        let achou = false;
 
         evento.stopPropagation();
         seta?.removeEventListener('click', DropHandler);
         options.forEach((opt) => opt.removeEventListener('click', DropHandler));
         
         options.forEach(opt => {
-            if(triggerElem === opt)
-                CloseDrop(opt)
+            if(triggerElem === opt) {
+                CloseDrop(opt);
+                achou = true;
+            }
         });
+        if (!achou)
+            CloseDrop();
     }
 
     const CloseDrop = (elemento?: Element) => {
