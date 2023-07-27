@@ -180,7 +180,7 @@ export default function Cardapio() {
                 requestAnimationFrame(() => {
                     let opacidade = parseFloat(acoes.style.opacity);
     
-                    if ((abrindo && opacidade < 1) || !abrindo && opacidade > 0)
+                    if ((abrindo && opacidade < 1) || (!abrindo && opacidade > 0))
                         acoes.style.opacity = `${opacidade + 0.02 * direcao}`
                     else {
                         clearInterval(fading);
@@ -212,7 +212,7 @@ export default function Cardapio() {
         <CardapioDiv id="cardapio">
             
             <ToastContainer />
-            <Cabecalho nome="Cardapio"/>
+            <Cabecalho nome="Cardápio"/>
             <IconeAjustes src={Ajustes} onClick={() => fade(!opcoes)}/>
             <Sombra style={{display: opcoes ? 'none' : ''}}/>
 

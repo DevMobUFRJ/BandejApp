@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { global } from "../../globalStyle";
 
 export const DiaDiv = styled.div `
-    display: flex;;
+    display: flex;
     flex-direction: column;
     width: 91.1vw;
+
+    align-items: center;
 `;
 
 /*-----------------------------------------------------------------*/
@@ -19,7 +21,7 @@ export const Gluten = styled.div `
     align-items: center;
     justify-content: space-evenly;
 
-    border-radius: 4.44vw;
+    border-radius: 16px;
 `;
 
 export const InfoIcon = styled.img `
@@ -38,6 +40,7 @@ export const Aviso = styled.strong `
 
 export const Menu = styled.div `
     display: flex;
+    width: 100%;
     margin-top: 2vh;
     
     flex-direction: column;

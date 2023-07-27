@@ -55,9 +55,10 @@ export const DropHeader = styled.div `
 
 export const Conteudo = styled.div `
     display: flex;
+    margin-top: 28.5vh;
+    
     flex-direction: column;
     align-items: center;
-    margin-top: 28.5vh;
 `;
 
 export const AvisoAtt = styled.h1 `

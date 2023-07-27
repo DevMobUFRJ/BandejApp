@@ -4,7 +4,7 @@ import { global } from "../../globalStyle";
 export const Conteudo = styled.div `
     display: flex;
     flex-direction: column;
-    width: 88.88vw;
+    width: 100%;
 
     background: ${global.colors.branco};
 `;
