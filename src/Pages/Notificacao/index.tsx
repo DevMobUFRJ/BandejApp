@@ -10,7 +10,8 @@ import Pending from '../../Assets/SideBar/pending.svg';
     
 type aviso = {
     comunicado: String,
-    data: String
+    data: String,
+    pending: boolean,
 };
 
 export default function Avaliacao() {
@@ -18,6 +19,7 @@ export default function Avaliacao() {
     const [comentarios, setComentarios] = useState<aviso[]>([]);
     const [loading, setLoading] = useState(true);
     const { pendingNotification, setPendingNotification } = useContext(NotificationContext);
+    const [quantidadeNaoLidas, setQuantidadeNaoLidas] = useState(0)
 
     const bordaRedonda = (indice: number, tamanho: number) => {
         if (tamanho === 1)
@@ -100,13 +102,19 @@ export default function Avaliacao() {
         fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
             .then((data) => data.json())
             .then((post) => {
+                let qtd = 0
                 for (let aviso of post)
                 {
                     let dataFormatada;
                     dataFormatada = aviso.data.substring(0, 10);
                     dataFormatada = dataFormatada.split('-').reverse().join('/');
                     aviso.data = dataFormatada;
+                    aviso.pending = verificaPrecedenciaData(aviso.data)
+                    if(aviso.pending){
+                        qtd++; 
+                    }      
                 }
+                setQuantidadeNaoLidas(qtd);
                 setComentarios(post);
                 setLoading(false); 
             })
@@ -129,29 +137,28 @@ export default function Avaliacao() {
                 (pendingNotification) && 
                 <MensagensNaoLidas 
                     onClick={() => {setPendingNotification(false); localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(comentarios[0].data))}}
-                    style={{display: comentarios.length ? '' : 'none'}}>{`Marcar tudo como lido (${comentarios.length})`}
+                    style={{display: comentarios.length ? '' : 'none'}}>{`Marcar tudo como lido (${quantidadeNaoLidas})`}
                 </MensagensNaoLidas>
             }
             <Container>
                 {
-                comentarios.map((comentario, index) => { 
-                    let isNew = verificaPrecedenciaData(comentario.data);
+                comentarios.map((comentario, index) => {
                     return (
                         <Card 
                             key={index}
                             style={{borderRadius: `${bordaRedonda(index, comentarios.length)}`, marginTop: index === 0 ? '2vh' : '0.1vh'}}
-                            new={isNew}
+                            new={comentario.pending}
                         >
                             <CardData>
                                 <CardTop>
-                                    <DataRelativa new={isNew}>
+                                    <DataRelativa new={comentario.pending}>
                                         {`${diaRelativo(comentario.data)}`}
                                     </DataRelativa>
                                     {
-                                        isNew && <SideIcon src={Pending} />
+                                        comentario.pending && <SideIcon src={Pending} />
                                     }
                                 </CardTop>
-                                <TextData new={isNew}>
+                                <TextData new={comentario.pending}>
                                     {`${diaPorExtenso(comentario.data)}`}
                                 </TextData>
                             </CardData>
