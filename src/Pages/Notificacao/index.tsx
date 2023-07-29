@@ -147,18 +147,18 @@ export default function Avaliacao() {
                         <Card 
                             key={index}
                             style={{borderRadius: `${bordaRedonda(index, comentarios.length)}`, marginTop: index === 0 ? '2vh' : '0.1vh'}}
-                            new={comentario.pending}
+                            new={comentario.pending && pendingNotification}
                         >
                             <CardData>
                                 <CardTop>
-                                    <DataRelativa new={comentario.pending}>
+                                    <DataRelativa new={comentario.pending && pendingNotification}>
                                         {`${diaRelativo(comentario.data)}`}
                                     </DataRelativa>
                                     {
-                                        comentario.pending && <SideIcon src={Pending} />
+                                        comentario.pending && pendingNotification && <SideIcon src={Pending} />
                                     }
                                 </CardTop>
-                                <TextData new={comentario.pending}>
+                                <TextData new={comentario.pending && pendingNotification}>
                                     {`${diaPorExtenso(comentario.data)}`}
                                 </TextData>
                             </CardData>
