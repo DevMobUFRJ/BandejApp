@@ -3,6 +3,8 @@ import { global } from "../../globalStyle";
 
 export const SideDiv = styled.div `
     display: flex;
+    margin-left: 4.4vw;
+    z-index: 2;
 `;
 
 export const SideBarDiv = styled.div `

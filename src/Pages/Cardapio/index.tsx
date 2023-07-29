@@ -53,26 +53,29 @@ export default function Cardapio() {
             setLoading(false);
         }
         
+        consultarCardapio();
+    }, []);
+
+    function consultarCardapio() {
         fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`)
-            .then((data) => {
-                return data.json();
-            })
+            .then((data) => data.json())
             .then((post) => {
                 // post = {}
                 if(JSON.stringify(post) === "{}"){
-                    toast.error("Objeto nulo. Tente entrar novamente no app.");
-                    setLoading(false)
+                    if (loading === false)
+                        toast.error("Erro ao consultar o servidor. Aguarde, em breve o cardápio será atualizado");
+
+                    consultarCardapio();
                     return;
                 }
                 setCardapio(post);
                 localStorage.setItem("bandejapp:ultimoCardapio", JSON.stringify(post));    
-                setLoading(false)
+                setLoading(false);
             })
             .catch((error) => {
                 toast.error("Erro de rede. Tente novamente mais tarde");
             });
-
-    }, []);
+    }
 
     FontSize();
 
