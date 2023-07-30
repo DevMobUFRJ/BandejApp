@@ -22,9 +22,6 @@ export const BalaoInfo = styled.section `
     padding: 3.33vw 4.44vw;
 
     border-radius: 4.44vw;
-
-    /* Lembrar de tirar isso depois, foi só pq o fundo tá branco */
-    box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.3);
 `;
 
 export const BalaoTitle = styled.h3 `
