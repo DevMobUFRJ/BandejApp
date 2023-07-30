@@ -12,6 +12,8 @@ export const InformDiv = styled.div `
 /*----------------------------------------------------------------------------*/
 
 export const InfoTitle = styled.h3 `
+    display: flex;
+    text-align: center;
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
     font-weight: 700;
@@ -31,6 +33,8 @@ export const InfoGrid = styled.div `
     row-gap: 0.5vh;
 `;
 
+/*----------------------------------------------------------------------------*/
+
 export const InfoArea = styled.section `
     display: grid;
     grid-template-columns: 50% 50%;
@@ -40,23 +44,25 @@ export const InfoArea = styled.section `
 `;
 
 export const InfoBalao = styled.div `
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-row-gap: 3vh;
+    display: flex;
+    flex-direction: column;
     width: 100%;
 
     padding: 2vh 0;
     
-    justify-content: center;
+    align-items: center;
 
     border: solid 1px ${global.colors.desativado};
     border-radius: 4.44vw;
 `;
 
 export const InfoUndertitle = styled.p `
+    padding: 0 0 3vh 0;
+
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
     font-weight: 500;
+
     text-align: center;
     color: ${global.colors.cinzaTexto};
 `;
