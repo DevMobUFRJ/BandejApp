@@ -20,5 +20,4 @@ export default function FontSize() {
             else item.setAttribute('style', 'font-size: 3.73vw;')
         });
     })
-    
 }
