@@ -31,3 +31,8 @@ export const PopText = styled.p `
     color: white;
     padding: 0px 10px 0px 10px;
 `;
+
+export const CloseImg = styled.img `
+    width: 8.88vw;
+    margin-right: 20px;
+`;
