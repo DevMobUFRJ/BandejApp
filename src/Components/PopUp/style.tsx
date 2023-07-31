@@ -25,11 +25,10 @@ export const PopupDiv = styled.div `
 export const PopText = styled.p `
     margin: 1vh 0 2vh 0;
     font-family: ${global.fonts.nunito};
-    font-size: 3vw;
+    font-size: 3.5vw;
     font-weight: 500;
-    text-align: center;
     color: white;
-    padding: 0px 10px 0px 10px;
+    padding: 0px 10px 0px 20px;
 `;
 
 export const CloseImg = styled.img `
