@@ -6,7 +6,7 @@ export const TutDiv = styled.div `
     flex-direction: column;
 
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 
     .currentPage { background: white; }
     .nextButton { 
@@ -130,7 +130,7 @@ export const PageDescription = styled.p `
 
 export const BackImg = styled.img `
     width: 100%;
-    position: fixed;
+    position: absolute;
     z-index: -1;
     top: 0;
 `;
@@ -138,7 +138,7 @@ export const BackImg = styled.img `
 export const TemplateDiv = styled.div `
     display: flex;
     width: 100vw;
-    height: 68.12vh;
+    height: 134.18vw;
 
     position: relative;
     z-index: 1;
