@@ -8,6 +8,8 @@ export const FaleDiv = styled.div `
     min-height: 100vh;
 
     align-items: center;
+
+    background: ${global.colors.fundo};
 `;
 
 /*----------------------------------------------------------------------------*/
@@ -22,6 +24,8 @@ export const BalaoInfo = styled.section `
     padding: 3.33vw 4.44vw;
 
     border-radius: 4.44vw;
+
+    background-color: ${global.colors.branco};
 `;
 
 export const BalaoTitle = styled.h3 `

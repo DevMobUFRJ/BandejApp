@@ -7,6 +7,8 @@ export const InformDiv = styled.div `
     min-height: 100vh;
 
     align-items: center;
+
+    background: ${global.colors.fundo};
 `;
 
 /*----------------------------------------------------------------------------*/
