@@ -6,7 +6,7 @@ const boxshadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
 
 export default function Cabecalho({nome}: Nome) {
     return (
-        <CabecaDiv style={{boxShadow:`${nome === 'Cardapio' ? '' : boxshadow}`}}>
+        <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
             <BlurDiv id="blurdiv"/>
             <SideBar/>
             <PageTitle>{nome}</PageTitle>

@@ -1,5 +1,8 @@
-import arrowDown from '../../Assets/Cardapio/ArrowDown.svg'
-import { DropArrow, DropDiv, DropItem } from './style';
+import arrowDown from '../../Assets/Cardapio/ArrowDown.svg';
+import Pin from '../../Assets/Cardapio/Pin.svg';
+import { global } from "../../globalStyle";
+import { DropDiv, Opcoes, DropItem, 
+    PinLugar, Selecionado, DropArrow } from './style';
 
 type DropDownProps = {
     text: string,
@@ -8,97 +11,133 @@ type DropDownProps = {
 
 export default function RUselect({text, selecionaRU}: DropDownProps) {
 
-    let dist = 0;
-    let dist2 = 0;
     const seta = document.getElementById('seta');
-    const dropdown = document.getElementById('dropdown');
-    const options = document.querySelectorAll('#dropdown button');
-    const blurdiv = document.getElementById('blurdiv');
 
-    document.getElementById(text)?.classList.replace('ruOption', 'selected');
+    const containerOpcoes = document.getElementById('opcoes');
+    const options = document.querySelectorAll('#dropdown button');
+    
+    const containerSelecionado = document.getElementById('selecionado');
+    const elementoPrimeiraOpcao = document.getElementById(text);
+    
+    if (containerSelecionado && elementoPrimeiraOpcao && seta)
+        containerSelecionado.insertBefore(elementoPrimeiraOpcao, seta);
+
+    const ordem = ['ct', 'pv', 'dc', 'mc'];
+
+    const arruma = () => {
+        let i = 0;
+        for (let ru of ordem) {
+            const it = document.getElementById(ru);
+
+            if (!it)
+                continue;
+            if(it.id === RUselecionado) {
+                it.style.background = '';
+                continue;
+            }
+            if (i % 2) {
+                it.style.background = `${global.colors.cinzaOpaco(0.08)}`;
+            }
+            else {
+                it.style.background = '';
+            }
+            i++;
+            containerOpcoes?.appendChild(it);
+        }
+    }
+
+    let RUselecionado = text;
+    arruma();
+
+    let fading: NodeJS.Timer;
+
+    const fade = (abrindo: boolean) => {
+        const direcao = abrindo ? 1 : -1;
+        requestAnimationFrame(() => {
+            if (!containerOpcoes)
+                return;
+            if (!containerOpcoes.style.opacity)
+                containerOpcoes.style.opacity = '0';
+            containerOpcoes.style.display = 'flex';
+
+            clearInterval(fading);
+
+            fading = setInterval (() => {
+                requestAnimationFrame(() => {
+                    let opacidade = parseFloat(containerOpcoes.style.opacity);
+    
+                    if ((abrindo && opacidade < 1) || (!abrindo && opacidade > 0))
+                        containerOpcoes.style.opacity = `${opacidade + 0.02 * direcao}`
+                    else {
+                        clearInterval(fading);
+                        if (!abrindo) {
+                            containerOpcoes.style.display = 'none';
+                        }
+                    }
+                })
+            }, 5);
+        })
+    };
 
     const OpenDrop = () => { // Abre o dropdown e adiciona os listeners
-        dist = 0;
-        requestAnimationFrame(() => {
-        blurdiv?.classList.add('dropBlur');
-            if(dropdown != null) dropdown.style.height = '20.72vh';
-            options?.forEach((option: any) => {
-                if(!option.classList.contains('selected')){
-                    option.style.transform = `translateY(${5.18*dist}vh)`;
-                    dist+=1;
-                }
-            })
-            if(seta != null) seta.style.transform = 'rotate(90deg)';
-        })
-
-        blurdiv?.addEventListener('click', DropHandler);
+        fade(true);
+        
         seta?.addEventListener('click', DropHandler);
         options.forEach((option) => {option.addEventListener('click', DropHandler)});
     }
 
     const DropHandler = (evento: Event) => { // Remove os listeners e manipula o CloseDrop
         const triggerElem = evento.currentTarget;
+        let achou = false;
 
         evento.stopPropagation();
-        blurdiv?.removeEventListener('click', DropHandler);
         seta?.removeEventListener('click', DropHandler);
-        options.forEach((option) => {option.removeEventListener('click', DropHandler)});
-
-        if(triggerElem === blurdiv || triggerElem === seta) {
+        options.forEach((opt) => opt.removeEventListener('click', DropHandler));
+        
+        options.forEach(opt => {
+            if(triggerElem === opt) {
+                CloseDrop(opt);
+                achou = true;
+            }
+        });
+        if (!achou)
             CloseDrop();
-            return;
-        }
-        else {
-            options.forEach(opt => {
-                if(triggerElem === opt) {
-                    CloseDrop(opt);
-                    return;
-                }
-            });
-        }
     }
 
     const CloseDrop = (elemento?: Element) => {
-
         requestAnimationFrame(() => {
-            if(seta != null) seta.style.transform = 'rotate(-90deg)';
-            blurdiv?.classList.remove('dropBlur');
-
-            options?.forEach((option: any) => {
-                if(!option.classList.contains('selected')) option.style.transform = 'translateY(0)';
-            })
-            if(dropdown != null) dropdown.style.height = '5.18vh';
-
             if(elemento) {
-                for(dist=0 ; dist<options.length ; dist+=1) {
-                    if(options[dist].classList.contains('selected')) break;
+                const velho = document.querySelector('#selecionado button');
+                
+                if (velho && containerOpcoes && containerSelecionado && seta) {
+                    containerOpcoes.appendChild(velho);
+                    containerSelecionado.insertBefore(elemento, seta);
                 }
-                for(dist2=0 ; dist2<options.length ; dist2+=1) {
-                    if (options[dist2] === elemento) break;
-                }
-
-                const velho = document.getElementById(options[dist].id);
-                const novo = document.getElementById(options[dist2].id);
-
-                if(velho) velho.classList.replace('selected', 'ruOption');
-                if(novo) novo.classList.replace('ruOption', 'selected');
-                selecionaRU(options[dist2].id);
+                RUselecionado = elemento.id;
+                selecionaRU(elemento.id);
+                arruma();
             }
+
+            fade(false);
         })
 
     }
 
     return (
         <DropDiv id='dropdown' onClick={OpenDrop}>
-            <DropItem id='ct' className='ruOption'>Central, CT e Letras</DropItem>
+            <Selecionado id='selecionado'>
+                <PinLugar src={Pin}/>
+                <DropArrow id='seta' src={arrowDown}/>
+            </Selecionado>
+            <Opcoes id='opcoes'>
+                <DropItem id='ct'>Central, CT e Letras</DropItem>
 
-            <DropItem id='pv' className='ruOption'>IFCS e Praia Vermelha</DropItem>
+                <DropItem id='pv'>IFCS e Praia Vermelha</DropItem>
 
-            <DropItem id='dc' className='ruOption'>Duque de Caxias</DropItem>
+                <DropItem id='dc'>Duque de Caxias</DropItem>
 
-            <DropItem id='mc' className='ruOption'>Macaé</DropItem>
-
-            <DropArrow id='seta' src={arrowDown}/>
+                <DropItem id='mc'>Macaé</DropItem>
+            </Opcoes>
         </DropDiv>
     );
 }

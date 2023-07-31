@@ -4,18 +4,22 @@ import Horario from "../../Components/Horario";
 import RUselect from "../../Components/RUselect";
 
 import Dia from "../../Components/Dia";
-import { ActionsDiv, AvisoAtt, CardapioDiv,
-        DropHeader} from "./style";
+import { CardapioDiv, IconeAjustes, Sombra, ActionsDiv, 
+        DropHeader, AvisoAtt, Conteudo} from "./style";
 
 import DownPop from "../../Components/PopUp";
 import Load from "../../Components/Load";
 import { ICardapioProps, ISemana } from "../../Types/storage";
 
 import FontSize from "../../Functions/FontSize";
+import Ajustes from '../../Assets/Ajustes.svg';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
+
+let fading: NodeJS.Timer;
+let interromper = false;
 
 export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
@@ -25,6 +29,7 @@ export default function Cardapio() {
     const [showInstallMessage, setShowInstallMessage] = useState<boolean>()
     const [ruAtual, setRuAtual] = useState<string>();
 
+    const [opcoes, setOpcoes] = useState(true);
     const [loading, setLoading] = useState(true);
 
     function selecionaRU(restaurante : string){
@@ -79,7 +84,7 @@ export default function Cardapio() {
 
     FontSize();
 
-    function makePath(indexDia : Number){
+    function makePath(indexDia : Number) {
         let ru = localStorage.getItem("bandejapp:ruDefault");
         let temp;
 
@@ -99,8 +104,6 @@ export default function Cardapio() {
         }
 
         switch (indexDia) {
-        case 0:
-            return temp?.domingo;
         case 1:
             return temp?.segunda;
         case 2:
@@ -113,29 +116,92 @@ export default function Cardapio() {
             return temp?.sexta;
         case 6:
             return temp?.sabado;
+        case 7:
+            return temp?.domingo;
         }
     }
 
-    function getAtt (restaurante: string)
-    {
-        let temp;
+    function getAtt (restaurante: string) {
         switch(restaurante)
         {
-            case 'ct':
-                temp = cardapio?.ct.ultimaAtt;
-                break;
-            case 'pv':
-                temp = cardapio?.pv.ultimaAtt;
-                break;
-            case 'dc':
-                temp = cardapio?.dc.ultimaAtt;
-                break;
-            case 'mc':
-                temp = cardapio?.mc.ultimaAtt;
-                break;
+        case 'ct':
+            return cardapio?.ct.ultimaAtt;
+        case 'pv':
+            return cardapio?.pv.ultimaAtt;
+        case 'dc':
+            return cardapio?.dc.ultimaAtt;
+        case 'mc':
+            return cardapio?.mc.ultimaAtt;
         }
-        return temp;
     }
+
+    function passaSemana (semana: ISemana): string[] {
+        const lista = [''];
+        lista.pop();
+
+        lista.push(semana?.segunda);
+        lista.push(semana?.terca);
+        lista.push(semana?.quarta);
+        lista.push(semana?.quinta);
+        lista.push(semana?.sexta);
+        lista.push(semana?.sabado);
+        lista.push(semana?.domingo);
+
+        return lista;
+    }
+
+    const fade = (abrindo: boolean) => {
+        if (interromper)
+            return;
+        
+        interromper = true;
+        setTimeout(() => {
+            interromper = false;
+        }, 350)
+
+        const direcao = abrindo ? 1 : -1;
+        requestAnimationFrame(() => {
+            const acoes = document.getElementById('acoes');
+            const conteudo = document.getElementById('conteudo');
+            if (!acoes || !conteudo)
+                return;
+
+            if (!acoes.style.opacity)
+                acoes.style.opacity = '1';
+                
+            clearInterval(fading);
+            acoes.style.display = 'flex';
+
+            requestAnimationFrame (() => {
+                conteudo.style.transition = '0.25s ease';
+                conteudo.style.transform = `translateY(${28.5 * direcao}vh)`;
+            });
+            fading = setInterval (() => {
+                requestAnimationFrame(() => {
+                    let opacidade = parseFloat(acoes.style.opacity);
+    
+                    if ((abrindo && opacidade < 1) || (!abrindo && opacidade > 0))
+                        acoes.style.opacity = `${opacidade + 0.02 * direcao}`
+                    else {
+                        clearInterval(fading);
+                        requestAnimationFrame(() => {
+                            if (!abrindo) {
+                                acoes.style.display = 'none';
+                                conteudo.style.marginTop = '0';
+                            }
+                            else {
+                                conteudo.style.marginTop = '28.5vh';
+                            }
+                            conteudo.style.transition = '';
+                            conteudo.style.transform = `translateY(0px)`;
+                        })
+                    }
+                })
+            }, 5);
+        })
+        setOpcoes(abrindo);
+    };
+
 
 /* - - - - - Fim das funções - - - - - */
 
@@ -144,33 +210,36 @@ export default function Cardapio() {
 
     return(
         <CardapioDiv id="cardapio">
+            
             <ToastContainer />
-            <ActionsDiv>
-                <Cabecalho nome="Cardapio"/>
+            <Cabecalho nome="Cardápio"/>
+            <IconeAjustes src={Ajustes} onClick={() => fade(!opcoes)}/>
+            <Sombra style={{display: opcoes ? 'none' : ''}}/>
 
+            <ActionsDiv id='acoes'>
                 <DropHeader>
-                    <RUselect text={localStorage.getItem("bandejapp:ruDefault") || ''} selecionaRU={selecionaRU}/>
+                    <RUselect text={localStorage.getItem("bandejapp:ruDefault") || ''}
+                    selecionaRU={selecionaRU}/>
                 </DropHeader>
 
                 <NavBar
                 tggDia={tggDia}
-                semana={cardapio?.semana as ISemana}/>
-
+                semana={passaSemana(cardapio?.semana as ISemana)}/>
                 <Horario
                 hora={tggHora}/>
             </ActionsDiv>
-
-            <Dia
-            hora={hora}
-            cardapio={makePath(dia)}
-            />
-
-            <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
-            <AvisoAtt>Versão 0.0.2</AvisoAtt>
-            {
-                showInstallMessage &&
-                <DownPop/>
-            }
+            <Conteudo id='conteudo'>
+                <Dia
+                hora={hora}
+                cardapio={makePath(dia)}
+                />
+                <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
+                <AvisoAtt>Versão 0.0.2</AvisoAtt>
+                {
+                    showInstallMessage &&
+                    <DownPop/>
+                }
+            </Conteudo>
         </CardapioDiv>
     );
 }
