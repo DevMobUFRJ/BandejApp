@@ -4,8 +4,12 @@ import { BalaoDescription, BalaoInfo, BalaoTitle,
 
 import Copy from '../../Assets/FaleConosco/copiar.svg';
 import Redirect from '../../Assets/FaleConosco/redirect.svg';
+import DownPop from "../../Components/PopUp";
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+import { useContext } from "react";
 
 export default function FaleConosco() {
+    const { showInstallMessage } = useContext(InstallMessageContext);
     return (
         <FaleDiv>
             <Cabecalho nome="Fale conosco"/>
@@ -37,6 +41,10 @@ export default function FaleConosco() {
                     enviar sugestões e tudo mais relacionado ao App.
                 </BalaoDescription>
             </BalaoInfo>
+            {
+                showInstallMessage &&
+                <DownPop/>
+            }
         </FaleDiv>
     );
 }

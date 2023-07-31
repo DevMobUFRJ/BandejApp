@@ -1,7 +1,11 @@
 import Cabecalho from "../../Components/Cabecalho";
 import { InformDiv } from "./style";
+import DownPop from "../../Components/PopUp";
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+import { useContext } from "react";
 
 export default function Informacoes() {
+    const { showInstallMessage } = useContext(InstallMessageContext);
     return (
         <InformDiv>
             <Cabecalho nome="Informações"/>
@@ -16,6 +20,10 @@ export default function Informacoes() {
             <h3>
                 CONSULTE SEU DESENVOLVEDOR MAIS PRÓXIMO :)
             </h3>
+            {
+                showInstallMessage &&
+                <DownPop/>
+            }
         </InformDiv>
     );
 }
