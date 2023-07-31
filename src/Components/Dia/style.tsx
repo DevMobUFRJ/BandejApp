@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { global } from "../../globalStyle";
 
 export const DiaDiv = styled.div `
-    display: flex;;
+    display: flex;
     flex-direction: column;
-    width: 88.88vw;
+    width: 91.1vw;
 
-    margin: 2vh 0 0 0;
+    align-items: center;
 `;
 
 /*-----------------------------------------------------------------*/
@@ -16,12 +16,12 @@ export const Gluten = styled.div `
     width: 100%;
     height: 6vh;
     background: rgba(36, 82, 169, 0.2);
-    margin-bottom: 2vh;
+    margin-top: 2vh;
 
     align-items: center;
     justify-content: space-evenly;
 
-    border-radius: 4.44vw;
+    border-radius: 16px;
 `;
 
 export const InfoIcon = styled.img `
@@ -31,19 +31,17 @@ export const InfoIcon = styled.img `
 export const Aviso = styled.strong `
     font-family: ${global.fonts.quickSand};
     font-weight: 500;
-    font-size: 3.88vw;
+    font-size: 14px;
 
-    color: #2452A9;
+    color: ${global.colors.azul};
 `;
 
 /*-----------------------------------------------------------------*/
 
 export const Menu = styled.div `
-    display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
+    width: 100%;
+    margin-top: 2vh;
     
     flex-direction: column;
-    height: 100%;
 `;

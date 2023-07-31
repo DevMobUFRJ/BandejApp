@@ -7,67 +7,65 @@ import { global } from "../../globalStyle";
 */
 
 export const DropDiv = styled.div `
-    display: block;
+    display: flex;
     flex-direction: column;
     width: 76.63vw;
-    min-height: 5.18vh;
-    height: 5.18vh;
+    padding: 0;
 
-    overflow: hidden;
+    align-items: center;
+    overflow-y: hidden;
     z-index: 1;
-    position: absolute;
 
-    border-radius: 2vw;
-    background: ${global.colors.laranja};
-
-    transition: height 0.5s ease;
-
-    .selected {
-        top: 0;
-        border: none;
-        height: 5.18vh;
-        text-shadow: none;
-    }
 `;
 
-export const ItemsDiv = styled.div `
+export const Selecionado = styled.div `
     display: flex;
+    flex-direction: row;
+    
+    width: 75.5vw;
+    height: 7.5vh;
+    
+    background: ${global.colors.branco};
+    border: 2px solid ${global.colors.cinzaOpaco(0.24)};
+    border-radius: 16px;
+`;
+
+export const PinLugar = styled.img `
+    width: 3.88vw;
+    margin-left: 6.1vw;
+`;
+
+export const DropArrow = styled.img `
+    width: 3.33vw;
+    margin-right: 6.1vw;
+`;
+
+export const Opcoes = styled.div `
+    display: none;
+    min-height: 22.5vh;
+    flex-direction: column;
+
+    background: ${global.colors.branco};
+    border: 2px solid ${global.colors.cinzaOpaco(0.24)};
+    border-radius: 16px;
 `;
 
 export const DropItem = styled.button `
     display: flex;
-    height: 5.18vh;
-    min-width: 85%;
-
-    position: absolute;
-    top: 5.18vh;
-    z-index: 3;
-
-    margin: 0 0 0 1.5vw;
-    padding: 0 0 0 1.5vw;
+    flex-direction: row;
+    padding-left: 3.6vw;
     align-items: center;
 
-    font-size: 4.3vw;
-    font-family: ${global.fonts.nunito};
-    font-weight: bold;
+    width: 75.5vw;
+    height: 7.5vh;
 
-    outline: none;
+    z-index: 1;
+
+    font-size: 16px;
+    font-family: ${global.fonts.quickSand};
+    font-weight: 700;
+
     border: none;
-    border-top: solid 0.25vh #EB4600;
-
-    color: white;
-    transition: transform 0.6s ease;
-`;
-
-export const DropArrow = styled.img `
-    display: flex;
-    height: 2.7vh;
-    max-width: 15%;
-
-    position: absolute;
-    right: 3vw;
-    top: 1.4vh;
-
-    transition: transform 0.3s ease;
-    transform: rotate(-90deg);
+    
+    color: ${global.colors.cinza};
 `;
