@@ -1,27 +1,38 @@
 import { useEffect } from "react";
-import { DiaMes, DiaSemana, Mes, NavButton, NavDiv } from "./style";
-import { ISemana } from "../../Types/storage";
+import { DiaMes, DiaSemana, DiaRelativo, NavButton, NavDiv } from "./style";
+import { Formatacao } from "../../Functions/Formatacao";
 
 type switchDia = { 
     tggDia: Function
-    semana: ISemana
+    semana: string[]
 };
 
+const meses = [' ', 'JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN',
+               'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+const diasSemana = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex',
+                    'Sáb', 'Dom'];
+
 export default function NavBar({tggDia, semana}: switchDia) {
-    const dia = new Date().getDay();
-    const meses = [' ', 'JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN',
-                   'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+
+
+    const indiceDia = new Date().getDay();
+    const dia = indiceDia === 0 ? 7 : indiceDia;
+
 
     useEffect(() => {
         const diaSem = document.querySelector(`button[value="${dia}"]`);
         const datas = document.querySelectorAll(`button[value="${dia}"] #diaSemana`);
+        const passo = window.innerWidth * 0.252;
 
         diaSem?.classList.add('diaSelect');
         datas.forEach((data) => { data.classList.add('diaSelect')})
-        tggDia(dia);
 
-        console.log();
-        
+        const nav = document.getElementById('nav');
+        if (nav) 
+            nav.scrollTo({left: (dia - 2) * passo, behavior: 'smooth'});
+
+        console.log('dia', dia)
+        tggDia(dia); // O getDay tem o domingo como 0
     }, [dia, tggDia]);
 
     const switchDia = (id: string) => {
@@ -36,56 +47,39 @@ export default function NavBar({tggDia, semana}: switchDia) {
         datas.forEach((data) => { data.classList.add('diaSelect')})
     }
 
+    const seleciona = (clique: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const pos = parseInt(clique.currentTarget.value);
+        const passo = window.innerWidth * 0.252;
+
+        switchDia(clique.currentTarget.id); 
+        tggDia(pos);
+        console.log('dia', pos)
+
+        const nav = document.getElementById('nav');
+        if (nav) 
+            nav.scrollTo({left: (pos - 2) * passo, behavior: 'smooth'});
+    }
+
     return (
-        <NavDiv>
-            <NavButton id="seg" value='1'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">S</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.segunda.substring(0, 2)}`}</DiaMes>
-                <Mes id="diaSemana">{`${meses[Number(semana?.segunda.substring(3, 5))]}`}</Mes>
-            </NavButton>
-
-            <NavButton id="ter" value='2'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">T</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.terca.substring(0, 2)}`}</DiaMes>
-                <Mes id="diaSemana">{`${meses[Number(semana?.terca.substring(3, 5))]}`}</Mes>
-            </NavButton>
-
-            <NavButton id="qua" value='3'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">Q</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.quarta.substring(0, 2)}`}</DiaMes>
-                <Mes id="diaSemana">{`${meses[Number(semana?.quarta.substring(3, 5))]}`}</Mes>
-            </NavButton>
-
-            <NavButton id="qui" value='4'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">Q</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.quinta.substring(0, 2)}`}</DiaMes>
-                <Mes id="diaSemana">{`${meses[Number(semana?.quinta.substring(3, 5))]}`}</Mes>
-            </NavButton>
-
-            <NavButton id="sex" value='5'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">S</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.sexta.substring(0, 2)}`}</DiaMes>
-                <Mes id="diaSemana">{`${meses[Number(semana?.sexta.substring(3, 5))]}`}</Mes>
-            </NavButton>
-
-            <NavButton id="sab" value='6'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">S</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.sabado.substring(0, 2)}`}</DiaMes>
-                <Mes id="diaSemana">{`${meses[Number(semana?.sabado.substring(3, 5))]}`}</Mes>
-            </NavButton>
-
-            <NavButton id="dom" value='0'
-            onClick={(d) => {switchDia(d.currentTarget.id); tggDia(parseInt(d.currentTarget.value))}}>
-                <DiaSemana id="diaSemana">D</DiaSemana>
-                <DiaMes id="diaSemana">{`${semana?.domingo.substring(0, 2)}`}</DiaMes>
-                <Mes id="diaSemana">{`${meses[Number(semana?.domingo.substring(3, 5))]}`}</Mes>
-            </NavButton>
+        <NavDiv id="nav">
+            {
+                semana.map((stringDia, indice) => 
+                    <NavButton key={indice} id={diasSemana[indice]} value={indice + 1}
+                    style={{marginLeft: indice === 0 ? '0' : '2.2vw'}}
+                    onClick={seleciona}>
+                        <DiaSemana id="diaSemana">{diasSemana[indice]}</DiaSemana>
+                        <DiaMes id="diaSemana">
+                            {`${stringDia.substring(0, 2)} 
+                            ${meses[Number(stringDia.substring(3, 5))]}`}
+                        </DiaMes>
+                        <DiaRelativo id="diaSemana">
+                            {
+                                `${Formatacao.diaRelativo(stringDia)}`
+                            }
+                        </DiaRelativo>
+                    </NavButton>
+                )
+            }  
         </NavDiv>
     )
 }

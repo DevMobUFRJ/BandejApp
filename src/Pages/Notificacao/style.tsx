@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
+interface CardProps {
+    new?: boolean;
+}
+
 export const Avadiv = styled.div `
     display: flex;
     flex-direction: column;
@@ -11,12 +15,8 @@ export const Avadiv = styled.div `
     background: ${global.colors.fundo};
 `;
 
-export const Titulo = styled.h1 `
-    margin-top: 4.5vh;
-    margin-bottom: 30px;
-    font-family: ${global.fonts.nunito};
-    font-size: 7vw;
-    font-weight: 600;
+export const SemMensagens = styled.p `
+    margin-top: 2vh;
 `;
 
 export const AvalImg = styled.img `
@@ -30,12 +30,6 @@ export const AvalImg = styled.img `
     border: none;
 `;
 
-export const Card = styled.div `
-    padding: 6.6vw;
-    background: ${global.colors.branco};
-    font-family: ${global.fonts.nunito};
-`;
-
 export const CardMensagem = styled.div `
 
 `;
@@ -46,25 +40,6 @@ export const CardData = styled.div `
 
 export const Container = styled.div `
     width: 89.85vw;
-`;
-
-export const TextMensagem = styled.p `
-    font-family: ${global.fonts.quickSand};
-    color: ${global.colors.cinza};
-    margin-top: 3vh;
-
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 28px; /* 175% */
-    word-wrap: break-word;
-`;
-
-export const TextData = styled.p `
-    font-family: ${global.fonts.quickSand};
-    color: ${global.colors.cinza};
-    margin-top: 0.5vh;
-    font-size: 16px;
-    font-weight: 500;    
 `;
 
 export const MensagensNaoLidas = styled.button `
@@ -83,18 +58,44 @@ export const MensagensNaoLidas = styled.button `
     font-weight: 700;
 `;
 
-export const DataRelativa = styled.h3 `
+export const Card = styled.div<CardProps>`
+    padding: 2.125vh 6.66vw 2vh 6.66vw;
+    background: ${(props) => props.new ? global.colors.branco : global.colors.cinzaOpaco(0.04)};
     font-family: ${global.fonts.quickSand};
-    color: ${global.colors.cinza};
+`;
+
+export const DataRelativa = styled.h3<CardProps>`
+    font-family: ${global.fonts.quickSand};
+    color: ${(props) => props.new ? global.colors.laranja : global.colors.cinza};
     font-size: 20px;
     font-weight: 700;
 `;
 
-export const SemMensagens = styled.p `
-    margin-top: 2vh;
+export const TextData = styled.p<CardProps>`
+    margin-top: 0.5vh; 
+    font-family: ${global.fonts.quickSand};
+    color: ${(props) => props.new ? global.colors.laranja : global.colors.cinza};
+    font-size: 16px;
+    font-weight: 500;    
+`;
+
+export const TextMensagem = styled.p `
+    margin-top: 3vh;
 
     font-family: ${global.fonts.quickSand};
     color: ${global.colors.cinza};
 
     font-size: 16px;
+    font-weight: 500;
+    line-height: 28px; /* 175% */
+    word-wrap: break-word;
+`;
+
+export const SideIcon = styled.img `
+    width: 4vw;
+`;
+
+export const CardTop = styled.section`
+    display: grid;
+    grid-template-columns: 90% auto;
 `;

@@ -51,7 +51,7 @@ export const PageTitle = styled.h1 `
 
 export const BlurDiv = styled.div `
     display: none;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     width: 100vw;
