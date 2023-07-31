@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NavBar from "../../Components/Navbar";
 import Horario from "../../Components/Horario";
 import RUselect from "../../Components/RUselect";
@@ -18,6 +18,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
 
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 let fading: NodeJS.Timer;
 let interromper = false;
 
@@ -26,31 +27,18 @@ export default function Cardapio() {
 
     const [dia, tggDia] = useState(0);
     const [hora, tggHora] = useState();
-    const [showInstallMessage, setShowInstallMessage] = useState<boolean>()
     const [ruAtual, setRuAtual] = useState<string>();
 
     const [opcoes, setOpcoes] = useState(true);
     const [loading, setLoading] = useState(true);
 
+    const { showInstallMessage } = useContext(InstallMessageContext);
+    
     function selecionaRU(restaurante : string){
         localStorage.setItem("bandejapp:ruDefault", restaurante);
         setRuAtual(restaurante);
     }
-
-    const isIos = () => {
-        const userAgent = window.navigator.userAgent.toLowerCase();
-        return /iphone|ipad|ipod/.test( userAgent );
-      }
-    // Detects if device is in standalone mode
-    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);    
-    
     useEffect(() => {
-        if (isIos() && !isInStandaloneMode()) { 
-            setShowInstallMessage(true);
-        } else{
-            setShowInstallMessage(false);
-        }
-
         let ultimoCardapio = localStorage.getItem("bandejapp:ultimoCardapio");
         setRuAtual(localStorage.getItem("bandejapp:ruDefault") + '');
         if(ultimoCardapio){ 
@@ -235,11 +223,11 @@ export default function Cardapio() {
                 />
                 <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
                 <AvisoAtt>Versão 0.0.2</AvisoAtt>
-                {
-                    showInstallMessage &&
-                    <DownPop/>
-                }
             </Conteudo>
+            {
+                showInstallMessage &&
+                <DownPop/>
+            }
         </CardapioDiv>
     );
 }
