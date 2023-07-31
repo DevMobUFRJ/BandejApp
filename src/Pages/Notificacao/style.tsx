@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
+interface CardProps {
+    new?: boolean;
+}
+
 export const Avadiv = styled.div `
     display: flex;
     flex-direction: column;
@@ -13,11 +17,29 @@ export const Avadiv = styled.div `
 
 export const SemMensagens = styled.p `
     margin-top: 2vh;
+`;
 
-    font-family: ${global.fonts.quickSand};
-    color: ${global.colors.cinza};
+export const AvalImg = styled.img `
+    width: 6.3vw;
+    //padding: 0 4.9vw 0 9.6vw;
+    display: flex;
+    position: absolute;
+    top: 5vh;
+    left: 6.3vw;
+    outline: none;
+    border: none;
+`;
 
-    font-size: 16px;
+export const CardMensagem = styled.div `
+
+`;
+
+export const CardData = styled.div `
+
+`;
+
+export const Container = styled.div `
+    width: 89.85vw;
 `;
 
 export const MensagensNaoLidas = styled.button `
@@ -35,30 +57,24 @@ export const MensagensNaoLidas = styled.button `
     font-size: 16px;
     font-weight: 700;
 `;
-    
-export const Container = styled.div `
-    width: 89.85vw;
-`;
 
-export const Card = styled.div `
+export const Card = styled.div<CardProps>`
     padding: 2.125vh 6.66vw 2vh 6.66vw;
-    background: ${global.colors.branco};
+    background: ${(props) => props.new ? global.colors.branco : global.colors.cinza1};
     font-family: ${global.fonts.quickSand};
 `;
 
-export const DataRelativa = styled.h3 `
-
+export const DataRelativa = styled.h3<CardProps>`
     font-family: ${global.fonts.quickSand};
-    color: ${global.colors.cinza};
+    color: ${(props) => props.new ? global.colors.laranja : global.colors.cinza};
     font-size: 20px;
     font-weight: 700;
 `;
 
-export const TextData = styled.p `
-    margin-top: 0.5vh;
-    
+export const TextData = styled.p<CardProps>`
+    margin-top: 0.5vh; 
     font-family: ${global.fonts.quickSand};
-    color: ${global.colors.cinza};
+    color: ${(props) => props.new ? global.colors.laranja : global.colors.cinza};
     font-size: 16px;
     font-weight: 500;    
 `;
@@ -73,4 +89,13 @@ export const TextMensagem = styled.p `
     font-weight: 500;
     line-height: 28px; /* 175% */
     word-wrap: break-word;
+`;
+
+export const SideIcon = styled.img `
+    width: 4vw;
+`;
+
+export const CardTop = styled.section`
+    display: grid;
+    grid-template-columns: 90% auto;
 `;
