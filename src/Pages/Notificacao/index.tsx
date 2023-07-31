@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Load from "../../Components/Load";
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
+import { Formatacao } from "../../Functions/Formatacao";
 import { useContext } from "react";
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import Pending from '../../Assets/SideBar/pending.svg';
@@ -21,65 +22,6 @@ export default function Avaliacao() {
     const { pendingNotification, setPendingNotification } = useContext(NotificationContext);
     const [quantidadeNaoLidas, setQuantidadeNaoLidas] = useState(0)
 
-    const bordaRedonda = (indice: number, tamanho: number) => {
-        if (tamanho === 1)
-            return "16px";
-        
-        if (indice === 0)
-            return "16px 16px 0 0";
-
-        if (indice === tamanho - 1)
-            return "0 0 16px 16px";
-        
-        return "0";
-    };
-
-    const diaRelativo = (dia: String) => {
-        const partes = dia.split('/').reverse();
-        const parametros = [];
-
-        for (let e of partes)
-            parametros.push(parseInt(e));
-
-        parametros[1]--; // Mês é 0-indexado pro construtor de Date
-
-        const hoje = new Date();
-        const diaDaMensagem = new Date(parametros[0], parametros[1], parametros[2]);
-
-        let diasPassados = Math.floor((hoje.getTime() - diaDaMensagem.getTime()) / (24 * 60 * 60 * 1000));
-
-
-        if (diasPassados === 0)
-            return "Hoje";
-
-        if (diasPassados === 1)
-            return "Ontem"
-
-        if (diasPassados < 7)
-            return `Há ${diasPassados} dias atrás`
-
-        const semanasPassadas = Math.floor(diasPassados / 7);
-        diasPassados -= semanasPassadas * 7;
-
-        const semanasString = `Há ${semanasPassadas} semana${semanasPassadas > 1 ? 's' : ''}`
-
-        if (diasPassados === 0)
-            return semanasString;
-        if (diasPassados === 1)
-            return semanasString + ` e um dia`;
-
-        return semanasString + ` e ${diasPassados} dias`;
-            
-    };
-
-    const diaPorExtenso = (dia: String) => {
-        const meses = ['', 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 
-        'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
-        const partes = dia.split('/');
-        const mes = meses[parseInt(partes[1])];
-
-        return `${partes[0]} de ${mes} de ${partes[2]}`;
-    };
 
     const verificaPrecedenciaData = (data: String) => {
         let dataArmazenadaString = localStorage.getItem("bandejapp:ultimoAviso");
@@ -130,7 +72,6 @@ export default function Avaliacao() {
     return (
         <Avadiv id="AvaPage">
             <ToastContainer />
-
             <Cabecalho nome='Comunicados'/>
             <SemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>Não há nenhum comunicado.</SemMensagens>
             {
@@ -146,20 +87,20 @@ export default function Avaliacao() {
                     return (
                         <Card 
                             key={index}
-                            style={{borderRadius: `${bordaRedonda(index, comentarios.length)}`, marginTop: index === 0 ? '2vh' : '0.1vh'}}
+                            style={{borderRadius: `${Formatacao.bordaRedonda(index, comentarios.length)}`, marginTop: index === 0 ? '2vh' : '1px'}}
                             new={comentario.pending && pendingNotification}
                         >
                             <CardData>
                                 <CardTop>
                                     <DataRelativa new={comentario.pending && pendingNotification}>
-                                        {`${diaRelativo(comentario.data)}`}
+                                        {`${Formatacao.diaRelativo(comentario.data)}`}
                                     </DataRelativa>
                                     {
                                         comentario.pending && pendingNotification && <SideIcon src={Pending} />
                                     }
                                 </CardTop>
                                 <TextData new={comentario.pending && pendingNotification}>
-                                    {`${diaPorExtenso(comentario.data)}`}
+                                    {`${Formatacao.diaPorExtenso(comentario.data)}`}
                                 </TextData>
                             </CardData>
                             
