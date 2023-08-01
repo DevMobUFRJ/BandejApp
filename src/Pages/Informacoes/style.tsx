@@ -14,19 +14,25 @@ export const InformDiv = styled.div `
 /*----------------------------------------------------------------------------*/
 
 export const InfoTitle = styled.h3 `
-    display: flex;
-    text-align: center;
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
     font-weight: 700;
     color: ${global.colors.cinza};
 `;
 
+export const InfoValor = styled.h4 `
+    text-align: center;
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 700;
+    color: ${global.colors.cinzaPratos};
+`;
+
 export const InfoSubtitle = styled.p `
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
     font-weight: 700;
-    color: ${global.colors.cinzaTexto};
+    color: ${global.colors.cinzaClaro};
 `;
 
 export const InfoGrid = styled.div `
@@ -54,7 +60,7 @@ export const InfoBalao = styled.div `
     
     align-items: center;
 
-    border: solid 1px ${global.colors.desativado};
+    border: solid 1px ${global.colors.cinzaOpaco(.16)};
     border-radius: 4.44vw;
 `;
 
@@ -66,5 +72,5 @@ export const InfoUndertitle = styled.p `
     font-weight: 500;
 
     text-align: center;
-    color: ${global.colors.cinzaTexto};
+    color: ${global.colors.cinzaClaro};
 `;

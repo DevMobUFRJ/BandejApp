@@ -1,7 +1,8 @@
 import Cabecalho from "../../Components/Cabecalho";
 import RUselect from "../../Components/RUselect";
 import { BalaoInfo } from "../FaleConosco/style";
-import { InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, InfoUndertitle, InformDiv } from "./style";
+import { InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, 
+        InfoUndertitle, InformDiv, InfoValor } from "./style";
 
 export default function Informacoes() {
     return (
@@ -16,11 +17,11 @@ export default function Informacoes() {
                     <InfoArea>
                         <InfoBalao>
                             <InfoUndertitle>Almoço</InfoUndertitle>
-                            <InfoTitle>10:30h às 15h</InfoTitle>
+                            <InfoValor>10:30h às 15h</InfoValor>
                         </InfoBalao>
                         <InfoBalao>
                             <InfoUndertitle>Janta</InfoUndertitle>
-                            <InfoTitle>17:30 às 20h</InfoTitle>
+                            <InfoValor>17:30 às 20h</InfoValor>
                         </InfoBalao>
                     </InfoArea>
                 </InfoGrid>
@@ -30,11 +31,11 @@ export default function Informacoes() {
                     <InfoArea>
                         <InfoBalao>
                             <InfoUndertitle>Almoço</InfoUndertitle>
-                            <InfoTitle>10:30h às 15h</InfoTitle>
+                            <InfoValor>10:30h às 15h</InfoValor>
                         </InfoBalao>
                         <InfoBalao>
                             <InfoUndertitle>Janta</InfoUndertitle>
-                            <InfoTitle>17:30 às 20h</InfoTitle>
+                            <InfoValor>17:30 às 20h</InfoValor>
                         </InfoBalao>
                     </InfoArea>
                 </InfoGrid>
@@ -47,11 +48,11 @@ export default function Informacoes() {
                     <InfoArea>
                         <InfoBalao>
                             <InfoUndertitle>Alunos</InfoUndertitle>
-                            <InfoTitle>R$ 2,00</InfoTitle>
+                            <InfoValor>R$ 2,00</InfoValor>
                         </InfoBalao>
                         <InfoBalao>
                             <InfoUndertitle>Servidores</InfoUndertitle>
-                            <InfoTitle>R$ 14,00</InfoTitle>
+                            <InfoValor>R$ 14,00</InfoValor>
                         </InfoBalao>
                     </InfoArea>
                 </InfoGrid>
