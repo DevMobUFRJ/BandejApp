@@ -15,17 +15,27 @@ export const FaleDiv = styled.div `
 /*----------------------------------------------------------------------------*/
 
 export const BalaoInfo = styled.section `
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-row-gap: 2vh;
-    width: 82.23vw;
-
+    width: 86.67vw;
+    
     margin: 2vh 0 0 0;
-    padding: 3.33vw 4.44vw;
-
+    padding: 0 0 3.33vw 0;
+    
+    overflow: hidden;
+    
     border-radius: 4.44vw;
 
-    background-color: ${global.colors.branco};
+    background: ${global.colors.branco};
+    
+    div {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-row-gap: 2vh;
+        padding: 3.33vw 4.44vw 0 4.44vw;
+    }
+`;
+
+export const BalaoBanner = styled.img `
+    width: 100%;
 `;
 
 export const BalaoTitle = styled.h3 `
@@ -44,7 +54,7 @@ export const BalaoDescription = styled.p `
 
 /*----------------------------------------------------------------------------*/
 
-export const Links = styled.div `
+export const Links = styled.span `
     display: grid;
     grid-template-rows: auto;
     grid-gap: 2vh;
@@ -60,7 +70,7 @@ export const InfoLink = styled.a `
 
     align-items: center;
 
-    border: solid 2px ${global.colors.cinzaOF};
+    border: solid 2px ${global.colors.cinzaOpaco(.24)};
     border-radius: 4.44vw;
 `;
 
