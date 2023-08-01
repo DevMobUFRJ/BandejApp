@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import NavBar from "../../Components/Navbar";
 import Horario from "../../Components/Horario";
-import RUselect from "../../Components/RUselect";
+import DropDown from "../../Components/DropDown";
 
 import Dia from "../../Components/Dia";
-import { CardapioDiv, IconeAjustes, Sombra, ActionsDiv, 
+import { CardapioDiv, Sombra, ActionsDiv, 
         DropHeader, AvisoAtt, Conteudo} from "./style";
 
 import DownPop from "../../Components/PopUp";
@@ -12,15 +12,17 @@ import Load from "../../Components/Load";
 import { ICardapioProps, ISemana } from "../../Types/storage";
 
 import FontSize from "../../Functions/FontSize";
-import Ajustes from '../../Assets/Ajustes.svg';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
 
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
-let fading: NodeJS.Timer;
-let interromper = false;
+let consultando = false;
+
+const estadosRestaurante = ['ct', 'pv', 'dc', 'mc'];
+const opcoesRestaurante = ['Central, CT e Letras', 'IFCS e Praia Vermelha',
+                        'Duque de Caxias', 'Macaé'];
 
 export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
@@ -50,6 +52,10 @@ export default function Cardapio() {
     }, []);
 
     function consultarCardapio() {
+        if (consultando)
+            return;
+            
+        consultando = true;
         fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`)
             .then((data) => data.json())
             .then((post) => {
@@ -58,7 +64,10 @@ export default function Cardapio() {
                     if (loading === false)
                         toast.error("Erro ao consultar o servidor. Aguarde, em breve o cardápio será atualizado");
 
-                    consultarCardapio();
+                    setTimeout(()=> {
+                        consultando = false;
+                        consultarCardapio();
+                    }, 150);
                     return;
                 }
                 setCardapio(post);
@@ -67,7 +76,12 @@ export default function Cardapio() {
             })
             .catch((error) => {
                 toast.error("Erro de rede. Tente novamente mais tarde");
-            });
+                setTimeout(()=> {
+                    consultando = false;
+                    consultarCardapio();
+                }, 150);
+            }).then(() => consultando = false);
+            
     }
 
     FontSize();
@@ -138,58 +152,6 @@ export default function Cardapio() {
         return lista;
     }
 
-    const fade = (abrindo: boolean) => {
-        if (interromper)
-            return;
-        
-        interromper = true;
-        setTimeout(() => {
-            interromper = false;
-        }, 350)
-
-        const direcao = abrindo ? 1 : -1;
-        requestAnimationFrame(() => {
-            const acoes = document.getElementById('acoes');
-            const conteudo = document.getElementById('conteudo');
-            if (!acoes || !conteudo)
-                return;
-
-            if (!acoes.style.opacity)
-                acoes.style.opacity = '1';
-                
-            clearInterval(fading);
-            acoes.style.display = 'flex';
-
-            requestAnimationFrame (() => {
-                conteudo.style.transition = '0.25s ease';
-                conteudo.style.transform = `translateY(${28.5 * direcao}vh)`;
-            });
-            fading = setInterval (() => {
-                requestAnimationFrame(() => {
-                    let opacidade = parseFloat(acoes.style.opacity);
-    
-                    if ((abrindo && opacidade < 1) || (!abrindo && opacidade > 0))
-                        acoes.style.opacity = `${opacidade + 0.02 * direcao}`
-                    else {
-                        clearInterval(fading);
-                        requestAnimationFrame(() => {
-                            if (!abrindo) {
-                                acoes.style.display = 'none';
-                                conteudo.style.marginTop = '0';
-                            }
-                            else {
-                                conteudo.style.marginTop = '28.5vh';
-                            }
-                            conteudo.style.transition = '';
-                            conteudo.style.transform = `translateY(0px)`;
-                        })
-                    }
-                })
-            }, 5);
-        })
-        setOpcoes(abrindo);
-    };
-
 
 /* - - - - - Fim das funções - - - - - */
 
@@ -200,14 +162,17 @@ export default function Cardapio() {
         <CardapioDiv id="cardapio">
             
             <ToastContainer />
-            <Cabecalho nome="Cardápio"/>
-            <IconeAjustes src={Ajustes} onClick={() => fade(!opcoes)}/>
+            <Cabecalho nome="Cardápio" setOpcoes={setOpcoes}/>
             <Sombra style={{display: opcoes ? 'none' : ''}}/>
 
             <ActionsDiv id='acoes'>
                 <DropHeader>
-                    <RUselect text={localStorage.getItem("bandejapp:ruDefault") || ''}
-                    selecionaRU={selecionaRU}/>
+                    <DropDown 
+                    opcaoInicial={localStorage.getItem("bandejapp:ruDefault") || ''}
+                    valoresState={estadosRestaurante}
+                    valoresOpcoes={opcoesRestaurante}
+                    tela='cardapio'
+                    alterarState={selecionaRU}/>
                 </DropHeader>
 
                 <NavBar

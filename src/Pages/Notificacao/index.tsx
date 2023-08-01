@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { Avadiv, Card, Container, CardMensagem, CardData, TextMensagem, TextData, MensagensNaoLidas, DataRelativa, SemMensagens, SideIcon, CardTop} from "./style";
+import { Avadiv, Card, Container, CardMensagem, CardData, 
+        TextMensagem, TextData, MensagensNaoLidas, DataRelativa, 
+        BalaoSemMensagens, IconeSemMensagens, TextoSemMensagens, 
+        SideIcon, CardTop} from "./style";
 import { ToastContainer, toast } from 'react-toastify';
 import Load from "../../Components/Load";
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,12 +13,15 @@ import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import Pending from '../../Assets/SideBar/pending.svg';
 import DownPop from "../../Components/PopUp";
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+import SemMsg from '../../Assets/Notificacoes/SemMsg.svg'
     
 type aviso = {
     comunicado: String,
     data: String,
     pending: boolean,
 };
+
+let consultando = false;
 
 export default function Avaliacao() {
 
@@ -44,6 +50,14 @@ export default function Avaliacao() {
     };
 
     useEffect(() => {
+        consultarAvisos();
+    }, []);
+
+    function consultarAvisos () {
+        if (consultando)
+            return;
+
+        consultando = true;
         fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
             .then((data) => data.json())
             .then((post) => {
@@ -66,8 +80,12 @@ export default function Avaliacao() {
             .catch(() => {
                 setLoading(false);
                 toast.error("Erro de rede. Tente novamente mais tarde");
-            });
-    }, []);
+                setTimeout(()=> {
+                    consultando = false;
+                    consultarAvisos();
+                }, 150);
+            }).then(() => consultando = false);
+    }
 
     if(loading)
         return <Load />
@@ -76,7 +94,10 @@ export default function Avaliacao() {
         <Avadiv id="AvaPage">
             <ToastContainer />
             <Cabecalho nome='Comunicados'/>
-            <SemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>Não há nenhum comunicado.</SemMensagens>
+            <BalaoSemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>
+                <IconeSemMensagens src={SemMsg}/>
+                <TextoSemMensagens>Não há novas mensagens publicadas pela coordenação do RU.</TextoSemMensagens>
+            </BalaoSemMensagens>
             {
                 (pendingNotification) && 
                 <MensagensNaoLidas 

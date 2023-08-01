@@ -103,7 +103,7 @@ export default function Avaliacao() {
                 <Nota NotaToParent={setValue}/>
                 <ErroAva id="ErroAva"></ErroAva>
                 <Enviarbutton 
-                    type="button" 
+                    type="button"
                     onClick={() => {
                         clearErro();
                         validar();
