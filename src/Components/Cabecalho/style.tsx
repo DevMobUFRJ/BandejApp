@@ -5,14 +5,14 @@ export const PlaceHolderCabecalho = styled.div `
     display: block;
 
     width: 100vw;
-    height: calc(8vh + 4.5vh + 1px);
+    height: calc(8vh + 2.25vh);
 `;
 
 export const CabecaDiv = styled.header `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 4.5vh;
+    padding-top: 2.25vh;
 
     position: absolute;
     top: 0;

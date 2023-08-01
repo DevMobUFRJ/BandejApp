@@ -19,12 +19,12 @@ const fade = (abrindo: boolean, setOpcoes: Function) => {
         if (!abrindo) {
             acoes.style.opacity = '0';
             acoes.style.pointerEvents = 'none';
-            conteudo.style.marginTop = '12.5vh';
+            conteudo.style.marginTop = '0';
         }
         else {
             acoes.style.opacity = '1';
             acoes.style.pointerEvents = 'auto';
-            conteudo.style.marginTop = '41vh';
+            conteudo.style.marginTop = '38.75vh';
         }
     })
 

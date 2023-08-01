@@ -35,7 +35,7 @@ export const ActionsDiv = styled.div `
     position: absolute;
     /* Arredondamento/perda de precisão nas contas tava fazendo
     aparecer uma linhazinha em telas grandes */
-    top: calc(4.5vh + 8vh - 1px); 
+    top: calc(2.25vh + 8vh); 
     z-index: 0;
     
     pointer-events: auto;
@@ -63,7 +63,7 @@ export const DropHeader = styled.div `
 
 export const Conteudo = styled.div `
     display: flex;
-    margin-top: 41vh;
+    margin-top: 38.75vh;
     
     transition: margin-top 300ms ease-in-out;
     flex-direction: column;
