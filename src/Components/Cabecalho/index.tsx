@@ -11,13 +11,7 @@ let interromper = false;
 let fading: NodeJS.Timer;
 
 const fade = (abrindo: boolean, setOpcoes: Function) => {
-    if (interromper)
-        return;
-
     interromper = true;
-    setTimeout(() => {
-        interromper = false;
-    }, 350)
 
     const direcao = abrindo ? 1 : -1;
     requestAnimationFrame(() => {
@@ -44,6 +38,7 @@ const fade = (abrindo: boolean, setOpcoes: Function) => {
                     acoes.style.opacity = `${opacidade + 0.02 * direcao}`
                 else {
                     clearInterval(fading);
+                    interromper = false;
                     requestAnimationFrame(() => {
                         if (!abrindo) {
                             acoes.style.display = 'none';
@@ -63,7 +58,7 @@ const fade = (abrindo: boolean, setOpcoes: Function) => {
 };
 
 const clique = (controle?: Function, setar?: Function) => {
-    if (controle) {
+    if (controle && !interromper) {
         controle(!aberto, setar); 
         aberto = !aberto;
     }
