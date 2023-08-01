@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { Avadiv, Card, Container, CardMensagem, CardData, TextMensagem, TextData, MensagensNaoLidas, DataRelativa, SemMensagens, SideIcon, CardTop} from "./style";
+import { Avadiv, Card, Container, CardMensagem, CardData, 
+        TextMensagem, TextData, MensagensNaoLidas, DataRelativa, 
+        BalaoSemMensagens, IconeSemMensagens, TextoSemMensagens, 
+        SideIcon, CardTop} from "./style";
 import { ToastContainer, toast } from 'react-toastify';
 import Load from "../../Components/Load";
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +11,7 @@ import { Formatacao } from "../../Functions/Formatacao";
 import { useContext } from "react";
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import Pending from '../../Assets/SideBar/pending.svg';
+import SemMsg from '../../Assets/Notificacoes/SemMsg.svg'
     
 type aviso = {
     comunicado: String,
@@ -87,7 +91,10 @@ export default function Avaliacao() {
         <Avadiv id="AvaPage">
             <ToastContainer />
             <Cabecalho nome='Comunicados'/>
-            <SemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>Não há nenhum comunicado.</SemMensagens>
+            <BalaoSemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>
+                <IconeSemMensagens src={SemMsg}/>
+                <TextoSemMensagens>Não há novas mensagens publicadas pela coordenação do RU.</TextoSemMensagens>
+            </BalaoSemMensagens>
             {
                 (pendingNotification) && 
                 <MensagensNaoLidas 

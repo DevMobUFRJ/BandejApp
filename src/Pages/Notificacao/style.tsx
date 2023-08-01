@@ -15,8 +15,36 @@ export const Avadiv = styled.div `
     background: ${global.colors.fundo};
 `;
 
-export const SemMensagens = styled.p `
+export const BalaoSemMensagens = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 2vh;
+
+    width: 91.1vw;
+    height: 21vh;
+
+    background:${global.colors.cinzaOpaco(0.10)};
+
+    border-radius: 16px;
+`;
+
+export const IconeSemMensagens = styled.img `
+    margin-top: 4.25vh;
+
+    width: 13.33vw;
+`;
+
+export const TextoSemMensagens = styled.p `
+    margin-top: 1.25vh;
+
+    width: 79.7vw;
+
+    color: ${global.colors.cinza};
+    text-align: center;
+    font-family: ${global.fonts.quickSand};
+    font-size: 16px;
+    font-weight: 700;
 `;
 
 export const AvalImg = styled.img `
