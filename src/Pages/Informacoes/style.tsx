@@ -13,6 +13,17 @@ export const InformDiv = styled.div `
 
 /*----------------------------------------------------------------------------*/
 
+export const BalaoInfo = styled.section `
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-row-gap: 2vh;
+    width: 82.23vw;
+    margin: 2vh 0 0 0;
+    padding: 3.33vw 4.44vw;
+    border-radius: 4.44vw;
+    background-color: ${global.colors.branco};
+`;
+
 export const InfoTitle = styled.h3 `
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;

@@ -1,8 +1,7 @@
 import Cabecalho from "../../Components/Cabecalho";
 import RUselect from "../../Components/RUselect";
-import { BalaoInfo } from "../FaleConosco/style";
 import { InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, 
-        InfoUndertitle, InformDiv, InfoValor } from "./style";
+        InfoUndertitle, InformDiv, InfoValor, BalaoInfo } from "./style";
 
 export default function Informacoes() {
     return (
