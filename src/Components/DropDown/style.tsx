@@ -30,7 +30,7 @@ export const Selecionado = styled.div `
     border-radius: 16px;
 `;
 
-export const PinLugar = styled.img `
+export const IconeEsquerda = styled.img `
     width: 3.88vw;
     margin-left: 6.1vw;
 `;

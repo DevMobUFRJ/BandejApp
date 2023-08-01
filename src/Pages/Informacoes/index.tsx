@@ -1,5 +1,5 @@
 import Cabecalho from "../../Components/Cabecalho";
-import RUselect from "../../Components/RUselect";
+import DropDown from "../../Components/DropDown";
 import { InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, 
         InfoUndertitle, InformDiv, InfoValor, BalaoInfo } from "./style";
 

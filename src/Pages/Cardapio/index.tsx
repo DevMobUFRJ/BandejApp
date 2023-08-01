@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../../Components/Navbar";
 import Horario from "../../Components/Horario";
-import RUselect from "../../Components/RUselect";
+import DropDown from "../../Components/DropDown";
 
 import Dia from "../../Components/Dia";
 import { CardapioDiv, IconeAjustes, Sombra, ActionsDiv, 
@@ -20,6 +20,10 @@ import Cabecalho from "../../Components/Cabecalho";
 
 let fading: NodeJS.Timer;
 let interromper = false;
+
+const estadosRestaurante = ['ct', 'pv', 'dc', 'mc'];
+const opcoesRestaurante = ['Central, CT e Letras', 'IFCS e Praia Vermelha',
+                        'Duque de Caxias', 'Macaé'];
 
 export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
@@ -218,8 +222,12 @@ export default function Cardapio() {
 
             <ActionsDiv id='acoes'>
                 <DropHeader>
-                    <RUselect text={localStorage.getItem("bandejapp:ruDefault") || ''}
-                    selecionaRU={selecionaRU}/>
+                    <DropDown 
+                    opcaoInicial={localStorage.getItem("bandejapp:ruDefault") || ''}
+                    valoresState={estadosRestaurante}
+                    valoresOpcoes={opcoesRestaurante}
+                    tela='cardapio'
+                    alterarState={selecionaRU}/>
                 </DropHeader>
 
                 <NavBar

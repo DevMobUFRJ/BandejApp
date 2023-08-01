@@ -1,15 +1,28 @@
 import arrowDown from '../../Assets/Cardapio/ArrowDown.svg';
 import Pin from '../../Assets/Cardapio/Pin.svg';
-import { global } from "../../globalStyle";
 import { DropDiv, Opcoes, DropItem, 
-    PinLugar, Selecionado, DropArrow } from './style';
+    IconeEsquerda, Selecionado, DropArrow } from './style';
 
 type DropDownProps = {
-    text: string,
-    selecionaRU: Function
+    opcaoInicial: string,
+    valoresState: string[],
+    valoresOpcoes: string[],
+    tela: string,
+    alterarState: Function
 };
 
-export default function RUselect({text, selecionaRU}: DropDownProps) {
+const escolheIcone = (lugar: string) => {
+    switch (lugar)
+    {
+    case 'cardapio':
+        return Pin;
+    }
+
+    return '';
+}
+
+export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
+                                tela, alterarState}: DropDownProps) {
 
     const seta = document.getElementById('seta');
 
@@ -17,36 +30,23 @@ export default function RUselect({text, selecionaRU}: DropDownProps) {
     const options = document.querySelectorAll('#dropdown button');
     
     const containerSelecionado = document.getElementById('selecionado');
-    const elementoPrimeiraOpcao = document.getElementById(text);
+    const elementoPrimeiraOpcao = document.getElementById(opcaoInicial);
     
     if (containerSelecionado && elementoPrimeiraOpcao && seta)
         containerSelecionado.insertBefore(elementoPrimeiraOpcao, seta);
 
-    const ordem = ['ct', 'pv', 'dc', 'mc'];
 
     const arruma = () => {
-        let i = 0;
-        for (let ru of ordem) {
-            const it = document.getElementById(ru);
+        for (let valor of valoresState) {
+            const it = document.getElementById(valor);
 
-            if (!it)
+            if (!it ||it.id === opcaoSelecionada)
                 continue;
-            if(it.id === RUselecionado) {
-                it.style.background = '';
-                continue;
-            }
-            if (i % 2) {
-                it.style.background = `${global.colors.cinzaOpaco(0.08)}`;
-            }
-            else {
-                it.style.background = '';
-            }
-            i++;
             containerOpcoes?.appendChild(it);
         }
     }
 
-    let RUselecionado = text;
+    let opcaoSelecionada = opcaoInicial;
     arruma();
 
     let fading: NodeJS.Timer;
@@ -113,8 +113,8 @@ export default function RUselect({text, selecionaRU}: DropDownProps) {
                     containerOpcoes.appendChild(velho);
                     containerSelecionado.insertBefore(elemento, seta);
                 }
-                RUselecionado = elemento.id;
-                selecionaRU(elemento.id);
+                opcaoSelecionada = elemento.id;
+                alterarState(elemento.id);
                 arruma();
             }
 
@@ -126,17 +126,17 @@ export default function RUselect({text, selecionaRU}: DropDownProps) {
     return (
         <DropDiv id='dropdown' onClick={OpenDrop}>
             <Selecionado id='selecionado'>
-                <PinLugar src={Pin}/>
+                <IconeEsquerda src={escolheIcone(tela)}/>
                 <DropArrow id='seta' src={arrowDown}/>
             </Selecionado>
             <Opcoes id='opcoes'>
-                <DropItem id='ct'>Central, CT e Letras</DropItem>
-
-                <DropItem id='pv'>IFCS e Praia Vermelha</DropItem>
-
-                <DropItem id='dc'>Duque de Caxias</DropItem>
-
-                <DropItem id='mc'>Macaé</DropItem>
+                {
+                    valoresState.map((estado, indice) => 
+                        <DropItem key={indice}
+                        id={estado}>{valoresOpcoes[indice]}
+                        </DropItem>
+                    )
+                }
             </Opcoes>
         </DropDiv>
     );
