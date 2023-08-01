@@ -4,8 +4,14 @@ import { global } from "../../globalStyle";
 export const Avadiv = styled.div `
     display: flex;
     flex-direction: column;
+    
     width: 100vw;
     height: 100vh;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
     align-items: center;
 
     .ruAva {
@@ -26,6 +32,9 @@ export const Titulo = styled.h1 `
 export const FormDiv = styled.form `
     display: flex;
     flex-direction: column;
+
+    margin-top: 2vh;
+
     align-items: center;
 `;
 
