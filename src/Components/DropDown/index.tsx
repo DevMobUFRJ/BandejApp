@@ -51,38 +51,25 @@ export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
     let opcaoSelecionada = opcaoInicial;
     arruma();
 
-    let fading: NodeJS.Timer;
-
-    const fade = (abrindo: boolean) => {
-        const direcao = abrindo ? 1 : -1;
+    const animacao = (abrindo: boolean) => {
+        if (!containerOpcoes)
+            return;
         requestAnimationFrame(() => {
-            if (!containerOpcoes)
-                return;
-            if (!containerOpcoes.style.opacity)
+            if (!abrindo) {
                 containerOpcoes.style.opacity = '0';
-            containerOpcoes.style.display = 'flex';
-
-            clearInterval(fading);
-
-            fading = setInterval (() => {
-                requestAnimationFrame(() => {
-                    let opacidade = parseFloat(containerOpcoes.style.opacity);
-    
-                    if ((abrindo && opacidade < 1) || (!abrindo && opacidade > 0))
-                        containerOpcoes.style.opacity = `${opacidade + 0.02 * direcao}`
-                    else {
-                        clearInterval(fading);
-                        if (!abrindo) {
-                            containerOpcoes.style.display = 'none';
-                        }
-                    }
-                })
-            }, 5);
+                containerOpcoes.style.transform = 'translateY(-7.75vh)';
+                containerOpcoes.style.pointerEvents = 'none';
+            }
+            else {
+                containerOpcoes.style.opacity = '1';
+                containerOpcoes.style.transform = 'translateY(0vh)';
+                containerOpcoes.style.pointerEvents = 'auto';
+            }
         })
     };
 
     const OpenDrop = () => { // Abre o dropdown e adiciona os listeners
-        fade(true);
+        animacao(true);
         
         seta?.addEventListener('click', DropHandler);
         options.forEach((option) => {option.addEventListener('click', DropHandler)});
@@ -120,7 +107,7 @@ export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
                 arruma();
             }
 
-            fade(false);
+            animacao(false);
         })
 
     }

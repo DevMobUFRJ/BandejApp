@@ -41,9 +41,18 @@ export const DropArrow = styled.img `
 `;
 
 export const Opcoes = styled.div `
-    display: none;
-    min-height: 22.5vh;
+    display: flex;
     flex-direction: column;
+    min-height: 22.5vh;
+
+    position: absolute;
+    top: 7.75vh;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transform: translateY(-7.5vh);
+    transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
 
     background: ${global.colors.branco};
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
