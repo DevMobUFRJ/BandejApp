@@ -17,8 +17,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
 
-let fading: NodeJS.Timer;
-let interromper = false;
 let consultando = false;
 
 const estadosRestaurante = ['ct', 'pv', 'dc', 'mc'];
