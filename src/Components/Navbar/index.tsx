@@ -31,7 +31,6 @@ export default function NavBar({tggDia, semana}: switchDia) {
         if (nav) 
             nav.scrollTo({left: (dia - 2) * passo, behavior: 'smooth'});
 
-        console.log('dia', dia)
         tggDia(dia); // O getDay tem o domingo como 0
     }, [dia, tggDia]);
 
@@ -53,7 +52,6 @@ export default function NavBar({tggDia, semana}: switchDia) {
 
         switchDia(clique.currentTarget.id); 
         tggDia(pos);
-        console.log('dia', pos)
 
         const nav = document.getElementById('nav');
         if (nav) 
