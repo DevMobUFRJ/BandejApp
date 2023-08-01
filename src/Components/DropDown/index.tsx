@@ -4,15 +4,17 @@ import { DropDiv, Opcoes, DropItem,
     IconeEsquerda, Selecionado, DropArrow } from './style';
 
 type DropDownProps = {
-    opcaoInicial: string,
-    valoresState: string[],
-    valoresOpcoes: string[],
-    tela: string,
+    opcaoInicial: string, // Valor que o useState está definido quando o componente é renderizado
+    valoresState: string[], // Valores que o useState pode assumir
+    valoresOpcoes: string[], /* O que vai estar escrito na opção. A opção com o texto da
+                            i-ésima posição desse array vai ativar o estado na i-ésima posição 
+                            do array anterior. Por isso, obviamente, os arrays devem ter o mesmo tamanho */
+    tela: string, // Quem é o pai (Pra definir qual ícone fica à esquerda, no switch ali embaixo)
     alterarState: Function
 };
 
 const escolheIcone = (lugar: string) => {
-    switch (lugar)
+    switch (lugar) // Vai adicionando os cases aqui
     {
     case 'cardapio':
         return Pin;
