@@ -84,14 +84,14 @@ export default function Tutorial() {
             </InitialPage>
 
             <div style={{display: `${inicio?'':'none'}`, margin: 0}}>
+                <BackImg src={Background}/>
+                
                 <CurrentDiv>
                     <CurrentPage id="page" className="currentPage"/>
                     <CurrentPage id="page"/>
                     <CurrentPage id="page"/>
                     <CurrentPage id="page"/>
                 </CurrentDiv>
-
-                <BackImg src={Background}/>
 
                 <TemplateDiv>
                     <Template id="template" className="currentTemplate" src={TempDownload}/>
