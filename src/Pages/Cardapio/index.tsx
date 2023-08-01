@@ -20,6 +20,7 @@ import Cabecalho from "../../Components/Cabecalho";
 
 let fading: NodeJS.Timer;
 let interromper = false;
+let consultando = false;
 
 export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
@@ -62,6 +63,10 @@ export default function Cardapio() {
     }, []);
 
     function consultarCardapio() {
+        if (consultando)
+            return;
+            
+        consultando = true;
         fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`)
             .then((data) => data.json())
             .then((post) => {
@@ -70,7 +75,10 @@ export default function Cardapio() {
                     if (loading === false)
                         toast.error("Erro ao consultar o servidor. Aguarde, em breve o cardápio será atualizado");
 
-                    consultarCardapio();
+                    setTimeout(()=> {
+                        consultando = false;
+                        consultarCardapio();
+                    }, 500);
                     return;
                 }
                 setCardapio(post);
@@ -79,6 +87,10 @@ export default function Cardapio() {
             })
             .catch((error) => {
                 toast.error("Erro de rede. Tente novamente mais tarde");
+                setTimeout(()=> {
+                    consultando = false;
+                    consultarCardapio();
+                }, 500);
             });
     }
 
