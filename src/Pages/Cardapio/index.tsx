@@ -78,7 +78,7 @@ export default function Cardapio() {
                     setTimeout(()=> {
                         consultando = false;
                         consultarCardapio();
-                    }, 500);
+                    }, 150);
                     return;
                 }
                 setCardapio(post);
@@ -90,8 +90,9 @@ export default function Cardapio() {
                 setTimeout(()=> {
                     consultando = false;
                     consultarCardapio();
-                }, 500);
-            });
+                }, 150);
+            }).then(() => consultando = false);
+            
     }
 
     FontSize();

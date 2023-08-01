@@ -15,6 +15,8 @@ type aviso = {
     pending: boolean,
 };
 
+let consultando = false;
+
 export default function Avaliacao() {
 
     const [comentarios, setComentarios] = useState<aviso[]>([]);
@@ -41,6 +43,14 @@ export default function Avaliacao() {
     };
 
     useEffect(() => {
+        consultarAvisos();
+    }, []);
+
+    function consultarAvisos () {
+        if (consultando)
+            return;
+
+        consultando = true;
         fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
             .then((data) => data.json())
             .then((post) => {
@@ -63,8 +73,12 @@ export default function Avaliacao() {
             .catch(() => {
                 setLoading(false);
                 toast.error("Erro de rede. Tente novamente mais tarde");
-            });
-    }, []);
+                setTimeout(()=> {
+                    consultando = false;
+                    consultarAvisos();
+                }, 150);
+            }).then(() => consultando = false);
+    }
 
     if(loading)
         return <Load />
