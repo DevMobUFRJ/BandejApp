@@ -80,7 +80,7 @@ export default function Avaliacao() {
                 setTimeout(()=> {
                     consultando = false;
                     consultarAvisos();
-                }, 150);
+                }, 1000);
             }).then(() => consultando = false);
     }
 
