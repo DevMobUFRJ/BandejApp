@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { BackImg, ButtonDiv, CurrentDiv,
@@ -71,6 +71,14 @@ export default function Tutorial() {
         if(currentPage) currentPage.classList.toggle('currentPage');
         pageIndex[page-1].classList.add('currentPage');
     }
+
+    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);   
+
+    useEffect(() => {
+        if(isInStandaloneMode()) { 
+            history.push('/Restaurante')
+        }
+    })
 
     return(
         <TutDiv>
