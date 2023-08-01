@@ -23,9 +23,6 @@ export const BalaoInfo = styled.section `
     overflow: hidden;
     
     border-radius: 4.44vw;
-    
-    /* Lembrar de tirar isso depois, foi só pq o fundo tá branco */
-    box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.3);
 
     background: ${global.colors.branco};
     
@@ -73,7 +70,7 @@ export const InfoLink = styled.a `
 
     align-items: center;
 
-    border: solid 2px ${global.colors.cinzaOF};
+    border: solid 2px ${global.colors.cinzaOpaco(.24)};
     border-radius: 4.44vw;
 `;
 
