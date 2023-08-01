@@ -4,7 +4,7 @@ import Horario from "../../Components/Horario";
 import RUselect from "../../Components/RUselect";
 
 import Dia from "../../Components/Dia";
-import { CardapioDiv, IconeAjustes, Sombra, ActionsDiv, 
+import { CardapioDiv, Sombra, ActionsDiv, 
         DropHeader, AvisoAtt, Conteudo} from "./style";
 
 import DownPop from "../../Components/PopUp";
@@ -12,14 +12,10 @@ import Load from "../../Components/Load";
 import { ICardapioProps, ISemana } from "../../Types/storage";
 
 import FontSize from "../../Functions/FontSize";
-import Ajustes from '../../Assets/Ajustes.svg';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
-
-let fading: NodeJS.Timer;
-let interromper = false;
 
 export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
@@ -150,58 +146,6 @@ export default function Cardapio() {
         return lista;
     }
 
-    const fade = (abrindo: boolean) => {
-        if (interromper)
-            return;
-        
-        interromper = true;
-        setTimeout(() => {
-            interromper = false;
-        }, 350)
-
-        const direcao = abrindo ? 1 : -1;
-        requestAnimationFrame(() => {
-            const acoes = document.getElementById('acoes');
-            const conteudo = document.getElementById('conteudo');
-            if (!acoes || !conteudo)
-                return;
-
-            if (!acoes.style.opacity)
-                acoes.style.opacity = '1';
-                
-            clearInterval(fading);
-            acoes.style.display = 'flex';
-
-            requestAnimationFrame (() => {
-                conteudo.style.transition = '0.25s ease';
-                conteudo.style.transform = `translateY(${28.5 * direcao}vh)`;
-            });
-            fading = setInterval (() => {
-                requestAnimationFrame(() => {
-                    let opacidade = parseFloat(acoes.style.opacity);
-    
-                    if ((abrindo && opacidade < 1) || (!abrindo && opacidade > 0))
-                        acoes.style.opacity = `${opacidade + 0.02 * direcao}`
-                    else {
-                        clearInterval(fading);
-                        requestAnimationFrame(() => {
-                            if (!abrindo) {
-                                acoes.style.display = 'none';
-                                conteudo.style.marginTop = '0';
-                            }
-                            else {
-                                conteudo.style.marginTop = '28.5vh';
-                            }
-                            conteudo.style.transition = '';
-                            conteudo.style.transform = `translateY(0px)`;
-                        })
-                    }
-                })
-            }, 5);
-        })
-        setOpcoes(abrindo);
-    };
-
 
 /* - - - - - Fim das funções - - - - - */
 
@@ -212,8 +156,7 @@ export default function Cardapio() {
         <CardapioDiv id="cardapio">
             
             <ToastContainer />
-            <Cabecalho nome="Cardápio"/>
-            <IconeAjustes src={Ajustes} onClick={() => fade(!opcoes)}/>
+            <Cabecalho nome="Cardápio" setOpcoes={setOpcoes}/>
             <Sombra style={{display: opcoes ? 'none' : ''}}/>
 
             <ActionsDiv id='acoes'>
