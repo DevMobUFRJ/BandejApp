@@ -13,11 +13,6 @@ export const CardapioDiv = styled.div `
 `;
 /*-----------------------------------------------------------*/
 
-export const IconeAjustes = styled.img `
-    position: absolute;
-    right: 4.4vw;
-    top: 6.5vh;
-`;
 
 export const Sombra = styled.div `
     width: 100vw;

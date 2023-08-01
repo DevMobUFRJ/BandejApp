@@ -26,7 +26,8 @@ export const SideBarDiv = styled.div `
 `;
 
 export const SideImg = styled.img `
-    width: 6.3vw;
+    width: 9.45vw;
+    height: 9.45vw;
 `;
 
 export const NotifDiv = styled.div `
