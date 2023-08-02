@@ -4,11 +4,14 @@ import { BalaoBanner, BalaoDescription, BalaoInfo, BalaoTitle,
 
 import Copy from '../../Assets/FaleConosco/copiar.svg';
 import Redirect from '../../Assets/FaleConosco/redirect.svg';
+import DownPop from "../../Components/PopUp";
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+import { useContext } from "react";
 import DevMobBanner from '../../Assets/FaleConosco/devmobBanner.svg';
 import RUbanner from '../../Assets/FaleConosco/ruBanner.svg';
 
-
 export default function FaleConosco() {
+    const { showInstallMessage } = useContext(InstallMessageContext);
 
     const emailRU = 'admruufrj@gmail.com';
     const devmob = 'devmob'
@@ -49,6 +52,10 @@ export default function FaleConosco() {
                     </BalaoDescription>
                 </div>
             </BalaoInfo>
+            {
+                showInstallMessage &&
+                <DownPop/>
+            }
         </FaleDiv>
     );
 }
