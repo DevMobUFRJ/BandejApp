@@ -72,7 +72,17 @@ export default function Tutorial() {
         pageIndex[page-1].classList.add('currentPage');
     }
 
-    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);   
+    const isIos = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test( userAgent );
+    }
+
+    const isInStandaloneMode = () => { //referencia: https://stackoverflow.com/questions/21125337/how-to-detect-if-web-app-running-standalone-on-chrome-mobile
+        if(isIos())
+            return ('standalone' in window.navigator) && (window.navigator.standalone)
+        else 
+            return (window.matchMedia('(display-mode: standalone)').matches);
+    };   
 
     useEffect(() => {
         if(isInStandaloneMode()) { 
