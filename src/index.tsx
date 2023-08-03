@@ -4,6 +4,7 @@ import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import Router from './Routes/Router';
 import { NotificationProvider } from './Contexts/PendingNotificationContext';
+import { InstallMessageProvider } from './Contexts/ShowInstallMessageContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,9 +13,11 @@ const root = ReactDOM.createRoot(
 const App = () => {
   return (
     <React.StrictMode>
-      <NotificationProvider>
-        <Router />
-      </NotificationProvider>
+      <InstallMessageProvider>
+        <NotificationProvider>
+          <Router />
+        </NotificationProvider>
+      </InstallMessageProvider>
     </React.StrictMode>
   );
 };

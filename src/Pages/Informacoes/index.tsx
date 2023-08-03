@@ -1,9 +1,12 @@
 import Cabecalho from "../../Components/Cabecalho";
-import DropDown from "../../Components/DropDown";
+import DownPop from "../../Components/PopUp";
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+import { useContext } from "react";
 import { InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, 
         InfoUndertitle, InformDiv, InfoValor, BalaoInfo } from "./style";
 
 export default function Informacoes() {
+    const { showInstallMessage } = useContext(InstallMessageContext);
     return (
         <InformDiv>
             <Cabecalho nome="Informações"/>
@@ -56,6 +59,10 @@ export default function Informacoes() {
                     </InfoArea>
                 </InfoGrid>
             </BalaoInfo>
+            {
+                showInstallMessage &&
+                <DownPop/>
+            }
         </InformDiv>
     );
 }

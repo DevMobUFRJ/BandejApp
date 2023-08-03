@@ -11,6 +11,8 @@ import { Formatacao } from "../../Functions/Formatacao";
 import { useContext } from "react";
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import Pending from '../../Assets/SideBar/pending.svg';
+import DownPop from "../../Components/PopUp";
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import SemMsg from '../../Assets/Notificacoes/SemMsg.svg'
     
 type aviso = {
@@ -28,6 +30,7 @@ export default function Avaliacao() {
     const { pendingNotification, setPendingNotification } = useContext(NotificationContext);
     const [quantidadeNaoLidas, setQuantidadeNaoLidas] = useState(0)
 
+    const { showInstallMessage } = useContext(InstallMessageContext);
 
     const verificaPrecedenciaData = (data: String) => {
         let dataArmazenadaString = localStorage.getItem("bandejapp:ultimoAviso");
@@ -129,6 +132,10 @@ export default function Avaliacao() {
                         </Card>
                     )})}
             </Container>
+            {
+                showInstallMessage &&
+                <DownPop/>
+            }
         </Avadiv>
     );
 }
