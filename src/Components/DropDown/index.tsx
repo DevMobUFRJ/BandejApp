@@ -1,7 +1,10 @@
-import arrowDown from '../../Assets/Cardapio/ArrowDown.svg';
-import Pin from '../../Assets/Cardapio/Pin.svg';
 import { DropDiv, Opcoes, DropItem, 
     IconeEsquerda, Selecionado, DropArrow } from './style';
+    
+import arrowDown from '../../Assets/Cardapio/ArrowDown.svg';
+import Pin from '../../Assets/Cardapio/Pin.svg';
+import Rest from '../../Assets/Informacoes/Ajustes.svg'
+import { useEffect } from 'react';
 
 type DropDownProps = {
     opcaoInicial: string, // Valor que o useState está definido quando o componente é renderizado
@@ -16,8 +19,9 @@ type DropDownProps = {
 const escolheIcone = (lugar: string) => {
     switch (lugar) // Vai adicionando os cases aqui
     {
-    case 'cardapio':
-        return Pin;
+        case 'cardapio': return Pin;
+    
+        case 'info': return Rest;
     }
 
     return '';
@@ -26,32 +30,37 @@ const escolheIcone = (lugar: string) => {
 export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
                                 tela, alterarState}: DropDownProps) {
 
-    const seta = document.getElementById('seta');
+    
+    useEffect(() => {
+        const seta = document.getElementById('seta');        
+        const containerSelecionado = document.getElementById('selecionado');
+        const elementoPrimeiraOpcao = document.getElementById(opcaoInicial);
 
-    const containerOpcoes = document.getElementById('opcoes');
-    const options = document.querySelectorAll('#dropdown button');
-    
-    const containerSelecionado = document.getElementById('selecionado');
-    const elementoPrimeiraOpcao = document.getElementById(opcaoInicial);
-    
-    if (containerSelecionado && elementoPrimeiraOpcao && seta)
+        if(!containerSelecionado) console.log('container');
+        if(!elementoPrimeiraOpcao) console.log('primeira');
+        if(!seta) console.log('seta');
+        
+        if (containerSelecionado && elementoPrimeiraOpcao && seta)
         containerSelecionado.insertBefore(elementoPrimeiraOpcao, seta);
-
-
+    })
+    
+    
     const arruma = () => {
+        const containerOpcoes = document.getElementById('opcoes');
         for (let valor of valoresState) {
             const it = document.getElementById(valor);
-
+            
             if (!it ||it.id === opcaoSelecionada)
-                continue;
+            continue;
             containerOpcoes?.appendChild(it);
         }
     }
-
+    
     let opcaoSelecionada = opcaoInicial;
     arruma();
-
+    
     const animacao = (abrindo: boolean) => {
+        const containerOpcoes = document.getElementById('opcoes');
         if (!containerOpcoes)
             return;
         requestAnimationFrame(() => {
@@ -69,6 +78,9 @@ export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
     };
 
     const OpenDrop = () => { // Abre o dropdown e adiciona os listeners
+        const seta = document.getElementById('seta');
+        const options = document.querySelectorAll('#dropdown button');
+
         animacao(true);
         
         seta?.addEventListener('click', DropHandler);
@@ -77,6 +89,10 @@ export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
 
     const DropHandler = (evento: Event) => { // Remove os listeners e manipula o CloseDrop
         const triggerElem = evento.currentTarget;
+
+        const seta = document.getElementById('seta');
+        const options = document.querySelectorAll('#dropdown button');
+
         let achou = false;
 
         evento.stopPropagation();
@@ -94,6 +110,10 @@ export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
     }
 
     const CloseDrop = (elemento?: Element) => {
+        const containerOpcoes = document.getElementById('opcoes');
+        const containerSelecionado = document.getElementById('selecionado');
+        const seta = document.getElementById('seta');
+
         requestAnimationFrame(() => {
             if(elemento) {
                 const velho = document.querySelector('#selecionado button');
