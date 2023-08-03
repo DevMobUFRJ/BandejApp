@@ -36,17 +36,19 @@ export default function Avaliacao() {
         let dataArmazenadaString = localStorage.getItem("bandejapp:ultimoAviso");
         let dataArmazenadaDate;
         if(dataArmazenadaString){
-            let dataArmazenadaQuebrada=dataArmazenadaString.substring(1, 11).split("/")
-            dataArmazenadaDate=new Date(parseInt(dataArmazenadaQuebrada[2]), parseInt(dataArmazenadaQuebrada[1]) - 1, parseInt(dataArmazenadaQuebrada[0]))
+            let dataArmazenadaQuebrada=dataArmazenadaString.split(" ")[0].substring(1, 11).split("/")
+            let horaArmazenada=dataArmazenadaString.split(" ")[1].split(":")
+            dataArmazenadaDate=new Date(parseInt(dataArmazenadaQuebrada[2]), parseInt(dataArmazenadaQuebrada[1]) - 1, parseInt(dataArmazenadaQuebrada[0]), parseInt(horaArmazenada[0]), parseInt(horaArmazenada[1]))
         }
 
-        let dataComentarioQuebrada=data.substring(0, 10).split("/")
-        let dataComentarioDate=new Date(parseInt(dataComentarioQuebrada[2]), parseInt(dataComentarioQuebrada[1]) - 1, parseInt(dataComentarioQuebrada[0]))
+        let dataComentarioQuebrada=data.split(" ")[0].substring(0, 10).split("/")
+        let horaComentario=data.split(" ")[1].split(":")
+        let dataComentarioDate=new Date(parseInt(dataComentarioQuebrada[2]), parseInt(dataComentarioQuebrada[1]) - 1, parseInt(dataComentarioQuebrada[0]), parseInt(horaComentario[0]), parseInt(horaComentario[1]))
 
         if(dataArmazenadaDate && dataComentarioDate <= dataArmazenadaDate)
             return false
-        else 
-            return true    
+        else
+            return true
     };
 
     useEffect(() => {
@@ -64,10 +66,6 @@ export default function Avaliacao() {
                 let qtd = 0
                 for (let aviso of post)
                 {
-                    let dataFormatada;
-                    dataFormatada = aviso.data.substring(0, 10);
-                    dataFormatada = dataFormatada.split('-').reverse().join('/');
-                    aviso.data = dataFormatada;
                     aviso.pending = verificaPrecedenciaData(aviso.data)
                     if(aviso.pending){
                         qtd++; 
@@ -117,7 +115,7 @@ export default function Avaliacao() {
                             <CardData>
                                 <CardTop>
                                     <DataRelativa new={comentario.pending && pendingNotification}>
-                                        {`${Formatacao.diaRelativo(comentario.data)}`}
+                                        {`${Formatacao.diaRelativo(comentario.data.split(" ")[0])}`}
                                     </DataRelativa>
                                     {
                                         comentario.pending && pendingNotification && <SideIcon src={Pending} />
