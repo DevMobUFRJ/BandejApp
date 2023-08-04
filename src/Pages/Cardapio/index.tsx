@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
 
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+
 let consultando = false;
 
 const estadosRestaurante = ['ct', 'pv', 'dc', 'mc'];

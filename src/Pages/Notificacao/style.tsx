@@ -8,8 +8,13 @@ interface CardProps {
 export const Avadiv = styled.div `
     display: flex;
     flex-direction: column;
+
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
     align-items: center;
 
     background: ${global.colors.fundo};
@@ -20,7 +25,6 @@ export const BalaoSemMensagens = styled.div `
     flex-direction: column;
     align-items: center;
     margin-top: 2vh;
-
     width: 91.1vw;
     height: 21vh;
 
@@ -68,6 +72,8 @@ export const CardData = styled.div `
 
 export const Container = styled.div `
     width: 89.85vw;
+
+    margin-top: 2vh;
 `;
 
 export const MensagensNaoLidas = styled.button `
@@ -88,6 +94,7 @@ export const MensagensNaoLidas = styled.button `
 
 export const Card = styled.div<CardProps>`
     padding: 2.125vh 6.66vw 2vh 6.66vw;
+    margin-top: 1px;
     background: ${(props) => props.new ? global.colors.branco : global.colors.cinzaOpaco(0.04)};
     font-family: ${global.fonts.quickSand};
 `;

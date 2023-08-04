@@ -4,8 +4,13 @@ import { global } from "../../globalStyle";
 export const CardapioDiv = styled.div `
     display: flex;
     flex-direction: column;
+    
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
     align-items: center;
 
@@ -25,10 +30,18 @@ export const Sombra = styled.div `
 export const ActionsDiv = styled.div `
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 12.5vh;
-    
     width: 100vw;
+    
+    position: absolute;
+    /* Arredondamento/perda de precisão nas contas tava fazendo
+    aparecer uma linhazinha em telas grandes */
+    top: calc(2.25vh + 8vh); 
+    z-index: 0;
+    
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+
     align-items: center;
     justify-content: center;
     background: ${global.colors.branco};
@@ -50,8 +63,9 @@ export const DropHeader = styled.div `
 
 export const Conteudo = styled.div `
     display: flex;
-    margin-top: 28.5vh;
+    margin-top: 38.75vh;
     
+    transition: margin-top 300ms ease-in-out;
     flex-direction: column;
     align-items: center;
 `;

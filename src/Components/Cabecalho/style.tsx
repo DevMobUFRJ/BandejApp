@@ -1,11 +1,22 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
+export const PlaceHolderCabecalho = styled.div `
+    display: block;
+
+    width: 100vw;
+    height: calc(8vh + 2.25vh);
+`;
+
 export const CabecaDiv = styled.header `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 4.5vh;
+    padding-top: 2.25vh;
+
+    position: absolute;
+    top: 0;
+    z-index: 1;
 
     width: 100vw;
     height: 8vh;

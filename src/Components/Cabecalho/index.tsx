@@ -1,5 +1,6 @@
 import SideBar from "../SideBar";
-import { BlurDiv, CabecaDiv, PageTitle,DivAjustes, IconeAjustes } from "./style";
+import { PlaceHolderCabecalho, BlurDiv, CabecaDiv, PageTitle, 
+        DivAjustes, IconeAjustes } from "./style";
 import Ajustes from '../../Assets/Ajustes.svg';
 
 type Nome = { nome: string 
@@ -7,58 +8,31 @@ type Nome = { nome: string
 const boxshadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
 
 let aberto = true;
-let interromper = false;
-let fading: NodeJS.Timer;
 
 const fade = (abrindo: boolean, setOpcoes: Function) => {
-    interromper = true;
+    const acoes = document.getElementById('acoes');
+    const conteudo = document.getElementById('conteudo');
+    if (!acoes || !conteudo)
+        return;
 
-    const direcao = abrindo ? 1 : -1;
     requestAnimationFrame(() => {
-        const acoes = document.getElementById('acoes');
-        const conteudo = document.getElementById('conteudo');
-        if (!acoes || !conteudo)
-            return;
-
-        if (!acoes.style.opacity)
+        if (!abrindo) {
+            acoes.style.opacity = '0';
+            acoes.style.pointerEvents = 'none';
+            conteudo.style.marginTop = '0';
+        }
+        else {
             acoes.style.opacity = '1';
-            
-        clearInterval(fading);
-        acoes.style.display = 'flex';
-
-        requestAnimationFrame (() => {
-            conteudo.style.transition = '0.25s ease';
-            conteudo.style.transform = `translateY(${28.5 * direcao}vh)`;
-        });
-        fading = setInterval (() => {
-            requestAnimationFrame(() => {
-                let opacidade = parseFloat(acoes.style.opacity);
-
-                if ((abrindo && opacidade < 1) || (!abrindo && opacidade > 0))
-                    acoes.style.opacity = `${opacidade + 0.02 * direcao}`
-                else {
-                    clearInterval(fading);
-                    interromper = false;
-                    requestAnimationFrame(() => {
-                        if (!abrindo) {
-                            acoes.style.display = 'none';
-                            conteudo.style.marginTop = '0';
-                        }
-                        else {
-                            conteudo.style.marginTop = '28.5vh';
-                        }
-                        conteudo.style.transition = '';
-                        conteudo.style.transform = `translateY(0px)`;
-                    })
-                }
-            })
-        }, 5);
+            acoes.style.pointerEvents = 'auto';
+            conteudo.style.marginTop = '38.75vh';
+        }
     })
+
     setOpcoes(abrindo);
 };
 
 const clique = (controle?: Function, setar?: Function) => {
-    if (controle && !interromper) {
+    if (controle) {
         controle(!aberto, setar); 
         aberto = !aberto;
     }
@@ -66,15 +40,17 @@ const clique = (controle?: Function, setar?: Function) => {
 
 export default function Cabecalho({nome, setOpcoes}: Nome) {
     return (
-        <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
-            <BlurDiv id="blurdiv"/>
-            <SideBar/>
-            <PageTitle>{nome}</PageTitle>
-            <DivAjustes>
-                <IconeAjustes style={{display: `${nome === 'Cardápio' ? '' : 'none'}`}}
-                src={Ajustes} 
-                onClick={() => clique(fade, setOpcoes)}/>
-            </DivAjustes>
-        </CabecaDiv>
+        <PlaceHolderCabecalho>
+            <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
+                <BlurDiv id="blurdiv"/>
+                <SideBar/>
+                <PageTitle>{nome}</PageTitle>
+                <DivAjustes>
+                    <IconeAjustes style={{display: `${nome === 'Cardápio' ? '' : 'none'}`}}
+                    src={Ajustes} 
+                    onClick={() => clique(fade, setOpcoes)}/>
+                </DivAjustes>
+            </CabecaDiv>
+        </PlaceHolderCabecalho>
     );
 }

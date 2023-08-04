@@ -4,7 +4,11 @@ import { global } from "../../globalStyle";
 export const InformDiv = styled.div `
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
     align-items: center;
 

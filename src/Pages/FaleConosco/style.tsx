@@ -5,7 +5,11 @@ export const FaleDiv = styled.div `
     display: flex;
     flex-direction: column;
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
     align-items: center;
 

@@ -111,7 +111,7 @@ export default function Avaliacao() {
                     return (
                         <Card 
                             key={index}
-                            style={{borderRadius: `${Formatacao.bordaRedonda(index, comentarios.length)}`, marginTop: index === 0 ? '2vh' : '1px'}}
+                            style={{borderRadius: `${Formatacao.bordaRedonda(index, comentarios.length)}`}}
                             new={comentario.pending && pendingNotification}
                         >
                             <CardData>
