@@ -3,7 +3,7 @@ import DownPop from "../../Components/PopUp";
 
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { useContext, useState } from "react";
-import { InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, 
+import { SelecionaInfoDiv, InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, 
         InfoUndertitle, InformDiv, InfoValor, BalaoInfo } from "./style";
 import DropDown from "../../Components/DropDown";
 
@@ -21,13 +21,15 @@ export default function Informacoes() {
     return (
         <InformDiv>
             <Cabecalho nome="Informações"/>
-
-            <DropDown
-            opcaoInicial={ruSelecionado}
-            valoresState={values}
-            valoresOpcoes={options}
-            tela="info"
-            alterarState={setRU}/>
+            
+            <SelecionaInfoDiv>
+                <DropDown
+                opcaoInicial={ruSelecionado}
+                valoresState={values}
+                valoresOpcoes={options}
+                tela="info"
+                alterarState={setRU}/>
+            </SelecionaInfoDiv>
 
             <BalaoInfo>
                 <InfoTitle>Horário de funcionamento</InfoTitle>

@@ -68,11 +68,13 @@ export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
                 containerOpcoes.style.opacity = '0';
                 containerOpcoes.style.transform = 'translateY(-7.75vh)';
                 containerOpcoes.style.pointerEvents = 'none';
+                containerOpcoes.style.height = '0';
             }
             else {
                 containerOpcoes.style.opacity = '1';
                 containerOpcoes.style.transform = 'translateY(0vh)';
                 containerOpcoes.style.pointerEvents = 'auto';
+                containerOpcoes.style.height = `${(valoresState.length - 1) * 7.5}vh`;
             }
         })
     };

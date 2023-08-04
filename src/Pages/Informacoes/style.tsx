@@ -13,6 +13,19 @@ export const InformDiv = styled.div `
 
 /*----------------------------------------------------------------------------*/
 
+export const SelecionaInfoDiv = styled.div `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 2vh;
+    height: 11.5vh;
+    width: 91.1vw;
+
+    border-radius: 16px;
+    background: ${global.colors.branco};
+`;
+
 export const BalaoInfo = styled.section `
     display: grid;
     grid-template-rows: auto auto;
