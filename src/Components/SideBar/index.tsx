@@ -1,4 +1,4 @@
-import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, NotifNumber, SideBarDiv,
+import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, NotifIconInside, NotifIconOutside, NotifNumber, SideBarDiv,
     SideDiv, SideHeader, SideIcon,
     SideImg, SideItem } from "./style";
 
@@ -53,8 +53,12 @@ export default function SideBar() {
 
     return (
         <SideDiv>      
-            <NotifDiv>
-                <SideImg onClick={OpenSide} src={(pendingNotification) ? MenuNot : Menu}/>
+            <NotifDiv onClick={OpenSide}>
+                <NotifIconOutside style={{display: `${pendingNotification? '':'none'}`}}>
+                    <NotifIconInside/>
+                </NotifIconOutside>
+
+                <SideImg src={Menu}/>
             </NotifDiv>
             <SideBarDiv id="sidebar">
                 <SideHeader>

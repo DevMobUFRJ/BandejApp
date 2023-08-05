@@ -30,13 +30,35 @@ export const SideImg = styled.img `
     height: 9.45vw;
 `;
 
+/*----------------------------------------------------------------------------*/
+
 export const NotifDiv = styled.div `
     display: flex;
     position: relative;
 `;
 
-export const NotifIcon = styled.div `
+export const NotifIconOutside = styled.div `
     display: flex;
+    width: 5.7vw;
+    height: 5.7vw;
+    position: absolute;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    right: -10%;
+    background-color: ${global.colors.branco};
+`;
+
+export const NotifIconInside = styled.div `
+    display: flex;
+    width: 3vw;
+    height: 3vw;
+
+    border-radius: 50%;
+
+    background-color: ${global.colors.laranja};
 `;
 
 /*----------------------------------------------------------------------------*/
