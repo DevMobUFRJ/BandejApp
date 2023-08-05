@@ -31,8 +31,10 @@ export const BalaoInfo = styled.section `
     grid-template-rows: auto auto;
     grid-row-gap: 2vh;
     width: 82.23vw;
+
     margin: 2vh 0 0 0;
     padding: 3.33vw 4.44vw;
+
     border-radius: 4.44vw;
     background-color: ${global.colors.branco};
 `;
@@ -45,6 +47,7 @@ export const InfoTitle = styled.h3 `
 `;
 
 export const InfoValor = styled.h4 `
+    width: 70%;
     text-align: center;
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
@@ -53,6 +56,7 @@ export const InfoValor = styled.h4 `
 `;
 
 export const InfoSubtitle = styled.p `
+    margin: 0 0 0.5vh 0;
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
     font-weight: 700;
