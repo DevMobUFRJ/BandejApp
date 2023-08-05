@@ -38,8 +38,9 @@ const tamanho = (lugar: string) => {
     return '';
 };
 
-export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
-                                tela, alterarState}: DropDownProps) {
+export default function DropDown(
+    {opcaoInicial, valoresState, valoresOpcoes,tela, alterarState}: DropDownProps
+    ) {
 
     
     useEffect(() => {
@@ -149,7 +150,7 @@ export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
         <DropDiv style={{width: `calc(${tamanho(tela)} + 4px)`}} 
                 id='dropdown' onClick={OpenDrop}>
             <Selecionado style={{width: `${tamanho(tela)}`}} id='selecionado' >
-                <IconeEsquerda src={escolheIcone(tela)}/>
+                <IconeEsquerda src={escolheIcone(tela)} style={{width: `${tela === 'cardapio'? '':'5vw'}` }}/>
                 <DropArrow id='seta' src={arrowDown}/>
             </Selecionado>
             <Opcoes id='opcoes'>
