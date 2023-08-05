@@ -86,6 +86,7 @@ export const InfoBalao = styled.div `
 
     padding: 2vh 0;
     
+    align-self: flex-start;
     align-items: center;
 
     border: solid 1px ${global.colors.cinzaOpaco(.16)};
