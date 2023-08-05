@@ -1,4 +1,4 @@
-import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, SideBarDiv,
+import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, NotifNumber, SideBarDiv,
     SideDiv, SideHeader, SideIcon,
     SideImg, SideItem } from "./style";
 
@@ -74,7 +74,7 @@ export default function SideBar() {
                         <SideIcon src={Comun}/>
                         <ItemName>Comunicados</ItemName>
                         {pendingNotification ?
-                            <SideIcon src={Pending} />
+                            <NotifNumber>Cadu</NotifNumber>
                             : null
                         }
                     </SideItem>

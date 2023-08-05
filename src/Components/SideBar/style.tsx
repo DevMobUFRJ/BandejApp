@@ -37,15 +37,14 @@ export const NotifDiv = styled.div `
 
 export const NotifIcon = styled.div `
     display: flex;
-
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const SideHeader = styled.section `
     display: grid;
     grid-template-columns: auto auto;
-    margin: 2.59vh 0 0 0;
+    margin: 6vh 0 0 0;
 `;
 
 export const LogoImg = styled.img `
@@ -58,7 +57,7 @@ export const CloseImg = styled.img `
     margin: 0 0 0 15vw
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const ItemsDiv = styled.ul `
     display: grid;
@@ -93,5 +92,21 @@ export const ItemName = styled.p `
     color: ${global.colors.cinza};
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
+export const NotifNumber = styled.p `
+    display: flex;
+    width: 8.33vw;
+    height: 8.33vw;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 4.5vw;
+    font-weight: 700;
+
+    border-radius: 50%;
+
+    background: ${global.colors.laranja};
+    color: ${global.colors.branco};
+`;
