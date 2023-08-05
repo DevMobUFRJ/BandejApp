@@ -27,6 +27,17 @@ const escolheIcone = (lugar: string) => {
     return '';
 }
 
+const tamanho = (lugar: string) => {
+    switch (lugar) // Vai adicionando os cases aqui
+    {
+        case 'cardapio': return '90vw';
+    
+        case 'info': return '82.25vw';
+    }
+
+    return '';
+};
+
 export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
                                 tela, alterarState}: DropDownProps) {
 
@@ -135,8 +146,9 @@ export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
     }
 
     return (
-        <DropDiv id='dropdown' onClick={OpenDrop}>
-            <Selecionado id='selecionado'>
+        <DropDiv style={{width: `calc(${tamanho(tela)} + 4px)`}} 
+                id='dropdown' onClick={OpenDrop}>
+            <Selecionado style={{width: `${tamanho(tela)}`}} id='selecionado' >
                 <IconeEsquerda src={escolheIcone(tela)}/>
                 <DropArrow id='seta' src={arrowDown}/>
             </Selecionado>
@@ -144,6 +156,7 @@ export default function DropDown({opcaoInicial, valoresState, valoresOpcoes,
                 {
                     valoresState.map((estado, indice) => 
                         <DropItem key={indice}
+                        style={{width: `${tamanho(tela)}`}}
                         id={estado}>{valoresOpcoes[indice]}
                         </DropItem>
                     )

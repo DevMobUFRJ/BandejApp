@@ -37,13 +37,8 @@ export const ActionsDiv = styled.div `
 export const DropHeader = styled.div `
     display: block;
     flex-direction: column;
-    width: 76.63vw;
-    min-height: 5.18vh;
-    height: 5.18vh;
-
-    margin: 0 0 2.26vh 0;
-
-    position: relative;
+    width: 91.1vw;
+    height: 7.5vh;
 `;
 
 /*-----------------------------------------------------------*/

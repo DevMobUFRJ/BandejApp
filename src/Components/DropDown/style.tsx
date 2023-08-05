@@ -9,7 +9,7 @@ import { global } from "../../globalStyle";
 export const DropDiv = styled.div `
     display: flex;
     flex-direction: column;
-    width: 76.63vw;
+    width: calc(90vw + 4px); /* O border, 2px de cada lado */
     padding: 0;
 
     align-items: center;
@@ -20,7 +20,7 @@ export const Selecionado = styled.div `
     display: flex;
     flex-direction: row;
     
-    width: 75.5vw;
+    width: 90vw;
     height: 7.5vh;
     
     background: ${global.colors.branco};
@@ -66,7 +66,7 @@ export const DropItem = styled.button `
     padding-left: 3.6vw;
     align-items: center;
 
-    width: 75.5vw;
+    width: 90vw;
     height: 7.5vh;
 
     z-index: 1;
