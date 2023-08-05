@@ -40,12 +40,12 @@ export const NotifIcon = styled.div `
 
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const SideHeader = styled.section `
     display: grid;
     grid-template-columns: auto auto;
-    margin: 2.59vh 0 0 0;
+    margin: 6vh 0 0 0;
 `;
 
 export const LogoImg = styled.img `
@@ -58,7 +58,7 @@ export const CloseImg = styled.img `
     margin: 0 0 0 15vw
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const ItemsDiv = styled.ul `
     display: grid;
