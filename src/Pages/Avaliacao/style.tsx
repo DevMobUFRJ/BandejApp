@@ -20,7 +20,7 @@ export const AvaForm = styled.form `
 
     align-items: center;
 
-    margin: 3vh;
+    margin: 3vh 0;
     padding: 0 4.44vw;
     
     border-radius: 4.44vw;
@@ -58,8 +58,20 @@ export const EmailInput = styled.input `
 `;
 
 export const Comentario = styled.textarea `
+    height: 13vh;
+
+    padding: 1.3vh 2vw 0 2vw;
+
+    outline: none;
+    border: 2px solid ${global.colors.cinzaOpaco(0.24)};
+    border-radius: 4.44vw;
+
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
     font-weight: 500;
-    color: ${global.colors.laranja};
+    color: ${global.colors.cinza};
+
+    resize: none;
+
+    :focus { border-color: ${global.colors.laranja}; }
 `;

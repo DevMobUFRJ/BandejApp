@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
-export const NotaDiv = styled.div `
-    display: inline-flex;
-    align-items: center;
-`;
 /*
     A animação foi inteiramente adaptada do link,
     qualquer coisa chama o Iago :)
@@ -28,6 +24,7 @@ export const RatingDiv = styled.ul `
 
 export const StarIcon = styled.li `
     font-size: 17vw;
+    line-height: 0.8;
     color: ${global.colors.laranja};
 
     list-style-type: none;

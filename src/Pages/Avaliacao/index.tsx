@@ -1,4 +1,4 @@
-import { AvaForm, AvaSection, Avadiv, EmailInput } from "./style";
+import { AvaForm, AvaSection, Avadiv, Comentario, EmailInput } from "./style";
 
 import Nota from "../../Components/Nota";
 import { useContext, useState } from "react";
@@ -89,8 +89,6 @@ export default function Avaliacao() {
             <ToastContainer />
 
             <Cabecalho nome='Avaliação'/>
-
-            
             
             <AvaForm>
                 <AvaSection>
@@ -123,6 +121,7 @@ export default function Avaliacao() {
                 <AvaSection>
                     <InfoTitle>Avaliação</InfoTitle>
                     <Nota NotaToParent={setNota}/>
+                    <Comentario/>
                 </AvaSection>
     
                 {
@@ -130,8 +129,6 @@ export default function Avaliacao() {
                     <DownPop/>
                 }
             </AvaForm>
-
-
         </Avadiv>
     );
 }

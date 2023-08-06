@@ -1,4 +1,4 @@
-import { NotaDiv, RatingDiv, StarIcon } from "./style";
+import { RatingDiv, StarIcon } from "./style";
 
 type starInfo = { NotaToParent: Function; }
 
