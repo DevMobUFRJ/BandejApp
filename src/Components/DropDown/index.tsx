@@ -21,10 +21,8 @@ const escolheIcone = (lugar: string) => {
     {
         case 'cardapio': return Pin;
     
-        case 'info': return Rest;
+        default: return Rest;
     }
-
-    return '';
 }
 
 const tamanho = (lugar: string) => {
@@ -32,10 +30,8 @@ const tamanho = (lugar: string) => {
     {
         case 'cardapio': return '90vw';
     
-        case 'info': return '82.25vw';
+        default: return '82.2vw';
     }
-
-    return '';
 };
 
 export default function DropDown(
@@ -54,7 +50,7 @@ export default function DropDown(
         
         if (containerSelecionado && elementoPrimeiraOpcao && seta)
         containerSelecionado.insertBefore(elementoPrimeiraOpcao, seta);
-    })
+    }, [])
     
     
     const arruma = () => {

@@ -44,26 +44,34 @@ export const BalaoInfo = styled.section `
 `;
 
 export const InfoTitle = styled.h3 `
+    padding: 0 0 0 1%;
+    
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
     font-weight: 700;
+
     color: ${global.colors.cinza};
 `;
 
 export const InfoValor = styled.h4 `
     width: 70%;
+
     text-align: center;
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
     font-weight: 700;
+
     color: ${global.colors.cinzaPratos};
 `;
 
 export const InfoSubtitle = styled.p `
     margin: 0 0 0.5vh 0;
+    padding: 0 0 0 1%;
+
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
     font-weight: 700;
+    
     color: ${global.colors.cinzaClaro};
 `;
 

@@ -69,8 +69,6 @@ export const DropItem = styled.button `
     width: 90vw;
     height: 7.5vh;
 
-    z-index: 1;
-
     font-size: 16px;
     font-family: ${global.fonts.quickSand};
     font-weight: 700;

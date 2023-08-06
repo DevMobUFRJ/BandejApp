@@ -2,7 +2,7 @@ import Cabecalho from "../../Components/Cabecalho";
 import DownPop from "../../Components/PopUp";
 
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { SelecionaInfoDiv, InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, 
         InfoUndertitle, InformDiv, InfoValor, BalaoInfo } from "./style";
 import DropDown from "../../Components/DropDown";

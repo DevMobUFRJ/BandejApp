@@ -1,25 +1,17 @@
-import { 
-    Avadiv, 
-    Enviarbutton, 
-    Comentsec,
-    ComentInput, 
-    ComentIcon, 
-    FormDiv,
-    ErroAva
-} from "./style";
+import { AvaForm, AvaSection, Avadiv, EmailInput } from "./style";
 
-import mailIcon from '../../Assets/Avaliacao/MailIcon.svg';
 import Nota from "../../Components/Nota";
-import AvaDrop from "../../Components/AvaDrop";
 import { useContext, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
 import DownPop from "../../Components/PopUp";
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+import DropDown from "../../Components/DropDown";
+import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
 
 export default function Avaliacao() {
-    const [value, setValue] = useState(0);
+    const [nota, setNota] = useState(0);
     const [ru, setRu] = useState('NA');
     const { showInstallMessage } = useContext(InstallMessageContext);
 
@@ -39,7 +31,7 @@ export default function Avaliacao() {
             erro.innerText = '* Comentário muito longo, máximo de 200 caracteres';
             return;
         }
-        if (value === 0) {
+        if (nota === 0) {
             erro.innerText = '* Dê uma nota';
             return;
         }
@@ -49,7 +41,7 @@ export default function Avaliacao() {
         }
 
         const infos = JSON.stringify({
-            nota: value,
+            nota: nota,
             comentario: comentario.value.trim(),
             restaurante: ru
         });
@@ -88,13 +80,64 @@ export default function Avaliacao() {
         return;
     }
 
+    const opcoes = ['CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
+    const valores = ['ct', 'central', 'lt', 'centro', 'pv', 'dc'];
+    const [ruSelecionado, setRU] = useState('ct');
+
     return (
         <Avadiv id="AvaPage">
             <ToastContainer />
 
             <Cabecalho nome='Avaliação'/>
 
-            <FormDiv>
+            
+            
+            <AvaForm>
+                <AvaSection>
+                    <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
+                    <DropDown
+                        opcaoInicial={ruSelecionado}
+                        valoresState={valores}
+                        valoresOpcoes={opcoes}
+                        tela='avaliacao'
+                        alterarState={setRU}
+                    />
+                </AvaSection>
+
+                <AvaSection>
+                    <div style={{display: 'inline-flex'}}>
+                        <InfoTitle>Seu e-mail</InfoTitle>
+                        <InfoSubtitle>(Opcional)</InfoSubtitle>
+                    </div>
+                    <EmailInput type="email" placeholder="Insira seu e-mail..."/>
+                </AvaSection>
+
+                <AvaSection>
+                    <div style={{display: 'inline-flex'}}>
+                        <InfoTitle>Avaliar refeição específica</InfoTitle>
+                        <InfoSubtitle>(Opcional)</InfoSubtitle>
+                    </div>
+                    
+                </AvaSection>
+
+                <AvaSection>
+                    <InfoTitle>Avaliação</InfoTitle>
+                    <Nota NotaToParent={setNota}/>
+                </AvaSection>
+    
+                {
+                    showInstallMessage &&
+                    <DownPop/>
+                }
+            </AvaForm>
+
+
+        </Avadiv>
+    );
+}
+
+/*
+<FormDiv>
                 <AvaDrop setarDrop={setRu}/>
                 <Comentsec>
                     <ComentIcon src={mailIcon}/>
@@ -102,7 +145,7 @@ export default function Avaliacao() {
                 </Comentsec>
                 <Nota NotaToParent={setValue}/>
                 <ErroAva id="ErroAva"></ErroAva>
-                <Enviarbutton 
+                <Enviarbutton
                     type="button"
                     onClick={() => {
                         clearErro();
@@ -111,10 +154,4 @@ export default function Avaliacao() {
                         enviar
                 </Enviarbutton>
             </FormDiv>
-            {
-                showInstallMessage &&
-                <DownPop/>
-            }
-        </Avadiv>
-    );
-}
+            */
