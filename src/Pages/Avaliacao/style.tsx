@@ -9,7 +9,6 @@ export const Avadiv = styled.div `
     align-items: center;
 
     background: ${global.colors.fundo};
-
 `;
 
 /*----------------------------------------------------------------------------*/

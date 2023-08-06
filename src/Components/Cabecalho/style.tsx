@@ -14,7 +14,7 @@ export const CabecaDiv = styled.header `
     justify-content: space-between;
     padding-top: 2.25vh;
 
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 1;
 

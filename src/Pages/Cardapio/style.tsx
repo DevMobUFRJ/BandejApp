@@ -6,11 +6,7 @@ export const CardapioDiv = styled.div `
     flex-direction: column;
     
     width: 100vw;
-    height: 100vh;
-    overflow-y: scroll;
-    ::-webkit-scrollbar {
-        display: none;
-    }
+    min-height: 100vh;
 
     align-items: center;
 
