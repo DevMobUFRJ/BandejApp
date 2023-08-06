@@ -1,4 +1,4 @@
-import { AvaForm, AvaSection, Avadiv, Comentario, EmailInput } from "./style";
+import { AvaForm, AvaSection, Avadiv, Comentario, EmailInput, EnviarButton, FormDiv } from "./style";
 
 import Nota from "../../Components/Nota";
 import { useContext, useState } from "react";
@@ -91,39 +91,40 @@ export default function Avaliacao() {
             <Cabecalho nome='Avaliação'/>
             
             <AvaForm>
-                <AvaSection>
-                    <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
-                    <DropDown
-                        opcaoInicial={ruSelecionado}
-                        valoresState={valores}
-                        valoresOpcoes={opcoes}
-                        tela='avaliacao'
-                        alterarState={setRU}
-                    />
-                </AvaSection>
-
-                <AvaSection>
-                    <div style={{display: 'inline-flex'}}>
-                        <InfoTitle>Seu e-mail</InfoTitle>
-                        <InfoSubtitle>(Opcional)</InfoSubtitle>
-                    </div>
-                    <EmailInput type="email" placeholder="Insira seu e-mail..."/>
-                </AvaSection>
-
-                <AvaSection>
-                    <div style={{display: 'inline-flex'}}>
-                        <InfoTitle>Avaliar refeição específica</InfoTitle>
-                        <InfoSubtitle>(Opcional)</InfoSubtitle>
-                    </div>
-                    
-                </AvaSection>
-
-                <AvaSection>
-                    <InfoTitle>Avaliação</InfoTitle>
-                    <Nota NotaToParent={setNota}/>
-                    <Comentario/>
-                </AvaSection>
-    
+                <FormDiv>
+                    <AvaSection>
+                        <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
+                        <DropDown
+                            opcaoInicial={ruSelecionado}
+                            valoresState={valores}
+                            valoresOpcoes={opcoes}
+                            tela='avaliacao'
+                            alterarState={setRU}
+                        />
+                    </AvaSection>
+                    <AvaSection>
+                        <div style={{display: 'inline-flex'}}>
+                            <InfoTitle>Seu e-mail</InfoTitle>
+                            <InfoSubtitle>(Opcional)</InfoSubtitle>
+                        </div>
+                        <EmailInput type="email" placeholder="Insira seu e-mail..."/>
+                    </AvaSection>
+                    <AvaSection>
+                        <div style={{display: 'inline-flex'}}>
+                            <InfoTitle>Avaliar refeição específica</InfoTitle>
+                            <InfoSubtitle>(Opcional)</InfoSubtitle>
+                        </div>
+                    </AvaSection>
+                    <AvaSection>
+                        <InfoTitle>Avaliação</InfoTitle>
+                        <Nota NotaToParent={setNota}/>
+                        <Comentario placeholder="Nos conte um pouco mais sobre sua experiência"/>
+                    </AvaSection>
+                </FormDiv>
+        
+                <EnviarButton type="submit" onClick={() => {clearErro(); validar();}}>
+                    Enviar Avaliação
+                </EnviarButton>
                 {
                     showInstallMessage &&
                     <DownPop/>
