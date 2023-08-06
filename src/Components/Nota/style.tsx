@@ -3,16 +3,7 @@ import { global } from "../../globalStyle";
 
 export const NotaDiv = styled.div `
     display: inline-flex;
-    margin-top: 30px;
     align-items: center;
-`;
-
-export const NotaTitle = styled.h2 `
-    margin: 3.6% 3% 0 0;
-
-    font-family: ${global.fonts.nunito};
-    font-size: 5.5vw;
-    font-weight: 500;
 `;
 /*
     A animação foi inteiramente adaptada do link,
@@ -23,6 +14,8 @@ export const NotaTitle = styled.h2 `
 */
 export const RatingDiv = styled.ul `
     display: flex;
+    width: 100%;
+    justify-content: space-between;
     
     .ativo~::before {
         content: "${'\\2606'}";
@@ -34,10 +27,10 @@ export const RatingDiv = styled.ul `
 `;
 
 export const StarIcon = styled.li `
-    list-style-type: none;
-    padding: 0 0.5vw 0 0.5vw;
-    font-size: 9vw;
+    font-size: 17vw;
     color: ${global.colors.laranja};
+
+    list-style-type: none;
 
     ::before {
         content: "${'\\2605'}";

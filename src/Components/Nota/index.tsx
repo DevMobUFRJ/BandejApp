@@ -1,4 +1,4 @@
-import { NotaDiv, NotaTitle, RatingDiv, StarIcon } from "./style";
+import { NotaDiv, RatingDiv, StarIcon } from "./style";
 
 type starInfo = { NotaToParent: Function; }
 
@@ -19,17 +19,13 @@ export default function Nota({NotaToParent}: starInfo) {
     }
 
     return (
-        <NotaDiv id="nota">
-            <NotaTitle>Nota:</NotaTitle>
-            <RatingDiv id="classificacao" onClick={e => SetNota(e.nativeEvent)}>
-                <StarIcon style={{display: 'none'}} value='0' className="ativo"/>
-                <StarIcon value='1' onClick={e => NotaToParent(e.currentTarget.value)}/>
-                <StarIcon value='2' onClick={e => NotaToParent(e.currentTarget.value)}/>
-                <StarIcon value='3' onClick={e => NotaToParent(e.currentTarget.value)}/>
-                <StarIcon value='4' onClick={e => NotaToParent(e.currentTarget.value)}/>
-                <StarIcon value='5' onClick={e => NotaToParent(e.currentTarget.value)}/>
-            </RatingDiv>
-        </NotaDiv>
-
+        <RatingDiv id="classificacao" onClick={e => SetNota(e.nativeEvent)}>
+            <StarIcon style={{display: 'none'}} value='0' className="ativo"/>
+            <StarIcon value='1' onClick={e => NotaToParent(e.currentTarget.value)}/>
+            <StarIcon value='2' onClick={e => NotaToParent(e.currentTarget.value)}/>
+            <StarIcon value='3' onClick={e => NotaToParent(e.currentTarget.value)}/>
+            <StarIcon value='4' onClick={e => NotaToParent(e.currentTarget.value)}/>
+            <StarIcon value='5' onClick={e => NotaToParent(e.currentTarget.value)}/>
+        </RatingDiv>
     );
 }
