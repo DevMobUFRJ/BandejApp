@@ -2,9 +2,7 @@ import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, NotifIconInside, Notif
     SideDiv, SideHeader, SideIcon,
     SideImg, SideItem } from "./style";
 
-import Pending from '../../Assets/SideBar/pending.svg';
 import Menu from '../../Assets/SideBar/menu.svg';
-import MenuNot from '../../Assets/SideBar/menuNot.svg';
 import Logo from '../../Assets/SideBar/logo.svg';
 import Close from '../../Assets/SideBar/close.svg';
 import Home from '../../Assets/SideBar/cardapio.svg';
