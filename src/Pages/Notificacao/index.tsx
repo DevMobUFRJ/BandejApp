@@ -50,6 +50,39 @@ export default function Avaliacao() {
     };
 
     useEffect(() => {
+        function consultarAvisos () {
+            return new Promise((resolve, reject) => {
+            fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
+                .then((data) => data.json())
+                .then((post) => {
+                    let qtd = 0
+                    for (let aviso of post)
+                    {
+                        let dataFormatada;
+                        dataFormatada = aviso.data.substring(0, 10);
+                        dataFormatada = dataFormatada.split('-').reverse().join('/');
+                        aviso.data = dataFormatada;
+                        aviso.pending = verificaPrecedenciaData(aviso.data)
+                        if(aviso.pending){
+                            qtd++; 
+                        }
+                    }
+                    setQuantidadeNaoLidas(qtd);
+                    setComentarios(post);
+                    setLoading(false);
+                    resolve("Resolvido")
+                })
+                .catch(() => {
+                    setLoading(false);
+                    toast.error("Erro de rede. Tente novamente mais tarde");
+                    setTimeout(()=> {
+                        consultando = false;
+                        consultarAvisos().then(() => resolve("Resolvido"));
+                    }, 2500);
+                }).then(() => consultando = false);
+            })
+        }
+
         if (!consultando) {
             consultando = true
             toast.promise(
@@ -63,88 +96,62 @@ export default function Avaliacao() {
         }
     }, []);
 
-    function consultarAvisos () {
-        return new Promise((resolve, reject) => {
-        fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
-            .then((data) => data.json())
-            .then((post) => {
-                let qtd = 0
-                for (let aviso of post)
-                {
-                    let dataFormatada;
-                    dataFormatada = aviso.data.substring(0, 10);
-                    dataFormatada = dataFormatada.split('-').reverse().join('/');
-                    aviso.data = dataFormatada;
-                    aviso.pending = verificaPrecedenciaData(aviso.data)
-                    if(aviso.pending){
-                        qtd++; 
-                    }
-                }
-                setQuantidadeNaoLidas(qtd);
-                setComentarios(post);
-                setLoading(false);
-                resolve("Resolvido");
-            })
-            .catch(() => {
-                setLoading(false);
-                toast.error("Erro de rede. Tente novamente mais tarde");
-                setTimeout(()=> {
-                    consultando = false;
-                    consultarAvisos().then(() => resolve("Resolvido"));
-                }, 2500);
-            }).then(() => consultando = false);
-        })
-    }
-
-    if(loading)
-        return <Load />
+    
 
     return (
         <Avadiv id="AvaPage">
             <ToastContainer />
-            <Cabecalho nome='Comunicados'/>
-            <BalaoSemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>
-                <IconeSemMensagens src={SemMsg}/>
-                <TextoSemMensagens>Não há novas mensagens publicadas pela coordenação do RU.</TextoSemMensagens>
-            </BalaoSemMensagens>
             {
-                (pendingNotification) && 
-                <MensagensNaoLidas 
-                    onClick={() => {setPendingNotification(false); localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(comentarios[0].data))}}
-                    style={{display: comentarios.length ? '' : 'none'}}>{`Marcar tudo como lido (${quantidadeNaoLidas})`}
-                </MensagensNaoLidas>
+                (loading) ?
+                    <Load />
+                : 
+                <>
+                    <Cabecalho nome='Comunicados'/>
+                    <BalaoSemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>
+                        <IconeSemMensagens src={SemMsg}/>
+                        <TextoSemMensagens>Não há novas mensagens publicadas pela coordenação do RU.</TextoSemMensagens>
+                    </BalaoSemMensagens>
+                    {
+                        (pendingNotification) && 
+                        <MensagensNaoLidas 
+                            onClick={() => {setPendingNotification(false); localStorage.setItem("bandejapp:ultimoAviso", JSON.stringify(comentarios[0].data))}}
+                            style={{display: comentarios.length ? '' : 'none'}}>{`Marcar tudo como lido (${quantidadeNaoLidas})`}
+                        </MensagensNaoLidas>
+                    }
+                    <Container>
+                        {
+                        comentarios.map((comentario, index) => {
+                            return (
+                                <Card 
+                                    key={index}
+                                    style={{borderRadius: `${Formatacao.bordaRedonda(index, comentarios.length)}`}}
+                                    new={comentario.pending && pendingNotification}
+                                >
+                                    <CardData>
+                                        <CardTop>
+                                            <DataRelativa new={comentario.pending && pendingNotification}>
+                                                {`${Formatacao.diaRelativo(comentario.data)}`}
+                                            </DataRelativa>
+                                            {
+                                                comentario.pending && pendingNotification && <SideIcon src={Pending} />
+                                            }
+                                        </CardTop>
+                                        <TextData new={comentario.pending && pendingNotification}>
+                                            {`${Formatacao.diaPorExtenso(comentario.data)}`}
+                                        </TextData>
+                                    </CardData>
+                                    
+                                    <CardMensagem><TextMensagem>{comentario.comunicado}</TextMensagem></CardMensagem>
+                                </Card>
+                            )})}
+                    </Container>
+                    {
+                        showInstallMessage &&
+                        <DownPop/>
+                    }
+                </>
             }
-            <Container>
-                {
-                comentarios.map((comentario, index) => {
-                    return (
-                        <Card 
-                            key={index}
-                            style={{borderRadius: `${Formatacao.bordaRedonda(index, comentarios.length)}`}}
-                            new={comentario.pending && pendingNotification}
-                        >
-                            <CardData>
-                                <CardTop>
-                                    <DataRelativa new={comentario.pending && pendingNotification}>
-                                        {`${Formatacao.diaRelativo(comentario.data)}`}
-                                    </DataRelativa>
-                                    {
-                                        comentario.pending && pendingNotification && <SideIcon src={Pending} />
-                                    }
-                                </CardTop>
-                                <TextData new={comentario.pending && pendingNotification}>
-                                    {`${Formatacao.diaPorExtenso(comentario.data)}`}
-                                </TextData>
-                            </CardData>
-                            
-                            <CardMensagem><TextMensagem>{comentario.comunicado}</TextMensagem></CardMensagem>
-                        </Card>
-                    )})}
-            </Container>
-            {
-                showInstallMessage &&
-                <DownPop/>
-            }
+            
         </Avadiv>
     );
 }
