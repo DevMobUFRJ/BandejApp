@@ -50,14 +50,21 @@ export default function Avaliacao() {
     };
 
     useEffect(() => {
-        consultarAvisos();
+        if (!consultando) {
+            consultando = true
+            toast.promise(
+                consultarAvisos(),
+                {
+                    pending: 'Atualizando avisos...',
+                    success: 'Avisos atualizado 👌',
+                    error: 'Não foi possível atualizar os avisos 🤯'
+                }
+            )
+        }
     }, []);
 
     function consultarAvisos () {
-        if (consultando)
-            return;
-
-        consultando = true;
+        return new Promise((resolve, reject) => {
         fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
             .then((data) => data.json())
             .then((post) => {
@@ -71,20 +78,22 @@ export default function Avaliacao() {
                     aviso.pending = verificaPrecedenciaData(aviso.data)
                     if(aviso.pending){
                         qtd++; 
-                    }      
+                    }
                 }
                 setQuantidadeNaoLidas(qtd);
                 setComentarios(post);
-                setLoading(false); 
+                setLoading(false);
+                resolve("Resolvido");
             })
             .catch(() => {
                 setLoading(false);
                 toast.error("Erro de rede. Tente novamente mais tarde");
                 setTimeout(()=> {
                     consultando = false;
-                    consultarAvisos();
-                }, 1000);
+                    consultarAvisos().then(() => resolve("Resolvido"));
+                }, 2500);
             }).then(() => consultando = false);
+        })
     }
 
     if(loading)

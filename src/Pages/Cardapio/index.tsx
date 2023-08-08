@@ -41,6 +41,7 @@ export default function Cardapio() {
         localStorage.setItem("bandejapp:ruDefault", restaurante);
         setRuAtual(restaurante);
     }
+    
     useEffect(() => {
         let ultimoCardapio = localStorage.getItem("bandejapp:ultimoCardapio");
         setRuAtual(localStorage.getItem("bandejapp:ruDefault") + '');
@@ -48,41 +49,40 @@ export default function Cardapio() {
             setCardapio(JSON.parse(ultimoCardapio));
             setLoading(false);
         }
-        
-        consultarCardapio();
-    }, []);
 
-    function consultarCardapio() {
-        if (consultando)
-            return;
-            
-        consultando = true;
-        fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`)
-            .then((data) => data.json())
-            .then((post) => {
-                // post = {}
-                if(JSON.stringify(post) === "{}"){
-                    if (loading === false)
-                        toast.error("Erro ao consultar o servidor. Aguarde, em breve o cardápio será atualizado");
-
-                    setTimeout(()=> {
-                        consultando = false;
-                        consultarCardapio();
-                    }, 500);
-                    return;
+        if (!consultando) {
+            consultando = true
+            toast.promise(
+                consultarCardapio(),
+                {
+                    pending: 'Atualizando cardápio...',
+                    success: 'Cardápio atualizado 👌',
+                    error: 'Não foi possível atualizar o cardápio 🤯'
                 }
-                setCardapio(post);
-                localStorage.setItem("bandejapp:ultimoCardapio", JSON.stringify(post));    
-                setLoading(false);
-            })
-            .catch((error) => {
-                toast.error("Erro de rede. Tente novamente mais tarde");
-                setTimeout(()=> {
-                    consultando = false;
-                    consultarCardapio();
-                }, 1000);
-            }).then(() => consultando = false);
-            
+            )
+        }        
+    }, []);
+     
+    function consultarCardapio() {        
+        return new Promise ((resolve, reject) => {
+                fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`) 
+                    .then((data) => data.json())
+                    .then((post) => {
+                        if(JSON.stringify(post) === "{}"){
+                            throw new Error("ObjetoNulo");
+                        }
+                        setCardapio(post);
+                        localStorage.setItem("bandejapp:ultimoCardapio", JSON.stringify(post));    
+                        setLoading(false);
+                        resolve("Resolvido");
+                    })
+                    .catch(() => {
+                        setTimeout(()=> {
+                            consultando = false;
+                            consultarCardapio().then(() => resolve("Resolvido"));
+                        }, 2500);
+                    }).then(() => consultando = false);
+        })
     }
 
     FontSize();
