@@ -1,22 +1,80 @@
-import { AvaForm, AvaSection, Avadiv, Comentario, EmailInput, EnviarButton, FormDiv } from "./style";
-
-import Nota from "../../Components/Nota";
 import { useContext, useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+
+import { AvaForm, AvaSection, Avadiv, Comentario,
+         DateDiv,
+         DatePicker, DateSelect, EmailInput, EnviarButton,
+         FormDiv, 
+         TurnoButton,
+         TurnoDiv} from "./style";
+
+import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
+import Nota from "../../Components/Nota";
 import Cabecalho from "../../Components/Cabecalho";
 import DownPop from "../../Components/PopUp";
-import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import DropDown from "../../Components/DropDown";
-import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
+
+import datePicker from '../../Assets/Avaliacao/datePicker.svg';
 
 export default function Avaliacao() {
-    const [nota, setNota] = useState(0);
-    const [ru, setRu] = useState('NA');
     const { showInstallMessage } = useContext(InstallMessageContext);
 
-    const RUsValidos = ['central', 'ct', 'letras', 'ifcs', 'pv', 'dc', 'mc'];
+    const opcoes = ['CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
+    const valores = ['ct', 'central', 'lt', 'centro', 'pv', 'dc'];
 
+    const [turno, setTurno] = useState('----');
+    const [ruSelecionado, setRU] = useState('ct');
+    const [nota, setNota] = useState(0);
+
+/*----------------------------------------------------------------------------*/
+
+    const mostrarData = (): string => {
+        const dataAtual = new Date;
+        
+            const dia = dataAtual.getDate();
+            const mes = dataAtual.getMonth() + 1;
+            const ano = dataAtual.getFullYear();
+
+            if((mes > 9) && (dia > 9)) return `${ano}-${mes}-${dia}`;
+            else if(mes > 9) return `${ano}-${mes}-0${dia}`;
+            else if(dia > 9) return `${ano}-0${mes}-${dia}`;
+            else return `${ano}-0${mes}-0${dia}`;
+    }
+
+    const textoParaData = () => {
+        console.log('entrou');
+        const dataInput = document.getElementById('dataPick');
+        dataInput?.parentElement?.focus();
+
+        if(dataInput?.getAttribute('type') === 'date') {
+            dataInput.click();
+            return;
+        }
+
+        dataInput?.setAttribute('type', 'date');
+        setTimeout(() => { dataInput?.click(); }, 100);
+    }
+
+/*----------------------------------------------------------------------------*/
+
+    const selecionarTurno = (id: string) => {
+        const almoco = document.getElementById('Almoço');
+        const janta = document.getElementById('Jantar');
+
+        if(!almoco?.classList.contains('turnoSelecionado') &&!janta?.classList.contains('turnoSelecionado')) {
+            
+        }
+
+        almoco?.classList.toggle('turnoSelecionado');
+        janta?.classList.toggle('turnoSelecionado');
+        setTurno(id);
+    }
+
+/*----------------------------------------------------------------------------*/
+    
     const validar = () => {
         const erro = document.getElementById('ErroAva') as HTMLElement;
         const comentario = document.getElementById('ComentInput') as HTMLInputElement;
@@ -35,7 +93,7 @@ export default function Avaliacao() {
             erro.innerText = '* Dê uma nota';
             return;
         }
-        if (!RUsValidos.includes(ru)) {
+        if (!opcoes.includes(ruSelecionado)) {
             erro.innerText = '* Restaurante inválido';
             return;
         }
@@ -43,7 +101,7 @@ export default function Avaliacao() {
         const infos = JSON.stringify({
             nota: nota,
             comentario: comentario.value.trim(),
-            restaurante: ru
+            restaurante: ruSelecionado
         });
 
         fetch(`${process.env.REACT_APP_PLANILHA_API_URL}`, {
@@ -80,10 +138,6 @@ export default function Avaliacao() {
         return;
     }
 
-    const opcoes = ['CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
-    const valores = ['ct', 'central', 'lt', 'centro', 'pv', 'dc'];
-    const [ruSelecionado, setRU] = useState('ct');
-
     return (
         <Avadiv id="AvaPage">
             <ToastContainer />
@@ -102,6 +156,9 @@ export default function Avaliacao() {
                             alterarState={setRU}
                         />
                     </AvaSection>
+
+{/*--------------------------------------------------------------------------*/}
+
                     <AvaSection>
                         <div style={{display: 'inline-flex'}}>
                             <InfoTitle>Seu e-mail</InfoTitle>
@@ -109,12 +166,31 @@ export default function Avaliacao() {
                         </div>
                         <EmailInput type="email" placeholder="Insira seu e-mail..."/>
                     </AvaSection>
+
+{/*--------------------------------------------------------------------------*/}
+
                     <AvaSection>
                         <div style={{display: 'inline-flex'}}>
                             <InfoTitle>Avaliar refeição específica</InfoTitle>
                             <InfoSubtitle>(Opcional)</InfoSubtitle>
                         </div>
+
+                        <TurnoDiv>
+                            <TurnoButton id="Almoço" onClick={(elem) => selecionarTurno(elem.currentTarget.id)}>
+                                Almoço</TurnoButton>
+
+                            <TurnoButton id="Jantar" onClick={(elem) => selecionarTurno(elem.currentTarget.id)}>
+                                Jantar</TurnoButton>
+                        </TurnoDiv>
+
+                        <DateDiv onFocus={textoParaData}>
+                            <DateSelect id="dataPick" type="text" placeholder="Selecione uma data"/>
+                            <DatePicker src={datePicker} onClick={textoParaData}/>
+                        </DateDiv>
                     </AvaSection>
+
+{/*--------------------------------------------------------------------------*/}
+
                     <AvaSection>
                         <InfoTitle>Avaliação</InfoTitle>
                         <Nota NotaToParent={setNota}/>

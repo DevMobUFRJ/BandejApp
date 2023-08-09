@@ -46,11 +46,11 @@ export const AvaSection = styled.section `
 /*----------------------------------------------------------------------------*/
 
 export const EmailInput = styled.input `
-    width: 90%;
-    height: 7.5vh;
-    
-    padding: 0 5%;
-    
+width: 90%;
+height: 7.5vh;
+
+padding: 0 5%;
+
     outline: none;
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
     border-radius: 4.44vw;
@@ -63,14 +63,86 @@ export const EmailInput = styled.input `
     :focus { border-color: ${global.colors.laranja}; }
 `;
 
-export const TurnoButton = styled.button `
+/*----------------------------------------------------------------------------*/
 
+export const TurnoDiv = styled.div `
+    display: inline-flex;
+    width: 100%;
+
+    justify-content: space-between;
+
+    .turnoSelecionado {
+        color: ${global.colors.branco};
+        background-color: ${global.colors.laranja};
+    }
 `;
+
+export const TurnoButton = styled.button `
+    width: 48.64%;
+    height: 5.5vh;
+
+    border: none;
+    border-radius: 4.44vw;
+
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 700;
+
+    color: ${global.colors.cinza};
+    background-color: ${global.colors.cinzaOpaco(0.08)};
+`;
+
+/*----------------------------------------------------------------------------*/
+
+export const DateDiv = styled.div `
+    display: flex;
+    width: 100%;
+    height: 7.5vh;
+
+    position: relative;
+
+    outline: none;
+    border: 2px solid ${global.colors.cinzaOpaco(0.24)};
+    border-radius: 4.44vw;
+
+    :focus-within { border-color: ${global.colors.laranja}; }
+`;
+
+export const DateSelect = styled.input `
+    width: 100%;
+    height: 100%;
+
+    padding: 0 5%;
+
+    outline: none;
+    border: none;
+    border-radius: inherit;
+
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 700;
+    color: ${global.colors.cinza};
+
+    appearance: none;
+    ::-webkit-calendar-picker-indicator { display: none; }
+`;
+
+export const DatePicker = styled.img `
+    width: 5vw;
+    height: 2.5vh;
+
+    position: absolute;
+    top: calc(50% - 1.25vh);
+    right: 5vw;
+`;
+
+/*----------------------------------------------------------------------------*/
 
 export const Comentario = styled.textarea `
     height: 13vh;
 
     padding: 1.3vh 2vw 0 2vw;
+    margin: 1vh 0 0 0;
 
     outline: none;
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
@@ -84,7 +156,7 @@ export const Comentario = styled.textarea `
     resize: none;
 
     :focus { border-color: ${global.colors.laranja}; }
-    `;
+`;
 
 /*----------------------------------------------------------------------------*/
 
@@ -93,8 +165,8 @@ export const EnviarButton = styled.button `
     height: 7vh;
 
     font-family: ${global.fonts.quickSand};
-    font-size: 4.44vw;
-    font-weight: 500;
+    font-size: 5.55vw;
+    font-weight: 700;
     color: ${global.colors.branco};
 
     outline: none;
