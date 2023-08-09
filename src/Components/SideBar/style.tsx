@@ -37,27 +37,18 @@ export const NotifDiv = styled.div `
     position: relative;
 `;
 
-export const NotifIconOutside = styled.div `
+export const NotifIcon = styled.div `
     display: flex;
-    width: 5.7vw;
-    height: 5.7vw;
+    width: 4vw;
+    height: 4vw;
     position: absolute;
 
     align-items: center;
     justify-content: center;
 
+    outline: solid 1.7vw ${global.colors.branco};
     border-radius: 50%;
     right: -10%;
-    background-color: ${global.colors.branco};
-`;
-
-export const NotifIconInside = styled.div `
-    display: flex;
-    width: 3vw;
-    height: 3vw;
-
-    border-radius: 50%;
-
     background-color: ${global.colors.laranja};
 `;
 

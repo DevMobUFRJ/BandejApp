@@ -1,4 +1,4 @@
-import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, NotifIconInside, NotifIconOutside, NotifNumber, SideBarDiv,
+import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, NotifIcon, NotifNumber, SideBarDiv,
     SideDiv, SideHeader, SideIcon,
     SideImg, SideItem } from "./style";
 
@@ -52,12 +52,10 @@ export default function SideBar() {
     return (
         <SideDiv>      
             <NotifDiv onClick={OpenSide}>
-                <NotifIconOutside style={{display: `${pendingNotification? '':'none'}`}}>
-                    <NotifIconInside/>
-                </NotifIconOutside>
-
+                <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}/>
                 <SideImg src={Menu}/>
             </NotifDiv>
+
             <SideBarDiv id="sidebar">
                 <SideHeader>
                     <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
