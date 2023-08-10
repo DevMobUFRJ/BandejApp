@@ -24,7 +24,7 @@ const fade = (abrindo: boolean, setOpcoes: Function) => {
         else {
             acoes.style.opacity = '1';
             acoes.style.pointerEvents = 'auto';
-            conteudo.style.marginTop = '38.75vh';
+            conteudo.style.marginTop = '29vh';
         }
     })
 
