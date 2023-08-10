@@ -1,6 +1,6 @@
 import SideBar from "../SideBar";
-import { PlaceHolderCabecalho, BlurDiv, CabecaDiv, PageTitle, 
-        DivAjustes, IconeAjustes } from "./style";
+import { PlaceHolderCabecalho, BlurDiv, SideButton, 
+        CabecaDiv, PageTitle, DivAjustes, IconeAjustes } from "./style";
 import Ajustes from '../../Assets/Ajustes.svg';
 
 type Nome = { nome: string 
@@ -44,6 +44,7 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
             <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
                 <BlurDiv id="blurdiv"/>
                 <SideBar/>
+                <SideButton>
                 <PageTitle>{nome}</PageTitle>
                 <DivAjustes>
                     <IconeAjustes style={{display: `${nome === 'Cardápio' ? '' : 'none'}`}}
