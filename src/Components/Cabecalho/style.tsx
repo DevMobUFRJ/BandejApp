@@ -78,6 +78,32 @@ export const BlurDiv = styled.div `
     background: rgba(0, 0, 0, 0.2);
 `;
 
-export const SideButton = styled.img `
+/*---------------------------------------------------------------------------*/
 
+export const SideButton = styled.img `
+    width: 9.45vw;
+    height: 9.45vw;
+
+    margin: 0 0 0 4.44vw;
+`;
+
+
+export const NotifDiv = styled.div `
+    display: block;
+    position: relative;
+`;
+
+export const NotifIcon = styled.div `
+    display: flex;
+    width: 4vw;
+    height: 4vw;
+    position: absolute;
+
+    align-items: center;
+    justify-content: center;
+
+    outline: solid 1.7vw ${global.colors.branco};
+    border-radius: 50%;
+    right: -10%;
+    background-color: ${global.colors.laranja};
 `;
