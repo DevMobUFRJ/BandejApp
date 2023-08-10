@@ -13,38 +13,27 @@ const boxshadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
 
 let aberto = true;
 
-const OpenSide = () => {
+const toggleSide = (abrindo: boolean) => {
     const sidebar = document.getElementById('sidebar');
     const blurdiv = document.getElementById('blurdiv');
     const closeButton = document.getElementById('closeButton');
-    console.log(sidebar)
+    if (!sidebar || !blurdiv || !closeButton)
+        return;
 
-    blurdiv?.addEventListener('click', CloseSide);
-    closeButton?.addEventListener('click', CloseSide);
+    blurdiv.addEventListener('click', () => toggleSide(!abrindo));
+    closeButton.addEventListener('click', () => toggleSide(!abrindo));
 
-    if(sidebar && blurdiv) {
-        requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+        if (abrindo) {
             blurdiv.classList.add('sideBlur');
             sidebar.style.width = '72.22vw';
-        });
-    }
-}
-
-const CloseSide = () => {
-    const sidebar = document.getElementById('sidebar');
-    const blurdiv = document.getElementById('blurdiv');
-    const closeButton = document.getElementById('closeButton');
-
-    blurdiv?.classList.remove('sideBlur');
-    
-    if(sidebar) {
-        requestAnimationFrame(() => {
+        }
+        else {
+            blurdiv.classList.remove('sideBlur');
             sidebar.style.width = '0';
-        });
-    }
-    blurdiv?.removeEventListener('click', CloseSide);
-    closeButton?.removeEventListener('click', CloseSide);
-}    
+        }
+    });
+}
 
 const fadeAjustes = (abrindo: boolean, setOpcoes: Function) => {
     const acoes = document.getElementById('acoes');
@@ -83,8 +72,8 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
         <PlaceHolderCabecalho>
             <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
                 <BlurDiv id="blurdiv"/>
-                <SideBar fechaDiv={CloseSide}/>
-                <NotifDiv onClick={OpenSide}>
+                <SideBar fechaDiv={() => toggleSide(false)}/>
+                <NotifDiv onClick={() => toggleSide(true)}>
                     <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}/>
                     <SideButton src={Menu}/>
                 </NotifDiv>
