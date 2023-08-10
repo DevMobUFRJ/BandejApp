@@ -29,6 +29,8 @@ export const SideImg = styled.img `
     height: 9.45vw;
 `;
 
+/*----------------------------------------------------------------------------*/
+
 export const NotifDiv = styled.div `
     display: flex;
     position: relative;
@@ -36,6 +38,17 @@ export const NotifDiv = styled.div `
 
 export const NotifIcon = styled.div `
     display: flex;
+    width: 4vw;
+    height: 4vw;
+    position: absolute;
+
+    align-items: center;
+    justify-content: center;
+
+    outline: solid 1.7vw ${global.colors.branco};
+    border-radius: 50%;
+    right: -10%;
+    background-color: ${global.colors.laranja};
 `;
 
 /*----------------------------------------------------------------------------*/
