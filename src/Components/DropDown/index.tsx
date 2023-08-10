@@ -152,7 +152,8 @@ export default function DropDown(
             <Opcoes id='opcoes'>
                 {
                     valoresState.map((estado, indice) => 
-                        <DropItem key={indice}
+                        <DropItem type='button'
+                        key={indice}
                         style={{width: `${tamanho(tela)}`}}
                         id={estado}>{valoresOpcoes[indice]}
                         </DropItem>

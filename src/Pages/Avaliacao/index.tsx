@@ -22,11 +22,11 @@ import datePicker from '../../Assets/Avaliacao/datePicker.svg';
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
 
-    const opcoes = ['CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
-    const valores = ['ct', 'central', 'lt', 'centro', 'pv', 'dc'];
+    const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
+    const valores = ['selec', 'ct', 'central', 'lt', 'centro', 'pv', 'dc'];
 
     const [turno, setTurno] = useState('----');
-    const [ruSelecionado, setRU] = useState('ct');
+    const [ruSelecionado, setRU] = useState('selec');
     const [nota, setNota] = useState(0);
 
 /*----------------------------------------------------------------------------*/
@@ -76,7 +76,6 @@ export default function Avaliacao() {
         }
 
         setTurno(elem.id);
-        console.log(turno);
     }
 
 /*----------------------------------------------------------------------------*/
@@ -182,10 +181,10 @@ export default function Avaliacao() {
                         </div>
 
                         <TurnoDiv>
-                            <TurnoButton id="almoco" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
+                            <TurnoButton id="almoco" type="button" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
                                 Almoço</TurnoButton>
 
-                            <TurnoButton id="janta" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
+                            <TurnoButton id="janta" type="button" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
                                 Jantar</TurnoButton>
                         </TurnoDiv>
 
