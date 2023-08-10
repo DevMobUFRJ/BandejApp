@@ -60,17 +60,23 @@ export default function Avaliacao() {
 
 /*----------------------------------------------------------------------------*/
 
-    const selecionarTurno = (id: string) => {
-        const almoco = document.getElementById('Almoço');
-        const janta = document.getElementById('Jantar');
+    const selecionarTurno = (elem: HTMLButtonElement) => {
+        if(elem.id == turno) return;
 
-        if(!almoco?.classList.contains('turnoSelecionado') &&!janta?.classList.contains('turnoSelecionado')) {
-            
+        const almoco = document.getElementById('almoco');
+        const janta = document.getElementById('janta');
+
+        if(elem == almoco) {
+            elem.classList.add('turnoSelecionado');
+            if(janta?.classList.contains('turnoSelecionado')) janta.classList.toggle('turnoSelecionado');
+        }
+        else {
+            elem.classList.add('turnoSelecionado');
+            if(almoco?.classList.contains('turnoSelecionado')) almoco.classList.toggle('turnoSelecionado');
         }
 
-        almoco?.classList.toggle('turnoSelecionado');
-        janta?.classList.toggle('turnoSelecionado');
-        setTurno(id);
+        setTurno(elem.id);
+        console.log(turno);
     }
 
 /*----------------------------------------------------------------------------*/
@@ -176,10 +182,10 @@ export default function Avaliacao() {
                         </div>
 
                         <TurnoDiv>
-                            <TurnoButton id="Almoço" onClick={(elem) => selecionarTurno(elem.currentTarget.id)}>
+                            <TurnoButton id="almoco" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
                                 Almoço</TurnoButton>
 
-                            <TurnoButton id="Jantar" onClick={(elem) => selecionarTurno(elem.currentTarget.id)}>
+                            <TurnoButton id="janta" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
                                 Jantar</TurnoButton>
                         </TurnoDiv>
 
