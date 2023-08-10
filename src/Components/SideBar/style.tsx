@@ -4,12 +4,11 @@ import { global } from "../../globalStyle";
 export const SideBarDiv = styled.div `
     display: grid;
     grid-template-rows: 20% auto;
-    min-width: 0vw;
     width: 0vw;
     height: 100vh;
 
     z-index: 2;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
 
@@ -18,12 +17,6 @@ export const SideBarDiv = styled.div `
     overflow: hidden;
     transition: width 0.3s ease;
 `;
-
-export const SideImg = styled.img `
-    width: 9.45vw;
-    height: 9.45vw;
-`;
-
 /*----------------------------------------------------------------------------*/
 
 export const SideHeader = styled.section `
