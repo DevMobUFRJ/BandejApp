@@ -142,6 +142,8 @@ export const TemplateDiv = styled.div `
 
     position: relative;
     z-index: 1;
+
+    margin: 0 0 10% 0;
     
     justify-content: center;
     align-items: center;
