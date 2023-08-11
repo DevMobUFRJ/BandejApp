@@ -41,49 +41,48 @@ export default function Cardapio() {
         localStorage.setItem("bandejapp:ruDefault", restaurante);
         setRuAtual(restaurante);
     }
+    
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
     useEffect(() => {
+        async function consultarCardapio():Promise<boolean> {
+            try {
+                const data = await fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`) 
+                let post = await data.json(); 
+                if(JSON.stringify(post) === "{}"){
+                    throw new Error("ObjetoNulo");
+                }
+                setCardapio(post);
+                localStorage.setItem("bandejapp:ultimoCardapio", JSON.stringify(post));    
+                setLoading(false);
+                consultando = false;
+                return true;
+            }
+            catch {
+                await sleep(2500);
+                consultando = false;
+                return consultarCardapio();
+            }
+        }
+        
         let ultimoCardapio = localStorage.getItem("bandejapp:ultimoCardapio");
         setRuAtual(localStorage.getItem("bandejapp:ruDefault") + '');
         if(ultimoCardapio){ 
             setCardapio(JSON.parse(ultimoCardapio));
             setLoading(false);
         }
-        
-        consultarCardapio();
-    }, []);
 
-    function consultarCardapio() {
-        if (consultando)
-            return;
-            
-        consultando = true;
-        fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`)
-            .then((data) => data.json())
-            .then((post) => {
-                // post = {}
-                if(JSON.stringify(post) === "{}"){
-                    if (loading === false)
-                        toast.error("Erro ao consultar o servidor. Aguarde, em breve o cardápio será atualizado");
-
-                    setTimeout(()=> {
-                        consultando = false;
-                        consultarCardapio();
-                    }, 500);
-                    return;
+        if (!consultando) {
+            consultando = true
+            toast.promise(
+                consultarCardapio(),
+                {
+                    pending: 'Atualizando cardápio...',
+                    success: 'Cardápio atualizado',
+                    error: 'Não foi possível atualizar o cardápio'
                 }
-                setCardapio(post);
-                localStorage.setItem("bandejapp:ultimoCardapio", JSON.stringify(post));    
-                setLoading(false);
-            })
-            .catch((error) => {
-                toast.error("Erro de rede. Tente novamente mais tarde");
-                setTimeout(()=> {
-                    consultando = false;
-                    consultarCardapio();
-                }, 1000);
-            }).then(() => consultando = false);
-            
-    }
+            )
+        }        
+    }, []);
 
     FontSize();
 
@@ -156,43 +155,46 @@ export default function Cardapio() {
 
 /* - - - - - Fim das funções - - - - - */
 
-    if(loading)
-        return <Load />
-
     return(
         <CardapioDiv id="cardapio">
-            
             <ToastContainer />
-            <Cabecalho nome="Cardápio" setOpcoes={setOpcoes}/>
-            <Sombra style={{display: opcoes ? 'none' : ''}}/>
-
-            <ActionsDiv id='acoes'>
-                <DropHeader>
-                    <DropDown 
-                    opcaoInicial={localStorage.getItem("bandejapp:ruDefault") || ''}
-                    valoresState={estadosRestaurante}
-                    valoresOpcoes={opcoesRestaurante}
-                    tela='cardapio'
-                    alterarState={selecionaRU}/>
-                </DropHeader>
-
-                <NavBar
-                tggDia={tggDia}
-                semana={passaSemana(cardapio?.semana as ISemana)}/>
-                <Horario
-                hora={tggHora}/>
-            </ActionsDiv>
-            <Conteudo id='conteudo'>
-                <Dia
-                hora={hora}
-                cardapio={makePath(dia)}
-                />
-                <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
-                <AvisoAtt>Versão 0.0.2</AvisoAtt>
-            </Conteudo>
             {
-                showInstallMessage &&
-                <DownPop/>
+                (loading) ?
+                    <Load />
+            : 
+            <>
+                <Cabecalho nome="Cardápio" setOpcoes={setOpcoes}/>
+                <Sombra style={{display: opcoes ? 'none' : ''}}/>
+
+                <ActionsDiv id='acoes'>
+                    <DropHeader>
+                        <DropDown 
+                        opcaoInicial={localStorage.getItem("bandejapp:ruDefault") || ''}
+                        valoresState={estadosRestaurante}
+                        valoresOpcoes={opcoesRestaurante}
+                        tela='cardapio'
+                        alterarState={selecionaRU}/>
+                    </DropHeader>
+
+                    <NavBar
+                    tggDia={tggDia}
+                    semana={passaSemana(cardapio?.semana as ISemana)}/>
+                    <Horario
+                    hora={tggHora}/>
+                </ActionsDiv>
+                <Conteudo id='conteudo'>
+                    <Dia
+                    hora={hora}
+                    cardapio={makePath(dia)}
+                    />
+                    <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
+                    <AvisoAtt>Versão 0.0.2</AvisoAtt>
+                </Conteudo>
+                {
+                    showInstallMessage &&
+                    <DownPop/>
+                }
+            </>
             }
         </CardapioDiv>
     );
