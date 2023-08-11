@@ -42,27 +42,26 @@ export default function Cardapio() {
         setRuAtual(restaurante);
     }
     
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
     useEffect(() => {
-        function consultarCardapio() {        
-            return new Promise ((resolve, reject) => {
-                    fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`) 
-                        .then((data) => data.json())
-                        .then((post) => {
-                            if(JSON.stringify(post) === "{}"){
-                                throw new Error("ObjetoNulo");
-                            }
-                            setCardapio(post);
-                            localStorage.setItem("bandejapp:ultimoCardapio", JSON.stringify(post));    
-                            setLoading(false);
-                            resolve("Resolvido");
-                        })
-                        .catch(() => {
-                            setTimeout(()=> {
-                                consultando = false;
-                                consultarCardapio().then(() => resolve("Resolvido"));
-                            }, 2500);
-                        }).then(() => consultando = false);
-            })
+        async function consultarCardapio():Promise<boolean> {
+            try {
+                const data = await fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`) 
+                let post = await data.json(); 
+                if(JSON.stringify(post) === "{}"){
+                    throw new Error("ObjetoNulo");
+                }
+                setCardapio(post);
+                localStorage.setItem("bandejapp:ultimoCardapio", JSON.stringify(post));    
+                setLoading(false);
+                consultando = false;
+                return true;
+            }
+            catch {
+                await sleep(2500);
+                consultando = false;
+                return consultarCardapio();
+            }
         }
         
         let ultimoCardapio = localStorage.getItem("bandejapp:ultimoCardapio");
@@ -78,8 +77,8 @@ export default function Cardapio() {
                 consultarCardapio(),
                 {
                     pending: 'Atualizando cardápio...',
-                    success: 'Cardápio atualizado 👌',
-                    error: 'Não foi possível atualizar o cardápio 🤯'
+                    success: 'Cardápio atualizado',
+                    error: 'Não foi possível atualizar o cardápio'
                 }
             )
         }        

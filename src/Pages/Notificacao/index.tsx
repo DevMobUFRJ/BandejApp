@@ -49,38 +49,35 @@ export default function Avaliacao() {
             return true    
     };
 
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
     useEffect(() => {
-        function consultarAvisos () {
-            return new Promise((resolve, reject) => {
-            fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`)
-                .then((data) => data.json())
-                .then((post) => {
-                    let qtd = 0
-                    for (let aviso of post)
-                    {
-                        let dataFormatada;
-                        dataFormatada = aviso.data.substring(0, 10);
-                        dataFormatada = dataFormatada.split('-').reverse().join('/');
-                        aviso.data = dataFormatada;
-                        aviso.pending = verificaPrecedenciaData(aviso.data)
-                        if(aviso.pending){
-                            qtd++; 
-                        }
+        async function consultarAvisos():Promise<boolean> {
+            try {
+                const data = await fetch(`${process.env.REACT_APP_COMUNICADOS_API_URL}`);
+                const post = await data.json();
+                let qtd = 0;
+                for (let aviso of post)
+                {
+                    let dataFormatada;
+                    dataFormatada = aviso.data.substring(0, 10);
+                    dataFormatada = dataFormatada.split('-').reverse().join('/');
+                    aviso.data = dataFormatada;
+                    aviso.pending = verificaPrecedenciaData(aviso.data)
+                    if(aviso.pending){
+                        qtd++; 
                     }
-                    setQuantidadeNaoLidas(qtd);
-                    setComentarios(post);
-                    setLoading(false);
-                    resolve("Resolvido")
-                })
-                .catch(() => {
-                    setLoading(false);
-                    toast.error("Erro de rede. Tente novamente mais tarde");
-                    setTimeout(()=> {
-                        consultando = false;
-                        consultarAvisos().then(() => resolve("Resolvido"));
-                    }, 2500);
-                }).then(() => consultando = false);
-            })
+                }
+                setQuantidadeNaoLidas(qtd);
+                setComentarios(post);
+                setLoading(false);
+                consultando = false;
+                return true;
+            }
+            catch {
+                await sleep(2500);
+                consultando = false;
+                return consultarAvisos();
+            }
         }
 
         if (!consultando) {
@@ -89,8 +86,8 @@ export default function Avaliacao() {
                 consultarAvisos(),
                 {
                     pending: 'Atualizando avisos...',
-                    success: 'Avisos atualizado 👌',
-                    error: 'Não foi possível atualizar os avisos 🤯'
+                    success: 'Avisos atualizados',
+                    error: 'Não foi possível atualizar os avisos'
                 }
             )
         }
