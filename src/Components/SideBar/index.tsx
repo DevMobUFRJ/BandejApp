@@ -1,10 +1,8 @@
-import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, SideBarDiv,
+import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifDiv, NotifIcon, NotifNumber, SideBarDiv,
     SideDiv, SideHeader, SideIcon,
     SideImg, SideItem } from "./style";
 
-import Pending from '../../Assets/SideBar/pending.svg';
 import Menu from '../../Assets/SideBar/menu.svg';
-import MenuNot from '../../Assets/SideBar/menuNot.svg';
 import Logo from '../../Assets/SideBar/logo.svg';
 import Close from '../../Assets/SideBar/close.svg';
 import Home from '../../Assets/SideBar/cardapio.svg';
@@ -53,9 +51,11 @@ export default function SideBar() {
 
     return (
         <SideDiv>      
-            <NotifDiv>
-                <SideImg onClick={OpenSide} src={(pendingNotification) ? MenuNot : Menu}/>
+            <NotifDiv onClick={OpenSide}>
+                <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}/>
+                <SideImg src={Menu}/>
             </NotifDiv>
+
             <SideBarDiv id="sidebar">
                 <SideHeader>
                     <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
@@ -74,7 +74,7 @@ export default function SideBar() {
                         <SideIcon src={Comun}/>
                         <ItemName>Comunicados</ItemName>
                         {pendingNotification ?
-                            <SideIcon src={Pending} />
+                            <NotifNumber>Cadu</NotifNumber>
                             : null
                         }
                     </SideItem>

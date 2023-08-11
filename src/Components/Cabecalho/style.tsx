@@ -59,6 +59,7 @@ export const PageTitle = styled.h1 `
 export const DivAjustes = styled.div `
     width: 6.66vw;
     margin-right: 4.4vw;
+    padding-left: 2.32vw;
 `;
 
 export const IconeAjustes = styled.img `

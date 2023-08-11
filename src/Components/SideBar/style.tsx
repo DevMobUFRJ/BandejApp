@@ -30,6 +30,8 @@ export const SideImg = styled.img `
     height: 9.45vw;
 `;
 
+/*----------------------------------------------------------------------------*/
+
 export const NotifDiv = styled.div `
     display: flex;
     position: relative;
@@ -37,15 +39,25 @@ export const NotifDiv = styled.div `
 
 export const NotifIcon = styled.div `
     display: flex;
+    width: 4vw;
+    height: 4vw;
+    position: absolute;
 
+    align-items: center;
+    justify-content: center;
+
+    outline: solid 1.7vw ${global.colors.branco};
+    border-radius: 50%;
+    right: -10%;
+    background-color: ${global.colors.laranja};
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const SideHeader = styled.section `
     display: grid;
     grid-template-columns: auto auto;
-    margin: 2.59vh 0 0 0;
+    margin: 6vh 0 0 0;
 `;
 
 export const LogoImg = styled.img `
@@ -58,7 +70,7 @@ export const CloseImg = styled.img `
     margin: 0 0 0 15vw
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const ItemsDiv = styled.ul `
     display: grid;
@@ -93,5 +105,21 @@ export const ItemName = styled.p `
     color: ${global.colors.cinza};
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
+export const NotifNumber = styled.p `
+    display: flex;
+    width: 8.33vw;
+    height: 8.33vw;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 4.5vw;
+    font-weight: 700;
+
+    border-radius: 50%;
+
+    background: ${global.colors.laranja};
+    color: ${global.colors.branco};
+`;
