@@ -21,6 +21,13 @@ export default function SideBar({fechaDiv}: props) {
     const history = useHistory();
     const { pendingNotification } = useContext(NotificationContext); 
 
+    const ondeEstou = (ondeVou:string) => {
+        if (history.location.pathname !== ondeVou)
+            history.push(ondeVou);
+        else
+            fechaDiv();
+    }
+
     return (
         <SideBarDiv id="sidebar">
             <SideHeader>
@@ -31,12 +38,12 @@ export default function SideBar({fechaDiv}: props) {
 {/*--------------------------------------------------------------------------*/}
 
             <ItemsDiv>
-                <SideItem onClick={() => {(history.location.pathname !== '/Cardapio') ? history.push('/Cardapio') : fechaDiv}}>
+                <SideItem onClick={() => ondeEstou('/Cardapio')}>
                     <SideIcon src={Home}/>
                     <ItemName>Cardápio</ItemName>
                 </SideItem>
 
-                <SideItem style={{gridTemplateColumns: "16% auto auto"}} onClick={() => {(history.location.pathname !== '/Notificacao') ? history.push('/Notificacao') : fechaDiv}}>
+                <SideItem style={{gridTemplateColumns: "16% auto auto"}} onClick={() => {ondeEstou('/Notificacao')}}>
                     <SideIcon src={Comun}/>
                     <ItemName>Comunicados</ItemName>
                     {pendingNotification ?
@@ -45,17 +52,17 @@ export default function SideBar({fechaDiv}: props) {
                     }
                 </SideItem>
 
-                <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : fechaDiv}}>
+                <SideItem onClick={() => {ondeEstou('/Avaliacao')}}>
                     <SideIcon src={Aval}/>
                     <ItemName>Avaliação</ItemName>
                 </SideItem>
 
-                <SideItem onClick={() => {(history.location.pathname !== '/Informacoes') ? history.push('/Informacoes') : fechaDiv}}>
+                <SideItem onClick={() => {ondeEstou('/Informacoes')}}>
                     <SideIcon src={Info}/>
                     <ItemName>Informações</ItemName>
                 </SideItem>
 
-                <SideItem onClick={() => {(history.location.pathname !== '/FaleConosco') ? history.push('/FaleConosco') : fechaDiv}}>
+                <SideItem onClick={() => {ondeEstou('/FaleConosco')}}>
                     <SideIcon src={Fale}/>
                     <ItemName>Fale conosco</ItemName>
                 </SideItem>

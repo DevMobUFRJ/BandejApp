@@ -32,7 +32,7 @@ export default function Avaliacao() {
 /*----------------------------------------------------------------------------*/
 
     const mostrarData = (): string => {
-        const dataAtual = new Date;
+        const dataAtual = new Date();
         
             const dia = dataAtual.getDate();
             const mes = dataAtual.getMonth() + 1;
@@ -61,12 +61,12 @@ export default function Avaliacao() {
 /*----------------------------------------------------------------------------*/
 
     const selecionarTurno = (elem: HTMLButtonElement) => {
-        if(elem.id == turno) return;
+        if(elem.id === turno) return;
 
         const almoco = document.getElementById('almoco');
         const janta = document.getElementById('janta');
 
-        if(elem == almoco) {
+        if(elem === almoco) {
             elem.classList.add('turnoSelecionado');
             if(janta?.classList.contains('turnoSelecionado')) janta.classList.toggle('turnoSelecionado');
         }
