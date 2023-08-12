@@ -100,7 +100,7 @@ export const SideIcon = styled.img `
 
 export const ItemName = styled.p `
     font-family: ${global.fonts.quickSand};
-    font-weight: bold;
+    font-weight: 700;
     font-size: 4.44vw;
     color: ${global.colors.cinza};
 `;
