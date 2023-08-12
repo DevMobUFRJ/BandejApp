@@ -5,7 +5,7 @@ export const FaleDiv = styled.div `
     display: flex;
     flex-direction: column;
     width: 100vw;
-    min-height: 100vh;
+    min-height: 106vh;
 
     align-items: center;
 
@@ -18,14 +18,11 @@ export const BalaoInfo = styled.section `
     width: 86.67vw;
     
     margin: 2vh 0 0 0;
-    padding: 0 0 3.33vw 0;
+    padding: 0 0 4.44vw 0;
     
     overflow: hidden;
     
     border-radius: 4.44vw;
-    
-    /* Lembrar de tirar isso depois, foi só pq o fundo tá branco */
-    box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.3);
 
     background: ${global.colors.branco};
     
@@ -75,6 +72,13 @@ export const InfoLink = styled.a `
 
     border: solid 2px ${global.colors.cinzaOF};
     border-radius: 4.44vw;
+
+    :active {
+        background-color: ${global.colors.laranja};
+        .p {
+            color: white;
+        }
+    }
 `;
 
 export const LinkName = styled.p `
