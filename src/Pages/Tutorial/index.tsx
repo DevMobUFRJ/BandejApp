@@ -31,8 +31,12 @@ export default function Tutorial() {
     
     const tempHandler = (target: string) => {        
         if(target.includes('prevButton')) {
-            if(page <= 0) return;
-            else prevTemplate();
+            if(page <= 0) {
+                tggInicio(0);
+            }
+            else {
+                prevTemplate();
+            }
         }
         else {
             if(page >= 3) history.push('/Restaurante'); 
