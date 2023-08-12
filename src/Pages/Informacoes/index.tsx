@@ -2,7 +2,7 @@ import Cabecalho from "../../Components/Cabecalho";
 import DownPop from "../../Components/PopUp";
 
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { SelecionaInfoDiv, InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, 
         InfoUndertitle, InformDiv, InfoValor, BalaoInfo } from "./style";
 import DropDown from "../../Components/DropDown";
@@ -60,7 +60,7 @@ export default function Informacoes() {
                 <InfoTitle>Horário de funcionamento</InfoTitle>
 
                 <InfoGrid>
-                    <InfoSubtitle>Segunda a Sexta:</InfoSubtitle>
+                    <InfoSubtitle>SEGUNDA A SEXTA</InfoSubtitle>
                     <InfoArea>
                         <InfoBalao>
                             <InfoUndertitle>Almoço</InfoUndertitle>
@@ -74,7 +74,7 @@ export default function Informacoes() {
                 </InfoGrid>
 
                 <InfoGrid>
-                    <InfoSubtitle>Finais de semana e feriados:</InfoSubtitle>
+                    <InfoSubtitle>FINAIS DE SEMANA E FERIADOS:</InfoSubtitle>
                     <InfoArea>
                         <InfoBalao>
                             <InfoUndertitle>Almoço</InfoUndertitle>
