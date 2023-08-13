@@ -104,6 +104,7 @@ export const DateDiv = styled.div `
     outline: none;
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
     border-radius: 4.44vw;
+    background: white;
 
     :focus-within { border-color: ${global.colors.laranja}; }
 `;

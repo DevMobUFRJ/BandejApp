@@ -43,7 +43,7 @@ export const Opcoes = styled.div `
     height: 0;
 
     position: absolute;
-
+    z-index: 1;
     opacity: 0;
     pointer-events: none;
     
@@ -55,6 +55,7 @@ export const Opcoes = styled.div `
     transform: translateY(-7.5vh);
     transition: opacity 300ms ease-in-out, transform 300ms ease-in-out, height 300ms ease-in-out;
 
+    z-index: 1;
     background: ${global.colors.branco};
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
     border-radius: 16px;
