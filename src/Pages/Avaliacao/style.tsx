@@ -16,6 +16,12 @@ export const Avadiv = styled.div `
 export const AvaForm = styled.form `
     display: flex;
     flex-direction: column;
+    margin: 0 0 3vh 0;
+`;
+
+export const FormDiv = styled.div `
+    display: flex;
+    flex-direction: column;
     width: 82.22vw;
     
     align-items: center;
@@ -26,6 +32,7 @@ export const AvaForm = styled.form `
     border-radius: 4.44vw;
     background-color: ${global.colors.branco};
 `;
+
 
 export const AvaSection = styled.section `
     display: grid;
@@ -160,8 +167,6 @@ export const Comentario = styled.textarea `
 export const EnviarButton = styled.button `
     width: 91.11vw;
     height: 7vh;
-
-    margin: 0 0 3vh 0;
 
     font-family: ${global.fonts.quickSand};
     font-size: 5.55vw;
