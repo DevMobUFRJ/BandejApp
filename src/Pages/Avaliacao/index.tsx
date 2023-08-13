@@ -190,6 +190,7 @@ export default function Avaliacao() {
                             <InfoTitle>Seu e-mail</InfoTitle>
                             <InfoSubtitle>(Opcional)</InfoSubtitle>
                         </div>
+
                         <EmailInput {...register('email')}
                         name="email" type="email" placeholder="Insira seu e-mail..."/>
                     </AvaSection>
@@ -214,7 +215,7 @@ export default function Avaliacao() {
                         </TurnoDiv>
 
                         <DateDiv onFocus={textoParaData}>
-                            <DateSelect {...register('data', )}
+                            <DateSelect {...register('data')} cor={errors.data?.type === 'required'? true:false}
                             name="data" id="dataSelect" type="text" placeholder="Selecione uma data"/>
 
                             <DatePicker src={datePicker} onClick={textoParaData}/>
@@ -228,8 +229,9 @@ export default function Avaliacao() {
                         <Nota NotaToParent={(nota: number) => setValue('nota', nota)}
                         {...register('nota', {required: true, max:5, min: 1})}/>
 
-                        <Comentario {...register('comentario')}
-                        placeholder="Nos conte um pouco mais sobre sua experiência"/>
+                        <Comentario {...register('comentario', {required: true})}
+                        cor={errors.comentario?.type === 'required'? true:false}
+                        placeholder='Nos conte um pouco mais sobre a sua experiência'/>
                     </AvaSection>
                     
 {/*--------------------------------------------------------------------------*/}

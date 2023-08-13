@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
+type mostrarErro = { cor: boolean; }
+
 export const Avadiv = styled.div `
     display: flex;
     flex-direction: column;
@@ -112,7 +114,7 @@ export const DateDiv = styled.div `
     :focus-within { border-color: ${global.colors.laranja}; }
 `;
 
-export const DateSelect = styled.input `
+export const DateSelect = styled.input<mostrarErro> `
     width: 100%;
     height: 100%;
 
@@ -142,7 +144,7 @@ export const DatePicker = styled.img `
 
 /*----------------------------------------------------------------------------*/
 
-export const Comentario = styled.textarea `
+export const Comentario = styled.textarea<mostrarErro> `
     height: 13vh;
 
     padding: 1.3vh 2vw 0 2vw;
@@ -160,6 +162,10 @@ export const Comentario = styled.textarea `
     resize: none;
 
     :focus { border-color: ${global.colors.laranja}; }
+
+    ::placeholder {
+        color: ${placeholder => placeholder.cor ? 'red':`${global.colors.cinza}`};
+    }
 `;
 
 /*----------------------------------------------------------------------------*/
