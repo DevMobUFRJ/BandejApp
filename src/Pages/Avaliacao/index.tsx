@@ -17,15 +17,22 @@ import DropDown from "../../Components/DropDown";
 
 import datePicker from '../../Assets/Avaliacao/datePicker.svg';
 
+type formData = {
+    ru: string;
+    email: string;
+    turno: string;
+    data: string;
+    nota: number;
+    comentario: string;
+}
+
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
 
     const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
     const valores = ['selec', 'ct', 'central', 'lt', 'centro', 'pv', 'dc'];
 
-    const {register, handleSubmit, formState: { errors }, setValue} = useForm()
-
-    const [turno, setTurno] = useState('----');
+    const {register, handleSubmit, formState: { errors }, setValue, getValues} = useForm<formData>({defaultValues:{ru: 'selec'}})
 
 /*----------------------------------------------------------------------------*/
 
@@ -68,12 +75,12 @@ export default function Avaliacao() {
             if(elem.classList.contains('turnoSelecionado')) {
                 elem.classList.remove('turnoSelecionado');
                 data?.toggleAttribute('required', false);
-                setTurno('----');
+                setValue('turno', '----');
             }
             else {
                 elem.classList.add('turnoSelecionado');
                 data?.toggleAttribute('required', true);
-                setTurno(elem.id);
+                setValue('turno', elem.id);
             }
         }
         else {
@@ -82,12 +89,12 @@ export default function Avaliacao() {
             if(elem.classList.contains('turnoSelecionado')) {
                 elem.classList.remove('turnoSelecionado');
                 data?.toggleAttribute('required', false);
-                setTurno('----')
+                setValue('turno', '----')
             }
             else {
                 elem.classList.add('turnoSelecionado');
                 data?.toggleAttribute('required', true);
-                setTurno(elem.id);
+                setValue('turno', elem.id);
             }
         }
     }
@@ -167,8 +174,8 @@ export default function Avaliacao() {
                 <FormDiv>
                     <AvaSection>
                         <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
-                        <DropDown {...register('ru', {required: true, })}
-                            opcaoInicial={opcoes[0]}
+                        <DropDown {...register('ru', {required: true, validate: valor => valor !== 'selec'})}
+                            opcaoInicial={getValues('ru')}
                             valoresState={valores}
                             valoresOpcoes={opcoes}
                             tela='avaliacao'
@@ -194,6 +201,7 @@ export default function Avaliacao() {
                             <InfoTitle>Avaliar refeição específica</InfoTitle>
                             <InfoSubtitle>(Opcional)</InfoSubtitle>
                         </div>
+
                         <TurnoDiv {...register('turno')}>
                             <TurnoButton name="almoco" id="almoco" type="button"
                             onClick={(elem) => selecionarTurno(elem.currentTarget)}
@@ -204,9 +212,11 @@ export default function Avaliacao() {
                             >   Jantar
                             </TurnoButton>
                         </TurnoDiv>
+
                         <DateDiv onFocus={textoParaData}>
-                            <DateSelect {...register('data')}
+                            <DateSelect {...register('data', )}
                             name="data" id="dataSelect" type="text" placeholder="Selecione uma data"/>
+
                             <DatePicker src={datePicker} onClick={textoParaData}/>
                         </DateDiv>
                     </AvaSection>
@@ -215,7 +225,9 @@ export default function Avaliacao() {
 
                     <AvaSection>
                         <InfoTitle>Avaliação</InfoTitle>
-                        <Nota NotaToParent={(nota: number) => setValue('nota', nota)} {...register('nota', {max:5, min: 1})}/>
+                        <Nota NotaToParent={(nota: number) => setValue('nota', nota)}
+                        {...register('nota', {required: true, max:5, min: 1})}/>
+
                         <Comentario {...register('comentario')}
                         placeholder="Nos conte um pouco mais sobre sua experiência"/>
                     </AvaSection>
