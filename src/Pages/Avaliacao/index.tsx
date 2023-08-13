@@ -4,12 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 
-import { AvaForm, AvaSection, Avadiv, Comentario,
-         DateDiv,
+import { AvaSection, Avadiv, Comentario, DateDiv,
          DatePicker, DateSelect, EmailInput, EnviarButton,
-         FormDiv, 
-         TurnoButton,
-         TurnoDiv} from "./style";
+         AvaForm, TurnoButton, TurnoDiv} from "./style";
 
 import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
 import Nota from "../../Components/Nota";
@@ -46,7 +43,7 @@ export default function Avaliacao() {
 
     const textoParaData = () => {
         console.log('entrou');
-        const dataInput = document.getElementById('dataPick');
+        const dataInput = document.getElementById('dataSelect');
         dataInput?.parentElement?.focus();
 
         if(dataInput?.getAttribute('type') === 'date') {
@@ -61,21 +58,34 @@ export default function Avaliacao() {
 /*----------------------------------------------------------------------------*/
 
     const selecionarTurno = (elem: HTMLButtonElement) => {
-        if(elem.id === turno) return;
-
         const almoco = document.getElementById('almoco');
         const janta = document.getElementById('janta');
 
         if(elem === almoco) {
-            elem.classList.add('turnoSelecionado');
             if(janta?.classList.contains('turnoSelecionado')) janta.classList.toggle('turnoSelecionado');
+            
+            if(elem.classList.contains('turnoSelecionado')) {
+                console.log('abacaye');
+                elem.classList.remove('turnoSelecionado');
+                setTurno('----');
+            }
+            else {
+                elem.classList.add('turnoSelecionado');
+                setTurno(elem.id);
+            }
         }
         else {
-            elem.classList.add('turnoSelecionado');
             if(almoco?.classList.contains('turnoSelecionado')) almoco.classList.toggle('turnoSelecionado');
-        }
 
-        setTurno(elem.id);
+            if(elem.classList.contains('turnoSelecionado')) {
+                elem.classList.remove('turnoSelecionado');
+                setTurno('----')
+            }
+            else {
+                elem.classList.add('turnoSelecionado');
+                setTurno(elem.id);
+            }
+        }
     }
 
 /*----------------------------------------------------------------------------*/
@@ -150,67 +160,65 @@ export default function Avaliacao() {
             <Cabecalho nome='Avaliação'/>
             
             <AvaForm>
-                <FormDiv>
-                    <AvaSection>
-                        <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
-                        <DropDown
-                            opcaoInicial={ruSelecionado}
-                            valoresState={valores}
-                            valoresOpcoes={opcoes}
-                            tela='avaliacao'
-                            alterarState={setRU}
-                        />
-                    </AvaSection>
+                <AvaSection>
+                    <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
+                    <DropDown
+                        opcaoInicial={ruSelecionado}
+                        valoresState={valores}
+                        valoresOpcoes={opcoes}
+                        tela='avaliacao'
+                        alterarState={setRU}
+                    />
+                </AvaSection>
 
 {/*--------------------------------------------------------------------------*/}
 
-                    <AvaSection>
-                        <div style={{display: 'inline-flex'}}>
-                            <InfoTitle>Seu e-mail</InfoTitle>
-                            <InfoSubtitle>(Opcional)</InfoSubtitle>
-                        </div>
-                        <EmailInput type="email" placeholder="Insira seu e-mail..."/>
-                    </AvaSection>
+                <AvaSection>
+                    <div style={{display: 'inline-flex'}}>
+                        <InfoTitle>Seu e-mail</InfoTitle>
+                        <InfoSubtitle>(Opcional)</InfoSubtitle>
+                    </div>
+                    <EmailInput type="email" placeholder="Insira seu e-mail..."/>
+                </AvaSection>
 
 {/*--------------------------------------------------------------------------*/}
 
-                    <AvaSection>
-                        <div style={{display: 'inline-flex'}}>
-                            <InfoTitle>Avaliar refeição específica</InfoTitle>
-                            <InfoSubtitle>(Opcional)</InfoSubtitle>
-                        </div>
+                <AvaSection>
+                    <div style={{display: 'inline-flex'}}>
+                        <InfoTitle>Avaliar refeição específica</InfoTitle>
+                        <InfoSubtitle>(Opcional)</InfoSubtitle>
+                    </div>
 
-                        <TurnoDiv>
-                            <TurnoButton id="almoco" type="button" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
-                                Almoço</TurnoButton>
+                    <TurnoDiv>
+                        <TurnoButton id="almoco" type="button" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
+                            Almoço</TurnoButton>
 
-                            <TurnoButton id="janta" type="button" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
-                                Jantar</TurnoButton>
-                        </TurnoDiv>
+                        <TurnoButton id="janta" type="button" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
+                            Jantar</TurnoButton>
+                    </TurnoDiv>
 
-                        <DateDiv onFocus={textoParaData}>
-                            <DateSelect id="dataPick" type="text" placeholder="Selecione uma data"/>
-                            <DatePicker src={datePicker} onClick={textoParaData}/>
-                        </DateDiv>
-                    </AvaSection>
+                    <DateDiv onFocus={textoParaData}>
+                        <DateSelect id="dataSelect" type="text" placeholder="Selecione uma data"/>
+                        <DatePicker src={datePicker} onClick={textoParaData}/>
+                    </DateDiv>
+                </AvaSection>
 
 {/*--------------------------------------------------------------------------*/}
 
-                    <AvaSection>
-                        <InfoTitle>Avaliação</InfoTitle>
-                        <Nota NotaToParent={setNota}/>
-                        <Comentario placeholder="Nos conte um pouco mais sobre sua experiência"/>
-                    </AvaSection>
-                </FormDiv>
-        
-                <EnviarButton type="submit" onClick={() => {clearErro(); validar();}}>
-                    Enviar Avaliação
-                </EnviarButton>
-                {
-                    showInstallMessage &&
-                    <DownPop/>
-                }
+                <AvaSection>
+                    <InfoTitle>Avaliação</InfoTitle>
+                    <Nota NotaToParent={setNota}/>
+                    <Comentario placeholder="Nos conte um pouco mais sobre sua experiência"/>
+                </AvaSection>
             </AvaForm>
+    
+            <EnviarButton type="submit" onClick={() => {clearErro(); validar();}}>
+                Enviar Avaliação
+            </EnviarButton>
+            {
+                showInstallMessage &&
+                <DownPop/>
+            }
         </Avadiv>
     );
 }

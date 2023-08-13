@@ -16,12 +16,6 @@ export const Avadiv = styled.div `
 export const AvaForm = styled.form `
     display: flex;
     flex-direction: column;
-    margin: 0 0 3vh 0;
-`;
-
-export const FormDiv = styled.div `
-    display: flex;
-    flex-direction: column;
     width: 82.22vw;
     
     align-items: center;
@@ -46,10 +40,10 @@ export const AvaSection = styled.section `
 /*----------------------------------------------------------------------------*/
 
 export const EmailInput = styled.input `
-width: 90%;
-height: 7.5vh;
+    width: 90%;
+    height: 7.5vh;
 
-padding: 0 5%;
+    padding: 0 5%;
 
     outline: none;
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
@@ -74,6 +68,7 @@ export const TurnoDiv = styled.div `
     .turnoSelecionado {
         color: ${global.colors.branco};
         background-color: ${global.colors.laranja};
+        transform: scale(1.03, 1.03);
     }
 `;
 
@@ -90,6 +85,8 @@ export const TurnoButton = styled.button `
 
     color: ${global.colors.cinza};
     background-color: ${global.colors.cinzaOpaco(0.08)};
+
+    transition: transform 0.5s ease;
 `;
 
 /*----------------------------------------------------------------------------*/
@@ -104,7 +101,6 @@ export const DateDiv = styled.div `
     outline: none;
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
     border-radius: 4.44vw;
-    background: white;
 
     :focus-within { border-color: ${global.colors.laranja}; }
 `;
@@ -164,6 +160,8 @@ export const Comentario = styled.textarea `
 export const EnviarButton = styled.button `
     width: 91.11vw;
     height: 7vh;
+
+    margin: 0 0 3vh 0;
 
     font-family: ${global.fonts.quickSand};
     font-size: 5.55vw;
