@@ -60,29 +60,33 @@ export default function Avaliacao() {
     const selecionarTurno = (elem: HTMLButtonElement) => {
         const almoco = document.getElementById('almoco');
         const janta = document.getElementById('janta');
+        const data = document.getElementById('dataSelect');
 
         if(elem === almoco) {
             if(janta?.classList.contains('turnoSelecionado')) janta.classList.toggle('turnoSelecionado');
             
             if(elem.classList.contains('turnoSelecionado')) {
-                console.log('abacaye');
                 elem.classList.remove('turnoSelecionado');
+                data?.toggleAttribute('required', false);
                 setTurno('----');
             }
             else {
                 elem.classList.add('turnoSelecionado');
+                data?.toggleAttribute('required', true);
                 setTurno(elem.id);
             }
         }
         else {
-            if(almoco?.classList.contains('turnoSelecionado')) almoco.classList.toggle('turnoSelecionado');
+            if(almoco?.classList.contains('turnoSelecionado')) almoco.classList.toggle('turnoSelecionado')
 
             if(elem.classList.contains('turnoSelecionado')) {
                 elem.classList.remove('turnoSelecionado');
+                data?.toggleAttribute('required', false);
                 setTurno('----')
             }
             else {
                 elem.classList.add('turnoSelecionado');
+                data?.toggleAttribute('required', true);
                 setTurno(elem.id);
             }
         }
@@ -178,7 +182,7 @@ export default function Avaliacao() {
                         <InfoTitle>Seu e-mail</InfoTitle>
                         <InfoSubtitle>(Opcional)</InfoSubtitle>
                     </div>
-                    <EmailInput type="email" placeholder="Insira seu e-mail..."/>
+                    <EmailInput name="email" type="email" placeholder="Insira seu e-mail..."/>
                 </AvaSection>
 
 {/*--------------------------------------------------------------------------*/}
@@ -190,15 +194,15 @@ export default function Avaliacao() {
                     </div>
 
                     <TurnoDiv>
-                        <TurnoButton id="almoco" type="button" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
+                        <TurnoButton name="almoco" id="almoco" type="button" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
                             Almoço</TurnoButton>
 
-                        <TurnoButton id="janta" type="button" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
+                        <TurnoButton name='janta' id="janta" type="button" onClick={(elem) => selecionarTurno(elem.currentTarget)}>
                             Jantar</TurnoButton>
                     </TurnoDiv>
 
                     <DateDiv onFocus={textoParaData}>
-                        <DateSelect id="dataSelect" type="text" placeholder="Selecione uma data"/>
+                        <DateSelect name="data" id="dataSelect" type="text" placeholder="Selecione uma data"/>
                         <DatePicker src={datePicker} onClick={textoParaData}/>
                     </DateDiv>
                 </AvaSection>
