@@ -1,23 +1,21 @@
 import { useContext, useEffect, useState } from "react";
-import NavBar from "../../Components/Navbar";
-import Horario from "../../Components/Horario";
-import DropDown from "../../Components/DropDown";
+import { ICardapioProps, ISemana } from "../../Types/storage";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 
-import Dia from "../../Components/Dia";
 import { CardapioDiv, Sombra, ActionsDiv, 
         DropHeader, AvisoAtt, Conteudo} from "./style";
 
+import NavBar from "../../Components/Navbar";
+import Horario from "../../Components/Horario";
+import DropDown from "../../Components/DropDown";
+import Dia from "../../Components/Dia";
 import DownPop from "../../Components/PopUp";
 import Load from "../../Components/Load";
-import { ICardapioProps, ISemana } from "../../Types/storage";
-
-import FontSize from "../../Functions/FontSize";
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import FontSize from "../../Functions/Cardapio/FontSize";
 import Cabecalho from "../../Components/Cabecalho";
 
-import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 
 let consultando = false;
 
