@@ -53,11 +53,13 @@ export const Formatacao = {
     },
 
     diaPorExtenso: (dia: String) => {
+        let data = dia.split(" ")[0]
+        let hora = dia.split(" ")[1]
         const meses = ['', 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 
         'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
-        const partes = dia.split('/');
+        const partes = data.split('/');
         const mes = meses[parseInt(partes[1])];
 
-        return `${partes[0]} de ${mes} de ${partes[2]}`;
+        return `${partes[0]} de ${mes} de ${partes[2]} às ${hora}`;
     }
 }
