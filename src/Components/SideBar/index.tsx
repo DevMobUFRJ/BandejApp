@@ -61,8 +61,8 @@ export default function SideBar() {
             CloseSide();
     }
 
-    const nomesTelas = ['Avaliação', 'Informações', 'Fale conosco'];
-    const rotasTelas = ['/Avaliacao', '/Informacoes', '/FaleConosco'];
+    const nomesTelas = ['Cardapio', 'Comunicados', 'Avaliação', 'Informações', 'Fale conosco'];
+    const rotasTelas = ['/Cardapio', '/Notificacao', '/Avaliacao', '/Informacoes', '/FaleConosco'];
     const icones = [Home, Comun, Aval, Info, Fale];
     const laranjar = 'invert(48%) sepia(90%) saturate(1570%)' +
                     'hue-rotate(352deg) brightness(98%) contrast(102%)';
@@ -83,27 +83,17 @@ export default function SideBar() {
 {/*--------------------------------------------------------------------------*/}
 
                 <ItemsDiv>
-
-                    <SideItem onClick={() => cliqueHandler('/Cardapio')}>
-                        <SideIcon src={Home} style={{filter: rotaAtual('/Cardapio') ? laranjar : ''}}/>
-                        <ItemName style={{color: rotaAtual('/Cardapio') ? `${global.colors.laranja}`: ' '}}>Cardápio</ItemName>
-                    </SideItem>
-
-                    <SideItem style={{gridTemplateColumns: "16% auto auto"}} onClick={() => cliqueHandler('/Notificacao')}>
-                        <SideIcon src={Comun} style={{filter: rotaAtual('/Notificacao') ? laranjar : ''}}/>
-                        <ItemName style={{color: rotaAtual('/Notificacao') ? `${global.colors.laranja}`: ' '}}>Comunicados</ItemName>
-                        {pendingNotification ?
-                            <NotifNumber>Cadu</NotifNumber>
-                            : null
-                        }
-                    </SideItem>
                     {
                         rotasTelas.map((rota, indice) => 
-                            <SideItem onClick={() => cliqueHandler(rota)}>
+                            <SideItem key={indice} onClick={() => cliqueHandler(rota)}>
                                 <SideIcon src={icones[indice]} style={{filter: rotaAtual(rota) ? laranjar : ''}}/>
                                 <ItemName style={{color: rotaAtual(rota) ? `${global.colors.laranja}`: ' '}}>
                                     {nomesTelas[indice]}
                                 </ItemName>
+                                {(pendingNotification && nomesTelas[indice] == "Comunicados") ?
+                                    <NotifNumber></NotifNumber>
+                                    : null
+                                }
                             </SideItem>
                         )
                     }

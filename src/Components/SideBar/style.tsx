@@ -81,7 +81,7 @@ export const ItemsDiv = styled.ul `
 
 export const SideItem = styled.li `
     display: grid;
-    grid-template-columns: 16% auto;
+    grid-template-columns: 16% auto auto;
     
     align-items: center;
     padding: 0 0 0 6vw;
