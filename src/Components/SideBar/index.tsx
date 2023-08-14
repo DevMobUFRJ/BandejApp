@@ -90,7 +90,7 @@ export default function SideBar() {
                                 <ItemName style={{color: rotaAtual(rota) ? `${global.colors.laranja}`: ' '}}>
                                     {nomesTelas[indice]}
                                 </ItemName>
-                                {(pendingNotification && nomesTelas[indice] == "Comunicados") ?
+                                {(pendingNotification && nomesTelas[indice] === "Comunicados") ?
                                     <NotifNumber></NotifNumber>
                                     : null
                                 }

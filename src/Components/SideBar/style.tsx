@@ -109,8 +109,8 @@ export const ItemName = styled.p `
 
 export const NotifNumber = styled.p `
     display: flex;
-    width: 8.33vw;
-    height: 8.33vw;
+    width: 4vw;
+    height: 4vw;
 
     align-items: center;
     justify-content: center;
