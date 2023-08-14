@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { BackImg, ButtonDiv, CurrentDiv,
@@ -31,46 +31,56 @@ export default function Tutorial() {
     
     const tempHandler = (target: string) => {        
         if(target.includes('prevButton')) {
-            if(page <= 0) return;
-            else prevTemplate();
+            if(page <= 0) 
+                tggInicio(0);
+            else 
+                passarPara('prevTemplate');
         }
         else {
-            if(page >= 3) history.push('/Restaurante'); 
-            else nextTemplate();
+            if(page >= 3) 
+                history.push('/Restaurante'); 
+            else 
+                passarPara('nextTemplate');
         }
     }
 
-    const nextTemplate = () => {
+    const passarPara = (praOnde: string) => {
+        const contrario = praOnde === 'nextTemplate' ? 'prevTemplate' : 'nextTemplate';
+        const direcao = praOnde === 'nextTemplate' ? 1 : -1;
+        
         const pageIndex = document.querySelectorAll('#page');
         const currentPage = document.querySelector('.currentPage');
 
         const currentTemp = document.querySelector('.currentTemplate');
-        const nextTemp = document.querySelector('.nextTemplate');
+        const nextTemp = document.querySelector(`.${praOnde}`);
 
-        tggPage(page+1);
+        tggPage(page + direcao);
 
-        currentTemp?.classList.replace('currentTemplate', 'prevTemplate');
-        nextTemp?.classList.replace('nextTemplate', 'currentTemplate');
+        currentTemp?.classList.replace('currentTemplate', contrario);
+        nextTemp?.classList.replace(praOnde, 'currentTemplate');
 
-        if(currentPage) currentPage.classList.toggle('currentPage');
-        pageIndex[page+1].classList.add('currentPage');
+        if(currentPage) 
+            currentPage.classList.toggle('currentPage');
+        pageIndex[page + direcao].classList.add('currentPage');
     }
 
-    const prevTemplate = () => {    
-        const pageIndex = document.querySelectorAll('#page');
-        const currentPage = document.querySelector('.currentPage');
-
-        const currentTemp = document.querySelector('.currentTemplate');
-        const prevTemplates = document.querySelectorAll('.prevTemplate');
-
-        tggPage(page-1);
-
-        currentTemp?.classList.replace('currentTemplate', 'nextTemplate');
-        prevTemplates[prevTemplates.length-1].classList.replace('prevTemplate', 'currentTemplate');
-
-        if(currentPage) currentPage.classList.toggle('currentPage');
-        pageIndex[page-1].classList.add('currentPage');
+    const isIos = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test( userAgent );
     }
+
+    const isInStandaloneMode = () => { //referencia: https://stackoverflow.com/questions/21125337/how-to-detect-if-web-app-running-standalone-on-chrome-mobile
+        if(isIos())
+            return ('standalone' in window.navigator) && (window.navigator.standalone)
+        else 
+            return (window.matchMedia('(display-mode: standalone)').matches);
+    };   
+
+    useEffect(() => {
+        if(isInStandaloneMode()) { 
+            history.push('/Restaurante')
+        }
+    })
 
     return(
         <TutDiv>
@@ -84,14 +94,14 @@ export default function Tutorial() {
             </InitialPage>
 
             <div style={{display: `${inicio?'':'none'}`, margin: 0}}>
+                <BackImg src={Background}/>
+                
                 <CurrentDiv>
                     <CurrentPage id="page" className="currentPage"/>
                     <CurrentPage id="page"/>
                     <CurrentPage id="page"/>
                     <CurrentPage id="page"/>
                 </CurrentDiv>
-
-                <BackImg src={Background}/>
 
                 <TemplateDiv>
                     <Template id="template" className="currentTemplate" src={TempDownload}/>

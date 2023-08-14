@@ -1,10 +1,22 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
+export const PlaceHolderCabecalho = styled.div `
+    display: block;
+
+    width: 100vw;
+    height: calc(8vh + 2.25vh);
+`;
+
 export const CabecaDiv = styled.header `
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    padding-top: 4.5vh;
+    justify-content: space-between;
+    padding-top: 2.25vh;
+
+    position: absolute;
+    top: 0;
+    z-index: 1;
 
     width: 100vw;
     height: 8vh;
@@ -37,21 +49,27 @@ export const CabecaDiv = styled.header `
 `;
 
 export const PageTitle = styled.h1 `
-    width: 100vw;
-    position: absolute;
-    left:0;
-
     font-size: 16px;
     font-family: ${global.fonts.quickSand};
     font-weight: 700;
-    text-align: center;
 
     color: ${global.colors.cinza};
 `; 
 
+export const DivAjustes = styled.div `
+    width: 6.66vw;
+    margin-right: 4.4vw;
+    padding-left: 2.32vw;
+`;
+
+export const IconeAjustes = styled.img `
+    width: 6.66vw;
+    height: 6.66vw;
+`;
+
 export const BlurDiv = styled.div `
     display: none;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     width: 100vw;

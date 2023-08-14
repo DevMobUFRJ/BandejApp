@@ -11,14 +11,17 @@ import {
 import mailIcon from '../../Assets/Avaliacao/MailIcon.svg';
 import Nota from "../../Components/Nota";
 import AvaDrop from "../../Components/AvaDrop";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cabecalho from "../../Components/Cabecalho";
+import DownPop from "../../Components/PopUp";
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 
 export default function Avaliacao() {
     const [value, setValue] = useState(0);
     const [ru, setRu] = useState('NA');
+    const { showInstallMessage } = useContext(InstallMessageContext);
 
     const RUsValidos = ['central', 'ct', 'letras', 'ifcs', 'pv', 'dc', 'mc'];
 
@@ -100,7 +103,7 @@ export default function Avaliacao() {
                 <Nota NotaToParent={setValue}/>
                 <ErroAva id="ErroAva"></ErroAva>
                 <Enviarbutton 
-                    type="button" 
+                    type="button"
                     onClick={() => {
                         clearErro();
                         validar();
@@ -108,6 +111,10 @@ export default function Avaliacao() {
                         enviar
                 </Enviarbutton>
             </FormDiv>
+            {
+                showInstallMessage &&
+                <DownPop/>
+            }
         </Avadiv>
     );
 }

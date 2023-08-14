@@ -3,14 +3,17 @@ import { global } from "../../globalStyle";
 
 export const HorarioDiv = styled.div `
     display: flex;
+    margin-top: 2vh;
     width: 100vw;
 
-    margin: 4vh 0 0 0;
+    height: 6vh;
+
+    background: ${global.colors.branco};
 
     .horaSelect {
         color: ${global.colors.laranja};
-        border-bottom: 0.43vh solid ${global.colors.laranja};
-        margin-bottom: -0.43vh;
+        border-bottom: 0.5vh solid ${global.colors.laranja};
+        font-weight: 700;
     }
 `;
 
@@ -21,15 +24,14 @@ export const HoraButton = styled.button `
     align-items: center;
     justify-content: center;
 
-    font-family: ${global.fonts.nunito};
-    font-size: 3.73vw;
-    font-weight: 800;
+    font-family: ${global.fonts.quickSand};
+    font-size: 16px;
+    font-weight: 500;
 
-    color: ${global.colors.cinzaTitulo};
+    color: ${global.colors.cinzaOpaco(.6)};
 
     outline: none;
     border: none;
-    border-bottom: 0.43vh solid ${global.colors.cinzaTitulo};
-    margin-bottom: -0.43vh;
+    border-bottom: 0.5vh solid ${global.colors.cinzaOpaco(.4)};
     transition: transform 0.5s ease;
 `;

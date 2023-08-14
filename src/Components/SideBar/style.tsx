@@ -26,8 +26,11 @@ export const SideBarDiv = styled.div `
 `;
 
 export const SideImg = styled.img `
-    width: 6.3vw;
+    width: 9.45vw;
+    height: 9.45vw;
 `;
+
+/*----------------------------------------------------------------------------*/
 
 export const NotifDiv = styled.div `
     display: flex;
@@ -36,15 +39,25 @@ export const NotifDiv = styled.div `
 
 export const NotifIcon = styled.div `
     display: flex;
+    width: 4vw;
+    height: 4vw;
+    position: absolute;
 
+    align-items: center;
+    justify-content: center;
+
+    outline: solid 1.7vw ${global.colors.branco};
+    border-radius: 50%;
+    right: -10%;
+    background-color: ${global.colors.laranja};
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const SideHeader = styled.section `
     display: grid;
     grid-template-columns: auto auto;
-    margin: 2.59vh 0 0 0;
+    margin: 6vh 0 0 0;
 `;
 
 export const LogoImg = styled.img `
@@ -57,7 +70,7 @@ export const CloseImg = styled.img `
     margin: 0 0 0 15vw
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const ItemsDiv = styled.ul `
     display: grid;
@@ -68,7 +81,7 @@ export const ItemsDiv = styled.ul `
 
 export const SideItem = styled.li `
     display: grid;
-    grid-template-columns: 16% auto;
+    grid-template-columns: 16% auto auto;
     
     align-items: center;
     padding: 0 0 0 6vw;
@@ -87,10 +100,26 @@ export const SideIcon = styled.img `
 
 export const ItemName = styled.p `
     font-family: ${global.fonts.quickSand};
-    font-weight: bold;
+    font-weight: 700;
     font-size: 4.44vw;
     color: ${global.colors.cinza};
 `;
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
+export const NotifNumber = styled.p `
+    display: flex;
+    width: 4vw;
+    height: 4vw;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 4.5vw;
+    font-weight: 700;
+
+    border-radius: 50%;
+
+    background: ${global.colors.laranja};
+    color: ${global.colors.branco};
+`;

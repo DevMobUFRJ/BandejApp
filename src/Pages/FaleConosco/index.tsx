@@ -5,6 +5,9 @@ import { BalaoBanner, BalaoDescription, BalaoInfo, BalaoTitle,
 import Copy from '../../Assets/FaleConosco/copiar.svg';
 import Check from '../../Assets/FaleConosco/check.svg';
 import Redirect from '../../Assets/FaleConosco/redirect.svg';
+import DownPop from "../../Components/PopUp";
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+import { useContext } from "react";
 import DevMobBanner from '../../Assets/FaleConosco/devmobBanner.svg';
 import RUbanner from '../../Assets/FaleConosco/ruBanner.svg';
 
@@ -16,8 +19,10 @@ type copiado = {
 }
 
 export default function FaleConosco() {
+    const { showInstallMessage } = useContext(InstallMessageContext);
 
     const emailRU = 'admruufrj@gmail.com';
+
     const form = 'https://docs.google.com/forms/d/e/1FAIpQLSctq79DYLYzK3IZ_dPuCewiu3g9gG46Px_ngzo5OzTLrtlDRA/viewform';
     const devmob = 'devmob@dcc.ufrj.br';
 
@@ -79,6 +84,10 @@ export default function FaleConosco() {
                     </Links>
                 </div>
             </BalaoInfo>
+            {
+                showInstallMessage &&
+                <DownPop/>
+            }
         </FaleDiv>
     );
 }

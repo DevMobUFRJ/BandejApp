@@ -6,7 +6,7 @@ export const TutDiv = styled.div `
     flex-direction: column;
 
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 
     .currentPage { background: white; }
     .nextButton { 
@@ -15,13 +15,13 @@ export const TutDiv = styled.div `
     }
 
     .currentTemplate {
-        left: 25.25%;
+        transform: translateX(75vw);
     }
     .prevTemplate {
-        left: -50.5%;
+        transform: translateX(-75vw);
     }
     .nextTemplate {
-        left: 125%;
+        transform: translateX(175vw);
     }
 `;
 
@@ -130,7 +130,7 @@ export const PageDescription = styled.p `
 
 export const BackImg = styled.img `
     width: 100%;
-    position: fixed;
+    position: absolute;
     z-index: -1;
     top: 0;
 `;
@@ -138,10 +138,12 @@ export const BackImg = styled.img `
 export const TemplateDiv = styled.div `
     display: flex;
     width: 100vw;
-    height: 68.12vh;
+    height: 134.18vw;
 
     position: relative;
     z-index: 1;
+
+    margin: 0 0 10% 0;
     
     justify-content: center;
     align-items: center;
@@ -151,12 +153,14 @@ export const TemplateDiv = styled.div `
 
 export const Template = styled.img `
     width: 50.5vw;
+
     z-index: 1;
     position: absolute;
+    left: -50.5vw;
 
     filter: drop-shadow(0 7px 7px rgba(0, 0, 0, 0.25));
 
-    transition: left 0.3s ease-out;
+    transition: transform 0.3s ease-out;
 `;
 
 /*------------------------------------------------------*/

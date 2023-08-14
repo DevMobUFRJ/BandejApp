@@ -1,45 +1,63 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
+export const Conteudo = styled.div `
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    background: ${global.colors.branco};
+`;
+
 export const PratoDiv = styled.div `
     display: inline-flex;
-    width: 88.88vw;
-    height: 7.2vh;
+
+    width: 100%;
+    min-height: 12vh;
 
     align-items: center;
-    justify-content: space-evenly;
+    padding-left: 4.4vw;
+`;
 
-    border-radius: 2.33vw;
-    box-shadow: 0 1.2vh 11px -1.1vh rgb(0, 0, 0, 0.25);
+export const Emoji = styled.img `
+`;
 
-    margin-bottom: 2.4vh;
+export const Infos = styled.div `
+    display: flex;
+    flex-direction: column;
+    width: 75%;
 
-    background: ${global.colors.cinza1};
+    padding-left: 4.4vw;
 `;
 
 export const Linha = styled.div `
     display: flex;
-    width: 1px;
-    height: 80%;
+    width: 82.2vw;
+    height: 1px;
+    align-self: center;
+    background: ${global.colors.cinzaOpaco(.16)};
+`;
 
-    background: rgb(0, 0, 0, 0.15);
-    height: 70%;
+export const Tipo = styled.p `
+    font-family: ${global.fonts.quickSand};
+    color: ${global.colors.cinzaClaro};
+    
+    font-size: 16px;
+    font-weight: 500;
 `;
 
 export const Descricao = styled.p `
     display: flex;
-    width: 70%;
-    height: 100%;
-
     align-items: center;
 
-    font-family: ${global.fonts.nunito};
-    font-size: 3.73vw;
-    color: ${global.colors.laranja};
-`;
+    width: 100%;
+    height: 100%;
 
-export const Emoji = styled.p `
-    display: center;
-    justify-content: center;
-    font-size: 4.3vh;
+    font-family: ${global.fonts.quickSand};
+    color: ${global.colors.cinzaPratos};
+
+    font-size: 16px;
+    font-weight: 700;
+
+    word-break: normal;
 `;

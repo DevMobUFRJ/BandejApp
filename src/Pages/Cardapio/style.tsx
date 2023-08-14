@@ -4,50 +4,70 @@ import { global } from "../../globalStyle";
 export const CardapioDiv = styled.div `
     display: flex;
     flex-direction: column;
+    
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
     align-items: center;
 
-    background: #E3E3E3;
+    background: ${global.colors.fundo};
 `;
+/*-----------------------------------------------------------*/
+
+
+export const Sombra = styled.div `
+    width: 100vw;
+    height: 1px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+
+/*-----------------------------------------------------------*/
 
 export const ActionsDiv = styled.div `
     display: flex;
     flex-direction: column;
     width: 100vw;
+    
+    position: absolute;
+    /* Arredondamento/perda de precisão nas contas tava fazendo
+    aparecer uma linhazinha em telas grandes */
+    top: calc(2.25vh + 8vh); 
+    z-index: 0;
+    
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+
     align-items: center;
     justify-content: center;
-    background: white;
+    background: ${global.colors.branco};
 `;
-
-/*-----------------------------------------------------------*/
 
 export const DropHeader = styled.div `
     display: block;
     flex-direction: column;
-    width: 76.63vw;
-    min-height: 5.18vh;
-    height: 5.18vh;
-
-    margin: 0 0 2.26vh 0;
-
-    position: relative;
+    width: 91.1vw;
+    height: 7.5vh;
 `;
 
 /*-----------------------------------------------------------*/
 
-/* Não faço a menor ideia do motivo desse aviso */
-export const Aviso = styled.h1 `
-    margin: 3vh 0 0 0;
-
-    font-family: ${global.fonts.nunito};
-    font-size: 3.73vw;
-    color: ${global.colors.laranja};
+export const Conteudo = styled.div `
+    display: flex;
+    margin-top: 38.75vh;
+    
+    transition: margin-top 300ms ease-in-out;
+    flex-direction: column;
+    align-items: center;
 `;
 
 export const AvisoAtt = styled.h1 `
-    font-family: ${global.fonts.nunito};
-    font-size: 2.7vw;
+    padding-top: 0.5vh;
+    font-family: ${global.fonts.quickSand};
+    font-size: 11px;
     color: ${global.colors.laranja};
 `;

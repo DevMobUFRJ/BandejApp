@@ -70,7 +70,7 @@ export const InfoLink = styled.a `
 
     align-items: center;
 
-    border: solid 2px ${global.colors.cinzaOF};
+    border: solid 2px ${global.colors.cinzaOpaco(.24)};
     border-radius: 4.44vw;
 
     :active {
