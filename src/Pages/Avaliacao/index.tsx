@@ -1,116 +1,110 @@
-import { 
-    Avadiv, 
-    Enviarbutton, 
-    Comentsec,
-    ComentInput, 
-    ComentIcon, 
-    FormDiv,
-    ErroAva
-} from "./style";
-
-import mailIcon from '../../Assets/Avaliacao/MailIcon.svg';
-import Nota from "../../Components/Nota";
-import AvaDrop from "../../Components/AvaDrop";
-import { useContext, useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { useContext } from "react";
+import { useForm } from 'react-hook-form';
 import 'react-toastify/dist/ReactToastify.css';
-import Cabecalho from "../../Components/Cabecalho";
-import DownPop from "../../Components/PopUp";
+import { ToastContainer } from 'react-toastify';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 
+import { AvaSection, Avadiv, Comentario, DateDiv,
+         DatePicker, DateSelect, EmailInput, EnviarButton,
+         AvaForm, TurnoButton, TurnoDiv, FormDiv} from "./style";
+import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
+import Nota from "../../Components/Nota";
+import Cabecalho from "../../Components/Cabecalho";
+import DownPop from "../../Components/PopUp";
+import DropDown from "../../Components/DropDown";
+import datePicker from '../../Assets/Avaliacao/datePicker.svg';
+
+import { formulario } from "../../Functions/Avaliacao/enviar";
+import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
+import { enviar } from '../../Functions/Avaliacao/enviar';
+
 export default function Avaliacao() {
-    const [value, setValue] = useState(0);
-    const [ru, setRu] = useState('NA');
     const { showInstallMessage } = useContext(InstallMessageContext);
+    const {register, handleSubmit, formState: { errors }, setValue, getValues} = useForm<formulario>({defaultValues:{ru: 'selec'}});
 
-    const RUsValidos = ['central', 'ct', 'letras', 'ifcs', 'pv', 'dc', 'mc'];
+    const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
+    const valores = ['selec', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
 
-    const validar = () => {
-        const erro = document.getElementById('ErroAva') as HTMLElement;
-        const comentario = document.getElementById('ComentInput') as HTMLInputElement;
-        while (comentario.value && comentario.value.charAt(0) === '=') {
-            comentario.value = comentario.value.substring(1);
-        }
-        if(comentario.value.trim() === '') {
-            erro.innerText = '* Escreva um comentário';
-            return;
-        }
-        if (comentario.value.trim().length > 200) {
-            erro.innerText = '* Comentário muito longo, máximo de 200 caracteres';
-            return;
-        }
-        if (value === 0) {
-            erro.innerText = '* Dê uma nota';
-            return;
-        }
-        if (!RUsValidos.includes(ru)) {
-            erro.innerText = '* Restaurante inválido';
-            return;
-        }
-
-        const infos = JSON.stringify({
-            nota: value,
-            comentario: comentario.value.trim(),
-            restaurante: ru
-        });
-
-        fetch(`${process.env.REACT_APP_PLANILHA_API_URL}`, {
-            method: 'post',
-            body: infos,
-            mode: 'cors',
-            headers: new Headers({
-              'Content-Type': 'application/json'
-            })
-          })
-          .then(response => {
-            if (!response.ok)
-            // Importante checar porque a fetch só é rejeitada em caso de erro de rede
-                return "Erro ao acessar o servidor"
-            
-            return response.text();
-        })
-          .then((text) =>{
-            if (text === 'OK') {
-                toast.success('Sua avaliação foi enviada com sucesso!');
-            } 
-            else {
-                toast.error(text);
-            }})
-            .catch(err => {
-                toast.error("Erro de rede. Tente novamente mais tarde");
-            });
-        // history.push("/Cardapio");
-    }
-
-    const clearErro = () => {
-        const erro = document.getElementById('ErroAva') as HTMLElement;
-        erro.innerText = '';
-        return;
-    }
+/*----------------------------------------------------------------------------*/
 
     return (
         <Avadiv id="AvaPage">
             <ToastContainer />
 
             <Cabecalho nome='Avaliação'/>
+            
+            <AvaForm onSubmit={handleSubmit((dados) => {enviar(dados)})}>
+                <FormDiv>
+                    <AvaSection>
+                        <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
+                        <DropDown {...register('ru', {required: true, validate: valor => valor !== 'selec'})}
+                            opcaoInicial={getValues('ru')}
+                            valoresState={valores}
+                            valoresOpcoes={opcoes}
+                            tela='avaliacao'
+                            alterarState={(ru: string) => setValue('ru', ru)}
+                        />
+                    </AvaSection>
+                    
+{/*--------------------------------------------------------------------------*/}
 
-            <FormDiv>
-                <AvaDrop setarDrop={setRu}/>
-                <Comentsec>
-                    <ComentIcon src={mailIcon}/>
-                    <ComentInput onClick={clearErro} placeholder="Diga-nos a sua opinião" id="ComentInput"/>
-                </Comentsec>
-                <Nota NotaToParent={setValue}/>
-                <ErroAva id="ErroAva"></ErroAva>
-                <Enviarbutton 
-                    type="button"
-                    onClick={() => {
-                        clearErro();
-                        validar();
-                    }}>
-                        enviar
-                </Enviarbutton>
-            </FormDiv>
+                    <AvaSection>
+                        <div style={{display: 'inline-flex'}}>
+                            <InfoTitle>Seu e-mail</InfoTitle>
+                            <InfoSubtitle>(Opcional)</InfoSubtitle>
+                        </div>
+
+                        <EmailInput {...register('email', {})}
+                        name="email" type="email" placeholder="Insira seu e-mail..."/>
+                    </AvaSection>
+                    
+{/*--------------------------------------------------------------------------*/}
+
+                    <AvaSection>
+                        <div style={{display: 'inline-flex'}}>
+                            <InfoTitle>Avaliar refeição específica</InfoTitle>
+                            <InfoSubtitle>(Opcional)</InfoSubtitle>
+                        </div>
+
+                        <TurnoDiv {...register('turno', {value: '----'})}>
+                            <TurnoButton name="almoco" id="almoco" type="button"
+                            onClick={(elem) => selecionarTurno(elem.currentTarget, setValue)}
+                            >   Almoço
+                            </TurnoButton>
+                            <TurnoButton name='janta' id="janta" type="button"
+                            onClick={(elem) => selecionarTurno(elem.currentTarget, setValue)}
+                            >   Jantar
+                            </TurnoButton>
+                        </TurnoDiv>
+
+                        <DateDiv onFocus={textoParaData}>
+                            <DateSelect {...register('data')} cor={errors.data?.type === 'required'? true:false}
+                            name="data" id="dataSelect" type="text" placeholder="Selecione uma data"/>
+
+                            <DatePicker src={datePicker} onClick={textoParaData}/>
+                        </DateDiv>
+                    </AvaSection>
+                    
+{/*--------------------------------------------------------------------------*/}
+
+                    <AvaSection>
+                        <InfoTitle>Avaliação</InfoTitle>
+                        <Nota NotaToParent={(nota: number) => setValue('nota', nota)}
+                        {...register('nota', {required: true, max:5, min: 1})}/>
+
+                        <Comentario {...register('comentario', {required: true})}
+                        cor={errors.comentario?.type === 'required'? true:false}
+                        placeholder='Nos conte um pouco mais sobre a sua experiência'/>
+                    </AvaSection>
+                    
+{/*--------------------------------------------------------------------------*/}
+
+                </FormDiv>
+                <EnviarButton>
+                    Enviar Avaliação
+                </EnviarButton>
+            </AvaForm>
+    
             {
                 showInstallMessage &&
                 <DownPop/>
