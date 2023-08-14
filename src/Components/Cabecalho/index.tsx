@@ -2,6 +2,7 @@ import SideBar from "../SideBar";
 import { PlaceHolderCabecalho, BlurDiv, CabecaDiv, PageTitle, 
         DivAjustes, IconeAjustes } from "./style";
 import Ajustes from '../../Assets/Ajustes.svg';
+import Close from '../../Assets/Close.svg';
 
 type Nome = { nome: string 
             setOpcoes?: Function};
@@ -47,7 +48,7 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
                 <PageTitle>{nome}</PageTitle>
                 <DivAjustes>
                     <IconeAjustes style={{display: `${nome === 'Cardápio' ? '' : 'none'}`}}
-                    src={Ajustes} 
+                    src={aberto ? Close : Ajustes} 
                     onClick={() => clique(fade, setOpcoes)}/>
                 </DivAjustes>
             </CabecaDiv>
