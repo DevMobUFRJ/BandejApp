@@ -14,7 +14,7 @@ export default function FaleConosco() {
     const { showInstallMessage } = useContext(InstallMessageContext);
 
     const emailRU = 'admruufrj@gmail.com';
-    const devmob = 'devmob'
+    // const devmob = 'devmob'
 
     return (
         <FaleDiv>

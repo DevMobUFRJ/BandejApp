@@ -15,6 +15,8 @@ import { useHistory } from "react-router-dom";
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import { useContext } from "react";
 
+import { global } from "../../globalStyle";
+
 export default function SideBar() {
     const history = useHistory();
     const { pendingNotification } = useContext(NotificationContext); 
@@ -48,6 +50,22 @@ export default function SideBar() {
         closeButton?.removeEventListener('click', CloseSide);
     }
 
+    const rotaAtual = (onde: string):boolean => {
+        return (history.location.pathname === onde)
+    }
+
+    const cliqueHandler = (aqui: string) => {
+        if (!rotaAtual(aqui))
+            history.push(aqui)
+        else 
+            CloseSide();
+    }
+
+    const nomesTelas = ['Cardapio', 'Comunicados', 'Avaliação', 'Informações', 'Fale conosco'];
+    const rotasTelas = ['/Cardapio', '/Notificacao', '/Avaliacao', '/Informacoes', '/FaleConosco'];
+    const icones = [Home, Comun, Aval, Info, Fale];
+    const laranjar = 'invert(48%) sepia(90%) saturate(1570%)' +
+                    'hue-rotate(352deg) brightness(98%) contrast(102%)';
 
     return (
         <SideDiv>      
@@ -65,34 +83,20 @@ export default function SideBar() {
 {/*--------------------------------------------------------------------------*/}
 
                 <ItemsDiv>
-                    <SideItem onClick={() => {(history.location.pathname !== '/Cardapio') ? history.push('/Cardapio') : CloseSide()}}>
-                        <SideIcon src={Home}/>
-                        <ItemName>Cardápio</ItemName>
-                    </SideItem>
-
-                    <SideItem style={{gridTemplateColumns: "16% auto auto"}} onClick={() => {(history.location.pathname !== '/Notificacao') ? history.push('/Notificacao') : CloseSide()}}>
-                        <SideIcon src={Comun}/>
-                        <ItemName>Comunicados</ItemName>
-                        {pendingNotification ?
-                            <NotifNumber>Cadu</NotifNumber>
-                            : null
-                        }
-                    </SideItem>
-
-                    <SideItem onClick={() => {(history.location.pathname !== '/Avaliacao') ? history.push('/Avaliacao') : CloseSide()}}>
-                        <SideIcon src={Aval}/>
-                        <ItemName>Avaliação</ItemName>
-                    </SideItem>
-
-                    <SideItem onClick={() => {(history.location.pathname !== '/Informacoes') ? history.push('/Informacoes') : CloseSide()}}>
-                        <SideIcon src={Info}/>
-                        <ItemName>Informações</ItemName>
-                    </SideItem>
-
-                    <SideItem onClick={() => {(history.location.pathname !== '/FaleConosco') ? history.push('/FaleConosco') : CloseSide()}}>
-                        <SideIcon src={Fale}/>
-                        <ItemName>Fale conosco</ItemName>
-                    </SideItem>
+                    {
+                        rotasTelas.map((rota, indice) => 
+                            <SideItem key={indice} onClick={() => cliqueHandler(rota)}>
+                                <SideIcon src={icones[indice]} style={{filter: rotaAtual(rota) ? laranjar : ''}}/>
+                                <ItemName style={{color: rotaAtual(rota) ? `${global.colors.laranja}`: ' '}}>
+                                    {nomesTelas[indice]}
+                                </ItemName>
+                                {(pendingNotification && nomesTelas[indice] === "Comunicados") ?
+                                    <NotifNumber></NotifNumber>
+                                    : null
+                                }
+                            </SideItem>
+                        )
+                    }
                 </ItemsDiv>
             </SideBarDiv>
         </SideDiv>
