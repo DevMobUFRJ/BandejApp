@@ -4,14 +4,17 @@ import { global } from "../../globalStyle";
 export const InformDiv = styled.div `
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
     align-items: center;
 
     background: ${global.colors.fundo};
 `;
 
-/*----------------------------------------------------------------------------*/
 
 export const SelecionaInfoDiv = styled.div `
     display: flex;
@@ -21,19 +24,22 @@ export const SelecionaInfoDiv = styled.div `
     margin-top: 2vh;
     height: 11.5vh;
     width: 91.1vw;
-
+    
     border-radius: 16px;
     background: ${global.colors.branco};
 `;
+
+/*----------------------------------------------------------------------------*/
 
 export const BalaoInfo = styled.section `
     display: grid;
     grid-template-rows: auto auto;
     grid-row-gap: 2vh;
     width: 82.23vw;
+    height: fit-content;
 
     margin: 2vh 0 0 0;
-    padding: 3.33vw 4.44vw;
+    padding: 4.44vw;
 
     border-radius: 4.44vw;
     background-color: ${global.colors.branco};
@@ -77,27 +83,37 @@ export const InfoGrid = styled.div `
     row-gap: 0.5vh;
 `;
 
-/*----------------------------------------------------------------------------*/
+export const InfoSubtitle = styled.p `
+    margin: 0 0 0.5vh 0;
+    font-family: ${global.fonts.quickSand};
+    font-size: 3.33vw;
+    font-weight: 500;
+    color: #353637;
+`;
 
 export const InfoArea = styled.section `
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-column-gap: 5%;
-    width: 95%;
-    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    
+    justify-content: space-between;
 `;
+
+/*----------------------------------------------------------------------------*/
 
 export const InfoBalao = styled.div `
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 48.64%;
+    height: calc(100% - 4vh);
 
     padding: 2vh 0;
     
     align-self: flex-start;
     align-items: center;
+    justify-content: space-between;
 
-    border: solid 1px ${global.colors.cinzaOpaco(.16)};
+    border: solid 1px ${global.colors.cinzaOpaco(0.16)};
     border-radius: 4.44vw;
 `;
 
@@ -110,4 +126,13 @@ export const InfoUndertitle = styled.p `
 
     text-align: center;
     color: ${global.colors.cinzaClaro};
+`;
+
+export const InfoValor = styled.h4 `
+    width: 70%;
+    text-align: center;
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 700;
+    color: ${global.colors.cinzaPratos};
 `;

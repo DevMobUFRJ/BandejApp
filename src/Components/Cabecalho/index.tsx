@@ -6,6 +6,7 @@ import Ajustes from '../../Assets/Ajustes.svg';
 import Menu from '../../Assets/SideBar/menu.svg';
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import { useContext } from "react";
+import Close from '../../Assets/Close.svg';
 
 type Nome = { nome: string 
             setOpcoes?: Function};
@@ -72,6 +73,7 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
         <PlaceHolderCabecalho>
             <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
                 <BlurDiv id="blurdiv"/>
+
                 <SideBar fechaDiv={() => toggleSide(false)}/>
                 <NotifDiv onClick={() => toggleSide(true)}>
                     <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}/>
@@ -82,7 +84,7 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
 
                 <DivAjustes>
                     <IconeAjustes style={{display: `${nome === 'Cardápio' ? '' : 'none'}`}}
-                    src={Ajustes} 
+                    src={aberto ? Close : Ajustes} 
                     onClick={() => clique(fadeAjustes, setOpcoes)}/>
                 </DivAjustes>
             </CabecaDiv>

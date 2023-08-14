@@ -46,7 +46,7 @@ export const ItemsDiv = styled.ul `
 
 export const SideItem = styled.li `
     display: grid;
-    grid-template-columns: 16% auto;
+    grid-template-columns: 16% auto auto;
     
     align-items: center;
     padding: 0 0 0 6vw;
@@ -65,7 +65,7 @@ export const SideIcon = styled.img `
 
 export const ItemName = styled.p `
     font-family: ${global.fonts.quickSand};
-    font-weight: bold;
+    font-weight: 700;
     font-size: 4.44vw;
     color: ${global.colors.cinza};
 `;
@@ -74,8 +74,8 @@ export const ItemName = styled.p `
 
 export const NotifNumber = styled.p `
     display: flex;
-    width: 8.33vw;
-    height: 8.33vw;
+    width: 4vw;
+    height: 4vw;
 
     align-items: center;
     justify-content: center;

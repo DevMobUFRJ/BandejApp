@@ -6,8 +6,8 @@ type mostrarErro = { cor: boolean; }
 export const Avadiv = styled.div `
     display: flex;
     flex-direction: column;
+    
     min-height: 100vh;
-
     align-items: center;
 
     background: ${global.colors.fundo};
