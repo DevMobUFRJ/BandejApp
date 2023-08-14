@@ -14,7 +14,8 @@ export const Formatacao = {
         return "0";
     },
 
-    diaRelativo: (dia: String):string => {
+    diaRelativo: (data: String):string => {
+        let dia = data.split(" ")[0]
         const partes = dia.split('/').reverse();
     
         const hoje = new Date();
