@@ -3,7 +3,7 @@ import { global } from "../../globalStyle";
 
 export const SideBarDiv = styled.div `
     display: grid;
-    grid-template-rows: 20% auto;
+    grid-template-rows: 20% auto 15%;
     min-width: 0vw;
     width: 0vw;
     height: 100vh;
@@ -89,4 +89,27 @@ export const NotifNumber = styled.p `
 
     background: ${global.colors.laranja};
     color: ${global.colors.branco};
+`;
+
+export const Rodape = styled.div `
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const Direita = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`;
+
+export const Versao = styled.p `
+    font-family: ${global.fonts.quickSand};
+    color: ${global.colors.laranja};
+    font-size: 12px;
+`;
+
+export const LogoUfrj = styled.img `
+    padding-top: 20px;
 `;
