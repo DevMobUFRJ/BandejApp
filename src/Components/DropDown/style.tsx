@@ -43,6 +43,7 @@ export const Opcoes = styled.div `
     height: 0;
 
     position: absolute;
+    z-index: 1;
 
     opacity: 0;
     pointer-events: none;

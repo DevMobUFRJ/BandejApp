@@ -39,6 +39,7 @@ export const Linha = styled.div `
 `;
 
 export const Tipo = styled.p `
+    padding: 0 0 0.5vh 0;
     font-family: ${global.fonts.quickSand};
     color: ${global.colors.cinzaClaro};
     
@@ -50,7 +51,7 @@ export const Descricao = styled.p `
     display: flex;
     align-items: center;
 
-    width: 100%;
+    width: 94%;
     height: 100%;
 
     font-family: ${global.fonts.quickSand};
