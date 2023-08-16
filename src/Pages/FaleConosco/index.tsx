@@ -12,6 +12,7 @@ import DevMobBanner from '../../Assets/FaleConosco/devmobBanner.svg';
 import RUbanner from '../../Assets/FaleConosco/ruBanner.svg';
 
 import { useState, useEffect } from "react";
+import { clearTimeout } from "timers";
 
 type copiado = {
     id: string;
@@ -26,20 +27,28 @@ export default function FaleConosco() {
     const form = 'https://docs.google.com/forms/d/e/1FAIpQLSctq79DYLYzK3IZ_dPuCewiu3g9gG46Px_ngzo5OzTLrtlDRA/viewform';
     const devmob = 'devmob@dcc.ufrj.br';
 
-    const [copiado, Copiar] = useState<Array<copiado>>([]);
+    const [copiado, setCopiado] = useState<Array<copiado>>([]);
 
-    const copiando = async(id: string) => {
+    const copiar = (id: string, link: string) => {
+        navigator.clipboard.writeText(link);
         console.log(copiado);
-        const ultimoTimeout = copiado.find(par => par.id === id);
-        window.clearTimeout(ultimoTimeout?.timeout);
-        Copiar(copiado.filter((par) => par.id != id));
         
-        await new Promise((resposta) => {
-            const tempoId = setTimeout(resposta, 2000);
-            Copiar(copiado.concat({id: id, timeout: tempoId}));
-        });
+        for (const item of copiado) {
+            if (id !== item.id)
+                console.log(id, '!==', item.id)
+            else
+                console.log(id, '===', item.id)
+        }
 
-        Copiar(copiado.filter((par) => par.id != id));
+        const alvo = copiado.find(e => e.id === id);
+        if (!alvo) {
+            const tempo = setTimeout(() => setCopiado(copiado.filter(e => e.id !== id)), 2000)
+            setCopiado(copiado.concat({id: id, timeout: tempo}))
+        }
+        else {
+            window.clearTimeout(alvo.timeout);
+            alvo.timeout = setTimeout(() => setCopiado(copiado.filter(e => e.id !== id)), 2000)
+        }
     }
 
 
@@ -56,7 +65,7 @@ export default function FaleConosco() {
                         Fale com a gente através do formulário ou email.
                     </BalaoDescription>
                     <Links>
-                        <InfoLink id="ru" onClick={elem => copiando(elem.currentTarget.id)}>
+                        <InfoLink id="ru" onClick={elem => copiar(elem.currentTarget.id, emailRU)}>
                             <LinkName>{emailRU}</LinkName>
                             <LinkIcon src={copiado?.find(par => par.id === 'ru')?Check:Copy}/>
                         </InfoLink>
@@ -77,7 +86,7 @@ export default function FaleConosco() {
                         enviar sugestões e tudo mais relacionado ao App.
                     </BalaoDescription>
                     <Links>
-                        <InfoLink id="devmob" onClick={elem => copiando(elem.currentTarget.id)}>
+                        <InfoLink id="devmob" onClick={elem => copiar(elem.currentTarget.id, devmob)}>
                             <LinkName>{devmob}</LinkName>
                             <LinkIcon src={copiado?.find(par => par.id === 'devmob')?Check:Copy}/>
                         </InfoLink>
