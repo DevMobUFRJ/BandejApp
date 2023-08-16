@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
-export const SideDiv = styled.div `
-    display: flex;
-    margin-left: 4.4vw;
-    z-index: 2;
-`;
-
 export const SideBarDiv = styled.div `
     display: grid;
     grid-template-rows: 20% auto;
@@ -15,7 +9,7 @@ export const SideBarDiv = styled.div `
     height: 100vh;
 
     z-index: 2;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
 
@@ -23,33 +17,6 @@ export const SideBarDiv = styled.div `
 
     overflow: hidden;
     transition: width 0.3s ease;
-`;
-
-export const SideImg = styled.img `
-    width: 9.45vw;
-    height: 9.45vw;
-`;
-
-/*----------------------------------------------------------------------------*/
-
-export const NotifDiv = styled.div `
-    display: flex;
-    position: relative;
-`;
-
-export const NotifIcon = styled.div `
-    display: flex;
-    width: 4vw;
-    height: 4vw;
-    position: absolute;
-
-    align-items: center;
-    justify-content: center;
-
-    outline: solid 1.7vw ${global.colors.branco};
-    border-radius: 50%;
-    right: -10%;
-    background-color: ${global.colors.laranja};
 `;
 
 /*----------------------------------------------------------------------------*/
