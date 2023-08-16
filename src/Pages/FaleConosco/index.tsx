@@ -11,7 +11,7 @@ import { useContext } from "react";
 import DevMobBanner from '../../Assets/FaleConosco/devmobBanner.svg';
 import RUbanner from '../../Assets/FaleConosco/ruBanner.svg';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 type copiado = {
     id: string;
@@ -22,24 +22,33 @@ export default function FaleConosco() {
     const { showInstallMessage } = useContext(InstallMessageContext);
 
     const emailRU = 'admruufrj@gmail.com';
-
     const form = 'https://docs.google.com/forms/d/e/1FAIpQLSctq79DYLYzK3IZ_dPuCewiu3g9gG46Px_ngzo5OzTLrtlDRA/viewform';
+
     const devmob = 'devmob@dcc.ufrj.br';
 
-    const [copiado, Copiar] = useState<Array<copiado>>([]);
+/*----------------------------------------------------------------------------*/
 
-    const copiando = async(id: string) => {
-        console.log(copiado);
-        const ultimoTimeout = copiado.find(par => par.id === id);
-        window.clearTimeout(ultimoTimeout?.timeout);
-        Copiar(copiado.filter((par) => par.id != id));
-        
-        await new Promise((resposta) => {
-            const tempoId = setTimeout(resposta, 2000);
-            Copiar(copiado.concat({id: id, timeout: tempoId}));
-        });
+    const [copias, Copiar] = useState<Array<copiado>>([]);
 
-        Copiar(copiado.filter((par) => par.id != id));
+    const copiando = async(id: string, texto: string) => {
+        navigator.clipboard.writeText(texto);
+        console.log(copias);
+        const ultimoTimeout = copias.find(par => par.id === id)?.timeout;
+        window.clearTimeout(ultimoTimeout);
+        Copiar(copias.filter(par => par.timeout !== ultimoTimeout));
+
+        const novoTimeout = await new Promise((): NodeJS.Timeout => {
+            const timeout = setTimeout(() => {
+                console.log('cabou');
+                Copiar(copias.filter(par => par.id !== id));
+            }, 2000);
+            Copiar(copias.concat({id: id, timeout: timeout}));
+            return timeout;
+        })
+        return novoTimeout;
+    }
+
+    const removerTimeout = (timeout: NodeJS.Timeout) {
     }
 
 
@@ -56,9 +65,9 @@ export default function FaleConosco() {
                         Fale com a gente através do formulário ou email.
                     </BalaoDescription>
                     <Links>
-                        <InfoLink id="ru" onClick={elem => copiando(elem.currentTarget.id)}>
+                        <InfoLink id="ru" onClick={elem => copiando(elem.currentTarget.id, devmob)}>
                             <LinkName>{emailRU}</LinkName>
-                            <LinkIcon src={copiado?.find(par => par.id === 'ru')?Check:Copy}/>
+                            <LinkIcon src={copias?.find(par => par.id === 'ru')?Check:Copy}/>
                         </InfoLink>
                         <InfoLink href={form}>
                             <LinkName>Abrir formulário</LinkName>
@@ -77,9 +86,9 @@ export default function FaleConosco() {
                         enviar sugestões e tudo mais relacionado ao App.
                     </BalaoDescription>
                     <Links>
-                        <InfoLink id="devmob" onClick={elem => copiando(elem.currentTarget.id)}>
+                        <InfoLink id="devmob" onClick={elem => copiando(elem.currentTarget.id, devmob)}>
                             <LinkName>{devmob}</LinkName>
-                            <LinkIcon src={copiado?.find(par => par.id === 'devmob')?Check:Copy}/>
+                            <LinkIcon src={copias?.find(par => par.id === 'devmob')?Check:Copy}/>
                         </InfoLink>
                     </Links>
                 </div>
