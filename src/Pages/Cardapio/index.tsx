@@ -187,7 +187,6 @@ export default function Cardapio() {
                     cardapio={makePath(dia)}
                     />
                     <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
-                    <AvisoAtt>Versão 0.0.2</AvisoAtt>
                 </Conteudo>
                 {
                     showInstallMessage &&

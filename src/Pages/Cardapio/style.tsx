@@ -63,8 +63,8 @@ export const Conteudo = styled.div `
 `;
 
 export const AvisoAtt = styled.h1 `
-    padding-top: 0.5vh;
+    padding: 0.5vh 0 0.5vh 0;
     font-family: ${global.fonts.quickSand};
     font-size: 11px;
-    color: ${global.colors.laranja};
+    color: ${global.colors.cinzaPratos};
 `;

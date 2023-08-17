@@ -1,5 +1,6 @@
-import { CloseImg, ItemName, ItemsDiv, LogoImg, NotifNumber, 
-        SideBarDiv, SideHeader, SideIcon, SideItem } from "./style";
+import { CloseImg, Direita, ItemName, ItemsDiv, LogoImg, LogoUfrj, NotifNumber, 
+        Rodape, 
+        SideBarDiv, SideHeader, SideIcon, SideItem, Versao } from "./style";
 
 import Logo from '../../Assets/SideBar/logo.svg';
 import Close from '../../Assets/SideBar/close.svg';
@@ -14,6 +15,9 @@ import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import { useContext } from "react";
 
 import { global } from "../../globalStyle";
+
+import Ru from '../../Assets/SideBar/logo-ru.svg';
+import Ufrj from '../../Assets/SideBar/logo-ufrj.svg';
 
 type props = {
     fechaDiv: Function 
@@ -65,6 +69,13 @@ export default function SideBar({fechaDiv}: props) {
                     )
                 }
             </ItemsDiv>
+            <Rodape>
+                <img src={Ru} alt="Logo do RU"/>
+                <Direita>
+                    <LogoUfrj src={Ufrj} alt="Logo da UFRJ"/>
+                    <Versao>Versão 0.0.3</Versao>
+                </Direita>
+            </Rodape>
         </SideBarDiv>
     );
 }
