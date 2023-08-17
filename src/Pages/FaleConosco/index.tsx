@@ -10,6 +10,7 @@ import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext"
 import { useContext } from "react";
 import DevMobBanner from '../../Assets/FaleConosco/devmobBanner.svg';
 import RUbanner from '../../Assets/FaleConosco/ruBanner.svg';
+import copy from 'copy-to-clipboard';
 
 type copiado = {
     id: string;
@@ -27,7 +28,8 @@ export default function FaleConosco() {
 
     const timers: copiado[] = [];
     const copiar = (id: string, link: string) => {
-        navigator.clipboard.writeText(link);
+        copy(link);
+
         const alvo = document.getElementById(id);
         if (!alvo) 
             return;
