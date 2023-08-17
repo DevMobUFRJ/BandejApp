@@ -6,11 +6,7 @@ export const CardapioDiv = styled.div `
     flex-direction: column;
     
     width: 100vw;
-    height: 100vh;
-    overflow-y: scroll;
-    ::-webkit-scrollbar {
-        display: none;
-    }
+    min-height: 100vh;
 
     align-items: center;
 
@@ -59,7 +55,7 @@ export const DropHeader = styled.div `
 
 export const Conteudo = styled.div `
     display: flex;
-    margin-top: 38.75vh;
+    margin-top: 29vh;
     
     transition: margin-top 300ms ease-in-out;
     flex-direction: column;
