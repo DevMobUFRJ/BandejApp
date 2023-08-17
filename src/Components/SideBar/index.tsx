@@ -73,7 +73,7 @@ export default function SideBar({fechaDiv}: props) {
                 <img src={Ru} alt="Logo do RU"/>
                 <Direita>
                     <LogoUfrj src={Ufrj} alt="Logo da UFRJ"/>
-                    <Versao>Versão 0.0.2</Versao>
+                    <Versao>Versão 0.0.3</Versao>
                 </Direita>
             </Rodape>
         </SideBarDiv>
