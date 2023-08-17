@@ -4,12 +4,8 @@ import { global } from "../../globalStyle";
 export const InformDiv = styled.div `
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    overflow-y: scroll;
-    ::-webkit-scrollbar {
-        display: none;
-    }
-
+    min-height: 100vh;
+    
     align-items: center;
 
     background: ${global.colors.fundo};
