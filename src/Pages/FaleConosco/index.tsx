@@ -11,11 +11,9 @@ import { useContext } from "react";
 import DevMobBanner from '../../Assets/FaleConosco/devmobBanner.svg';
 import RUbanner from '../../Assets/FaleConosco/ruBanner.svg';
 
-import { useState, useEffect } from "react";
-import { clearTimeout } from "timers";
-
 type copiado = {
     id: string;
+    ativo: boolean;
     timeout: NodeJS.Timeout;
 }
 
@@ -27,27 +25,32 @@ export default function FaleConosco() {
     const form = 'https://docs.google.com/forms/d/e/1FAIpQLSctq79DYLYzK3IZ_dPuCewiu3g9gG46Px_ngzo5OzTLrtlDRA/viewform';
     const devmob = 'devmob@dcc.ufrj.br';
 
-    const [copiado, setCopiado] = useState<Array<copiado>>([]);
-
+    const timers: copiado[] = [];
     const copiar = (id: string, link: string) => {
         navigator.clipboard.writeText(link);
-        console.log(copiado);
-        
-        for (const item of copiado) {
-            if (id !== item.id)
-                console.log(id, '!==', item.id)
-            else
-                console.log(id, '===', item.id)
-        }
+        const alvo = document.getElementById(id);
+        if (!alvo) 
+            return;
 
-        const alvo = copiado.find(e => e.id === id);
-        if (!alvo) {
-            const tempo = setTimeout(() => setCopiado(copiado.filter(e => e.id !== id)), 2000)
-            setCopiado(copiado.concat({id: id, timeout: tempo}))
+        const listado = timers.find((el) => el.id === id);
+
+        if (!listado) {
+            alvo.setAttribute('src', Check);
+            const novoTimer = setTimeout(() => alvo.setAttribute('src', Copy), 2000)
+            timers.push({id: id, ativo: true, timeout: novoTimer});
         }
         else {
-            window.clearTimeout(alvo.timeout);
-            alvo.timeout = setTimeout(() => setCopiado(copiado.filter(e => e.id !== id)), 2000)
+            if (listado.ativo)
+                window.clearTimeout(listado.timeout);
+            else {
+                alvo.setAttribute('src', Check);
+                listado.ativo = true;
+            }
+            
+            listado.timeout = setTimeout(() => {
+                alvo.setAttribute('src', Copy)
+                listado.ativo = false;
+            }, 2000)
         }
     }
 
@@ -65,9 +68,9 @@ export default function FaleConosco() {
                         Fale com a gente através do formulário ou email.
                     </BalaoDescription>
                     <Links>
-                        <InfoLink id="ru" onClick={elem => copiar(elem.currentTarget.id, emailRU)}>
+                        <InfoLink onClick={elem => copiar('ru', emailRU)}>
                             <LinkName>{emailRU}</LinkName>
-                            <LinkIcon src={copiado?.find(par => par.id === 'ru')?Check:Copy}/>
+                            <LinkIcon id='ru' src={Copy}/>
                         </InfoLink>
                         <InfoLink href={form}>
                             <LinkName>Abrir formulário</LinkName>
@@ -86,9 +89,9 @@ export default function FaleConosco() {
                         enviar sugestões e tudo mais relacionado ao App.
                     </BalaoDescription>
                     <Links>
-                        <InfoLink id="devmob" onClick={elem => copiar(elem.currentTarget.id, devmob)}>
+                        <InfoLink onClick={elem => copiar('devmob', devmob)}>
                             <LinkName>{devmob}</LinkName>
-                            <LinkIcon src={copiado?.find(par => par.id === 'devmob')?Check:Copy}/>
+                            <LinkIcon id='devmob' src={Copy}/>
                         </InfoLink>
                     </Links>
                 </div>
