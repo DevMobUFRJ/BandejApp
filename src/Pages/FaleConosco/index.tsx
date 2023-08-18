@@ -93,7 +93,9 @@ export default function FaleConosco() {
                     <Links>
                         <InfoLink onClick={elem => copiar('devmob', devmob)}>
                             <LinkName>{devmob}</LinkName>
-                            <LinkIcon id='devmob' src={Copy}/>
+                            <LinkIcon 
+                            style={{filter: 'invert(21%) sepia(74%) saturate(2729%) hue-rotate(196deg) brightness(87%) contrast(89%)'}}
+                            id='devmob' src={Copy}/>
                         </InfoLink>
                     </Links>
                 </div>
