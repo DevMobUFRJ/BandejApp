@@ -6,11 +6,7 @@ export const CardapioDiv = styled.div `
     flex-direction: column;
     
     width: 100vw;
-    height: 100vh;
-    overflow-y: scroll;
-    ::-webkit-scrollbar {
-        display: none;
-    }
+    min-height: 100vh;
 
     align-items: center;
 
@@ -31,12 +27,13 @@ export const ActionsDiv = styled.div `
     display: flex;
     flex-direction: column;
     width: 100vw;
+    height: 29vh;
     
-    position: absolute;
+    position: fixed;
     /* Arredondamento/perda de precisão nas contas tava fazendo
     aparecer uma linhazinha em telas grandes */
     top: calc(2.25vh + 8vh); 
-    z-index: 0;
+    z-index: 1;
     
     pointer-events: auto;
     opacity: 1;
@@ -58,7 +55,7 @@ export const DropHeader = styled.div `
 
 export const Conteudo = styled.div `
     display: flex;
-    margin-top: 38.75vh;
+    margin-top: 29vh;
     
     transition: margin-top 300ms ease-in-out;
     flex-direction: column;
@@ -66,8 +63,8 @@ export const Conteudo = styled.div `
 `;
 
 export const AvisoAtt = styled.h1 `
-    padding-top: 0.5vh;
+    padding: 0.5vh 0 0.5vh 0;
     font-family: ${global.fonts.quickSand};
     font-size: 11px;
-    color: ${global.colors.laranja};
+    color: ${global.colors.cinzaPratos};
 `;

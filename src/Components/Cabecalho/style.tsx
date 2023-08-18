@@ -14,9 +14,9 @@ export const CabecaDiv = styled.header `
     justify-content: space-between;
     padding-top: 2.25vh;
 
-    position: absolute;
+    position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 2;
 
     width: 100vw;
     height: 8vh;
@@ -76,4 +76,29 @@ export const BlurDiv = styled.div `
     height: 100vh;
     z-index: 1;
     background: rgba(0, 0, 0, 0.2);
+`;
+
+export const SideButton = styled.img `
+    width: 9.45vw;
+    height: 9.45vw;
+    margin: 0 0 0 4.44vw;
+`;
+
+
+export const NotifDiv = styled.div `
+    display: block;
+    position: relative;
+`;
+
+export const NotifIcon = styled.div `
+    display: flex;
+    width: 4vw;
+    height: 4vw;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    outline: solid 1.7vw ${global.colors.branco};
+    border-radius: 50%;
+    right: -10%;
+    background-color: ${global.colors.laranja};
 `;

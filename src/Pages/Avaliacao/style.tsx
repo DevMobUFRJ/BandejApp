@@ -1,121 +1,187 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
+type mostrarErro = { cor: boolean; }
+
 export const Avadiv = styled.div `
     display: flex;
     flex-direction: column;
-    
-    width: 100vw;
-    height: 100vh;
-    overflow-y: scroll;
-    ::-webkit-scrollbar {
-        display: none;
-    }
+    min-height: 100vh;
 
     align-items: center;
 
-    .ruAva {
-        top: 0;
-        border: none;
-    }
+    background: ${global.colors.fundo};
 `;
 
-export const Titulo = styled.h1 `
-    margin: 4.5vh 0 0 0;
-    font-family: ${global.fonts.nunito};
-    font-size: 7vw;
-    font-weight: 600;
-`;
+/*----------------------------------------------------------------------------*/
 
-/*-----------------------------------------------*/
-
-export const FormDiv = styled.form `
+export const AvaForm = styled.form `
     display: flex;
     flex-direction: column;
-
-    margin-top: 2vh;
-
-    align-items: center;
+    margin: 0 0 3vh 0;
 `;
 
-export const Comentsec = styled.div `
+export const FormDiv = styled.div `
     display: flex;
-    width: 85vw;
-    height: 25vh;
-    margin-top: 30px;
+    flex-direction: column;
+    width: 82.22vw;
+    
+    align-items: center;
+    
+    margin: 3vh 0;
+    padding: 0 4.44vw;
+    
+    border-radius: 4.44vw;
+    background-color: ${global.colors.branco};
+`;
+
+
+export const AvaSection = styled.section `
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-gap: 1.25vh;
+    
+    width: 100%;
+    
+    margin: 3vh 0;
+`;
+
+/*----------------------------------------------------------------------------*/
+
+export const EmailInput = styled.input `
+    width: 90%;
+    height: 7.5vh;
+
+    padding: 0 5%;
+
+    outline: none;
+    border: 2px solid ${global.colors.cinzaOpaco(0.24)};
+    border-radius: 4.44vw;
+
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 500;
+    color: ${global.colors.cinza};
+    
+    :focus { border-color: ${global.colors.laranja}; }
+`;
+
+/*----------------------------------------------------------------------------*/
+
+export const TurnoDiv = styled.div `
+    display: inline-flex;
+    width: 100%;
+
+    justify-content: space-between;
+
+    .turnoSelecionado {
+        color: ${global.colors.branco};
+        background-color: ${global.colors.laranja};
+        transform: scale(1.03, 1.03);
+    }
+`;
+
+export const TurnoButton = styled.button `
+    width: 48.64%;
+    height: 5.5vh;
+
+    border: none;
+    border-radius: 4.44vw;
+
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 700;
+
+    color: ${global.colors.cinza};
+    background-color: ${global.colors.cinzaOpaco(0.08)};
+
+    transition: transform 0.5s ease;
+`;
+
+/*----------------------------------------------------------------------------*/
+
+export const DateDiv = styled.div `
+    display: flex;
+    width: 100%;
+    height: 7.5vh;
 
     position: relative;
 
-    padding: 2vh 0 0 0;
+    outline: none;
+    border: 2px solid ${global.colors.cinzaOpaco(0.24)};
+    border-radius: 4.44vw;
 
-    border-radius: 4.67vw;
-    border: solid 1.5px transparent;
-
-    background: ${global.colors.cinza1};
-
-    :focus-within {border: solid 1.5px ${global.colors.laranja};}
+    :focus-within { border-color: ${global.colors.laranja}; }
 `;
 
-export const ComentIcon = styled.img `
-    width: 7vw;
-    margin: 0.3vh 2vw 0 4vw;
-    align-self: flex-start;
-`;
+export const DateSelect = styled.input<mostrarErro> `
+    width: 100%;
+    height: 100%;
 
-export const ComentInput = styled.textarea `
-    width: 82%;
-    height: 95%;
+    padding: 0 5%;
 
-    font-size: 4.67vw;
-    font-family: ${global.fonts.nunito};
-    
     outline: none;
     border: none;
+    border-radius: inherit;
+
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 700;
+    color: ${global.colors.cinza};
+
+    appearance: none;
+    ::-webkit-calendar-picker-indicator { display: none; }
 `;
 
-/*-----------------------------------------------*/
+export const DatePicker = styled.img `
+    width: 5vw;
+    height: 2.5vh;
 
-export const ErroAva = styled.p `
-    align-self: flex-start;
-    max-width: 85vw;
-
-    font-family: ${global.fonts.nunito};
-    font-size: 4.6vw;
-    color: red;
+    position: absolute;
+    top: calc(50% - 1.25vh);
+    right: 5vw;
 `;
 
-/*-----------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
-export const Enviarbutton = styled.button `
-    width: 78.73vw;
-    height: 8.63vh;
-    margin-top: 50px;
+export const Comentario = styled.textarea<mostrarErro> `
+    height: 13vh;
 
-    align-items: center;
-    justify-content: center;
+    padding: 1.3vh 2vw 0 2vw;
+    margin: 1vh 0 0 0;
 
-    font-family: ${global.fonts.bebas};
-    font-size: 4.31vh;
-
-    background: ${global.colors.laranja};
-    color: white;
     outline: none;
-    border: none;
-    border-radius: 4.2vw;
+    border: 2px solid ${global.colors.cinzaOpaco(0.24)};
+    border-radius: 4.44vw;
 
-    transition: transform 0.3s ease;
-    :active {
-        transform: translateY(10px);
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 500;
+    color: ${global.colors.cinza};
+
+    resize: none;
+
+    :focus { border-color: ${global.colors.laranja}; }
+
+    ::placeholder {
+        color: ${placeholder => placeholder.cor ? 'red':`${global.colors.cinza}`};
     }
 `;
 
-export const AvalImg = styled.img `
-    width: 6.3vw;
-    //padding: 0 4.9vw 0 9.6vw;
-    display: flex;
-    position: absolute;
-    top: 5vh;
-    left: 6.3vw;
+/*----------------------------------------------------------------------------*/
+
+export const EnviarButton = styled.button `
+    width: 91.11vw;
+    height: 7vh;
+
+    font-family: ${global.fonts.quickSand};
+    font-size: 5.55vw;
+    font-weight: 700;
+    color: ${global.colors.branco};
+
     outline: none;
     border: none;
+    border-radius: 4.44vw;
+
+    background-color: ${global.colors.laranja};
 `;
