@@ -33,9 +33,29 @@ code {
   
   margin: auto !important;
   border-radius: 16px !important;
-  background-color: #2452A9 !important;
+  
   font-size: 14px !important;
   font-weight: 500 !important;
+}
+
+.Toastify__toast--default {
+  background-color: #2452A9 !important;
+}
+
+.Toastify__toast--info {
+  background-color: #2452A9 !important;
+}
+
+.Toastify__toast--success {
+  background-color: #3BA57E !important;
+}
+
+.Toastify__toast--warning {
+  background-color: #D59E14 !important;
+}
+
+.Toastify__toast--error {
+  background-color: #EB5656 !important;
 }
 
 :root {

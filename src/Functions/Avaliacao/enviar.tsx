@@ -1,3 +1,4 @@
+import { error } from 'console';
 import { toast } from 'react-toastify';
 
 export type formulario = {
@@ -26,16 +27,9 @@ function formatarData(formulario: formulario) {
 
 /*----------------------------------------------------------------------------*/
 
-export const enviar = (formulario: formulario) => {
-
-    verificarComentario(formulario);
-    formatarData(formulario);
-
-    console.log(formulario);
-
-    const dados = JSON.stringify({formulario});
-
-    fetch(`${process.env.REACT_APP_PLANILHA_API_URL}`, {
+const promessaDeEnvio = async (dados: string) => {
+    return new Promise((resolve, reject) => {
+        fetch(`${process.env.REACT_APP_PLANILHA_API_URL}`, {
         method: 'post',
         body: dados,
         mode: 'cors',
@@ -44,20 +38,46 @@ export const enviar = (formulario: formulario) => {
         })
       })
       .then(response => {
-        if (!response.ok)
-        // Importante checar porque a fetch só é rejeitada em caso de erro de rede
-            return "Erro ao acessar o servidor"
+        if (!response.ok) {
+            // Importante checar porque a fetch só é rejeitada em caso de erro de rede
+            reject("Erro ao acessar o servidor")
+        }
         
         return response.text();
-    })
+        })
       .then((text) =>{
         if (text === 'OK') {
-            toast.success('Sua avaliação foi enviada com sucesso!');
+            resolve('Sua avaliação foi enviada com sucesso!');
         } 
         else {
-            toast.error(text);
+            reject(text);
         }})
-        .catch(err => {
-            toast.error("Erro de rede. Tente novamente mais tarde");
-        });
+        .catch((err) => {
+            reject('Erro de rede. Tente novamente mais tarde')
+        }) 
+    });
+}
+
+export const enviar = (formulario: formulario) => {
+
+    verificarComentario(formulario);
+    formatarData(formulario);
+
+    console.log(formulario);
+
+    const dados = JSON.stringify({formulario});
+    toast.promise(promessaDeEnvio(dados), 
+                {pending: 'Enviando avaliação',
+                success: {
+                    render({data}) {
+                        return `${data}`;
+                    }
+                },
+                error: {
+                    render({data}) {
+                        return `${data}`;
+                    }
+                }})
+
+    
 }
