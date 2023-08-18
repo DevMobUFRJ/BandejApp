@@ -36,22 +36,19 @@ export default function FaleConosco() {
 
         const listado = timers.find((el) => el.id === id);
 
+        alvo.setAttribute('src', Check);
         if (!listado) {
-            alvo.setAttribute('src', Check);
             const novoTimer = setTimeout(() => alvo.setAttribute('src', Copy), 2000)
             timers.push({id: id, ativo: true, timeout: novoTimer});
         }
         else {
             if (listado.ativo)
                 window.clearTimeout(listado.timeout);
-            else {
-                alvo.setAttribute('src', Check);
-                listado.ativo = true;
-            }
-            
+
+            listado.ativo = true;
             listado.timeout = setTimeout(() => {
-                alvo.setAttribute('src', Copy)
                 listado.ativo = false;
+                alvo.setAttribute('src', Copy)
             }, 2000)
         }
     }
