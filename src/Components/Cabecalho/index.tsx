@@ -1,6 +1,6 @@
 import SideBar from "../SideBar";
 import { PlaceHolderCabecalho, BlurDiv, CabecaDiv, PageTitle, 
-        DivAjustes, IconeAjustes, NotifDiv, NotifIcon, SideButton } from "./style";
+        DivAjustes, IconeAjustes, NotifDiv, NotifInside, SideButton, NotifIcon } from "./style";
 import Menu from '../../Assets/SideBar/menu.svg';
 import Ajustes from '../../Assets/Ajustes.svg';
 import Close from '../../Assets/Close.svg';
@@ -73,7 +73,9 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
                 <BlurDiv id="blurdiv"/>
                 <SideBar fechaDiv={() => toggleSide(false)}/>
                 <NotifDiv onClick={() => toggleSide(true)}>
-                    <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}/>
+                    <NotifIcon>
+                        <NotifInside style={{display: `${pendingNotification? '':'none'}`}}/>
+                    </NotifIcon>
                     <SideButton src={Menu}/>
                 </NotifDiv>
                 <PageTitle>{nome}</PageTitle>

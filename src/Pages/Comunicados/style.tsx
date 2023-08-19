@@ -5,7 +5,7 @@ interface CardProps {
     new?: boolean;
 }
 
-export const Avadiv = styled.div `
+export const ComunicadoDiv = styled.div `
     display: flex;
     flex-direction: column;
 
@@ -46,17 +46,6 @@ export const TextoSemMensagens = styled.p `
     font-family: ${global.fonts.quickSand};
     font-size: 16px;
     font-weight: 700;
-`;
-
-export const AvalImg = styled.img `
-    width: 6.3vw;
-    //padding: 0 4.9vw 0 9.6vw;
-    display: flex;
-    position: absolute;
-    top: 5vh;
-    left: 6.3vw;
-    outline: none;
-    border: none;
 `;
 
 export const CardMensagem = styled.div `
