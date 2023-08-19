@@ -21,3 +21,75 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Toastify__toast-container {
+  width: 100vw !important; 
+  top: 6.5vh !important;
+}
+
+.Toastify__toast {
+  width: 91.1vw !important;
+  height: 7.5vh !important;
+  
+  margin: auto !important;
+  border-radius: 16px !important;
+  
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.Toastify__toast--default {
+  background-color: #2452A9 !important;
+}
+
+.Toastify__toast--info {
+  background-color: #2452A9 !important;
+}
+
+.Toastify__toast--success {
+  background-color: #3BA57E !important;
+}
+
+.Toastify__toast--warning {
+  background-color: #D59E14 !important;
+}
+
+.Toastify__toast--error {
+  background-color: #EB5656 !important;
+}
+
+:root {
+  --toastify-color-light: #fff;
+  --toastify-color-dark: #121212;
+  --toastify-color-info: white !important;
+  --toastify-color-success: white !important;
+  --toastify-color-warning: white !important  ;
+  --toastify-color-error: white !important;
+  --toastify-color-transparent: rgba(255, 255, 255, 0.7);
+
+  --toastify-icon-color-info: var(--toastify-color-info);
+  --toastify-icon-color-success: var(--toastify-color-success);
+  --toastify-icon-color-warning: var(--toastify-color-warning);
+  --toastify-icon-color-error: var(--toastify-color-error);
+
+  --toastify-font-family: 'Quicksand' !important;
+  --toastify-z-index: 9999;
+
+  --toastify-text-color-light: #fff !important;
+  --toastify-text-color-dark: #fff !important;
+
+  --toastify-text-color-info: #fff !important;
+  --toastify-text-color-success: #fff !important;
+  --toastify-text-color-warning: #fff !important;
+  --toastify-text-color-error: #fff !important;
+
+  --toastify-color-progress-light: none !important;
+  --toastify-color-progress-dark: none !important;
+  --toastify-color-progress-info: none !important;
+  --toastify-color-progress-success: none !important;
+  --toastify-color-progress-warning: none !important;
+  --toastify-color-progress-error: none!important;
+
+  --toastify-spinner-color: #fff !important;
+  --toastify-spinner-color-empty-area: #e0e0e0;
+}

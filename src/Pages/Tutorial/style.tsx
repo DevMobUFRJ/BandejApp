@@ -29,7 +29,7 @@ export const FullTutorial = styled.div `
     display: flex;
 `;
 
-/*------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const InitialPage = styled.div `
     display: flex;
@@ -40,53 +40,77 @@ export const InitialPage = styled.div `
     align-items: center;
 `;
 
+export const LogoDiv = styled.div `
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: calc(134.18vw - 10%);
+
+    position: relative;
+    z-index: 1;
+
+    margin: 0 0 15% 0;
+    padding: 15% 0 0 0;
+    
+    align-items: center;
+
+    overflow: hidden;
+`;
+
 export const Logo = styled.img `
-    width: 86.85vw;
-    margin: 20.51vh 0 0 0;
+    width: 70vw;
 `;
 
 export const Slogan = styled.p `
-    margin: 3.77vh 0 ;
+    margin: 2vh 0 0 0;
     font-family: ${global.fonts.quickSand};
     font-weight: 600;
-    font-size: 3.73vw;
-    color: rgba(0, 0, 0, 0.5);
+    font-size: 3vw;
+    color: white;
 `;
 
-export const StartButton = styled.button `
-    width: 78.73vw;
-    height: 8.63vh;
+export const StartDiv = styled.div `
+    display: grid;
 
-    margin: 10.5vh 0 0 0;
+    grid-template-rows: auto auto;
+    grid-row-gap: 2vh;
 
-    font-family: ${global.fonts.nunito};
-    font-weight: 600;
-    font-size: 7vw;
+    width: 90.83vw;
+
+    .skip {
+        width: calc(100% - 0.55vw);
+        height: calc(7vh - 0.55vw);
+
+        background: ${global.colors.branco};
+        border: solid 0.55vw ${global.colors.laranja};
+        color: ${global.colors.laranja};
+    }
+`;
+
+export const StartSkip = styled.button `
+    width: 100%;
+    height: 7vh;
+
+    font-family: ${global.fonts.quickSand};
+    font-weight: 700;
+    font-size: 5.55vw;
 
     color: white;
     background-color: ${global.colors.laranja};
 
     outline: none;
     border: none;
-    border-radius: 4.2vw;
+    border-radius: 4.44vw;
 
-    box-shadow: 0 14px 11px -11px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
 
     transition: transform 0.3s ease;
     :active {
-        transform: translateY(1vh);
+        transform: translateY(0.5vh);
     }
 `;
 
-export const SkipTut = styled.u `
-    margin: 3vh;
-    font-family: ${global.fonts.quickSand};
-    font-weight: 600;
-    font-size: 3.73vw;
-    color: ${global.colors.laranja};
-`;
-
-/*------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const CurrentDiv = styled.div `
     display: flex;
@@ -106,7 +130,7 @@ export const CurrentPage = styled.div `
     background-color: rgba(255, 255, 255, 0.24);
 `;
 
-/*------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const PageTitle = styled.h1 `
     width: 82vw;
@@ -121,12 +145,13 @@ export const PageDescription = styled.p `
     width: 82vw;
     margin: 0 9vw 6vh 9vw;
 
-    font-size: 5.5vw;
+    font-size: 5.55vw;
     font-weight: 500;
     font-family: ${global.fonts.quickSand};
+    color: ${global.colors.cinza};
 `;
 
-/*------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const BackImg = styled.img `
     width: 100%;
@@ -163,7 +188,7 @@ export const Template = styled.img `
     transition: transform 0.3s ease-out;
 `;
 
-/*------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 export const ButtonDiv = styled.div `
     display: flex;
