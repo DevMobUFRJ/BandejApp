@@ -29,7 +29,7 @@ export default function Avaliacao() {
 
     return (
         <Avadiv id="AvaPage">
-            <ToastContainer />
+            <ToastContainer autoClose={3000}/>
 
             <Cabecalho nome='Avaliação'/>
             
