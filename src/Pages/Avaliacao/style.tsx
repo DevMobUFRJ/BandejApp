@@ -113,7 +113,7 @@ export const DateDiv = styled.div `
     :focus-within { border-color: ${global.colors.laranja}; }
 `;
 
-export const DateSelect = styled.input<mostrarErro> `
+export const DateSelect = styled.input `
     width: 100%;
     height: 100%;
 
@@ -147,7 +147,6 @@ export const Comentario = styled.textarea<mostrarErro> `
     height: 13vh;
 
     padding: 1.3vh 2vw 0 2vw;
-    margin: 1vh 0 0 0;
 
     outline: none;
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
@@ -183,4 +182,14 @@ export const EnviarButton = styled.button `
     border-radius: 4.44vw;
 
     background-color: ${global.colors.laranja};
+`;
+
+/*----------------------------------------------------------------------------*/
+
+export const MensagemErro = styled.p `
+    padding: 0 0 0 1%;
+    font-family: ${global.fonts.quickSand};
+    font-size: 3vw;
+    font-weight: 700;
+    color: red;
 `;

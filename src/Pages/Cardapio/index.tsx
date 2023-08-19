@@ -9,7 +9,7 @@ import NavBar from "../../Components/Navbar";
 import Horario from "../../Components/Horario";
 import DropDown from "../../Components/DropDown";
 import Dia from "../../Components/Dia";
-import DownPop from "../../Components/PopUp";
+import DownPop from "../../Components/PopUpIOS";
 import Load from "../../Components/Load";
 import FontSize from "../../Functions/Cardapio/FontSize";
 import Cabecalho from "../../Components/Cabecalho";

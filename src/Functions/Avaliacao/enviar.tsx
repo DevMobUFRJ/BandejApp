@@ -80,7 +80,7 @@ export const enviar = (formulario: formulario, valores: Array<string>): boolean 
 
     const dados = JSON.stringify({formulario});
 
-    const retorno = fetch(`${process.env.REACT_APP_PLANILHA_API_URL}`, {
+    fetch(`${process.env.REACT_APP_PLANILHA_API_URL}`, {
         method: 'post',
         body: dados,
         mode: 'cors',

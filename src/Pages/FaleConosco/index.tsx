@@ -5,7 +5,7 @@ import { BalaoBanner, BalaoDescription, BalaoInfo, BalaoTitle,
 import Copy from '../../Assets/FaleConosco/copiar.svg';
 import Check from '../../Assets/FaleConosco/check.svg';
 import Redirect from '../../Assets/FaleConosco/redirect.svg';
-import DownPop from "../../Components/PopUp";
+import DownPop from "../../Components/PopUpIOS";
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { useContext } from "react";
 import DevMobBanner from '../../Assets/FaleConosco/devmobBanner.svg';

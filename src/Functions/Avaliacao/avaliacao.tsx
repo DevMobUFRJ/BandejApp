@@ -11,7 +11,7 @@ export const textoParaData = () => {
     }
 
     dataInput?.setAttribute('type', 'date');
-    setTimeout(() => { dataInput?.click(); }, 500);
+    setTimeout(() => { dataInput?.click(); }, 100);
 }
 
 /*----------------------------------------------------------------------------*/
@@ -31,7 +31,7 @@ export const mostrarData = (): string => {
 
 /*----------------------------------------------------------------------------*/
 
-export const selecionarTurno = (elem: HTMLButtonElement, setValue: UseFormSetValue<formulario>) => {
+export const selecionarTurno = (elem: HTMLButtonElement, setValue: UseFormSetValue<formulario>, form: formulario) => {
     const almoco = document.getElementById('almoco');
     const janta = document.getElementById('janta');
     const data = document.getElementById('dataSelect');
@@ -42,14 +42,14 @@ export const selecionarTurno = (elem: HTMLButtonElement, setValue: UseFormSetVal
         if(elem.classList.contains('turnoSelecionado')) {
             elem.classList.remove('turnoSelecionado');
             data?.toggleAttribute('required', false);
-            data?.setAttribute('type', 'text');
+            if(!form.data) data?.setAttribute('type', 'text');
             setValue('turno', '----');
         }
         else {
             elem.classList.add('turnoSelecionado');
             data?.toggleAttribute('required', true);
             data?.setAttribute('type', 'date');
-            data?.focus();
+            textoParaData();
             setValue('turno', 'Almoço');
         }
     }
@@ -59,16 +59,15 @@ export const selecionarTurno = (elem: HTMLButtonElement, setValue: UseFormSetVal
         if(elem.classList.contains('turnoSelecionado')) {
             elem.classList.remove('turnoSelecionado');
             data?.toggleAttribute('required', false);
-            data?.setAttribute('type', 'text');
+            if(!form.data) data?.setAttribute('type', 'text');
             setValue('turno', '----')
         }
         else {
             elem.classList.add('turnoSelecionado');
             data?.toggleAttribute('required', true);
             data?.setAttribute('type', 'date');
-            data?.focus();
+            textoParaData();
             setValue('turno', 'Jantar');
         }
     }
-
 }

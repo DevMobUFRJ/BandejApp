@@ -5,6 +5,7 @@
   margin: 0 0;
   padding: 0 0;
   background-color: transparent;
+  scroll-behavior: smooth;
 }
 
 body {

@@ -11,7 +11,7 @@ import { Formatacao } from "../../Functions/Formatacao";
 import { useContext } from "react";
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import Pending from '../../Assets/SideBar/pending.svg';
-import DownPop from "../../Components/PopUp";
+import DownPop from "../../Components/PopUpIOS";
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import SemMsg from '../../Assets/Notificacoes/SemMsg.svg'
     
