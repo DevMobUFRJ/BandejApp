@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { AvaSection, Avadiv, Comentario, DateDiv,
+         DatePicker, DateSelect, EmailInput, EnviarButton,
+         AvaForm, TurnoButton, TurnoDiv, FormDiv} from "./style";
+
+import { useContext, useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
+
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 
-import { AvaSection, Avadiv, Comentario, DateDiv,
-         DatePicker, DateSelect, EmailInput, EnviarButton,
-         AvaForm, TurnoButton, TurnoDiv, FormDiv} from "./style";
 import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
 import Nota from "../../Components/Nota";
 import Cabecalho from "../../Components/Cabecalho";
@@ -20,10 +22,19 @@ import { enviar } from '../../Functions/Avaliacao/enviar';
 
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
-    const {register, handleSubmit, formState: { errors }, setValue, getValues} = useForm<formulario>({defaultValues:{ru: 'selec'}});
+    const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} =
+    useForm<formulario>({defaultValues:{ru: 'selec', email: '', turno: '----', nota: 0, comentario: ''}});
 
     const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
     const valores = ['selec', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
+
+
+    const [enviado, enviarForm] = useState(false);
+
+    useEffect(() => {
+        reset();
+        enviarForm(false);
+    }, [enviado])
 
 /*----------------------------------------------------------------------------*/
 
@@ -33,7 +44,7 @@ export default function Avaliacao() {
 
             <Cabecalho nome='Avaliação'/>
             
-            <AvaForm onSubmit={handleSubmit((dados) => {enviar(dados)})}>
+            <AvaForm onSubmit={handleSubmit(dados => { if(enviar(dados, valores)) enviarForm(true); })}>
                 <FormDiv>
                     <AvaSection>
                         <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>

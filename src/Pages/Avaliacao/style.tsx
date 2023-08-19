@@ -24,12 +24,11 @@ export const AvaForm = styled.form `
 export const FormDiv = styled.div `
     display: flex;
     flex-direction: column;
-    width: 82.22vw;
+    width: 91.11vw;
     
     align-items: center;
     
     margin: 3vh 0;
-    padding: 0 4.44vw;
     
     border-radius: 4.44vw;
     background-color: ${global.colors.branco};
@@ -41,15 +40,15 @@ export const AvaSection = styled.section `
     grid-template-rows: auto auto;
     grid-gap: 1.25vh;
     
-    width: 100%;
+    width: calc(100% - 8.88vw);
     
-    margin: 3vh 0;
+    padding: 3vh 4.44vw;
 `;
 
 /*----------------------------------------------------------------------------*/
 
 export const EmailInput = styled.input `
-    width: 90%;
+    width: calc(90.25% - 4px);
     height: 7.5vh;
 
     padding: 0 5%;
@@ -102,13 +101,13 @@ export const TurnoButton = styled.button `
 
 export const DateDiv = styled.div `
     display: flex;
-    width: 100%;
+    width: calc(100% - 4px);
     height: 7.5vh;
 
     position: relative;
 
     outline: none;
-    border: 2px solid ${global.colors.cinzaOpaco(0.24)};
+    border: solid 0.55vw ${global.colors.cinzaOpaco(0.24)};
     border-radius: 4.44vw;
 
     :focus-within { border-color: ${global.colors.laranja}; }

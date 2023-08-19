@@ -3,9 +3,11 @@ import { global } from "../../globalStyle";
 
 export const NavDiv = styled.div `
     display: flex;
-    margin-top: 2vh;
-    padding: 0 9vw;
-    width: 82vw;
+
+    margin: 2vh 0 0 0;
+    padding: 0 4.5vw;
+    width: 92vw;
+
     overflow-x: scroll;
     ::-webkit-scrollbar {
         display: none;

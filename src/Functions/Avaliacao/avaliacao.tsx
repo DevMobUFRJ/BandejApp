@@ -11,7 +11,7 @@ export const textoParaData = () => {
     }
 
     dataInput?.setAttribute('type', 'date');
-    setTimeout(() => { dataInput?.click(); }, 100);
+    setTimeout(() => { dataInput?.click(); }, 500);
 }
 
 /*----------------------------------------------------------------------------*/
@@ -42,11 +42,14 @@ export const selecionarTurno = (elem: HTMLButtonElement, setValue: UseFormSetVal
         if(elem.classList.contains('turnoSelecionado')) {
             elem.classList.remove('turnoSelecionado');
             data?.toggleAttribute('required', false);
+            data?.setAttribute('type', 'text');
             setValue('turno', '----');
         }
         else {
             elem.classList.add('turnoSelecionado');
             data?.toggleAttribute('required', true);
+            data?.setAttribute('type', 'date');
+            data?.focus();
             setValue('turno', 'Almoço');
         }
     }
@@ -56,12 +59,16 @@ export const selecionarTurno = (elem: HTMLButtonElement, setValue: UseFormSetVal
         if(elem.classList.contains('turnoSelecionado')) {
             elem.classList.remove('turnoSelecionado');
             data?.toggleAttribute('required', false);
+            data?.setAttribute('type', 'text');
             setValue('turno', '----')
         }
         else {
             elem.classList.add('turnoSelecionado');
             data?.toggleAttribute('required', true);
+            data?.setAttribute('type', 'date');
+            data?.focus();
             setValue('turno', 'Jantar');
         }
     }
+
 }
