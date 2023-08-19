@@ -1,4 +1,3 @@
-import { error } from 'console';
 import { toast } from 'react-toastify';
 
 export type formulario = {
@@ -18,7 +17,7 @@ function verificarComentario(formulario: formulario) {
 
 function formatarData(formulario: formulario) {
     const dataSeparada = formulario.data.split('-');
-
+    
     if(!dataSeparada[0] || !dataSeparada[1] || !dataSeparada[2]) return;
 
     console.log('chegou');
