@@ -81,7 +81,7 @@ export const MensagensNaoLidas = styled.button `
 export const Card = styled.div<CardProps>`
     padding: 2.125vh 6.66vw 2vh 6.66vw;
     margin-top: 1px;
-    background: ${(props) => props.new ? global.colors.branco : global.colors.cinzaOpaco(0.04)};
+    background: ${(props) => props.new ? global.colors.branco : '#F7F7F7'};
     font-family: ${global.fonts.quickSand};
 `;
 
