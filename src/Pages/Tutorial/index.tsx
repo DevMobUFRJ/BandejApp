@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 
 import { BackImg, ButtonDiv, CurrentDiv,
     CurrentPage, InitialPage, PageDescription,
-    PageTitle, PrevNext, StartButton, Template,
-    TemplateDiv, TutDiv, Logo, Slogan, SkipTut } from "./style";
+    PageTitle, PrevNext, StartSkip, Template,
+    TemplateDiv, TutDiv, Logo, Slogan, LogoDiv, StartDiv } from "./style";
 
 import Background from '../../Assets/Tutorial/BgInicial.svg';
 import TempAvaliacao from "../../Assets/Tutorial/TempAvaliacao.svg";
@@ -12,6 +12,7 @@ import TempCardapio from "../../Assets/Tutorial/TempCardapio.svg";
 import TempDownload from "../../Assets/Tutorial/TempDownload.svg";
 import TempNotificacao from "../../Assets/Tutorial/TempNotificacao.svg"
 import LogoImg from '../../Assets/Tutorial/Logo.svg';
+import BackgroundRu from '../../Assets/Tutorial/BgRu.svg';
 
 
 export default function Tutorial() {
@@ -85,15 +86,24 @@ export default function Tutorial() {
     return(
         <TutDiv>
             <InitialPage style={{display: `${inicio?'none':'flex'}`}}>
-                <Logo src={LogoImg}/>
+                <BackImg src={BackgroundRu}/>
 
-                <Slogan>Do universitário, para os universitários : )</Slogan>
+                <LogoDiv>
+                    <Logo src={LogoImg}/>
+                    <Slogan>Do universitário, para os universitários : )</Slogan>
+                </LogoDiv>
 
-                <StartButton onClick={() => tggInicio(1)}>COMEÇAR</StartButton>
-                <SkipTut onClick={() => history.push('/Restaurante')}>Pular Tutorial</SkipTut>
+                <PageDescription>
+                    Tenha o cardápio do<br/>bandejão onde e quando<br/>você precisar
+                </PageDescription>
+
+                <StartDiv>
+                    <StartSkip onClick={() => tggInicio(1)}>Começar</StartSkip>
+                    <StartSkip className="skip" onClick={() => history.push('/Restaurante')}>Pular introdução</StartSkip>
+                </StartDiv>
             </InitialPage>
 
-            <div style={{display: `${inicio?'':'none'}`, margin: 0}}>
+            <div style={{display: `${inicio?'':'none'}`}}>
                 <BackImg src={Background}/>
                 
                 <CurrentDiv>
