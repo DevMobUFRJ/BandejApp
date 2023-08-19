@@ -17,7 +17,7 @@ function verificarComentario(formulario: formulario) {
 
 function formatarData(formulario: formulario) {
     const dataSeparada = formulario.data.split('-');
-
+    
     if(!dataSeparada[0] || !dataSeparada[1] || !dataSeparada[2]) return;
 
     formulario.data = `${dataSeparada[2]}/${dataSeparada[1]}/${dataSeparada[0]}`;

@@ -156,7 +156,7 @@ export default function Cardapio() {
 
     return(
         <CardapioDiv id="cardapio">
-            <ToastContainer />
+            <ToastContainer autoClose={3000}/>
             {
                 (loading) ?
                     <Load />
