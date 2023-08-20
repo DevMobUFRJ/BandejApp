@@ -73,8 +73,8 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
                 <BlurDiv id="blurdiv"/>
                 <SideBar fechaDiv={() => toggleSide(false)}/>
                 <NotifDiv onClick={() => toggleSide(true)}>
-                    <NotifIcon>
-                        <NotifInside style={{display: `${pendingNotification? '':'none'}`}}/>
+                    <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}>
+                        <NotifInside/>
                     </NotifIcon>
                     <SideButton src={Menu}/>
                 </NotifDiv>
