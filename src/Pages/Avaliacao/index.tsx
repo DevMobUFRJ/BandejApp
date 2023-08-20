@@ -46,7 +46,7 @@ export default function Avaliacao() {
                 funcoesOpcoes={[fecharPopUp]}
             />
 
-            <AvaForm onSubmit={handleSubmit(dados => { if(enviar(dados, valores)) reset(); })}>
+            <AvaForm onSubmit={handleSubmit(async dados => { if(await enviar(dados, valores)) reset(); })}>
                 <FormDiv>
                     <AvaSection>
                         <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>

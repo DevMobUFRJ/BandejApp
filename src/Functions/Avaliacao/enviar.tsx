@@ -28,7 +28,9 @@ function verificarEmail(formulario: formulario) {
     if(formulario.email === '') formulario.email = '----';
 }
 
-export const resetarForm = (form: formulario, valores: Array<string>) => {
+/*----------------------------------------------------------------------------*/
+
+function resetarForm(form: formulario, valores: Array<string>) {
     
     /* Resetar o campo da nota */
     const estrelas = document.querySelectorAll('#classificacao li');
@@ -71,7 +73,7 @@ export const resetarForm = (form: formulario, valores: Array<string>) => {
 
 /*----------------------------------------------------------------------------*/
 
-export const enviar = (formulario: formulario, valores: Array<string>): boolean => {
+export const enviar = async(formulario: formulario, valores: Array<string>): Promise<boolean> => {
 
     verificarComentario(formulario);
     formatarData(formulario);
@@ -81,15 +83,14 @@ export const enviar = (formulario: formulario, valores: Array<string>): boolean 
 
     const dados = JSON.stringify({formulario});
 
-    fetch(`${process.env.REACT_APP_PLANILHA_API_URL}`, {
+    const retorno = await fetch(`${process.env.REACT_APP_PLANILHA_API_URL}`, {
         method: 'post',
         body: dados,
         mode: 'cors',
         headers: new Headers({
           'Content-Type': 'application/json'
         })
-      })
-      .then(response => {
+    }).then(response => {
         if (!response.ok)
         // Importante checar porque a fetch só é rejeitada em caso de erro de rede
             return "Erro ao acessar o servidor";
@@ -112,5 +113,5 @@ export const enviar = (formulario: formulario, valores: Array<string>): boolean 
             return false;
         });
     
-    return true;
+    return retorno;
 }
