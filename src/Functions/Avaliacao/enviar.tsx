@@ -47,6 +47,7 @@ const promessaDeEnvio = async (dados: string) => {
       .then((text) =>{
         if (text === 'OK') {
             resolve('Sua avaliação foi enviada com sucesso!');
+            setTimeout(() => window.location.reload(), 1000);
         } 
         else {
             reject(text);

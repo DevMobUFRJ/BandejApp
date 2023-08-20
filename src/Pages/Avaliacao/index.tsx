@@ -36,7 +36,7 @@ export default function Avaliacao() {
             <AvaForm onSubmit={handleSubmit((dados) => {enviar(dados)})}>
                 <FormDiv>
                     <AvaSection>
-                        <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
+                        <InfoTitle>Qual restaurante deseja avaliar?</InfoTitle>
                         <DropDown {...register('ru', {required: true, validate: valor => valor !== 'selec'})}
                             opcaoInicial={getValues('ru')}
                             valoresState={valores}
