@@ -1,28 +1,33 @@
-import { PopButton, PopButtonDiv, PopDiv, PopTexto, PopTitulo } from "./style";
+import { PopButton, PopButtonDiv, PopDiv, PopOuterDiv, PopTexto, PopTitulo } from "./style";
 
 type PopInfo = {
-    opcoes?: Array<string>;
-    tiposOpcao: Array<number>;
-    titulo?: string;
-    texto?: string;
+    opcoes: Array<string>;
+    tiposOpcoes: Array<number>;
+    funcoesOpcoes: Array<Function>;
+    titulo: string;
+    texto: string;
 }
 
 export default function PopUp(
-    {opcoes, tiposOpcao, titulo, texto}: PopInfo
+    {opcoes, tiposOpcoes, funcoesOpcoes, titulo, texto}: PopInfo
 ) {
-    return (
-        <PopDiv id="popup" className="">
-            <PopTitulo>{titulo}</PopTitulo>
-            <PopTexto>{texto}</PopTexto>
 
-            <PopButtonDiv>
-                { opcoes?.map((opcao, index) => 
-                    <PopButton
-                    key={index} className={tiposOpcao[index] === 1? 'segundoTipo':''}>
-                        {opcao}
-                    </PopButton>
-                )}
-            </PopButtonDiv>
-        </PopDiv>
+    return (
+        <PopOuterDiv id="popupDiv">
+            <PopDiv id="popup">
+                <PopTitulo>{titulo}</PopTitulo>
+                <PopTexto>{texto}</PopTexto>
+                <PopButtonDiv>
+                    { opcoes?.map((opcao, index) =>
+                        <PopButton key={index}
+                        className={tiposOpcoes[index] === 1? 'segundoTipo':''}
+                        onClick={() => funcoesOpcoes[index]()}
+                        >
+                            {opcao}
+                        </PopButton>
+                    )}
+                </PopButtonDiv>
+            </PopDiv>
+        </PopOuterDiv>
     );
 }

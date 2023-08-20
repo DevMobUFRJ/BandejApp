@@ -1,29 +1,16 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
-export const PopDiv = styled.div `
-    display: flex;
-    flex-direction: column;
-    width: 82.23vw;
+export const PopOuterDiv = styled.div `
+    display: grid;
 
-    padding: 10vh 4.44vw;
-    margin-top: -25vh;
-    
-    position: fixed;
-    top: 50%;
-    z-index: 3;
+    position: absolute;
+    top: 0;
 
-    align-items: center;
 
-    border: none;
-    border-radius: 4.44vw;
-
-    background-color: ${global.colors.branco};
-
-    animation: zoom 0.3s ease-in-out both;
-    @keyframes zoom {
-        0% { transform: scale(0, 0); }
-        100% { transform: scale(1, 1); }
+    .pop {
+        display: flex;
+        transform: scale(1, 1);
     }
 
     .segundoTipo {
@@ -33,6 +20,29 @@ export const PopDiv = styled.div `
         background-color: ${global.colors.branco};
         color: ${global.colors.laranja};
     }
+`;
+
+export const PopDiv = styled.div `
+    display: flex;
+    flex-direction: column;
+    width: 82.23vw;
+
+    padding: 7vh 4.44vw 2vh 4.44vw;
+    
+    position: fixed;
+    top: calc(50vh - 20vh);
+    left: 4.44vw;
+    z-index: 3;
+
+    align-items: center;
+
+    border: none;
+    border-radius: 4.44vw;
+
+    background-color: ${global.colors.branco};
+
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0, 0);
 `;
 
 /*----------------------------------------------------------------------------*/

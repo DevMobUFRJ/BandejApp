@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import { abrirPopUp } from '../PopUp/avaliacao';
 
 export type formulario = {
     ru: string;
@@ -97,6 +98,7 @@ export const enviar = (formulario: formulario, valores: Array<string>): boolean 
     })
       .then((text) =>{
         if (text === 'OK') {
+            abrirPopUp();
             toast.success('Avaliação foi enviada com sucesso!');
             return true;
         } 

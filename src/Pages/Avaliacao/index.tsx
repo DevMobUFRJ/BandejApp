@@ -20,6 +20,7 @@ import { formulario } from "../../Functions/Avaliacao/enviar";
 import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
 import { enviar } from '../../Functions/Avaliacao/enviar';
 import PopUp from "../../Components/PopUp";
+import { fecharPopUp } from "../../Functions/PopUp/avaliacao";
 
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
@@ -48,8 +49,9 @@ export default function Avaliacao() {
             <PopUp
                 titulo="Avaliação enviada"
                 texto="Caso tenha informado seu e-mail, o RU poderá entrar em contato com você."
-                opcoes={['Abrir', 'Fechar']}
-                tiposOpcao={[1, 0]}
+                opcoes={['Fechar']}
+                tiposOpcoes={[0]}
+                funcoesOpcoes={[fecharPopUp]}
             />
 
             <AvaForm onSubmit={handleSubmit(dados => { if(enviar(dados, valores)) enviarForm(true); })}>
