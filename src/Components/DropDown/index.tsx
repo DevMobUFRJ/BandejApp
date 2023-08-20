@@ -30,17 +30,16 @@ const tamanho = (lugar: string) => {
     {
         case 'cardapio': return '90vw';
     
-        default: return '82.25vw';
+        default: return '80.5vw';
     }
 };
 
 export default function DropDown(
     {opcaoInicial, valoresState, valoresOpcoes,tela, alterarState}: DropDownProps
     ) {
-
     
     useEffect(() => {
-        const seta = document.getElementById('seta');        
+        const seta = document.getElementById('seta');
         const containerSelecionado = document.getElementById('selecionado');
         const elementoPrimeiraOpcao = document.getElementById(opcaoInicial);
 

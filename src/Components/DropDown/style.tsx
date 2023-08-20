@@ -19,8 +19,6 @@ export const DropDiv = styled.div `
 export const Selecionado = styled.div `
     display: flex;
     flex-direction: row;
-    
-    width: 90vw;
     height: 7.5vh;
     
     background: ${global.colors.branco};

@@ -1,37 +1,89 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
-export const PopupDiv = styled.div `
-    display: flex;
-    width: 90%;
-    position: fixed;
-    bottom: 0;
-    margin-bottom: 10px;
-    border-radius: 3.5vw;
-    background: ${global.colors.laranja};
-    font-family: ${global.fonts.nunito};
-    &:after {
-        content: "";
-        position: absolute;
-        top: 100%; /* ajuste para posicionar a seta na borda inferior */
-        left: 50%;
-        margin-left: -10px;
-        border-width: 10px;
-        border-style: solid;
-        border-color: ${global.colors.laranja} transparent transparent transparent; /* laranja */
+export const PopOuterDiv = styled.div `
+    display: grid;
+
+    position: absolute;
+    top: 0;
+
+
+    .pop {
+        display: flex;
+        transform: scale(1, 1);
+    }
+
+    .segundoTipo {
+        border: solid 0.25vh ${global.colors.laranja};
+        border-radius: 4.44vw;
+
+        background-color: ${global.colors.branco};
+        color: ${global.colors.laranja};
     }
 `;
 
-export const PopText = styled.p `
-    margin: 1vh 0 2vh 0;
-    font-family: ${global.fonts.nunito};
-    font-size: 3.5vw;
-    font-weight: 500;
-    color: white;
-    padding: 0px 10px 0px 20px;
+export const PopDiv = styled.div `
+    display: flex;
+    flex-direction: column;
+    width: 82.23vw;
+
+    padding: 7vh 4.44vw 2vh 4.44vw;
+    
+    position: fixed;
+    top: calc(50vh - 20vh);
+    left: 4.44vw;
+    z-index: 3;
+
+    align-items: center;
+
+    border: none;
+    border-radius: 4.44vw;
+
+    background-color: ${global.colors.branco};
+
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0, 0);
 `;
 
-export const CloseImg = styled.img `
-    width: 8.88vw;
-    margin-right: 20px;
+/*----------------------------------------------------------------------------*/
+
+export const PopTitulo = styled.h2 `
+    font-family: ${global.fonts.quickSand};
+    font-size: 3vh;
+    font-weight: 700;
+    color: ${global.colors.cinza};
+`;
+
+export const PopTexto = styled.p `
+    margin: 2vh 0 2vh 0;
+
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 500;
+    text-align: center;
+
+    color: ${global.colors.cinzaPratos};
+`;
+
+/*----------------------------------------------------------------------------*/
+
+export const PopButtonDiv = styled.div `
+    width: 100%;
+`;
+
+export const PopButton = styled.button `
+    width: 100%;
+    height: 6vh;
+
+    margin: 1vh 0;
+
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 700;
+
+    border: none;
+    border-radius: 4.44vw;
+
+    background-color: ${global.colors.laranja};
+    color: ${global.colors.branco};
 `;

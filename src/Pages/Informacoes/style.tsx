@@ -60,7 +60,6 @@ export const InfoGrid = styled.div `
 `;
 
 export const InfoSubtitle = styled.p `
-    margin: 0 0 0.5vh 0;
     padding: 0 0 0 1%;
 
     font-family: ${global.fonts.quickSand};
