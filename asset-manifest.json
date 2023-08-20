@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.28b5190c.css",
-    "main.js": "./static/js/main.f31cb5b0.js",
+    "main.js": "./static/js/main.97f7ffc6.js",
     "static/media/BgRu.svg": "./static/media/BgRu.32ca6184f190a0724dde0935091b241c.svg",
     "static/media/RUcentral.jpg": "./static/media/RUcentral.f1db24c9e0dcf901eed8.jpg",
     "static/media/Entrada.svg": "./static/media/Entrada.40f65f99ca7a2967f11715df57126dec.svg",
@@ -28,13 +28,13 @@
     "static/media/nunito-cyrillic-ext-400-normal.woff2": "./static/media/nunito-cyrillic-ext-400-normal.f21ac09511c6fa4f9463.woff2",
     "static/media/Logo.svg": "./static/media/Logo.29a2ca3835ecd31b9813a8a03fc09a69.svg",
     "static/media/devmobBanner.svg": "./static/media/devmobBanner.86df6fd68934627ea195d5d14ffe62d1.svg",
+    "index.html": "./index.html",
     "static/media/bebas-neue-latin-ext-400-normal.woff2": "./static/media/bebas-neue-latin-ext-400-normal.f2363170269a33a9c268.woff2",
     "static/media/nunito-cyrillic-400-normal.woff2": "./static/media/nunito-cyrillic-400-normal.166e8e87ae0b6f3deed3.woff2",
     "static/media/TempAvaliacao.svg": "./static/media/TempAvaliacao.5a0031115a9e89485ac4d7a664d7dbcd.svg",
     "static/media/nunito-vietnamese-400-normal.woff2": "./static/media/nunito-vietnamese-400-normal.6a8bc7acd205391fb71a.woff2",
     "static/media/quicksand-vietnamese-400-normal.woff2": "./static/media/quicksand-vietnamese-400-normal.001708e70ef991eec89b.woff2",
     "static/media/spinner.svg": "./static/media/spinner.df0796c29e8f8b214541c7136c874c74.svg",
-    "index.html": "./index.html",
     "static/media/TempDownload.svg": "./static/media/TempDownload.e4eac0b8edd923ffc07e19d077e71fcc.svg",
     "static/media/logo-ru.svg": "./static/media/logo-ru.0dba7dabdcb0c251dba902e2ed56bd5b.svg",
     "static/media/logo-ufrj.svg": "./static/media/logo-ufrj.de62a91da0025dcca90c340cc0356fea.svg",
@@ -60,10 +60,10 @@
     "static/media/menu.svg": "./static/media/menu.04e08d198774638d54b9df7ed2ae612a.svg",
     "static/media/pending.svg": "./static/media/pending.cd76eeac246ffdf9ca7be078661ed40c.svg",
     "main.28b5190c.css.map": "./static/css/main.28b5190c.css.map",
-    "main.f31cb5b0.js.map": "./static/js/main.f31cb5b0.js.map"
+    "main.97f7ffc6.js.map": "./static/js/main.97f7ffc6.js.map"
   },
   "entrypoints": [
     "static/css/main.28b5190c.css",
-    "static/js/main.f31cb5b0.js"
+    "static/js/main.97f7ffc6.js"
   ]
 }
