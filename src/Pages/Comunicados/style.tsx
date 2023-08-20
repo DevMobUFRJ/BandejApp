@@ -5,7 +5,7 @@ interface CardProps {
     new?: boolean;
 }
 
-export const Avadiv = styled.div `
+export const ComunicadoDiv = styled.div `
     display: flex;
     flex-direction: column;
 
@@ -48,17 +48,6 @@ export const TextoSemMensagens = styled.p `
     font-weight: 700;
 `;
 
-export const AvalImg = styled.img `
-    width: 6.3vw;
-    //padding: 0 4.9vw 0 9.6vw;
-    display: flex;
-    position: absolute;
-    top: 5vh;
-    left: 6.3vw;
-    outline: none;
-    border: none;
-`;
-
 export const CardMensagem = styled.div `
 
 `;
@@ -92,7 +81,7 @@ export const MensagensNaoLidas = styled.button `
 export const Card = styled.div<CardProps>`
     padding: 2.125vh 6.66vw 2vh 6.66vw;
     margin-top: 1px;
-    background: ${(props) => props.new ? global.colors.branco : global.colors.cinzaOpaco(0.04)};
+    background: ${(props) => props.new ? global.colors.branco : '#F7F7F7'};
     font-family: ${global.fonts.quickSand};
 `;
 
