@@ -9,15 +9,15 @@ import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext"
 import { ToastContainer } from 'react-toastify';
 import { formulario, enviar } from "../../Functions/Avaliacao/enviar";
 import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
+
 import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
+import PopUp from "../../Components/PopUp";
 
 import Nota from "../../Components/Nota";
 import Cabecalho from "../../Components/Cabecalho";
 import DownPop from "../../Components/PopUpIOS";
 import DropDown from "../../Components/DropDown";
 import datePicker from '../../Assets/Avaliacao/datePicker.svg';
-
-import PopUp from "../../Components/PopUp";
 
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
