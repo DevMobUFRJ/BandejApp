@@ -9,6 +9,18 @@ import Informacoes from '../Pages/Informacoes';
 import FaleConosco from '../Pages/FaleConosco';
 
 export default function Routes() {
+    const isIos = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test( userAgent );
+    }
+
+    const isInStandaloneMode = () => {
+        if(isIos())
+            return ('standalone' in window.navigator) && (window.navigator.standalone)
+        else 
+            return (window.matchMedia('(display-mode: standalone)').matches);
+    };   
+
     return (
         <HashRouter basename='/'>
             <Switch>
@@ -18,7 +30,12 @@ export default function Routes() {
                 </Route>
 
                 <Route path='/Tutorial'>
-                    <Tutorial/>
+                {
+                    (isInStandaloneMode()) ?
+                        <Redirect to='/Restaurante'/>
+                        :
+                        <Tutorial/>
+                }
                 </Route>
 
                 <Route path="/Restaurante">
