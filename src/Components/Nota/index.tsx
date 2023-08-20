@@ -11,16 +11,16 @@ export default function Nota({NotaToParent}: starInfo) {
         const estrelas = document.querySelectorAll('#classificacao li');
 
         estrelas.forEach(star => {
-            if((star === trigger) && !(star.classList.contains('ativo'))) {
-                estrelas.forEach(item => item.classList.remove('ativo'));
-                star.classList.add('ativo');
+            if((star === trigger) && !(star.classList.contains('notaSelecionada'))) {
+                estrelas.forEach(item => item.classList.remove('notaSelecionada'));
+                star.classList.add('notaSelecionada');
             }
         })
     }
 
     return (
         <RatingDiv id="classificacao" onClick={e => SetNota(e.nativeEvent)}>
-            <StarIcon style={{display: 'none'}} value='0' className="ativo"/>
+            <StarIcon style={{display: 'none'}} value='0' className="notaSelecionada"/>
             <StarIcon value='1' onClick={e => NotaToParent(e.currentTarget.value)}/>
             <StarIcon value='2' onClick={e => NotaToParent(e.currentTarget.value)}/>
             <StarIcon value='3' onClick={e => NotaToParent(e.currentTarget.value)}/>

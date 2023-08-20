@@ -13,7 +13,7 @@ export const RatingDiv = styled.ul `
     width: 100%;
     justify-content: space-between;
 
-    .ativo~::before {
+    .notaSelecionada~::before {
         content: "${'\\2606'}";
     }
 

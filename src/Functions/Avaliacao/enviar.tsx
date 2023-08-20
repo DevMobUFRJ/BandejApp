@@ -28,13 +28,14 @@ function verificarEmail(formulario: formulario) {
     if(formulario.email === '') formulario.email = '----';
 }
 
-function resetarForm(form: formulario, valores: Array<string>) {
+export const resetarForm = (form: formulario, valores: Array<string>) => {
     
     /* Resetar o campo da nota */
     const estrelas = document.querySelectorAll('#classificacao li');
     estrelas.forEach(estrela => {
-        if(estrela.id !== 'reset') estrela.classList.add('ativo');
-    })
+        estrela.classList.remove('notaSelecionada');
+    });
+    estrelas.item(0).classList.add('notaSelecionada');
 
     /* Resetar Turno */
     const turno = form.turno;
@@ -65,13 +66,12 @@ function resetarForm(form: formulario, valores: Array<string>) {
     const dropdown = document.getElementById('selecionado');
     const seta = document.getElementById('seta');
     const selec = document.getElementById('selec');
-    console.log(selec, dropdown);
     if(selec && seta && dropdown) dropdown.insertBefore(selec, seta);
 }
 
 /*----------------------------------------------------------------------------*/
 
-export const enviar = (formulario: formulario, valores: Array<string>): boolean => {
+export const enviar = (formulario: formulario): boolean => {
 
     verificarComentario(formulario);
     formatarData(formulario);
@@ -111,6 +111,5 @@ export const enviar = (formulario: formulario, valores: Array<string>): boolean 
             return false;
         });
     
-    resetarForm(formulario, valores);
     return true;
 }

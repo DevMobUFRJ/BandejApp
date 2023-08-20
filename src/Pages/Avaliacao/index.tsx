@@ -2,7 +2,7 @@ import { AvaSection, Avadiv, Comentario, DateDiv,
          DatePicker, DateSelect, EmailInput, EnviarButton,
          AvaForm, TurnoButton, TurnoDiv, FormDiv, MensagemErro} from "./style";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useForm } from 'react-hook-form';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,7 +16,7 @@ import DownPop from "../../Components/PopUpIOS";
 import DropDown from "../../Components/DropDown";
 import datePicker from '../../Assets/Avaliacao/datePicker.svg';
 
-import { formulario } from "../../Functions/Avaliacao/enviar";
+import { formulario, resetarForm } from "../../Functions/Avaliacao/enviar";
 import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
 import { enviar } from '../../Functions/Avaliacao/enviar';
 import PopUp from "../../Components/PopUp";
@@ -29,14 +29,6 @@ export default function Avaliacao() {
 
     const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
     const valores = ['selec', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
-
-
-    const [enviado, enviarForm] = useState(false);
-
-    useEffect(() => {
-        reset();
-        enviarForm(false);
-    }, [enviado])
 
 /*----------------------------------------------------------------------------*/
 
@@ -54,7 +46,11 @@ export default function Avaliacao() {
                 funcoesOpcoes={[fecharPopUp]}
             />
 
-            <AvaForm onSubmit={handleSubmit(dados => { if(enviar(dados, valores)) enviarForm(true); })}>
+            <AvaForm onSubmit={handleSubmit(dados => {
+                if(enviar(dados)) {
+                    resetarForm(dados, valores);
+                    reset();
+                } })}>
                 <FormDiv>
                     <AvaSection>
                         <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
