@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Avadiv, Card, Container, CardMensagem, CardData, 
+import { ComunicadoDiv, Card, Container, CardMensagem, CardData, 
         TextMensagem, TextData, MensagensNaoLidas, DataRelativa, 
         BalaoSemMensagens, IconeSemMensagens, TextoSemMensagens, 
-        SideIcon, CardTop} from "./style";
+        SideIcon, CardTop } from "./style";
 import { ToastContainer, toast } from 'react-toastify';
 import Load from "../../Components/Load";
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,7 +13,7 @@ import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import Pending from '../../Assets/SideBar/pending.svg';
 import DownPop from "../../Components/PopUpIOS";
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
-import SemMsg from '../../Assets/Notificacoes/SemMsg.svg'
+import SemMsg from '../../Assets/Comunicados/SemMsg.svg'
     
 type aviso = {
     comunicado: String,
@@ -23,7 +23,7 @@ type aviso = {
 
 let consultando = false;
 
-export default function Avaliacao() {
+export default function Comunicados() {
 
     const [comentarios, setComentarios] = useState<aviso[]>([]);
     const [loading, setLoading] = useState(true);
@@ -94,8 +94,8 @@ export default function Avaliacao() {
     
 
     return (
-        <Avadiv id="AvaPage">
-            <ToastContainer autoClose={3000}/>
+        <ComunicadoDiv id="ComunicadoPage">
+            <ToastContainer />
             {
                 (loading) ?
                     <Load />
@@ -147,6 +147,6 @@ export default function Avaliacao() {
                 </>
             }
             
-        </Avadiv>
+        </ComunicadoDiv>
     );
 }

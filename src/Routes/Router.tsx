@@ -4,7 +4,7 @@ import Avaliacao from '../Pages/Avaliacao';
 import Cardapio from '../Pages/Cardapio';
 import Tutorial from '../Pages/Tutorial';
 import Restaurante from '../Pages/Restaurante';
-import Notificacao from '../Pages/Notificacao';
+import Notificacao from '../Pages/Comunicados';
 import Informacoes from '../Pages/Informacoes';
 import FaleConosco from '../Pages/FaleConosco';
 
