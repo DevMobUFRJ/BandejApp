@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { abrirPopUp } from '../PopUp/avaliacao';
+import { abrirPopUp } from '../PopUp/abrirEfechar';
 
 export type formulario = {
     ru: string;
@@ -71,7 +71,7 @@ export const resetarForm = (form: formulario, valores: Array<string>) => {
 
 /*----------------------------------------------------------------------------*/
 
-export const enviar = (formulario: formulario): boolean => {
+export const enviar = (formulario: formulario, valores: Array<string>): boolean => {
 
     verificarComentario(formulario);
     formatarData(formulario);
@@ -99,6 +99,7 @@ export const enviar = (formulario: formulario): boolean => {
       .then((text) =>{
         if (text === 'OK') {
             abrirPopUp();
+            resetarForm(formulario, valores);
             toast.success('Avaliação foi enviada com sucesso!');
             return true;
         } 

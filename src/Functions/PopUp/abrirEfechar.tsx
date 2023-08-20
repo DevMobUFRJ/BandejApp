@@ -1,8 +1,6 @@
 export const fecharPopUp = () => {
     const blurdiv = document.getElementById('blurdiv');
     const popup = document.getElementById('popup');
-
-    console.log('era pra ter fechado');
     
     blurdiv?.classList.remove('popBlur');
     popup?.classList.remove('pop');

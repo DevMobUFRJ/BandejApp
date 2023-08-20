@@ -16,11 +16,11 @@ import DownPop from "../../Components/PopUpIOS";
 import DropDown from "../../Components/DropDown";
 import datePicker from '../../Assets/Avaliacao/datePicker.svg';
 
-import { formulario, resetarForm } from "../../Functions/Avaliacao/enviar";
+import { formulario } from "../../Functions/Avaliacao/enviar";
 import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
 import { enviar } from '../../Functions/Avaliacao/enviar';
 import PopUp from "../../Components/PopUp";
-import { fecharPopUp } from "../../Functions/PopUp/avaliacao";
+import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
 
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
@@ -46,11 +46,7 @@ export default function Avaliacao() {
                 funcoesOpcoes={[fecharPopUp]}
             />
 
-            <AvaForm onSubmit={handleSubmit(dados => {
-                if(enviar(dados)) {
-                    resetarForm(dados, valores);
-                    reset();
-                } })}>
+            <AvaForm onSubmit={handleSubmit(dados => { if(enviar(dados, valores)) reset(); })}>
                 <FormDiv>
                     <AvaSection>
                         <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
