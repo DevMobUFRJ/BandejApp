@@ -46,6 +46,18 @@ export const CabecaDiv = styled.header `
             100% { backdrop-filter: blur(3px); }
         }
     }
+
+    .popBlur {
+        display: flex;
+        z-index: 2;
+        animation: blur 0.5s linear forwards;
+        @keyframes blur {
+            0% { backdrop-filter: blur(0px); }
+            25% { backdrop-filter: blur(1px); }
+            50% { backdrop-filter: blur(2px); }
+            100% { backdrop-filter: blur(3px); }
+        }
+    }
 `;
 
 export const PageTitle = styled.h1 `

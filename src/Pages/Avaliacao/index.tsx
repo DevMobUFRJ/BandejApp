@@ -19,6 +19,7 @@ import datePicker from '../../Assets/Avaliacao/datePicker.svg';
 import { formulario } from "../../Functions/Avaliacao/enviar";
 import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
 import { enviar } from '../../Functions/Avaliacao/enviar';
+import PopUp from "../../Components/PopUp";
 
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
@@ -43,7 +44,14 @@ export default function Avaliacao() {
             <ToastContainer autoClose={3000}/>
 
             <Cabecalho nome='Avaliação'/>
-            
+
+            <PopUp
+                titulo="Avaliação enviada"
+                texto="Caso tenha informado seu e-mail, o RU poderá entrar em contato com você."
+                opcoes={['Abrir', 'Fechar']}
+                tiposOpcao={[1, 0]}
+            />
+
             <AvaForm onSubmit={handleSubmit(dados => { if(enviar(dados, valores)) enviarForm(true); })}>
                 <FormDiv>
                     <AvaSection>
