@@ -102,7 +102,7 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
     })
       .then((text) =>{
         if (text === 'OK') {
-            abrirPopUp();
+            // abrirPopUp();
             resetarForm(formulario, valores);
             toast.success('Avaliação foi enviada com sucesso!');
             return true;

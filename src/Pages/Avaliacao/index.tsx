@@ -37,7 +37,7 @@ export default function Avaliacao() {
             <ToastContainer autoClose={3000}/>
 
             <Cabecalho nome='Avaliação'/>
-
+{/*
             <PopUp
                 titulo="Avaliação enviada"
                 texto="Caso tenha informado seu e-mail, o RU poderá entrar em contato com você."
@@ -45,7 +45,7 @@ export default function Avaliacao() {
                 tiposOpcoes={[0]}
                 funcoesOpcoes={[fecharPopUp]}
             />
-
+    */}
             <AvaForm onSubmit={handleSubmit(async dados => { if(await enviar(dados, valores)) reset(); })}>
                 <FormDiv>
                     <AvaSection>
