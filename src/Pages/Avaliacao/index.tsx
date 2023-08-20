@@ -1,32 +1,32 @@
 import { AvaSection, Avadiv, Comentario, DateDiv,
          DatePicker, DateSelect, EmailInput, EnviarButton,
          AvaForm, TurnoButton, TurnoDiv, FormDiv, MensagemErro} from "./style";
-
-import { useContext } from "react";
-import { useForm } from 'react-hook-form';
-
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
-import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
-
 import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
+
+import { useContext, useState } from "react";
+import { useForm } from 'react-hook-form';
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+import { ToastContainer } from 'react-toastify';
+import { formulario, enviar } from "../../Functions/Avaliacao/enviar";
+import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
+import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
+
 import Nota from "../../Components/Nota";
 import Cabecalho from "../../Components/Cabecalho";
 import DownPop from "../../Components/PopUpIOS";
 import DropDown from "../../Components/DropDown";
 import datePicker from '../../Assets/Avaliacao/datePicker.svg';
 
-import { formulario } from "../../Functions/Avaliacao/enviar";
-import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
-import { enviar } from '../../Functions/Avaliacao/enviar';
 import PopUp from "../../Components/PopUp";
-import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
 
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
+
+    /* Funções do useForm */
     const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} =
     useForm<formulario>({defaultValues:{ru: 'selec', email: '', turno: '----', nota: 0, comentario: ''}});
 
+    /* Variáveis do Dropdown */
     const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
     const valores = ['selec', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
 

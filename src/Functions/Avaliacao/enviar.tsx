@@ -10,6 +10,8 @@ export type formulario = {
     comentario: string;
 }
 
+/*----------------------------------------------------------------------------*/
+
 function verificarComentario(formulario: formulario) {
     while (formulario.comentario && formulario.comentario.charAt(0) === '=') {
         formulario.comentario = formulario.comentario.substring(1);
@@ -20,6 +22,7 @@ function formatarData(formulario: formulario) {
     const dataSeparada = formulario.data.split('-');
     
     if(!dataSeparada[0] || !dataSeparada[1] || !dataSeparada[2]) return;
+    else if(dataSeparada.length === 0) formulario.data = '----';
 
     formulario.data = `${dataSeparada[2]}/${dataSeparada[1]}/${dataSeparada[0]}`;
 }
