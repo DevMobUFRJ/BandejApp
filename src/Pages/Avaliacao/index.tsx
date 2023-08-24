@@ -138,7 +138,7 @@ export default function Avaliacao() {
 {/*--------------------------------------------------------------------------*/}
 
                 </FormDiv>
-                <EnviarButton>
+                <EnviarButton id='botaoEnvio'>
                     Enviar Avaliação
                 </EnviarButton>
             </AvaForm>

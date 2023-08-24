@@ -23,7 +23,7 @@ function formatarData(formulario: formulario) {
 
 export const verificarData = (dataInput: string): boolean => {
     const dia = new Date().getDate();
-    const mes = new Date().getMonth();
+    const mes = new Date().getMonth()+1;
     const ano = new Date().getFullYear();
 
     const dataSelecionada = dataInput.split('-');
@@ -96,6 +96,9 @@ function resetarForm(form: formulario, valores: Array<string>) {
 /*----------------------------------------------------------------------------*/
 
 export const enviar = async(formulario: formulario, valores: Array<string>): Promise<boolean> => {
+    const botaoEnvio = document.getElementById('botaoEnvio');
+    botaoEnvio?.toggleAttribute('disabled', true);
+    botaoEnvio?.classList.add('envioDesativado');
 
     verificarComentario(formulario);
     formatarData(formulario);
@@ -116,13 +119,15 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
         if (!response.ok)
         // Importante checar porque a fetch só é rejeitada em caso de erro de rede
             return "Erro ao acessar o servidor";
-        
+
         return response.text();
     })
       .then((text) =>{
         if (text === 'OK') {
             // abrirPopUp();
             resetarForm(formulario, valores);
+            botaoEnvio?.toggleAttribute('disabled', false);
+            botaoEnvio?.classList.remove('envioDesativado');
             toast.success('Avaliação foi enviada com sucesso!');
             return true;
         } 
