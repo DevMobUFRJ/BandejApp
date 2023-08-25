@@ -157,12 +157,12 @@ export default function Cardapio() {
     return(
         <CardapioDiv id="cardapio">
             <ToastContainer autoClose={3000}/>
+            <Cabecalho nome="Cardápio" setOpcoes={setOpcoes}/>
             {
                 (loading) ?
                     <Load />
             : 
             <>
-                <Cabecalho nome="Cardápio" setOpcoes={setOpcoes}/>
                 <Sombra style={{display: opcoes ? 'none' : ''}}/>
 
                 <ActionsDiv id='acoes'>
