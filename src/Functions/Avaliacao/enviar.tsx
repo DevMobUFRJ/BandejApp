@@ -12,12 +12,6 @@ export type formulario = {
 
 /*----------------------------------------------------------------------------*/
 
-function verificarComentario(formulario: formulario) {
-    while (formulario.comentario && formulario.comentario.charAt(0) === '=') {
-        formulario.comentario = formulario.comentario.substring(1);
-    }
-}
-
 function formatarData(formulario: formulario) {
     const dataSeparada = formulario.data.split('-');
     
@@ -25,6 +19,31 @@ function formatarData(formulario: formulario) {
     else if(dataSeparada.length === 0) formulario.data = '----';
 
     formulario.data = `${dataSeparada[2]}/${dataSeparada[1]}/${dataSeparada[0]}`;
+}
+
+export const verificarData = (dataInput: string): boolean => {
+    const dia = new Date().getDate();
+    const mes = new Date().getMonth()+1;
+    const ano = new Date().getFullYear();
+
+    const dataSelecionada = dataInput.split('-');
+
+    if(ano < parseInt(dataSelecionada[0])) return false;
+    else {
+        if(mes < parseInt(dataSelecionada[1])) return false;
+        else {
+            if(dia < parseInt(dataSelecionada[2])) return false;
+            else return true;
+        }
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+
+function verificarComentario(formulario: formulario) {
+    while (formulario.comentario && formulario.comentario.charAt(0) === '=') {
+        formulario.comentario = formulario.comentario.substring(1);
+    }
 }
 
 function verificarEmail(formulario: formulario) {
@@ -77,6 +96,9 @@ function resetarForm(form: formulario, valores: Array<string>) {
 /*----------------------------------------------------------------------------*/
 
 export const enviar = async(formulario: formulario, valores: Array<string>): Promise<boolean> => {
+    const botaoEnvio = document.getElementById('botaoEnvio');
+    botaoEnvio?.toggleAttribute('disabled', true);
+    botaoEnvio?.classList.add('envioDesativado');
 
     verificarComentario(formulario);
     formatarData(formulario);
@@ -97,13 +119,15 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
         if (!response.ok)
         // Importante checar porque a fetch só é rejeitada em caso de erro de rede
             return "Erro ao acessar o servidor";
-        
+
         return response.text();
     })
       .then((text) =>{
         if (text === 'OK') {
             // abrirPopUp();
             resetarForm(formulario, valores);
+            botaoEnvio?.toggleAttribute('disabled', false);
+            botaoEnvio?.classList.remove('envioDesativado');
             toast.success('Avaliação foi enviada com sucesso!');
             return true;
         } 

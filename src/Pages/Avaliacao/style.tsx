@@ -11,6 +11,11 @@ export const Avadiv = styled.div `
     align-items: center;
 
     background: ${global.colors.fundo};
+
+    .envioDesativado {
+        background-color: ${global.colors.desativado};
+        transform: none;
+    }
 `;
 
 /*----------------------------------------------------------------------------*/
@@ -182,6 +187,8 @@ export const EnviarButton = styled.button `
     border-radius: 4.44vw;
 
     background-color: ${global.colors.laranja};
+    transition: transform 0.3s ease;
+    transform: translateY(0.3vh);
 `;
 
 /*----------------------------------------------------------------------------*/

@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { ToastContainer } from 'react-toastify';
-import { formulario, enviar } from "../../Functions/Avaliacao/enviar";
+import { verificarData, formulario, enviar } from "../../Functions/Avaliacao/enviar";
 import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
 
 import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
@@ -100,10 +100,13 @@ export default function Avaliacao() {
                             >   Jantar
                             </TurnoButton>
                         </TurnoDiv>
-
+                        
+                        {errors.data? <MensagemErro>{errors.data.message}</MensagemErro>:null}
                         <DateDiv onFocus={textoParaData}>
-                            <DateSelect {...register('data')}
-                            name="data" id="dataSelect" type="text" placeholder="Selecione uma data"/>
+                            <DateSelect {...register('data', {
+                                validate: data => verificarData(data)? true:'Data inválida'
+                            })}
+                            id="dataSelect" name="data" type="text" placeholder="Selecione uma data"/>
 
                             <DatePicker src={datePicker} onClick={textoParaData}/>
                         </DateDiv>
@@ -135,7 +138,7 @@ export default function Avaliacao() {
 {/*--------------------------------------------------------------------------*/}
 
                 </FormDiv>
-                <EnviarButton>
+                <EnviarButton id='botaoEnvio'>
                     Enviar Avaliação
                 </EnviarButton>
             </AvaForm>
