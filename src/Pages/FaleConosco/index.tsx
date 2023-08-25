@@ -24,7 +24,7 @@ export default function FaleConosco() {
     const emailRU = 'admruufrj@gmail.com';
 
     const form = 'https://docs.google.com/forms/d/e/1FAIpQLSctq79DYLYzK3IZ_dPuCewiu3g9gG46Px_ngzo5OzTLrtlDRA/viewform';
-    const devmob = 'devmob@dcc.ufrj.br';
+    const devmob = 'devmob@ic.ufrj.br';
 
     const timers: copiado[] = [];
     const copiar = (id: string, link: string) => {
