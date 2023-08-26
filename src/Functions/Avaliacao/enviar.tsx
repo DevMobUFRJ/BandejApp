@@ -22,6 +22,8 @@ function formatarData(formulario: formulario) {
 }
 
 export const verificarData = (dataInput: string): boolean => {
+    if(dataInput === '') return true;
+
     const dia = new Date().getDate();
     const mes = new Date().getMonth()+1;
     const ano = new Date().getFullYear();
