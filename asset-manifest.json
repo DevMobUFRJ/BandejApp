@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.28b5190c.css",
-    "main.js": "./static/js/main.0f73f873.js",
+    "main.js": "./static/js/main.38477e4e.js",
     "static/media/BgRu.svg": "./static/media/BgRu.32ca6184f190a0724dde0935091b241c.svg",
     "static/media/RUcentral.jpg": "./static/media/RUcentral.f1db24c9e0dcf901eed8.jpg",
     "static/media/Entrada.svg": "./static/media/Entrada.40f65f99ca7a2967f11715df57126dec.svg",
@@ -60,10 +60,10 @@
     "static/media/menu.svg": "./static/media/menu.04e08d198774638d54b9df7ed2ae612a.svg",
     "static/media/pending.svg": "./static/media/pending.cd76eeac246ffdf9ca7be078661ed40c.svg",
     "main.28b5190c.css.map": "./static/css/main.28b5190c.css.map",
-    "main.0f73f873.js.map": "./static/js/main.0f73f873.js.map"
+    "main.38477e4e.js.map": "./static/js/main.38477e4e.js.map"
   },
   "entrypoints": [
     "static/css/main.28b5190c.css",
-    "static/js/main.0f73f873.js"
+    "static/js/main.38477e4e.js"
   ]
 }
