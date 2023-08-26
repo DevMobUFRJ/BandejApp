@@ -26,13 +26,12 @@ export const verificarData = (dataInput: string): boolean => {
     const mes = new Date().getMonth()+1;
     const ano = new Date().getFullYear();
 
+    console.log(dataInput);
+
     const dataSelecionada = dataInput.split('-');
     const anoSelecionado = parseInt(dataSelecionada[0]);
     const mesSelecionado = parseInt(dataSelecionada[1]);
     const diaSelecionado = parseInt(dataSelecionada[2]);
-
-    console.log(dataSelecionada);
-    
 
     if(anoSelecionado < ano) return true;
     else if(anoSelecionado > ano) return false;

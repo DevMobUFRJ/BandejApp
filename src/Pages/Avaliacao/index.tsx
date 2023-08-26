@@ -78,7 +78,7 @@ export default function Avaliacao() {
                             <InfoSubtitle>(Opcional)</InfoSubtitle>
                         </div>
 
-                        <EmailInput {...register('email')}
+                        <EmailInput {...register('email')} autoComplete="on"
                         name="email" type="email" placeholder="Insira seu e-mail..."/>
                     </AvaSection>
                     
@@ -117,14 +117,16 @@ export default function Avaliacao() {
 
                     <AvaSection>
                         <InfoTitle>Avaliação</InfoTitle>
-
+                        
+                        <input type="hidden"
+                            {...register('nota', {
+                                required: true,
+                                max: { value: 5, message: 'Máximo de estrelas é 5 !' },
+                                min: { value: 1, message: 'Selecione uma nota!' }
+                            })}
+                        />
                         {errors.nota? <MensagemErro>{errors.nota.message}</MensagemErro>:null}
-                        <Nota NotaToParent={(nota: number) => setValue('nota', nota)}
-                        {...register('nota', {
-                            required: true,
-                            max: { value: 5, message: 'Máximo de estrelas é 5 !' },
-                            min: { value: 1, message: 'Selecione uma nota!' }
-                        })}/>
+                        <Nota NotaToParent={(nota: number) => setValue('nota', nota)}/>
                         
                         {errors.comentario? <MensagemErro>{errors.comentario.message}</MensagemErro>:null}
                         <Comentario {...register('comentario',{
