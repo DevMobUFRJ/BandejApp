@@ -1,12 +1,17 @@
 {
     "theme_color": "#FD720F",
     "background_color": "#FD720F",
+
     "display": "standalone",
+    "display_override": ["fullscreen", "minimal-ui"],
+
     "scope": ".",
     "start_url": ".",
+
     "name": "BandejApp",
     "short_name": "BandejApp",
     "description": "Aplicação Oficial do Restaurante Universitário",
+
     "icons": [
         {
             "src": "./icons/appIcon144.svg",
@@ -39,7 +44,7 @@
             "purpose": "maskable"
         },
         {
-            "src": "./icons/appIconNecessario.png",
+            "src": "./icon.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any"
