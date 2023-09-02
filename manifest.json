@@ -9,39 +9,39 @@
     "description": "Aplicação Oficial do Restaurante Universitário",
     "icons": [
         {
-            "src": "./iconeBandejapp.svg",
+            "src": "./icons/appIcon144.svg",
             "sizes": "144x144",
             "type": "image/svg",
             "purpose": "maskable"
         },
         {
-            "src": "./iconeBandejapp.svg",
+            "src": "./icons/appIcon192.svg",
             "sizes": "192x192",
             "type": "image/svg",
             "purpose": "maskable"
         },
         {
-            "src": "./iconeBandejapp.svg",
+            "src": "./icons/appIcon256.svg",
             "sizes": "256x256",
             "type": "image/svg",
             "purpose": "maskable"
         },
         {
-            "src": "./iconeBandejapp.svg",
+            "src": "./icons/appIcon384.svg",
             "sizes": "384x384",
             "type": "image/svg",
             "purpose": "maskable"
         },
         {
-            "src": "./iconeBandejapp.svg",
+            "src": "./icons/appIcon512.svg",
             "sizes": "512x512",
             "type": "image/svg",
             "purpose": "maskable"
         },
         {
-            "src": "./iconeBandejapp.svg",
+            "src": "./icons/appIconNecessario.png",
             "sizes": "512x512",
-            "type": "image/svg",
+            "type": "image/png",
             "purpose": "any"
         }
     ]
