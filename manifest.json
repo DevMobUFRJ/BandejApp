@@ -1,5 +1,6 @@
 {
     "display": "standalone",
+    "display_override": ["standalone", "minimal-ui"],
 
     "theme_color": "#FD720F",
     "background_color": "#FD720F",
@@ -44,8 +45,8 @@
             "purpose": "maskable"
         },
         {
-            "src": "./iconeBandejapp.svg",
-            "sizes": "1000x1000",
+            "src": "./icons/appIconNecessario.png",
+            "sizes": "144x144",
             "type": "image/png",
             "purpose": "any"
         }
