@@ -53,23 +53,23 @@
 
     "screenshots": [
         {
-            "src": "./screenshot/cardapioShot.svg",
-            "sizes": "360x800",
-            "type": "image/svg",
+            "src": "./screenshot/cardapioShot.png",
+            "sizes": "1080x2400",
+            "type": "image/png",
             "form_factor": "narrow",
             "label": "Acompanhe o cardápio sempre atualizado !!!"
         },
         {
-            "src": "./screenshot/comunicadoShot.svg",
-            "sizes": "360x800",
-            "type": "image/svg",
+            "src": "./screenshot/comunicadoShot.png",
+            "sizes": "1080x2400",
+            "type": "image/png",
             "form_factor": "narrow",
             "label": "Receba notícias importates da equipe do RU."
         },
         {
-            "src": "./screenshot/avaliacaoShot.svg",
-            "sizes": "360x800",
-            "type": "image/svg",
+            "src": "./screenshot/avaliacaoShot.png",
+            "sizes": "1080x2400",
+            "type": "image/png",
             "form_factor": "narrow",
             "label": "Dê um feedback para ajudar a melhorar o RU."
         }
