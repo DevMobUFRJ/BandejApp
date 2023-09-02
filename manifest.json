@@ -1,12 +1,12 @@
 {
+    "display": "standalone",
+
     "theme_color": "#FD720F",
     "background_color": "#FD720F",
 
-    "display": "standalone",
-    "display_override": ["fullscreen", "minimal-ui"],
-
+    "id": "./",
     "scope": ".",
-    "start_url": ".",
+    "start_url": "./",
 
     "name": "BandejApp",
     "short_name": "BandejApp",
@@ -44,10 +44,34 @@
             "purpose": "maskable"
         },
         {
-            "src": "./icon.png",
-            "sizes": "512x512",
+            "src": "./iconeBandejapp.svg",
+            "sizes": "1000x1000",
             "type": "image/png",
             "purpose": "any"
+        }
+    ],
+
+    "screenshots": [
+        {
+            "src": "./screenshot/cardapioShot.svg",
+            "sizes": "360x800",
+            "type": "image/svg",
+            "form_factor": "narrow",
+            "label": "Acompanhe o cardápio sempre atualizado !!!"
+        },
+        {
+            "src": "./screenshot/comunicadoShot.svg",
+            "sizes": "360x800",
+            "type": "image/svg",
+            "form_factor": "narrow",
+            "label": "Receba notícias importates da equipe do RU."
+        },
+        {
+            "src": "./screenshot/avaliacaoShot.svg",
+            "sizes": "360x800",
+            "type": "image/svg",
+            "form_factor": "narrow",
+            "label": "Dê um feedback para ajudar a melhorar o RU."
         }
     ]
 }
