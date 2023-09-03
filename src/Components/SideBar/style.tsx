@@ -34,7 +34,6 @@ export const LogoImg = styled.img `
 
 export const CloseImg = styled.img `
     width: 8.88vw;
-    margin: 0 0 0 ;
 `;
 
 /*----------------------------------------------------------------------------*/
