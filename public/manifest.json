@@ -1,48 +1,90 @@
 {
+    "display": "standalone",
+    "display_override": ["standalone", "minimal-ui"],
+
     "theme_color": "#FD720F",
     "background_color": "#FD720F",
-    "display": "standalone",
+
+    "id": "./",
     "scope": ".",
-    "start_url": ".",
+    "start_url": "./",
+
     "name": "BandejApp",
     "short_name": "BandejApp",
     "description": "Aplicação Oficial do Restaurante Universitário",
+
     "icons": [
         {
-            "src": "./icons/appIcon144.svg",
-            "sizes": "144x144",
-            "type": "image/svg",
+            "src": "./icons/maskable_icon_x48.png",
+            "sizes": "48x48",
+            "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "./icons/appIcon192.svg",
+            "src": "./icons/maskable_icon_x72.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./icons/maskable_icon_x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./icons/maskable_icon_x128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./icons/maskable_icon_x192.png",
             "sizes": "192x192",
-            "type": "image/svg",
+            "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "./icons/appIcon256.svg",
-            "sizes": "256x256",
-            "type": "image/svg",
-            "purpose": "maskable"
-        },
-        {
-            "src": "./icons/appIcon384.svg",
+            "src": "./icons/maskable_icon_x384.png",
             "sizes": "384x384",
-            "type": "image/svg",
+            "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "./icons/appIcon512.svg",
-            "sizes": "512x512",
-            "type": "image/svg",
-            "purpose": "maskable"
-        },
-        {
-            "src": "./icons/appIconNecessario.png",
+            "src": "./icons/maskable_icon_x512.png",
             "sizes": "512x512",
             "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./icons/maskable_icon.png",
+            "sizes": "1024x1024",
+            "type": "image/png",
             "purpose": "any"
+        }
+    ],
+
+    "screenshots": [
+        {
+            "src": "./screenshot/cardapioShot.png",
+            "sizes": "1080x2400",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Acompanhe o cardápio sempre atualizado !!!"
+        },
+        {
+            "src": "./screenshot/comunicadoShot.png",
+            "sizes": "1080x2400",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Receba notícias importates da equipe do RU."
+        },
+        {
+            "src": "./screenshot/avaliacaoShot.png",
+            "sizes": "1080x2400",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Dê um feedback para ajudar a melhorar o RU."
         }
     ]
 }
