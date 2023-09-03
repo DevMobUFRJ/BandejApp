@@ -24,17 +24,17 @@ export const SideBarDiv = styled.div `
 export const SideHeader = styled.section `
     display: grid;
     grid-template-columns: auto auto;
-    margin: 6vh 0 0 0;
+    align-items: center;
 `;
 
 export const LogoImg = styled.img `
-    width: 26.67vw;
+    width: 43.3vw;
     margin: 0 0 0 5vw;
 `;
 
 export const CloseImg = styled.img `
     width: 8.88vw;
-    margin: 0 0 0 15vw
+    margin: 0 0 0 ;
 `;
 
 /*----------------------------------------------------------------------------*/

@@ -10,7 +10,6 @@ import Cabecalho from "../../Components/Cabecalho";
 import { Formatacao } from "../../Functions/Formatacao";
 import { useContext } from "react";
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
-import Pending from '../../Assets/SideBar/pending.svg';
 import DownPop from "../../Components/PopUpIOS";
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import SemMsg from '../../Assets/Comunicados/SemMsg.svg'
@@ -128,7 +127,7 @@ export default function Comunicados() {
                                                 {`${Formatacao.diaRelativo(comentario.data)}`}
                                             </DataRelativa>
                                             {
-                                                comentario.pending && pendingNotification && <SideIcon src={Pending} />
+                                                comentario.pending && pendingNotification && <SideIcon/>
                                             }
                                         </CardTop>
                                         <TextData new={comentario.pending && pendingNotification}>
