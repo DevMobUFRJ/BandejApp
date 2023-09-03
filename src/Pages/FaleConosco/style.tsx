@@ -14,7 +14,7 @@ export const FaleDiv = styled.div `
 
 /*----------------------------------------------------------------------------*/
 
-export const BalaoInfo = styled.section `
+export const Balao = styled.section `
     width: 86.67vw;
     
     margin: 2vh 0 0 0;
@@ -24,14 +24,14 @@ export const BalaoInfo = styled.section `
     
     border-radius: 4.44vw;
 
-    background: ${global.colors.branco};
-    
-    div {
-        display: grid;
-        grid-template-rows: auto auto;
-        grid-row-gap: 2vh;
-        padding: 3.33vw 4.44vw 0 4.44vw;
-    }
+    background: ${global.colors.branco}
+`;
+
+export const BalaoInfo = styled.div `
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-row-gap: 2vh;
+    padding: 3.33vw 4.44vw 0 4.44vw;
 `;
 
 export const BalaoBanner = styled.img `
