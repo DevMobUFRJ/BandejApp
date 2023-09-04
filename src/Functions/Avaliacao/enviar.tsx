@@ -135,15 +135,18 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
             resetarForm(formulario, valores);
             botaoEnvio?.toggleAttribute('disabled', false);
             botaoEnvio?.classList.remove('envioDesativado');
-            toast.success('Avaliação foi enviada com sucesso!');
+            toast.success('Avaliação foi enviada com sucesso!',
+            {position: toast.POSITION.BOTTOM_CENTER});
             return true;
         } 
         else {
-            toast.error(text);
+            toast.error(text,
+            {position: toast.POSITION.BOTTOM_CENTER});
             return false;
         }})
         .catch(err => {
-            toast.error("Erro de rede. Tente novamente mais tarde");
+            toast.error("Erro de rede. Tente novamente mais tarde",
+            {position: toast.POSITION.BOTTOM_CENTER});
             return false;
         });
     

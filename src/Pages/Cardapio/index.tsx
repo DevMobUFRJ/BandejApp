@@ -14,7 +14,7 @@ import Load from "../../Components/Load";
 import FontSize from "../../Functions/Cardapio/FontSize";
 import Cabecalho from "../../Components/Cabecalho";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -83,7 +83,8 @@ export default function Cardapio() {
                     pending: 'Atualizando cardápio...',
                     success: 'Cardápio atualizado',
                     error: 'Não foi possível atualizar o cardápio'
-                }
+                },
+                {position: toast.POSITION.BOTTOM_CENTER}
             )
         }        
     }, []);

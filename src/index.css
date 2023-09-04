@@ -24,7 +24,7 @@ code {
 
 .Toastify__toast-container {
   width: 100vw !important; 
-  top: 6.5vh !important;
+  bottom: 3vh !important;
 }
 
 .Toastify__toast {
@@ -36,6 +36,7 @@ code {
   
   font-size: 14px !important;
   font-weight: 500 !important;
+  font-family: 'Quicksand';
 }
 
 .Toastify__toast--default {
