@@ -15,9 +15,9 @@ export const FaleDiv = styled.div `
 /*----------------------------------------------------------------------------*/
 
 export const Balao = styled.section `
-    width: 86.67vw;
+    width: 91.1vw;
     
-    margin: 2vh 0 2vh 0;
+    margin: 2vh 0;
     padding: 0 0 4.44vw 0;
     
     overflow: hidden;
@@ -92,4 +92,26 @@ export const LinkName = styled.p `
 
 export const LinkIcon = styled.img `
     width: 6.66vw;
+`;
+
+/*----------------------------------------------------------------------------*/
+
+export const InstitutoDiv = styled.div `
+    display: inline-flex;
+    width: 91.1vw;
+    height: 7.75vh;
+
+    margin: 3vh 0 5vh 0;
+
+    position: relative;
+
+    align-items: center;
+    justify-content: space-evenly;
+`;
+
+export const Linha = styled.div `
+    width: 0.1vw;
+    height: 110%;
+
+    background-color: ${global.colors.cinza};
 `;

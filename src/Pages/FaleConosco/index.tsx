@@ -4,7 +4,7 @@ import { useContext } from "react";
 import Cabecalho from "../../Components/Cabecalho";
 
 import { Balao, BalaoBanner, BalaoDescription, BalaoInfo, BalaoTitle,
-    FaleDiv, InfoLink, LinkIcon, LinkName, Links } from "./style";
+    FaleDiv, InfoLink, InstitutoDiv, Linha, LinkIcon, LinkName, Links } from "./style";
     
 import DownPop from "../../Components/PopUpIOS";
 import copy from 'copy-to-clipboard';
@@ -15,6 +15,9 @@ import Redirect from '../../Assets/FaleConosco/redirect.svg';
 
 import DevMobBanner from '../../Assets/FaleConosco/devmobBanner.svg';
 import RUbanner from '../../Assets/FaleConosco/ruBanner.svg';
+
+import logoIC from '../../Assets/FaleConosco/LogoIC.svg';
+import logoUfrj from '../../Assets/FaleConosco/LogoUFRJ.svg';
     
 type copiado = {
     id: string;
@@ -122,10 +125,14 @@ export default function FaleConosco() {
                     </Balao>
                 )
             }
-            {
-                showInstallMessage &&
-                <DownPop/>
-            }
+
+            <InstitutoDiv>
+                <img src={logoIC} style={{width: '35%'}}/>
+                <Linha/>
+                <img src={logoUfrj} style={{width: '35%'}}/>
+            </InstitutoDiv>
+
+            { showInstallMessage && <DownPop/> }
         </FaleDiv>
     );
 }
