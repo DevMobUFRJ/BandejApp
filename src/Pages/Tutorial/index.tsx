@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { BackImg, ButtonDiv, CurrentDiv,
     CurrentPage, InitialPage, PageDescription,
     PageTitle, PrevNext, StartSkip, Template,
-    TemplateDiv, TutDiv, Logo, Slogan, LogoDiv, StartDiv } from "./style";
+    TemplateDiv, TutDiv, Logo, LogoDiv, StartDiv } from "./style";
 
 import Background from '../../Assets/Tutorial/BgInicial.svg';
 import TempAvaliacao from "../../Assets/Tutorial/TempAvaliacao.svg";
@@ -72,7 +72,6 @@ export default function Tutorial() {
 
                 <LogoDiv>
                     <Logo src={LogoImg}/>
-                    <Slogan>Do universitário, para os universitários : )</Slogan>
                 </LogoDiv>
 
                 <PageDescription>

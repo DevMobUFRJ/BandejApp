@@ -57,15 +57,7 @@ export const LogoDiv = styled.div `
 `;
 
 export const Logo = styled.img `
-    width: 70vw;
-`;
-
-export const Slogan = styled.p `
-    margin: 2vh 0 0 0;
-    font-family: ${global.fonts.quickSand};
-    font-weight: 600;
-    font-size: 3vw;
-    color: white;
+    width: 50vw;
 `;
 
 export const StartDiv = styled.div `
