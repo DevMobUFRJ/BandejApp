@@ -36,7 +36,7 @@ export const InitialPage = styled.div `
     flex-direction: column;
 
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     align-items: center;
 `;
 
@@ -44,12 +44,11 @@ export const LogoDiv = styled.div `
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: calc(134.18vw - 10%);
+    height: 125vw;
 
     position: relative;
     z-index: 1;
 
-    margin: 0 0 15% 0;
     padding: 15% 0 0 0;
     
     align-items: center;
@@ -58,15 +57,7 @@ export const LogoDiv = styled.div `
 `;
 
 export const Logo = styled.img `
-    width: 70vw;
-`;
-
-export const Slogan = styled.p `
-    margin: 2vh 0 0 0;
-    font-family: ${global.fonts.quickSand};
-    font-weight: 600;
-    font-size: 3vw;
-    color: white;
+    width: 50vw;
 `;
 
 export const StartDiv = styled.div `
@@ -76,6 +67,8 @@ export const StartDiv = styled.div `
     grid-row-gap: 2vh;
 
     width: 90.83vw;
+
+    margin: 0 0 10% 0;
 
     .skip {
         width: calc(100% - 0.55vw);

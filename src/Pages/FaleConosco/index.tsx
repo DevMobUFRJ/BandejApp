@@ -1,27 +1,70 @@
+import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+import { useContext } from "react";
+
 import Cabecalho from "../../Components/Cabecalho";
-import { BalaoBanner, BalaoDescription, BalaoInfo, BalaoTitle,
-    FaleDiv, InfoLink, LinkIcon, LinkName, Links } from "./style";
+
+import { Balao, BalaoBanner, BalaoDescription, BalaoInfo, BalaoTitle,
+    FaleDiv, InfoLink, InstitutoDiv, Linha, LinkIcon, LinkName, Links } from "./style";
+    
+import DownPop from "../../Components/PopUpIOS";
+import copy from 'copy-to-clipboard';
 
 import Copy from '../../Assets/FaleConosco/copiar.svg';
 import Check from '../../Assets/FaleConosco/check.svg';
 import Redirect from '../../Assets/FaleConosco/redirect.svg';
-import DownPop from "../../Components/PopUpIOS";
-import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
-import { useContext } from "react";
+
 import DevMobBanner from '../../Assets/FaleConosco/devmobBanner.svg';
 import RUbanner from '../../Assets/FaleConosco/ruBanner.svg';
-import copy from 'copy-to-clipboard';
 
+import logoIC from '../../Assets/FaleConosco/LogoIC.svg';
+import logoUfrj from '../../Assets/FaleConosco/LogoUFRJ.svg';
+    
 type copiado = {
     id: string;
     ativo: boolean;
     timeout: NodeJS.Timeout;
 }
 
+
+type Banner = {
+    imagem: string;
+    alt: string;
+    titulo: string;
+    descricao: string;
+    opcoes: Array<{
+        tipo: number; /* 0 -> Link | != 0 -> copiar */
+        nome: string; /* Se for texto para copiar, o nome DEVERIA ser o texto para copiar*/
+        linkOuId:  string;
+    }>;
+    filtro: string;
+}
+
 export default function FaleConosco() {
     const { showInstallMessage } = useContext(InstallMessageContext);
 
-    const emailRU = 'admruufrj@gmail.com';
+    const Baloes: Array<Banner> = [
+        {
+            imagem: RUbanner,
+            alt: 'Banner com fundo degradê laranja claro a um laranja vibrante, e ao centro a logo do Restaurante Universitário.',
+            titulo: 'Restaurante Universitário UFRJ',
+            descricao: 'Elogios, sugestões e/ou reclamações?Fale com a gente através do formulário ou email.',
+            opcoes: [
+                {tipo: 1, nome: 'admruufrj@gmail.com', linkOuId: 'admruufrj@gmail.com'},
+                {tipo: 0, nome: 'Abrir formulário', linkOuId: 'https://docs.google.com/forms/d/e/1FAIpQLSctq79DYLYzK3IZ_dPuCewiu3g9gG46Px_ngzo5OzTLrtlDRA/viewform'}
+            ],
+            filtro: ''
+        },
+        {
+            imagem: DevMobBanner,
+            alt: 'Banner com fundo degradê azul médio a um azul concentrado, e ao centro a logo do Restaurante Universitário.',
+            titulo: 'DevMob',
+            descricao: 'Fale com a equipe DevMob para tirar dúvidas, enviar sugestões e tudo mais relacionado ao App.',
+            opcoes: [
+                {tipo: 1, nome: 'devmob@ic.ufrj.br', linkOuId: 'devmob@ic.ufrj.br'}
+            ],
+            filtro: 'invert(21%) sepia(74%) saturate(2729%) hue-rotate(196deg) brightness(87%) contrast(89%)'
+        }
+    ];
 
     const form = 'https://docs.google.com/forms/d/e/1FAIpQLSctq79DYLYzK3IZ_dPuCewiu3g9gG46Px_ngzo5OzTLrtlDRA/viewform';
     const devmob = 'devmob@ic.ufrj.br';
@@ -53,54 +96,50 @@ export default function FaleConosco() {
         }
     }
 
-
     return (
         <FaleDiv>
             <Cabecalho nome='Fale conosco'/>
-        
-            <BalaoInfo>
-                <BalaoBanner src={RUbanner}/>
-                <div>
-                    <BalaoTitle>Restaurante Universitário UFRJ</BalaoTitle>
-                    <BalaoDescription>
-                        Elogios, sugestões e/ou reclamações?
-                        Fale com a gente através do formulário ou email.
-                    </BalaoDescription>
-                    <Links>
-                        <InfoLink onClick={elem => copiar('ru', emailRU)}>
-                            <LinkName>{emailRU}</LinkName>
-                            <LinkIcon id='ru' src={Copy}/>
-                        </InfoLink>
-                        <InfoLink href={form}>
-                            <LinkName>Abrir formulário</LinkName>
-                            <LinkIcon src={Redirect}/>
-                        </InfoLink>
-                    </Links>
-                </div>
-            </BalaoInfo>
 
-            <BalaoInfo>
-                <BalaoBanner src={DevMobBanner}/>
-                <div>
-                    <BalaoTitle>DevMob</BalaoTitle>
-                    <BalaoDescription>
-                        Fale com a equipe DevMob para tirar dúvidas,
-                        enviar sugestões e tudo mais relacionado ao App.
-                    </BalaoDescription>
-                    <Links>
-                        <InfoLink onClick={elem => copiar('devmob', devmob)}>
-                            <LinkName>{devmob}</LinkName>
-                            <LinkIcon 
-                            style={{filter: 'invert(21%) sepia(74%) saturate(2729%) hue-rotate(196deg) brightness(87%) contrast(89%)'}}
-                            id='devmob' src={Copy}/>
-                        </InfoLink>
-                    </Links>
-                </div>
-            </BalaoInfo>
             {
-                showInstallMessage &&
-                <DownPop/>
+                Baloes.map( (banner, indice) => 
+                    <Balao key={indice}>
+                        <BalaoBanner src={banner.imagem} alt={banner.alt}/>
+
+                        <BalaoInfo>
+                            <BalaoTitle>{banner.titulo}</BalaoTitle>
+                            <BalaoDescription>{banner.descricao}</BalaoDescription>
+                            <Links>
+                                {banner.opcoes.map((opcao, index) => 
+                                    opcao.tipo === 0?
+                                    <InfoLink href={opcao.linkOuId} key={index}>
+                                        <LinkName>{opcao.nome}</LinkName>
+                                        <LinkIcon src={Redirect}
+                                        style={{filter: banner.filtro}}/>
+                                    </InfoLink>
+
+                                    :
+
+                                    <InfoLink onClick={() => copiar(opcao.linkOuId, opcao.nome)} key={index}>
+                                        <LinkName>{opcao.nome}</LinkName>
+                                        <LinkIcon src={Copy} id={opcao.linkOuId}
+                                        style={{filter: banner.filtro}}/>
+                                    </InfoLink>
+                                )}
+                            </Links>
+                        </BalaoInfo>
+                    </Balao>
+                )
             }
+
+            <InstitutoDiv>
+                <img src={logoIC} style={{width: '35%'}}
+                alt="Logo do Institudo de Computação da UFRJ."/>
+                <Linha/>
+                <img src={logoUfrj} style={{width: '35%'}}
+                alt="Logo da Universidade Federal do Rio de Janeiro."/>
+            </InstitutoDiv>
+
+            { showInstallMessage && <DownPop/> }
         </FaleDiv>
     );
 }

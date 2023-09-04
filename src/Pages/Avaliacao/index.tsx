@@ -3,15 +3,12 @@ import { AvaSection, Avadiv, Comentario, DateDiv,
          AvaForm, TurnoButton, TurnoDiv, FormDiv, MensagemErro} from "./style";
 import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { ToastContainer } from 'react-toastify';
-import { formulario, enviar } from "../../Functions/Avaliacao/enviar";
+import { verificarData, formulario, enviar } from "../../Functions/Avaliacao/enviar";
 import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
-
-import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
-import PopUp from "../../Components/PopUp";
 
 import Nota from "../../Components/Nota";
 import Cabecalho from "../../Components/Cabecalho";
@@ -49,7 +46,7 @@ export default function Avaliacao() {
             <AvaForm onSubmit={handleSubmit(async dados => { if(await enviar(dados, valores)) reset(); })}>
                 <FormDiv>
                     <AvaSection>
-                        <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
+                        <InfoTitle>Qual restaurante deseja avaliar?</InfoTitle>
                         <input type="hidden" {...register('ru', {
                             required: true, 
                             validate: valor => {
@@ -78,7 +75,7 @@ export default function Avaliacao() {
                             <InfoSubtitle>(Opcional)</InfoSubtitle>
                         </div>
 
-                        <EmailInput {...register('email')}
+                        <EmailInput {...register('email')} autoComplete="on"
                         name="email" type="email" placeholder="Insira seu e-mail..."/>
                     </AvaSection>
                     
@@ -100,10 +97,13 @@ export default function Avaliacao() {
                             >   Jantar
                             </TurnoButton>
                         </TurnoDiv>
-
+                        
+                        {errors.data? <MensagemErro>{errors.data.message}</MensagemErro>:null}
                         <DateDiv onFocus={textoParaData}>
-                            <DateSelect {...register('data')}
-                            name="data" id="dataSelect" type="text" placeholder="Selecione uma data"/>
+                            <DateSelect {...register('data', {
+                                validate: data => verificarData(data)? true:'Data inválida'
+                            })}
+                            id="dataSelect" name="data" type="text" placeholder="Selecione uma data"/>
 
                             <DatePicker src={datePicker} onClick={textoParaData}/>
                         </DateDiv>
@@ -114,14 +114,16 @@ export default function Avaliacao() {
 
                     <AvaSection>
                         <InfoTitle>Avaliação</InfoTitle>
-
+                        
+                        <input type="hidden"
+                            {...register('nota', {
+                                required: true,
+                                max: { value: 5, message: 'Máximo de estrelas é 5!' },
+                                min: { value: 1, message: 'Selecione uma nota!' }
+                            })}
+                        />
                         {errors.nota? <MensagemErro>{errors.nota.message}</MensagemErro>:null}
-                        <Nota NotaToParent={(nota: number) => setValue('nota', nota)}
-                        {...register('nota', {
-                            required: true,
-                            max: { value: 5, message: 'Máximo de estrelas é 5 !' },
-                            min: { value: 1, message: 'Selecione uma nota!' }
-                        })}/>
+                        <Nota NotaToParent={(nota: number) => setValue('nota', nota)}/>
                         
                         {errors.comentario? <MensagemErro>{errors.comentario.message}</MensagemErro>:null}
                         <Comentario {...register('comentario',{
@@ -135,7 +137,7 @@ export default function Avaliacao() {
 {/*--------------------------------------------------------------------------*/}
 
                 </FormDiv>
-                <EnviarButton>
+                <EnviarButton id='botaoEnvio'>
                     Enviar Avaliação
                 </EnviarButton>
             </AvaForm>
