@@ -22,18 +22,25 @@ function formatarData(formulario: formulario) {
 }
 
 export const verificarData = (dataInput: string): boolean => {
+    if(dataInput === '') return true;
+
     const dia = new Date().getDate();
     const mes = new Date().getMonth()+1;
     const ano = new Date().getFullYear();
 
     const dataSelecionada = dataInput.split('-');
+    const anoSelecionado = parseInt(dataSelecionada[0]);
+    const mesSelecionado = parseInt(dataSelecionada[1]);
+    const diaSelecionado = parseInt(dataSelecionada[2]);
 
-    if(ano < parseInt(dataSelecionada[0])) return false;
+    if(anoSelecionado < ano) return true;
+    else if(anoSelecionado > ano) return false;
     else {
-        if(mes < parseInt(dataSelecionada[1])) return false;
+        if(mesSelecionado < mes) return true;
+        else if(mesSelecionado > mes) return false;
         else {
-            if(dia < parseInt(dataSelecionada[2])) return false;
-            else return true;
+            if(diaSelecionado <= dia) return true;
+            else return false;
         }
     }
 }

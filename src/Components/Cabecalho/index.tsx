@@ -1,11 +1,14 @@
-import SideBar from "../SideBar";
-import { PlaceHolderCabecalho, BlurDiv, CabecaDiv, PageTitle, 
-        DivAjustes, IconeAjustes, NotifDiv, NotifInside, SideButton, NotifIcon } from "./style";
-import Menu from '../../Assets/SideBar/menu.svg';
-import Ajustes from '../../Assets/Ajustes.svg';
-import Close from '../../Assets/Close.svg';
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import { useContext } from "react";
+
+import { PlaceHolderCabecalho, BlurDiv, CabecaDiv, PageTitle, 
+    DivAjustes, IconeAjustes, NotifDiv, NotifInside, SideButton, NotifIcon } from "./style";    
+
+import SideBar from "../SideBar";
+
+import Menu from '../../Assets/SideBar/menu.svg';
+import Ajustes from '../../Assets/Cardapio/Ajustes.svg';
+import Close from '../../Assets/SideBar/close.svg';
 
 type Nome = { nome: string 
             setOpcoes?: Function};
@@ -70,20 +73,24 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
     return (
         <PlaceHolderCabecalho>
             <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
-                <BlurDiv id="blurdiv"/>
-                <SideBar fechaDiv={() => toggleSide(false)}/>
                 <NotifDiv onClick={() => toggleSide(true)}>
+                    <SideButton src={Menu}/>
+
                     <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}>
                         <NotifInside/>
                     </NotifIcon>
-                    <SideButton src={Menu}/>
                 </NotifDiv>
+
                 <PageTitle>{nome}</PageTitle>
+
                 <DivAjustes>
                     <IconeAjustes style={{display: `${nome === 'Cardápio' ? '' : 'none'}`}}
                     src={aberto ? Close : Ajustes} 
                     onClick={() => clique(fadeAjustes, setOpcoes)}/>
                 </DivAjustes>
+
+                <BlurDiv id="blurdiv"/>
+                <SideBar fechaDiv={() => toggleSide(false)}/>
             </CabecaDiv>
         </PlaceHolderCabecalho>
     );

@@ -112,8 +112,11 @@ export const TextMensagem = styled.p `
     word-wrap: break-word;
 `;
 
-export const SideIcon = styled.img `
+export const SideIcon = styled.div `
     width: 4vw;
+    height: 4vw;
+    border-radius: 50%;
+    background-color: ${global.colors.laranja};
 `;
 
 export const CardTop = styled.section`
