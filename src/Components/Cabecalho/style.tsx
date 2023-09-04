@@ -91,7 +91,7 @@ export const BlurDiv = styled.div `
 `;
 
 export const SideButton = styled.img `
-    width: 9vw;
+    width: 6.66vw;
     margin: 0 0 0 4.44vw;
 `;
 
@@ -108,8 +108,8 @@ export const NotifIcon = styled.div `
     height: 5.55vw;
 
     position: absolute;
-    right: -10%;
-    top: -25%;
+    top: -50%;
+    right: -25%;
 
     align-items: center;
     justify-content: center;
