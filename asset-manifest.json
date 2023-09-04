@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.28b5190c.css",
-    "main.js": "./static/js/main.3d5e6d91.js",
+    "main.js": "./static/js/main.f6e6def3.js",
     "static/media/BgRu.svg": "./static/media/BgRu.32ca6184f190a0724dde0935091b241c.svg",
     "static/media/RUcentral.jpg": "./static/media/RUcentral.f1db24c9e0dcf901eed8.jpg",
     "static/media/LogoUFRJ.svg": "./static/media/LogoUFRJ.33e8c224b239aad789fbeae4ef6c0049.svg",
@@ -61,10 +61,10 @@
     "static/media/ArrowDown.svg": "./static/media/ArrowDown.6bd38022f34745ce2e43edde917906db.svg",
     "static/media/menu.svg": "./static/media/menu.3104cc3bd86eef6bd8d0007e6387ae18.svg",
     "main.28b5190c.css.map": "./static/css/main.28b5190c.css.map",
-    "main.3d5e6d91.js.map": "./static/js/main.3d5e6d91.js.map"
+    "main.f6e6def3.js.map": "./static/js/main.f6e6def3.js.map"
   },
   "entrypoints": [
     "static/css/main.28b5190c.css",
-    "static/js/main.3d5e6d91.js"
+    "static/js/main.f6e6def3.js"
   ]
 }
