@@ -28,6 +28,7 @@ type copiado = {
 
 type Banner = {
     imagem: string;
+    alt: string;
     titulo: string;
     descricao: string;
     opcoes: Array<{
@@ -44,6 +45,7 @@ export default function FaleConosco() {
     const Baloes: Array<Banner> = [
         {
             imagem: RUbanner,
+            alt: 'Banner com fundo degradê laranja claro a um laranja vibrante, e ao centro a logo do Restaurante Universitário.',
             titulo: 'Restaurante Universitário UFRJ',
             descricao: 'Elogios, sugestões e/ou reclamações?Fale com a gente através do formulário ou email.',
             opcoes: [
@@ -54,7 +56,8 @@ export default function FaleConosco() {
         },
         {
             imagem: DevMobBanner,
-            titulo: '',
+            alt: 'Banner com fundo degradê azul médio a um azul concentrado, e ao centro a logo do Restaurante Universitário.',
+            titulo: 'DevMob',
             descricao: 'Fale com a equipe DevMob para tirar dúvidas, enviar sugestões e tudo mais relacionado ao App.',
             opcoes: [
                 {tipo: 1, nome: 'devmob@ic.ufrj.br', linkOuId: 'devmob@ic.ufrj.br'}
@@ -98,7 +101,7 @@ export default function FaleConosco() {
             {
                 Baloes.map( (banner, indice) => 
                     <Balao key={indice}>
-                        <BalaoBanner src={banner.imagem}/>
+                        <BalaoBanner src={banner.imagem} alt={banner.alt}/>
 
                         <BalaoInfo>
                             <BalaoTitle>{banner.titulo}</BalaoTitle>
@@ -127,9 +130,11 @@ export default function FaleConosco() {
             }
 
             <InstitutoDiv>
-                <img src={logoIC} style={{width: '35%'}}/>
+                <img src={logoIC} style={{width: '35%'}}
+                alt="Logo do Institudo de Computação da UFRJ."/>
                 <Linha/>
-                <img src={logoUfrj} style={{width: '35%'}}/>
+                <img src={logoUfrj} style={{width: '35%'}}
+                alt="Logo da Universidade Federal do Rio de Janeiro."/>
             </InstitutoDiv>
 
             { showInstallMessage && <DownPop/> }
