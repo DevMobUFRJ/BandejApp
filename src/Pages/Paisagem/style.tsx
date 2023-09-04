@@ -19,7 +19,7 @@ export const Disgurpa = styled.h1 `
 `;
 
 export const PaisagemErro = styled.h2 `
-    width: 50%;
+    width: 60%;
     text-align: center;
 
     font-family: ${global.fonts.quickSand};

@@ -5,12 +5,13 @@ import Logo from '../../Assets/Paisagem/LogoBandejapp.svg';
 export default function Paisagem() {
     return (
         <PaisagemDiv>
-            <Disgurpa>Desculpe !!!</Disgurpa>
+            <Disgurpa>Modo Paisagem</Disgurpa>
 
             <PaisagemErro>
-                A nossa página ainda não está disponível
-                para esta visão.
+                O BandejApp ainda não está disponível em modo paisagem mas já
+                estamos trabalhando para resolver isso em breve !!!
             </PaisagemErro>
+            <PaisagemErro>🚧👷🏽🛠️🚧</PaisagemErro>
 
             <BandejAppLogo src={Logo}/>
         </PaisagemDiv>

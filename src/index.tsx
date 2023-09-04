@@ -34,7 +34,6 @@ function App() {
         );
     }
     else return (<Paisagem/>);
-    
 };
 
 root.render(<App/>);
