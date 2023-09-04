@@ -92,7 +92,7 @@ export const BlurDiv = styled.div `
 
 export const SideButton = styled.img `
     width: 6.66vw;
-    margin: 0 0 0 4.44vw;
+    margin-left: 5.55vw;
 `;
 
 /*----------------------------------------------------------------------------*/
