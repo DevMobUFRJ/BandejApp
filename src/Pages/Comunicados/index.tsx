@@ -95,12 +95,12 @@ export default function Comunicados() {
     return (
         <ComunicadoDiv id="ComunicadoPage">
             <ToastContainer />
+            <Cabecalho nome='Comunicados'/>
             {
                 (loading) ?
                     <Load />
                 : 
                 <>
-                    <Cabecalho nome='Comunicados'/>
                     <BalaoSemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>
                         <IconeSemMensagens src={SemMsg}/>
                         <TextoSemMensagens>Não há novas mensagens publicadas pela coordenação do RU.</TextoSemMensagens>
