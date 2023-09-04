@@ -11,7 +11,7 @@ export const PaisagemDiv = styled.div `
     justify-content: center;
 `;
 
-export const Disgurpa = styled.h1 `
+export const PaisagemTitle = styled.h1 `
     font-family: ${global.fonts.quickSand};
     font-size: 6vw;
     font-weight: 800;

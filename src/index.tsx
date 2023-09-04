@@ -5,7 +5,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import Router from './Routes/Router';
 import { NotificationProvider } from './Contexts/PendingNotificationContext';
 import { InstallMessageProvider } from './Contexts/ShowInstallMessageContext';
-import Paisagem from './Pages/Paisagem/idex';
+import Paisagem from './Pages/Paisagem/';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

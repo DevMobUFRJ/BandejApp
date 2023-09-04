@@ -3,15 +3,12 @@ import { AvaSection, Avadiv, Comentario, DateDiv,
          AvaForm, TurnoButton, TurnoDiv, FormDiv, MensagemErro} from "./style";
 import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { ToastContainer } from 'react-toastify';
 import { verificarData, formulario, enviar } from "../../Functions/Avaliacao/enviar";
 import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
-
-import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
-import PopUp from "../../Components/PopUp";
 
 import Nota from "../../Components/Nota";
 import Cabecalho from "../../Components/Cabecalho";
@@ -49,7 +46,7 @@ export default function Avaliacao() {
             <AvaForm onSubmit={handleSubmit(async dados => { if(await enviar(dados, valores)) reset(); })}>
                 <FormDiv>
                     <AvaSection>
-                        <InfoTitle>Qual restaurante deseja avaliar ?</InfoTitle>
+                        <InfoTitle>Qual restaurante deseja avaliar?</InfoTitle>
                         <input type="hidden" {...register('ru', {
                             required: true, 
                             validate: valor => {
@@ -121,7 +118,7 @@ export default function Avaliacao() {
                         <input type="hidden"
                             {...register('nota', {
                                 required: true,
-                                max: { value: 5, message: 'Máximo de estrelas é 5 !' },
+                                max: { value: 5, message: 'Máximo de estrelas é 5!' },
                                 min: { value: 1, message: 'Selecione uma nota!' }
                             })}
                         />
