@@ -33,7 +33,7 @@ export const LogoImg = styled.img `
 `;
 
 export const CloseImg = styled.img `
-    width: 8.88vw;
+    width: 5.16vw;
 `;
 
 /*----------------------------------------------------------------------------*/

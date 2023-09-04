@@ -53,7 +53,9 @@ export default function FaleConosco() {
             imagem: DevMobBanner,
             titulo: '',
             descricao: 'Fale com a equipe DevMob para tirar dúvidas, enviar sugestões e tudo mais relacionado ao App.',
-            opcoes: [{tipo: 1, nome: 'devmob@ic.ufrj.br', linkOuId: 'emailDevmob'}],
+            opcoes: [
+                {tipo: 1, nome: 'devmob@ic.ufrj.br', linkOuId: 'devmob@ic.ufrj.br'}
+            ],
             filtro: 'invert(21%) sepia(74%) saturate(2729%) hue-rotate(196deg) brightness(87%) contrast(89%)'
         }
     ];
@@ -91,17 +93,17 @@ export default function FaleConosco() {
             <Cabecalho nome='Fale conosco'/>
 
             {
-                Baloes.map( banner => 
-                    <Balao>
+                Baloes.map( (banner, indice) => 
+                    <Balao key={indice}>
                         <BalaoBanner src={banner.imagem}/>
 
                         <BalaoInfo>
                             <BalaoTitle>{banner.titulo}</BalaoTitle>
                             <BalaoDescription>{banner.descricao}</BalaoDescription>
                             <Links>
-                                {banner.opcoes.map((opcao) => 
+                                {banner.opcoes.map((opcao, index) => 
                                     opcao.tipo === 0?
-                                    <InfoLink href={opcao.linkOuId}>
+                                    <InfoLink href={opcao.linkOuId} key={index}>
                                         <LinkName>{opcao.nome}</LinkName>
                                         <LinkIcon src={Redirect}
                                         style={{filter: banner.filtro}}/>
@@ -109,7 +111,7 @@ export default function FaleConosco() {
 
                                     :
 
-                                    <InfoLink onClick={() => copiar(opcao.linkOuId, opcao.nome)}>
+                                    <InfoLink onClick={() => copiar(opcao.linkOuId, opcao.nome)} key={index}>
                                         <LinkName>{opcao.nome}</LinkName>
                                         <LinkIcon src={Copy} id={opcao.linkOuId}
                                         style={{filter: banner.filtro}}/>

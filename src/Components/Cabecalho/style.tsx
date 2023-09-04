@@ -91,14 +91,14 @@ export const BlurDiv = styled.div `
 `;
 
 export const SideButton = styled.img `
-    width: 9.45vw;
-    height: 9.45vw;
+    width: 9vw;
     margin: 0 0 0 4.44vw;
 `;
 
+/*----------------------------------------------------------------------------*/
 
 export const NotifDiv = styled.div `
-    display: block;
+    display: flex;
     position: relative;
 `;
 
@@ -109,6 +109,7 @@ export const NotifIcon = styled.div `
 
     position: absolute;
     right: -10%;
+    top: -25%;
 
     align-items: center;
     justify-content: center;

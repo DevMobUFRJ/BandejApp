@@ -17,14 +17,14 @@ export const FaleDiv = styled.div `
 export const Balao = styled.section `
     width: 86.67vw;
     
-    margin: 2vh 0 0 0;
+    margin: 2vh 0 2vh 0;
     padding: 0 0 4.44vw 0;
     
     overflow: hidden;
     
     border-radius: 4.44vw;
 
-    background: ${global.colors.branco}
+    background: ${global.colors.branco};
 `;
 
 export const BalaoInfo = styled.div `
