@@ -43,7 +43,9 @@ export default function Cardapio() {
     
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
     useEffect(() => {
+        let tentativas = 0;
         async function consultarCardapio():Promise<boolean> {
+            tentativas++;
             try {
                 const data = await fetch(`${process.env.REACT_APP_CARDAPIO_API_URL}`) 
                 let post = await data.json(); 
@@ -59,6 +61,9 @@ export default function Cardapio() {
             catch {
                 await sleep(2500);
                 consultando = false;
+                if(tentativas === 5 && localStorage.getItem("bandejapp:ultimoCardapio")){
+                    throw new Error();
+                }
                 return consultarCardapio();
             }
         }
