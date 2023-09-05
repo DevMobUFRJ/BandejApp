@@ -142,11 +142,15 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
         else {
             toast.error(text,
             {position: toast.POSITION.BOTTOM_CENTER});
+            botaoEnvio?.toggleAttribute('disabled', false);
+            botaoEnvio?.classList.remove('envioDesativado');
             return false;
         }})
         .catch(err => {
             toast.error("Erro de rede. Tente novamente mais tarde",
             {position: toast.POSITION.BOTTOM_CENTER});
+            botaoEnvio?.toggleAttribute('disabled', false);
+            botaoEnvio?.classList.remove('envioDesativado');
             return false;
         });
     
