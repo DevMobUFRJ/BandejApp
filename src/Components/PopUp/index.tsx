@@ -3,15 +3,20 @@ import { PopButton, PopButtonDiv, PopDiv, PopOuterDiv, PopTexto, PopTitulo } fro
 type PopInfo = {
     opcoes: Array<string>;
     tiposOpcoes: Array<number>;
-    funcoesOpcoes: Array<Function>;
+    abreFecha: Function;
     titulo: string;
     texto: string;
 }
 
 export default function PopUp(
-    {opcoes, tiposOpcoes, funcoesOpcoes, titulo, texto}: PopInfo
+    {opcoes, tiposOpcoes, abreFecha, titulo, texto}: PopInfo
 ) {
-
+    const fecha = (indice: number) => {
+        if (indice === 0)
+            abreFecha(0);
+        else
+            return;
+    }
     return (
         <PopOuterDiv id="popupDiv">
             <PopDiv id="popup">
@@ -21,7 +26,7 @@ export default function PopUp(
                     { opcoes?.map((opcao, index) =>
                         <PopButton key={index}
                         className={tiposOpcoes[index] === 1? 'segundoTipo':''}
-                        onClick={() => funcoesOpcoes[index]()}
+                        onClick={() => fecha(index)}
                         >
                             {opcao}
                         </PopButton>

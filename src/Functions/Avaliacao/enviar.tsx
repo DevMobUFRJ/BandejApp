@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { abrirPopUp } from '../PopUp/abrirEfechar';
+import { togglePopUp } from '../PopUp/abrirEfechar';
 
 export type formulario = {
     ru: string;
@@ -131,11 +131,10 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
     })
       .then((text) =>{
         if (text === 'OK') {
-            // abrirPopUp();
+            togglePopUp(true);
             resetarForm(formulario, valores);
             botaoEnvio?.toggleAttribute('disabled', false);
             botaoEnvio?.classList.remove('envioDesativado');
-            toast.success('Avaliação foi enviada com sucesso!');
             return true;
         } 
         else {

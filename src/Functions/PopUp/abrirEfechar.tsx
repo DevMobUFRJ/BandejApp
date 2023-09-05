@@ -1,15 +1,23 @@
-export const fecharPopUp = () => {
-    const blurdiv = document.getElementById('blurdiv');
+export const togglePopUp = (abrindo: boolean) => {
+    const sombra = document.getElementById('sombra');
     const popup = document.getElementById('popup');
+    if (!sombra || !popup) {
+        console.log('aa')
+        return;
+    }
     
-    blurdiv?.classList.remove('popBlur');
-    popup?.classList.remove('pop');
-}
-
-export const abrirPopUp = () => {
-    const blurdiv = document.getElementById('blurdiv');
-    const popup = document.getElementById('popup');
-
-    blurdiv?.classList.add('popBlur');
-    popup?.classList.add('pop');
+    if (abrindo) {
+        requestAnimationFrame (() => {
+            sombra.style.display = 'block';
+            popup.style.display = 'flex';
+            popup.style.transform = 'scale(1, 1)';
+        });
+    }
+    else {
+        requestAnimationFrame (() => {
+            sombra.style.display = 'none';
+            popup.style.display = 'none';
+            popup.style.transform = 'scale(0, 0)';
+        });
+    }
 }
