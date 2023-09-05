@@ -22,42 +22,6 @@ export const CabecaDiv = styled.header `
     height: 8vh;
 
     background: ${global.colors.branco};
-
-    .sideBlur {
-        display: flex;
-        z-index: 2;
-        animation: blur 0.5s linear forwards;
-        @keyframes blur {
-            0% { backdrop-filter: blur(0px); }
-            25% { backdrop-filter: blur(1px); }
-            50% { backdrop-filter: blur(2px); }
-            100% { backdrop-filter: blur(3px); }
-        }
-    }
-
-    .dropBlur {
-        display: flex;
-        z-index: 1;
-        animation: blur 0.5s linear forwards;
-        @keyframes blur {
-            0% { backdrop-filter: blur(0px); }
-            25% { backdrop-filter: blur(1px); }
-            50% { backdrop-filter: blur(2px); }
-            100% { backdrop-filter: blur(3px); }
-        }
-    }
-
-    .popBlur {
-        display: flex;
-        z-index: 2;
-        animation: blur 0.5s linear forwards;
-        @keyframes blur {
-            0% { backdrop-filter: blur(0px); }
-            25% { backdrop-filter: blur(1px); }
-            50% { backdrop-filter: blur(2px); }
-            100% { backdrop-filter: blur(3px); }
-        }
-    }
 `;
 
 export const PageTitle = styled.h1 `
@@ -79,15 +43,19 @@ export const IconeAjustes = styled.img `
     height: 6.66vw;
 `;
 
-export const BlurDiv = styled.div `
+export const Shade = styled.div `
     display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
+
     width: 100vw;
     height: 100vh;
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.2);
+    
+    top: 0vh;
+    left: 0vw;
+    position: fixed;
+
+    z-index: 2;
+    
+    background: rgba(0, 0, 0, 0.4);
 `;
 
 export const SideButton = styled.img `
