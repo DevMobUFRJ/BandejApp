@@ -101,7 +101,7 @@ export default function FaleConosco() {
 
     return (
         <FaleDiv>
-            <ToastContainer autoClose={3000}/>
+            <ToastContainer autoClose={2000}/>
             <Cabecalho nome='Fale conosco'/>
 
             {

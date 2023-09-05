@@ -162,7 +162,7 @@ export default function Cardapio() {
 
     return(
         <CardapioDiv id="cardapio">
-            <ToastContainer autoClose={3000}/>
+            <ToastContainer autoClose={2000}/>
             <Cabecalho nome="Cardápio" setOpcoes={setOpcoes}/>
             {
                 (loading) ?
