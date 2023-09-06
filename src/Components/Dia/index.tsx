@@ -23,7 +23,7 @@ export default function Dia({hora, cardapio}: horario) {
     return (
         <DiaDiv>
             <Gluten>
-                <InfoIcon src={Info} alt='Ícone com a letra I, indicando que se trata de uma informação'/>
+                <InfoIcon src={Info} alt='Informação'/>
                 <Aviso>As preparações podem conter glúten</Aviso>
             </Gluten>
 

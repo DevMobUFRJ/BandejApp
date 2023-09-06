@@ -74,7 +74,7 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
         <PlaceHolderCabecalho>
             <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
                 <NotifDiv onClick={() => toggleSide(true)}>
-                    <SideButton src={Menu} alt='Ícone do botão para abrir o menu lateral'/>
+                    <SideButton src={Menu} alt='Abrir o menu lateral'/>
 
                     <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}>
                         <NotifInside/>
@@ -86,7 +86,7 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
                 <DivAjustes>
                     <IconeAjustes style={{display: `${nome === 'Cardápio' ? '' : 'none'}`}}
                     src={aberto ? Close : Ajustes} 
-                    alt={aberto ? 'Ícone do botão para fechar ajustes' : 'Ícone do botão para abrir ajustes'} 
+                    alt={aberto ? 'Fechar ajustes' : 'Abrir ajustes'} 
                     onClick={() => clique(fadeAjustes, setOpcoes)}/>
                 </DivAjustes>
 

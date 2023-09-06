@@ -13,7 +13,7 @@ export default function DownPop() {
     return(
         <PopupDiv style={{display: (visibility) ? '' : 'none'}}>
             <PopText>
-                Instale esse aplicativo no seu Iphone: aperte <img width="15" height="15" src={Download} alt="Icon tap"></img> e depois Adicionar à tela inicial.
+                Instale esse aplicativo no seu Iphone: aperte <img width="15" height="15" src={Download} alt="Ícone de download"></img> e depois Adicionar à tela inicial.
             </PopText>
             <CloseImg id="closeButton" src={Close} onClick={() => setVisibility(false)}/>
         </PopupDiv>
