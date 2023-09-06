@@ -20,7 +20,7 @@ export default function PopUp(
                     { opcoes?.map((opcao, index) =>
                         <PopButton key={index}
                         className={tiposOpcoes[index] === 1? 'segundoTipo':''}
-                        onClick={() => funcoesOpcoes[index]}
+                        onClick={() => funcoesOpcoes[index]()}
                         >
                             {opcao}
                         </PopButton>

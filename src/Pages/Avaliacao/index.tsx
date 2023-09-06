@@ -41,7 +41,7 @@ export default function Avaliacao() {
                 texto="Caso tenha informado seu e-mail, o RU poderá entrar em contato com você."
                 opcoes={['Fechar']}
                 tiposOpcoes={[0]}
-                funcoesOpcoes={[togglePopUp]}
+                funcoesOpcoes={[() => togglePopUp(false)]}
             />
             <SombraPopUp id='sombra'/>
             <AvaForm onSubmit={handleSubmit(async dados => { if(await enviar(dados, valores)) reset(); })}>
