@@ -13,7 +13,7 @@ export default function PopUp(
 ) {
     const fecha = (indice: number) => {
         if (indice === 0)
-            abreFecha(0);
+            abreFecha(false);
         else
             return;
     }
