@@ -48,7 +48,7 @@ export default function SideBar({fechaDiv}: props) {
         <SideBarDiv id="sidebar">
             <SideHeader>
                 <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
-                <CloseImg id="closeButton" src={Close} alt='Fechar menu lateral' onClick={fechaDiv()}/>
+                <CloseImg id="closeButton" src={Close} alt='Ícone para fechar menu lateral' onClick={fechaDiv()}/>
             </SideHeader>
 
 {/*--------------------------------------------------------------------------*/}

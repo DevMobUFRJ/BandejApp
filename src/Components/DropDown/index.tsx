@@ -146,9 +146,9 @@ export default function DropDown(
                 id='dropdown' onClick={OpenDrop}>
             <Selecionado style={{width: `${tamanho(tela)}`}} id='selecionado' >
                 <IconeEsquerda src={escolheIcone(tela)} style={{width: `${tela === 'cardapio'? '':'5vw'}` }}
-                alt='Selecionar restaurante'/>
+                alt='Ícone para selecionar restaurante'/>
                 <DropArrow id='seta' src={arrowDown} 
-                alt='Selecionar restaurante'/>
+                alt='Ícone para selecionar restaurante'/>
             </Selecionado>
             <Opcoes id='opcoes'>
                 {
