@@ -48,7 +48,7 @@ export default function SideBar({fechaDiv}: props) {
         <SideBarDiv id="sidebar">
             <SideHeader>
                 <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
-                <CloseImg id="closeButton" src={Close} onClick={fechaDiv()}/>
+                <CloseImg id="closeButton" src={Close} alt='Ícone para fechar menu lateral' onClick={fechaDiv()}/>
             </SideHeader>
 
 {/*--------------------------------------------------------------------------*/}
@@ -57,7 +57,7 @@ export default function SideBar({fechaDiv}: props) {
                 {
                     rotasTelas.map((rota, indice) => 
                         <SideItem key={indice} onClick={() => cliqueHandler(rota)}>
-                            <SideIcon src={icones[indice]} style={{filter: rotaAtual(rota) ? laranjar : ''}}/>
+                            <SideIcon src={icones[indice]} alt={nomesTelas[indice]} style={{filter: rotaAtual(rota) ? laranjar : ''}}/>
                             <ItemName style={{color: rotaAtual(rota) ? `${global.colors.laranja}`: ' '}}>
                                 {nomesTelas[indice]}
                             </ItemName>

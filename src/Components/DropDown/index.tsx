@@ -145,8 +145,10 @@ export default function DropDown(
         <DropDiv style={{width: `calc(${tamanho(tela)} + 4px)`}} 
                 id='dropdown' onClick={OpenDrop}>
             <Selecionado style={{width: `${tamanho(tela)}`}} id='selecionado' >
-                <IconeEsquerda src={escolheIcone(tela)} style={{width: `${tela === 'cardapio'? '':'5vw'}` }}/>
-                <DropArrow id='seta' src={arrowDown}/>
+                <IconeEsquerda src={escolheIcone(tela)} style={{width: `${tela === 'cardapio'? '':'5vw'}` }}
+                alt='Ícone para selecionar restaurante'/>
+                <DropArrow id='seta' src={arrowDown} 
+                alt='Ícone para selecionar restaurante'/>
             </Selecionado>
             <Opcoes id='opcoes'>
                 {

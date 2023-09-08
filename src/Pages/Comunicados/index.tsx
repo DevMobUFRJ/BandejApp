@@ -102,7 +102,7 @@ export default function Comunicados() {
                 : 
                 <>
                     <BalaoSemMensagens style={{display: comentarios.length ? 'none' : 'flex'}}>
-                        <IconeSemMensagens src={SemMsg}/>
+                        <IconeSemMensagens src={SemMsg} alt='Sem mensagens'/>
                         <TextoSemMensagens>Não há novas mensagens publicadas pela coordenação do RU.</TextoSemMensagens>
                     </BalaoSemMensagens>
                     {

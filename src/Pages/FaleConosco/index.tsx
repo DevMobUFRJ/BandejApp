@@ -111,6 +111,7 @@ export default function FaleConosco() {
                                     <InfoLink href={opcao.linkOuId} key={index}>
                                         <LinkName>{opcao.nome}</LinkName>
                                         <LinkIcon src={Redirect}
+                                        alt="Ícone de redirecionamento"
                                         style={{filter: banner.filtro}}/>
                                     </InfoLink>
 
@@ -118,7 +119,7 @@ export default function FaleConosco() {
 
                                     <InfoLink onClick={() => copiar(opcao.linkOuId, opcao.nome)} key={index}>
                                         <LinkName>{opcao.nome}</LinkName>
-                                        <LinkIcon src={Copy} id={opcao.linkOuId}
+                                        <LinkIcon src={Copy} alt="Ícone de copiar" id={opcao.linkOuId}
                                         style={{filter: banner.filtro}}/>
                                     </InfoLink>
                                 )}
