@@ -130,7 +130,7 @@ export default function Avaliacao() {
                         <Comentario {...register('comentario',{
                             required: true,
                             maxLength: {value: 200, message: 'Comentário deve conter no máximo 200 caracteres'},
-                            validate: comentario => comentario.trim().length != 0 ? true : 'Escreva um comentário'
+                            validate: comentario => comentario.trim().length !== 0 ? true : 'Escreva um comentário'
                         })}cor={errors.comentario?.type === 'required'? true:false}
                         placeholder={'Nos conte um pouco mais sobre a sua experiência'}/>
 
