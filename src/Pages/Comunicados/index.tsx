@@ -85,7 +85,7 @@ export default function Comunicados() {
                     pending: 'Atualizando avisos...',
                     success: 'Avisos atualizados',
                     error: 'Não foi possível atualizar os avisos'
-                }
+                }, {position: toast.POSITION.BOTTOM_CENTER}
             )
         }
     }, []);
@@ -94,7 +94,7 @@ export default function Comunicados() {
 
     return (
         <ComunicadoDiv id="ComunicadoPage">
-            <ToastContainer />
+            <ToastContainer autoClose={2000}/>
             <Cabecalho nome='Comunicados'/>
             {
                 (loading) ?

@@ -1,5 +1,6 @@
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { useContext } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 
 import Cabecalho from "../../Components/Cabecalho";
 
@@ -69,6 +70,8 @@ export default function FaleConosco() {
     const timers: copiado[] = [];
     const copiar = (id: string, link: string) => {
         copy(link);
+        toast.success('Link copiado para a área de transferência', 
+        {position: toast.POSITION.BOTTOM_CENTER})
 
         const alvo = document.getElementById(id);
         if (!alvo) 
@@ -95,6 +98,7 @@ export default function FaleConosco() {
 
     return (
         <FaleDiv>
+            <ToastContainer autoClose={2000}/>
             <Cabecalho nome='Fale conosco'/>
 
             {
