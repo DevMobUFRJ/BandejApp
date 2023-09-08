@@ -50,7 +50,8 @@ export default function Avaliacao() {
                         <input type="hidden" {...register('ru', {
                             required: true, 
                             validate: valor => {
-                                if(valor !== 'selec') return true;
+                                if(valores.includes(valor) && valor !== 'selec')
+                                    return true;
                                 else {
                                     window.scrollTo(0, 0);
                                     return 'Selecione um restaurante';
@@ -128,7 +129,8 @@ export default function Avaliacao() {
                         {errors.comentario? <MensagemErro>{errors.comentario.message}</MensagemErro>:null}
                         <Comentario {...register('comentario',{
                             required: true,
-                            maxLength: {value: 200, message: 'Comentário deve conter no máximo 200 caracteres'}
+                            maxLength: {value: 200, message: 'Comentário deve conter no máximo 200 caracteres'},
+                            validate: comentario => comentario.trim().length !== 0 ? true : 'Escreva um comentário'
                         })}cor={errors.comentario?.type === 'required'? true:false}
                         placeholder={'Nos conte um pouco mais sobre a sua experiência'}/>
 

@@ -13,48 +13,36 @@ export type formulario = {
 /*----------------------------------------------------------------------------*/
 
 function formatarData(formulario: formulario) {
-    const dataSeparada = formulario.data.split('-');
-    
-    if(!dataSeparada[0] || !dataSeparada[1] || !dataSeparada[2]) return;
-    else if(dataSeparada.length === 0) formulario.data = '----';
+    const dataFormatada = formulario.data.split('-').reverse().join('/');
 
-    formulario.data = `${dataSeparada[2]}/${dataSeparada[1]}/${dataSeparada[0]}`;
+    if(!formulario.data) 
+        formulario.data = '----';
+    else
+        formulario.data = dataFormatada;
 }
 
 export const verificarData = (dataInput: string): boolean => {
-    if(dataInput === '') return true;
+    if(dataInput === '') 
+        return true;
 
-    const dia = new Date().getDate();
-    const mes = new Date().getMonth()+1;
-    const ano = new Date().getFullYear();
+    const hoje = new Date();
+    const dataSelecionada = new Date(dataInput);
 
-    const dataSelecionada = dataInput.split('-');
-    const anoSelecionado = parseInt(dataSelecionada[0]);
-    const mesSelecionado = parseInt(dataSelecionada[1]);
-    const diaSelecionado = parseInt(dataSelecionada[2]);
+    if (dataSelecionada < hoje)
+        return true;
 
-    if(anoSelecionado < ano) return true;
-    else if(anoSelecionado > ano) return false;
-    else {
-        if(mesSelecionado < mes) return true;
-        else if(mesSelecionado > mes) return false;
-        else {
-            if(diaSelecionado <= dia) return true;
-            else return false;
-        }
-    }
+    return false;
 }
 
 /*----------------------------------------------------------------------------*/
 
-function verificarComentario(formulario: formulario) {
+function reformatarDados(formulario: formulario) {
     while (formulario.comentario && formulario.comentario.charAt(0) === '=') {
         formulario.comentario = formulario.comentario.substring(1);
     }
-}
 
-function verificarEmail(formulario: formulario) {
-    if(formulario.email === '') formulario.email = '----';
+    if(formulario.email === '') 
+        formulario.email = '----';
 }
 
 /*----------------------------------------------------------------------------*/
@@ -107,11 +95,8 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
     botaoEnvio?.toggleAttribute('disabled', true);
     botaoEnvio?.classList.add('envioDesativado');
 
-    verificarComentario(formulario);
     formatarData(formulario);
-    verificarEmail(formulario);
-
-    console.log(formulario);
+    reformatarDados(formulario);
 
     const dados = JSON.stringify({formulario});
 
