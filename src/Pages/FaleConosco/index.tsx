@@ -1,5 +1,6 @@
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { useContext } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 
 import Cabecalho from "../../Components/Cabecalho";
 
@@ -69,6 +70,8 @@ export default function FaleConosco() {
     const timers: copiado[] = [];
     const copiar = (id: string, link: string) => {
         copy(link);
+        toast.success('Link copiado para a área de transferência', 
+        {position: toast.POSITION.BOTTOM_CENTER})
 
         const alvo = document.getElementById(id);
         if (!alvo) 
@@ -95,6 +98,7 @@ export default function FaleConosco() {
 
     return (
         <FaleDiv>
+            <ToastContainer autoClose={2000}/>
             <Cabecalho nome='Fale conosco'/>
 
             {
@@ -111,6 +115,7 @@ export default function FaleConosco() {
                                     <InfoLink href={opcao.linkOuId} key={index}>
                                         <LinkName>{opcao.nome}</LinkName>
                                         <LinkIcon src={Redirect}
+                                        alt="Ícone de redirecionamento"
                                         style={{filter: banner.filtro}}/>
                                     </InfoLink>
 
@@ -118,7 +123,7 @@ export default function FaleConosco() {
 
                                     <InfoLink onClick={() => copiar(opcao.linkOuId, opcao.nome)} key={index}>
                                         <LinkName>{opcao.nome}</LinkName>
-                                        <LinkIcon src={Copy} id={opcao.linkOuId}
+                                        <LinkIcon src={Copy} alt="Ícone de copiar" id={opcao.linkOuId}
                                         style={{filter: banner.filtro}}/>
                                     </InfoLink>
                                 )}

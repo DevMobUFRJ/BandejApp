@@ -17,7 +17,7 @@ export default function Explicacao(
 ) {
     return (
         <ExplicDiv style={{display: display?'flex':'none'}}>
-            <ExplicBg src={Background}/>
+            <ExplicBg src={Background} alt='Imagem de onda laranja ao fundo'/>
             <ExplicImg src={imagem} style={{width: width}}/>
             <ExplicTitulo>{titulo}</ExplicTitulo>
             <ExplicTexto>{descricao}</ExplicTexto>

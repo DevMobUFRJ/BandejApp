@@ -13,7 +13,7 @@ export default function Paisagem() {
             </PaisagemErro>
             <PaisagemErro>🚧👷🏽🛠️🚧</PaisagemErro>
 
-            <BandejAppLogo src={Logo}/>
+            <BandejAppLogo src={Logo} alt='Logo do aplicativo BandejApp'/>
         </PaisagemDiv>
     );
 }

@@ -4,7 +4,7 @@ import { Container } from "./style";
 export default function Load(){
     return (
         <Container>
-            <img src={loading} alt="Loading" width={100}/>
+            <img src={loading} alt="Carregando" width={100}/>
         </Container>
     )
 }

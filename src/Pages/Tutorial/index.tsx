@@ -68,10 +68,10 @@ export default function Tutorial() {
     return(
         <TutDiv>
             <InitialPage style={{display: `${inicio?'none':'flex'}`}}>
-                <BackImg src={BackgroundRu}/>
+                <BackImg src={BackgroundRu} alt='Imagem de fundo com as cubas do RU em destaque'/>
 
                 <LogoDiv>
-                    <Logo src={LogoImg}/>
+                    <Logo src={LogoImg} alt='Logo do aplicativo BandejApp'/>
                 </LogoDiv>
 
                 <PageDescription>
@@ -85,7 +85,7 @@ export default function Tutorial() {
             </InitialPage>
 
             <div style={{display: `${inicio?'':'none'}`}}>
-                <BackImg src={Background}/>
+                <BackImg src={Background} alt='Imagem de onda laranja ao fundo'/>
                 
                 <CurrentDiv>
                     <CurrentPage id="page" className="currentPage"/>
@@ -95,10 +95,14 @@ export default function Tutorial() {
                 </CurrentDiv>
 
                 <TemplateDiv>
-                    <Template id="template" className="currentTemplate" src={TempDownload}/>
-                    <Template id="template" className="nextTemplate" src={TempNotificacao}/>
-                    <Template id="template" className="nextTemplate" src={TempCardapio}/>
-                    <Template id="template" className="nextTemplate" src={TempAvaliacao}/>
+                    <Template id="template" className="currentTemplate" src={TempDownload}
+                    alt='Imagem ilustrativa do aplicativo'/>
+                    <Template id="template" className="nextTemplate" src={TempNotificacao}
+                    alt='Imagem ilustrativa do aplicativo'/>
+                    <Template id="template" className="nextTemplate" src={TempCardapio}
+                    alt='Imagem ilustrativa do aplicativo'/>
+                    <Template id="template" className="nextTemplate" src={TempAvaliacao}
+                    alt='Imagem ilustrativa do aplicativo'/>
                 </TemplateDiv>
 
                 <PageTitle>{`${titulos[page]}`}</PageTitle>

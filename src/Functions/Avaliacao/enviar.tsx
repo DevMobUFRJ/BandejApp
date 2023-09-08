@@ -135,16 +135,19 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
             resetarForm(formulario, valores);
             botaoEnvio?.toggleAttribute('disabled', false);
             botaoEnvio?.classList.remove('envioDesativado');
+
             return true;
         } 
         else {
-            toast.error(text);
+            toast.error(text,
+            {position: toast.POSITION.BOTTOM_CENTER});
             botaoEnvio?.toggleAttribute('disabled', false);
             botaoEnvio?.classList.remove('envioDesativado');
             return false;
         }})
         .catch(err => {
-            toast.error("Erro de rede. Tente novamente mais tarde");
+            toast.error("Erro de rede. Tente novamente mais tarde",
+            {position: toast.POSITION.BOTTOM_CENTER});
             botaoEnvio?.toggleAttribute('disabled', false);
             botaoEnvio?.classList.remove('envioDesativado');
             return false;

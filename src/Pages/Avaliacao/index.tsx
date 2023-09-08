@@ -106,7 +106,7 @@ export default function Avaliacao() {
                             })}
                             id="dataSelect" name="data" type="text" placeholder="Selecione uma data"/>
 
-                            <DatePicker src={datePicker} onClick={textoParaData}/>
+                            <DatePicker src={datePicker} alt='Ícone de calendário para selecionar data' onClick={textoParaData}/>
                         </DateDiv>
 
                     </AvaSection>
