@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "./static/css/main.28b5190c.css",
-    "main.js": "./static/js/main.294c2046.js",
+    "main.css": "./static/css/main.2918dccd.css",
+    "main.js": "./static/js/main.e57785ce.js",
     "static/media/BgRu.svg": "./static/media/BgRu.32ca6184f190a0724dde0935091b241c.svg",
     "static/media/RUcentral.jpg": "./static/media/RUcentral.f1db24c9e0dcf901eed8.jpg",
-    "static/media/LogoUFRJ.svg": "./static/media/LogoUFRJ.33e8c224b239aad789fbeae4ef6c0049.svg",
+    "static/media/LogoUFRJ.svg": "./static/media/LogoUFRJ.4183db160bdc5709b06c9b4be52627a8.svg",
     "static/media/Entrada.svg": "./static/media/Entrada.40f65f99ca7a2967f11715df57126dec.svg",
     "service-worker.js": "./service-worker.js",
     "static/media/Logo.svg": "./static/media/Logo.9d630f696935cb681161dda0da46e813.svg",
-    "static/media/LogoBandejapp.svg": "./static/media/LogoBandejapp.4cb0365aca3358a31f221924aa3133ac.svg",
+    "static/media/LogoBandejapp.svg": "./static/media/LogoBandejapp.07e5c18d1ac18c71895075b663586552.svg",
     "static/media/logo.svg": "./static/media/logo.f1ac6c22641d8cb1402d4f94624a07bf.svg",
     "static/media/Guarnicao.svg": "./static/media/Guarnicao.6261ba4a7e70b2078e3c447727aed8dc.svg",
     "static/media/PratoVegano.svg": "./static/media/PratoVegano.3afb8862ce6a46d28d3bf9ad53525ca3.svg",
     "static/media/nunito-all-400-normal.woff": "./static/media/nunito-all-400-normal.0c07f750f73ac5437580.woff",
-    "static/media/LogoIC.svg": "./static/media/LogoIC.d56e8acfc94e84ae14e158fc5c563382.svg",
+    "static/media/LogoIC.svg": "./static/media/LogoIC.8170b6234c1a6475e490a35e184d0aa2.svg",
     "static/media/ifcspv.png": "./static/media/ifcspv.2650769ccc6fbba32694.png",
     "static/media/Sobremesa.svg": "./static/media/Sobremesa.5a17a63be6189b430c6ce1d4df06d0a9.svg",
     "static/media/quicksand-all-400-normal.woff": "./static/media/quicksand-all-400-normal.3991594f0487f37c86d5.woff",
     "static/media/Acompanhamentos.svg": "./static/media/Acompanhamentos.da2bf482b2ee2f58498d135a2f85883f.svg",
-    "static/media/ruBanner.svg": "./static/media/ruBanner.1e8b426ef5d12ad6511e434ca174f4b9.svg",
+    "static/media/ruBanner.svg": "./static/media/ruBanner.46cfb51f3d770ce60927cf314289cd5e.svg",
     "static/media/TempCardapio.svg": "./static/media/TempCardapio.02a66f953e09584c32e79527c43b3c7a.svg",
     "static/media/duque.png": "./static/media/duque.7e1a61aed97580ec3c22.png",
     "static/media/macae.png": "./static/media/macae.117dc4557a9285af53da.png",
@@ -30,7 +30,7 @@
     "static/media/nunito-latin-ext-400-normal.woff2": "./static/media/nunito-latin-ext-400-normal.e8049e65c49ce687cff1.woff2",
     "static/media/quicksand-latin-ext-400-normal.woff2": "./static/media/quicksand-latin-ext-400-normal.22fcff85fddc4c8cf3ff.woff2",
     "static/media/nunito-cyrillic-ext-400-normal.woff2": "./static/media/nunito-cyrillic-ext-400-normal.f21ac09511c6fa4f9463.woff2",
-    "static/media/devmobBanner.svg": "./static/media/devmobBanner.d0c54a95f1e271fe434df53ea3fcf2b9.svg",
+    "static/media/devmobBanner.svg": "./static/media/devmobBanner.34b839305409ff8c536c65c27216d863.svg",
     "index.html": "./index.html",
     "static/media/bebas-neue-latin-ext-400-normal.woff2": "./static/media/bebas-neue-latin-ext-400-normal.f2363170269a33a9c268.woff2",
     "static/media/nunito-cyrillic-400-normal.woff2": "./static/media/nunito-cyrillic-400-normal.166e8e87ae0b6f3deed3.woff2",
@@ -59,12 +59,12 @@
     "static/media/avaliacao.svg": "./static/media/avaliacao.b66372dada761c45434e2ff9aaf56f81.svg",
     "static/media/check.svg": "./static/media/check.883a05c628f0fd4ec5019ddb86401d81.svg",
     "static/media/ArrowDown.svg": "./static/media/ArrowDown.6bd38022f34745ce2e43edde917906db.svg",
-    "static/media/menu.svg": "./static/media/menu.3104cc3bd86eef6bd8d0007e6387ae18.svg",
-    "main.28b5190c.css.map": "./static/css/main.28b5190c.css.map",
-    "main.294c2046.js.map": "./static/js/main.294c2046.js.map"
+    "static/media/menu.svg": "./static/media/menu.6070c4fa741b868c8eee82086063035e.svg",
+    "main.2918dccd.css.map": "./static/css/main.2918dccd.css.map",
+    "main.e57785ce.js.map": "./static/js/main.e57785ce.js.map"
   },
   "entrypoints": [
-    "static/css/main.28b5190c.css",
-    "static/js/main.294c2046.js"
+    "static/css/main.2918dccd.css",
+    "static/js/main.e57785ce.js"
   ]
 }
