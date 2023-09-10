@@ -61,7 +61,8 @@ export default function FaleConosco() {
             titulo: 'DevMob',
             descricao: 'Fale com a equipe DevMob para tirar dúvidas, enviar sugestões e tudo mais relacionado ao App.',
             opcoes: [
-                {tipo: 1, nome: 'devmob@ic.ufrj.br', linkOuId: 'devmob@ic.ufrj.br'}
+                {tipo: 1, nome: 'devmob@ic.ufrj.br', linkOuId: 'devmob@ic.ufrj.br'},
+                {tipo: 1, nome: 'bandejapp@ic.ufrj.br', linkOuId: 'bandejapp@ic.ufrj.br'}
             ],
             filtro: 'invert(21%) sepia(74%) saturate(2729%) hue-rotate(196deg) brightness(87%) contrast(89%)'
         }
