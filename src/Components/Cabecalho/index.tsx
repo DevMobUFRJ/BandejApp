@@ -1,7 +1,7 @@
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import { useContext } from "react";
 
-import { PlaceHolderCabecalho, BlurDiv, CabecaDiv, PageTitle, 
+import { PlaceHolderCabecalho, Shade, CabecaDiv, PageTitle, 
     DivAjustes, IconeAjustes, NotifDiv, NotifInside, SideButton, NotifIcon } from "./style";    
 
 import SideBar from "../SideBar";
@@ -18,21 +18,21 @@ let aberto = true;
 
 const toggleSide = (abrindo: boolean) => {
     const sidebar = document.getElementById('sidebar');
-    const blurdiv = document.getElementById('blurdiv');
+    const shade = document.getElementById('shade');
     const closeButton = document.getElementById('closeButton');
-    if (!sidebar || !blurdiv || !closeButton)
+    if (!sidebar || !shade || !closeButton)
         return;
 
-    blurdiv.addEventListener('click', () => toggleSide(!abrindo));
+    shade.addEventListener('click', () => toggleSide(!abrindo));
     closeButton.addEventListener('click', () => toggleSide(!abrindo));
 
     requestAnimationFrame(() => {
         if (abrindo) {
-            blurdiv.classList.add('sideBlur');
+            shade.style.display = 'block';
             sidebar.style.width = '72.22vw';
         }
         else {
-            blurdiv.classList.remove('sideBlur');
+            shade.style.display = 'none';
             sidebar.style.width = '0';
         }
     });
@@ -90,7 +90,7 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
                     onClick={() => clique(fadeAjustes, setOpcoes)}/>
                 </DivAjustes>
 
-                <BlurDiv id="blurdiv"/>
+                <Shade id="shade"/>
                 <SideBar fechaDiv={() => toggleSide(false)}/>
             </CabecaDiv>
         </PlaceHolderCabecalho>

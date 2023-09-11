@@ -11,7 +11,6 @@ type PopInfo = {
 export default function PopUp(
     {opcoes, tiposOpcoes, funcoesOpcoes, titulo, texto}: PopInfo
 ) {
-
     return (
         <PopOuterDiv id="popupDiv">
             <PopDiv id="popup">

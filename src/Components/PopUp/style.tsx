@@ -7,12 +7,6 @@ export const PopOuterDiv = styled.div `
     position: absolute;
     top: 0;
 
-
-    .pop {
-        display: flex;
-        transform: scale(1, 1);
-    }
-
     .segundoTipo {
         border: solid 0.25vh ${global.colors.laranja};
         border-radius: 4.44vw;

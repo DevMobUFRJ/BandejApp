@@ -1,4 +1,4 @@
-import { AvaSection, Avadiv, Comentario, DateDiv,
+import { AvaSection, Avadiv, SombraPopUp, Comentario, DateDiv,
          DatePicker, DateSelect, EmailInput, EnviarButton,
          AvaForm, TurnoButton, TurnoDiv, FormDiv, MensagemErro} from "./style";
 import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
@@ -15,6 +15,8 @@ import Cabecalho from "../../Components/Cabecalho";
 import DownPop from "../../Components/PopUpIOS";
 import DropDown from "../../Components/DropDown";
 import datePicker from '../../Assets/Avaliacao/datePicker.svg';
+import PopUp from "../../Components/PopUp";
+import { togglePopUp } from "../../Functions/PopUp/abrirEfechar";
 
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
@@ -34,15 +36,14 @@ export default function Avaliacao() {
             <ToastContainer autoClose={3000}/>
 
             <Cabecalho nome='Avaliação'/>
-{/*
             <PopUp
                 titulo="Avaliação enviada"
                 texto="Caso tenha informado seu e-mail, o RU poderá entrar em contato com você."
                 opcoes={['Fechar']}
                 tiposOpcoes={[0]}
-                funcoesOpcoes={[fecharPopUp]}
+                funcoesOpcoes={[() => togglePopUp(false)]}
             />
-    */}
+            <SombraPopUp id='sombra'/>
             <AvaForm onSubmit={handleSubmit(async dados => { if(await enviar(dados, valores)) reset(); })}>
                 <FormDiv>
                     <AvaSection>
