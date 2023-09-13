@@ -53,7 +53,7 @@ export const ItemsDiv = styled.ul `
 `;
 
 export const SideItem = styled.li `
-    border: 1px rgba(62, 62, 62, 0.16) solid;
+    border: 1px solid ${global.colors.cinzaOpaco(.16)};
     display: grid;
     grid-template-columns: 16% auto auto;
     
