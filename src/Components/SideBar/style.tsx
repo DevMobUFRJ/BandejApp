@@ -102,19 +102,6 @@ export const NotifNumber = styled.p `
     color: ${global.colors.branco};
 `;
 
-export const Rodape = styled.div `
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-`;
-
-export const Direita = styled.div `
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-`;
-
 export const Versao = styled.p `
     font-family: ${global.fonts.quickSand};
     font-size: 12px;

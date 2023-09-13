@@ -1,6 +1,7 @@
-import { CloseImg, Direita, InstitutoDiv, ItemName, ItemsDiv, Linha, LogoImg, NotifNumber, 
-        Rodape, 
-        SideBarDiv, SideHeader, SideIcon, SideItem, Versao, FecharDiv, TextoFechar } from "./style";
+import { CloseImg, InstitutoDiv, ItemName, 
+    ItemsDiv, Linha, LogoImg, NotifNumber, 
+    SideBarDiv, SideHeader, SideIcon, SideItem,
+    Versao, FecharDiv, TextoFechar } from "./style";
 
 import Logo from '../../Assets/SideBar/logo.svg';
 import Close from '../../Assets/Close.svg';
