@@ -4,7 +4,6 @@ import { global } from "../../globalStyle";
 export const SideBarDiv = styled.div `
     display: flex;
     flex-direction: column;
-    grid-template-rows: 20% auto 15%;
     min-width: 0vw;
     width: 0vw;
     height: 100vh;
