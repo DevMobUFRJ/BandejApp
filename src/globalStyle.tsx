@@ -14,6 +14,7 @@ export const global = {
         fundo: '#EBECED',
         azul: '#2452A9',
         branco: '#FFF',
+        preto: '#353637',
 /*---------------------------------------------------- */
         cinzaTitulo: '#818181',
         cinza1: '#f4f4f4',

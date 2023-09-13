@@ -1,9 +1,9 @@
-import { CloseImg, Direita, ItemName, ItemsDiv, LogoImg, LogoUfrj, NotifNumber, 
+import { CloseImg, Direita, InstitutoDiv, ItemName, ItemsDiv, Linha, LogoImg, NotifNumber, 
         Rodape, 
-        SideBarDiv, SideHeader, SideIcon, SideItem, Versao } from "./style";
+        SideBarDiv, SideHeader, SideIcon, SideItem, Versao, FecharDiv, TextoFechar } from "./style";
 
 import Logo from '../../Assets/SideBar/logo.svg';
-import Close from '../../Assets/SideBar/close.svg';
+import Close from '../../Assets/Close.svg';
 import Home from '../../Assets/SideBar/cardapio.svg';
 import Aval from '../../Assets/SideBar/avaliacao.svg';
 import Comun from '../../Assets/SideBar/comunicados.svg';
@@ -16,8 +16,8 @@ import { useContext } from "react";
 
 import { global } from "../../globalStyle";
 
-import Ru from '../../Assets/SideBar/logo-ru.svg';
-import Ufrj from '../../Assets/SideBar/logo-ufrj.svg';
+import logoIC from '../../Assets/FaleConosco/LogoIC.svg';
+import logoUfrj from '../../Assets/FaleConosco/LogoUFRJ.svg';
 
 type props = {
     fechaDiv: Function 
@@ -48,7 +48,7 @@ export default function SideBar({fechaDiv}: props) {
         <SideBarDiv id="sidebar">
             <SideHeader>
                 <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
-                <CloseImg id="closeButton" src={Close} alt='Ícone para fechar menu lateral' onClick={fechaDiv()}/>
+                <Versao>Versão 0.0.3</Versao>
             </SideHeader>
 
 {/*--------------------------------------------------------------------------*/}
@@ -69,13 +69,17 @@ export default function SideBar({fechaDiv}: props) {
                     )
                 }
             </ItemsDiv>
-            <Rodape>
-                <img src={Ru} alt="Logo do RU"/>
-                <Direita>
-                    <LogoUfrj src={Ufrj} alt="Logo da UFRJ"/>
-                    <Versao>Versão 0.0.3</Versao>
-                </Direita>
-            </Rodape>
+            <InstitutoDiv>
+                <img src={logoIC} style={{width: '35%'}}
+                alt="Logo do Institudo de Computação da UFRJ."/>
+                <Linha/>
+                <img src={logoUfrj} style={{width: '35%'}}
+                alt="Logo da Universidade Federal do Rio de Janeiro."/>
+            </InstitutoDiv>
+            <FecharDiv onClick={() => fechaDiv()}>
+                <CloseImg id="closeButton" src={Close} alt='Ícone para fechar menu lateral'/>
+                <TextoFechar>Fechar</TextoFechar>
+            </FecharDiv>
         </SideBarDiv>
     );
 }

@@ -8,7 +8,7 @@ import SideBar from "../SideBar";
 
 import Menu from '../../Assets/SideBar/menu.svg';
 import Ajustes from '../../Assets/Cardapio/Ajustes.svg';
-import Close from '../../Assets/SideBar/close.svg';
+import Close from '../../Assets/Close.svg';
 
 type Nome = { nome: string 
             setOpcoes?: Function};

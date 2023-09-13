@@ -16,8 +16,6 @@ import Cabecalho from "../../Components/Cabecalho";
 
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 let consultando = false;
 
 const estadosRestaurante = ['ct', 'pv', 'dc', 'mc'];

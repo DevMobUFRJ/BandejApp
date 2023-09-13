@@ -12,7 +12,6 @@ const root = ReactDOM.createRoot(
 );
 
 function App() {
-
     const [proporcao, setProporcao] = useState(window.innerWidth/window.innerHeight);
 
     window.addEventListener('resize', () => {
