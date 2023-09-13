@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { global } from "../../globalStyle";
 
 export const SideBarDiv = styled.div `
-    display: grid;
-    grid-template-rows: 20% auto 15%;
+    display: flex;
+    flex-direction: column;
     min-width: 0vw;
     width: 0vw;
     height: 100vh;
@@ -22,30 +22,37 @@ export const SideBarDiv = styled.div `
 /*----------------------------------------------------------------------------*/
 
 export const SideHeader = styled.section `
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+
+    margin-top: 5vh;
 `;
 
 export const LogoImg = styled.img `
-    width: 43.3vw;
+    width: 62.5vw;
+    height: 6vh;
+
     margin: 0 0 0 5vw;
 `;
 
 export const CloseImg = styled.img `
-    width: 5.16vw;
+    align-self: center;
+    width: 3.8vw;
 `;
 
 /*----------------------------------------------------------------------------*/
 
 export const ItemsDiv = styled.ul `
-    display: grid;
-    grid-auto-rows: 0.15fr;
-    width: 100%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 6vh;
 `;
 
 export const SideItem = styled.li `
+    border: 1px solid ${global.colors.cinzaOpaco(.16)};
     display: grid;
     grid-template-columns: 16% auto auto;
     
@@ -54,6 +61,11 @@ export const SideItem = styled.li `
     
     font-family: ${global.fonts.nunito};
     font-size: 5.5vw;
+
+    margin-top: 5%;
+    width: 80%;
+    border-radius: 16px;
+    height: 75px;
 
     :active {
 		background-color: ${global.colors.cinza1};
@@ -105,10 +117,55 @@ export const Direita = styled.div `
 
 export const Versao = styled.p `
     font-family: ${global.fonts.quickSand};
-    color: ${global.colors.laranja};
     font-size: 12px;
+    
+    line-height: 12px;
+    text-align: center;
+    font-weight: 500;
+
+    color: ${global.colors.cinza};
 `;
 
-export const LogoUfrj = styled.img `
-    padding-top: 20px;
+export const InstitutoDiv = styled.div `
+    display: flex;
+    width: 66.6vw;
+    height: 6.125vh;
+
+    margin-top: 4.625vh;
+    align-self: center;
+    position: relative;
+
+    align-items: center;
+    justify-content: space-evenly;
+`;
+
+export const Linha = styled.div `
+    width: 1px;
+    height: 4.5vh;
+    background-color: ${global.colors.cinzaOpaco(.16)};
+`;
+
+export const FecharDiv = styled.div `
+    display: flex;
+    width: 20.3vw;
+    height: 20.3vw;
+    margin-top: 4.625vh;
+    
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+
+    border: 1px solid ${global.colors.cinzaOpaco(.16)};
+    border-radius: 50%;
+`;
+
+export const TextoFechar = styled.p `
+    margin-top: 1.125vh;
+
+    color: ${global.colors.preto};
+    font-family: ${global.fonts.quickSand};
+
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
 `;
