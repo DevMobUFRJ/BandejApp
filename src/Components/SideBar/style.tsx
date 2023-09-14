@@ -65,7 +65,7 @@ export const SideItem = styled.li `
     margin-top: 5%;
     width: 80%;
     border-radius: 16px;
-    height: 75px;
+    height: 9vh;
 
     :active {
 		background-color: ${global.colors.cinza1};
