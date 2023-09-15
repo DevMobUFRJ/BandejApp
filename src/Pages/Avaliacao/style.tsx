@@ -16,6 +16,12 @@ export const Avadiv = styled.div `
         background-color: ${global.colors.desativado};
         transform: none;
     }
+
+    .react-datepicker-wrapper {
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
 `;
 
 export const SombraPopUp = styled.div `
@@ -121,7 +127,7 @@ export const TurnoButton = styled.button `
 
 export const DateDiv = styled.div `
     display: flex;
-    width: calc(100% - 4px);
+    width: 100%;
     height: 7.5vh;
 
     position: relative;
@@ -134,25 +140,28 @@ export const DateDiv = styled.div `
 `;
 
 export const DateSelect = styled.input `
-    width: 100%;
+    width: calc(100% - 5%);
     height: 100%;
 
-    padding: 0 5%;
-
+    position: relative;
+    padding: 0 0 0 5%;
+    
     outline: none;
     border: none;
     border-radius: inherit;
-
+    
     font-family: ${global.fonts.quickSand};
     font-size: 4.44vw;
     font-weight: 700;
     color: ${global.colors.cinza};
 
+    :focus-within { border-color: ${global.colors.laranja}; }
+
     appearance: none;
     ::-webkit-calendar-picker-indicator { display: none; }
 `;
 
-export const DatePicker = styled.img `
+export const DateIcon = styled.img `
     width: 5vw;
     height: 2.5vh;
 

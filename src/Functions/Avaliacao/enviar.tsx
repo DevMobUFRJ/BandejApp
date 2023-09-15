@@ -28,7 +28,7 @@ export const verificarData = (dataInput: string): boolean => {
     const hoje = new Date();
     const dataSelecionada = new Date(dataInput);
 
-    if (dataSelecionada < hoje)
+    if (dataSelecionada > hoje)
         return true;
 
     return false;

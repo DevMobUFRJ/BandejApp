@@ -1,16 +1,10 @@
 import { UseFormSetValue } from 'react-hook-form';
 import { formulario } from './enviar';
 
-export const textoParaData = () => {
+export const cliqueData = () => {
     const dataInput = document.getElementById('dataSelect');
     dataInput?.parentElement?.focus();
 
-    if(dataInput?.getAttribute('type') === 'date') {
-        dataInput.click();
-        return;
-    }
-
-    dataInput?.setAttribute('type', 'date');
     setTimeout(() => { dataInput?.click(); }, 100);
 }
 
@@ -27,14 +21,12 @@ export const selecionarTurno = (elem: HTMLButtonElement, setValue: UseFormSetVal
         if(elem.classList.contains('turnoSelecionado')) {
             elem.classList.remove('turnoSelecionado');
             data?.toggleAttribute('required', false);
-            if(!form.data) data?.setAttribute('type', 'text');
             setValue('turno', '----');
         }
         else {
             elem.classList.add('turnoSelecionado');
             data?.toggleAttribute('required', true);
-            data?.setAttribute('type', 'date');
-            textoParaData();
+            if(!form.data)cliqueData();
             setValue('turno', 'Almoço');
         }
     }
@@ -44,14 +36,12 @@ export const selecionarTurno = (elem: HTMLButtonElement, setValue: UseFormSetVal
         if(elem.classList.contains('turnoSelecionado')) {
             elem.classList.remove('turnoSelecionado');
             data?.toggleAttribute('required', false);
-            if(!form.data) data?.setAttribute('type', 'text');
             setValue('turno', '----')
         }
         else {
             elem.classList.add('turnoSelecionado');
             data?.toggleAttribute('required', true);
-            data?.setAttribute('type', 'date');
-            textoParaData();
+            if(!form.data)cliqueData();
             setValue('turno', 'Jantar');
         }
     }

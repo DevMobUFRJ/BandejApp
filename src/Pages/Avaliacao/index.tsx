@@ -1,14 +1,13 @@
-import { AvaSection, Avadiv, SombraPopUp, Comentario, DateDiv,
-         DatePicker, DateSelect, EmailInput, EnviarButton,
-         AvaForm, TurnoButton, TurnoDiv, FormDiv, MensagemErro} from "./style";
+import { AvaSection, Avadiv, SombraPopUp, Comentario, DateDiv, DateSelect, EmailInput, EnviarButton,
+         AvaForm, TurnoButton, TurnoDiv, FormDiv, MensagemErro, DateIcon} from "./style";
 import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { ToastContainer } from 'react-toastify';
 import { verificarData, formulario, enviar } from "../../Functions/Avaliacao/enviar";
-import { selecionarTurno, textoParaData } from '../../Functions/Avaliacao/avaliacao';
+import { selecionarTurno, cliqueData } from '../../Functions/Avaliacao/avaliacao';
 
 import Nota from "../../Components/Nota";
 import Cabecalho from "../../Components/Cabecalho";
@@ -18,17 +17,22 @@ import datePicker from '../../Assets/Avaliacao/datePicker.svg';
 import PopUp from "../../Components/PopUp";
 import { togglePopUp } from "../../Functions/PopUp/abrirEfechar";
 
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
 
     /* Funções do useForm */
     const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} =
-    useForm<formulario>({defaultValues:{ru: 'selec', email: '', turno: '----', nota: 0, comentario: ''}});
+    useForm<formulario>({defaultValues:{ru: 'selec', email: '', turno: '----', nota: 0, comentario: ''}});    
 
     /* Variáveis do Dropdown */
     const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
     const valores = ['selec', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
 
+    const [dataSelecionada, setData] = useState<Date>()
 /*----------------------------------------------------------------------------*/
 
     return (
@@ -101,13 +105,28 @@ export default function Avaliacao() {
                         </TurnoDiv>
                         
                         {errors.data? <MensagemErro>{errors.data.message}</MensagemErro>:null}
-                        <DateDiv onFocus={textoParaData}>
-                            <DateSelect {...register('data', {
-                                validate: data => verificarData(data)? true:'Data inválida'
-                            })}
-                            id="dataSelect" name="data" type="text" placeholder="Selecione uma data"/>
+                        <DateDiv>
+                            <DatePicker
+                                disabledKeyboardNavigation
+                                placeholderText="Selecione uma data"
+                                selected={dataSelecionada}
+                                onChange={(data: Date) => {
+                                        const dataformatada = data.toLocaleDateString('pt-BR');
+                                        setValue('data', dataformatada);
+                                        setData(data)
+                                        console.log(getValues('data'));
+                                    }
+                                }
+                                dateFormat="dd/MM/yyyy"
+                                onFocus={e => e.target.blur()}
+                                maxDate={new Date()}
+                                id="dataSelect"
+                                customInput={
+                                    <DateSelect {...register('data')}
+                                    name="data" type="text" placeholder="Selecione uma data"/>
+                                }/>
 
-                            <DatePicker src={datePicker} alt='Ícone de calendário para selecionar data' onClick={textoParaData}/>
+                            <DateIcon src={datePicker} alt='Ícone de calendário para selecionar data' onClick={cliqueData}/>
                         </DateDiv>
 
                     </AvaSection>
