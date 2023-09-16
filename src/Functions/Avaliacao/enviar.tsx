@@ -14,9 +14,12 @@ export type formulario = {
 
 function formatarDados(formulario: formulario) {
     /* Formartar data */
-    const dataFormatada = formulario.data.split('-').reverse().join('/');
+
     if(!formulario.data) formulario.data = '----';
-    else formulario.data = dataFormatada;
+    else {
+        const dataFormatada = formulario.data.split('-').reverse().join('/');
+        formulario.data = dataFormatada;
+    }
 
     /* Formartar comentário */
     while (formulario.comentario && formulario.comentario.charAt(0) === '=') {
@@ -89,9 +92,11 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
           'Content-Type': 'application/json'
         })
     }).then(response => {
-        if (!response.ok)
+        botaoEnvio?.toggleAttribute('disabled', false);
+        botaoEnvio?.classList.remove('envioDesativado');
+
         // Importante checar porque a fetch só é rejeitada em caso de erro de rede
-            return "Erro ao acessar o servidor";
+        if(!response.ok) return "Erro ao acessar o servidor";
 
         return response.text();
     })
@@ -99,23 +104,21 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
         if (text === 'OK') {
             togglePopUp(true);
             resetarForm(formulario, valores);
-            botaoEnvio?.toggleAttribute('disabled', false);
-            botaoEnvio?.classList.remove('envioDesativado');
 
             return true;
         } 
         else {
             toast.error(text,
             {position: toast.POSITION.BOTTOM_CENTER});
-            botaoEnvio?.toggleAttribute('disabled', false);
-            botaoEnvio?.classList.remove('envioDesativado');
+
             return false;
         }})
         .catch(err => {
-            toast.error("Erro de rede. Tente novamente mais tarde",
-            {position: toast.POSITION.BOTTOM_CENTER});
             botaoEnvio?.toggleAttribute('disabled', false);
             botaoEnvio?.classList.remove('envioDesativado');
+
+            toast.error("Erro de rede. Tente novamente mais tarde",
+            {position: toast.POSITION.BOTTOM_CENTER});
             return false;
         });
     
