@@ -137,6 +137,7 @@ export const DateDiv = styled.div `
     border-radius: 4.44vw;
 
     :focus-within { border-color: ${global.colors.laranja}; }
+    :focus { border-color: ${global.colors.laranja}; }
 `;
 
 export const DateSelect = styled.input `
@@ -154,8 +155,6 @@ export const DateSelect = styled.input `
     font-size: 4.44vw;
     font-weight: 700;
     color: ${global.colors.cinza};
-
-    :focus-within { border-color: ${global.colors.laranja}; }
 
     appearance: none;
     ::-webkit-calendar-picker-indicator { display: none; }

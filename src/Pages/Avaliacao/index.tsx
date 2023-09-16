@@ -1,13 +1,15 @@
-import { AvaSection, Avadiv, SombraPopUp, Comentario, DateDiv, DateSelect, EmailInput, EnviarButton,
-         AvaForm, TurnoButton, TurnoDiv, FormDiv, MensagemErro, DateIcon} from "./style";
+import { AvaSection, Avadiv, SombraPopUp, Comentario,
+        DateDiv, DateSelect, EmailInput, EnviarButton,
+        AvaForm, TurnoButton, TurnoDiv, FormDiv,
+        MensagemErro, DateIcon } from "./style";
 import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
 
 import { useContext, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { ToastContainer } from 'react-toastify';
-import { verificarData, formulario, enviar } from "../../Functions/Avaliacao/enviar";
-import { selecionarTurno, cliqueData } from '../../Functions/Avaliacao/avaliacao';
+import { formulario, enviar } from "../../Functions/Avaliacao/enviar";
+import { selecionarTurno } from '../../Functions/Avaliacao/avaliacao';
 
 import Nota from "../../Components/Nota";
 import Cabecalho from "../../Components/Cabecalho";
@@ -32,7 +34,8 @@ export default function Avaliacao() {
     const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
     const valores = ['selec', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
 
-    const [dataSelecionada, setData] = useState<Date>()
+    const [dataSelecionada, setData] = useState<Date>();
+
 /*----------------------------------------------------------------------------*/
 
     return (
@@ -107,28 +110,33 @@ export default function Avaliacao() {
                         {errors.data? <MensagemErro>{errors.data.message}</MensagemErro>:null}
                         <DateDiv>
                             <DatePicker
+                                id="dataSelect"
                                 disabledKeyboardNavigation
                                 placeholderText="Selecione uma data"
+
                                 selected={dataSelecionada}
+                                dateFormat="dd/MM/yyyy"
+                                maxDate={new Date()}
+
+                                onFocus={e => e.target.blur()}
                                 onChange={(data: Date) => {
-                                        const dataformatada = data.toLocaleDateString('pt-BR');
-                                        setValue('data', dataformatada);
-                                        setData(data)
-                                        console.log(getValues('data'));
+                                        setValue('data', data.toLocaleDateString('pt-BR'));
+                                        setData(data);
                                     }
                                 }
-                                dateFormat="dd/MM/yyyy"
-                                onFocus={e => e.target.blur()}
-                                maxDate={new Date()}
-                                id="dataSelect"
                                 customInput={
-                                    <DateSelect {...register('data')}
-                                    name="data" type="text" placeholder="Selecione uma data"/>
-                                }/>
+                                    <DateSelect {...register('data')} name="data"
+                                    type="text" placeholder="Selecione uma data"/>
+                                }
+                            />
 
-                            <DateIcon src={datePicker} alt='Ícone de calendário para selecionar data' onClick={cliqueData}/>
+                            <DateIcon src={datePicker}
+                                alt='Ícone de calendário para selecionar data'
+                                onClick={() => setTimeout(() => {
+                                    document.getElementById('dataSelect')?.click()
+                                }, 100)}
+                            />
                         </DateDiv>
-
                     </AvaSection>
                     
 {/*--------------------------------------------------------------------------*/}
@@ -164,10 +172,7 @@ export default function Avaliacao() {
                 </EnviarButton>
             </AvaForm>
     
-            {
-                showInstallMessage &&
-                <DownPop/>
-            }
+            { showInstallMessage && <DownPop/> }
         </Avadiv>
     );
 }

@@ -22,6 +22,8 @@ code {
     monospace;
 }
 
+/*----------------------------------------------------------------------------*/
+
 .Toastify__toast-container {
   width: 100vw !important; 
   bottom: 3vh !important;
@@ -94,3 +96,5 @@ code {
   --toastify-spinner-color: #fff !important;
   --toastify-spinner-color-empty-area: #e0e0e0;
 }
+
+/*----------------------------------------------------------------------------*/

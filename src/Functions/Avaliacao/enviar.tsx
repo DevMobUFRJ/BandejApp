@@ -12,37 +12,19 @@ export type formulario = {
 
 /*----------------------------------------------------------------------------*/
 
-function formatarData(formulario: formulario) {
+function formatarDados(formulario: formulario) {
+    /* Formartar data */
     const dataFormatada = formulario.data.split('-').reverse().join('/');
+    if(!formulario.data) formulario.data = '----';
+    else formulario.data = dataFormatada;
 
-    if(!formulario.data) 
-        formulario.data = '----';
-    else
-        formulario.data = dataFormatada;
-}
-
-export const verificarData = (dataInput: string): boolean => {
-    if(dataInput === '') 
-        return true;
-
-    const hoje = new Date();
-    const dataSelecionada = new Date(dataInput);
-
-    if (dataSelecionada > hoje)
-        return true;
-
-    return false;
-}
-
-/*----------------------------------------------------------------------------*/
-
-function reformatarDados(formulario: formulario) {
+    /* Formartar comentário */
     while (formulario.comentario && formulario.comentario.charAt(0) === '=') {
         formulario.comentario = formulario.comentario.substring(1);
     }
 
-    if(formulario.email === '') 
-        formulario.email = '----';
+    /* Formatar email */
+    if(formulario.email === '') formulario.email = '----';
 }
 
 /*----------------------------------------------------------------------------*/
@@ -95,8 +77,7 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
     botaoEnvio?.toggleAttribute('disabled', true);
     botaoEnvio?.classList.add('envioDesativado');
 
-    formatarData(formulario);
-    reformatarDados(formulario);
+    formatarDados(formulario);
 
     const dados = JSON.stringify({formulario});
 
