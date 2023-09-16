@@ -137,7 +137,6 @@ export const DateDiv = styled.div `
     border-radius: 4.44vw;
 
     :focus-within { border-color: ${global.colors.laranja}; }
-    :focus { border-color: ${global.colors.laranja}; }
 `;
 
 export const DateSelect = styled.input `
