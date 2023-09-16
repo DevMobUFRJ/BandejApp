@@ -20,6 +20,7 @@ import PopUp from "../../Components/PopUp";
 import { togglePopUp } from "../../Functions/PopUp/abrirEfechar";
 
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
