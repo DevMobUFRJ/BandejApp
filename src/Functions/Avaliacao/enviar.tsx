@@ -12,37 +12,22 @@ export type formulario = {
 
 /*----------------------------------------------------------------------------*/
 
-function formatarData(formulario: formulario) {
-    const dataFormatada = formulario.data.split('-').reverse().join('/');
+function formatarDados(formulario: formulario) {
+    /* Formartar data */
 
-    if(!formulario.data) 
-        formulario.data = '----';
-    else
+    if(!formulario.data) formulario.data = '----';
+    else {
+        const dataFormatada = formulario.data.split('-').reverse().join('/');
         formulario.data = dataFormatada;
-}
+    }
 
-export const verificarData = (dataInput: string): boolean => {
-    if(dataInput === '') 
-        return true;
-
-    const hoje = new Date();
-    const dataSelecionada = new Date(dataInput);
-
-    if (dataSelecionada < hoje)
-        return true;
-
-    return false;
-}
-
-/*----------------------------------------------------------------------------*/
-
-function reformatarDados(formulario: formulario) {
+    /* Formartar comentário */
     while (formulario.comentario && formulario.comentario.charAt(0) === '=') {
         formulario.comentario = formulario.comentario.substring(1);
     }
 
-    if(formulario.email === '') 
-        formulario.email = '----';
+    /* Formatar email */
+    if(formulario.email === '') formulario.email = '----';
 }
 
 /*----------------------------------------------------------------------------*/
@@ -95,8 +80,7 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
     botaoEnvio?.toggleAttribute('disabled', true);
     botaoEnvio?.classList.add('envioDesativado');
 
-    formatarData(formulario);
-    reformatarDados(formulario);
+    formatarDados(formulario);
 
     const dados = JSON.stringify({formulario});
 
@@ -108,9 +92,11 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
           'Content-Type': 'application/json'
         })
     }).then(response => {
-        if (!response.ok)
+        botaoEnvio?.toggleAttribute('disabled', false);
+        botaoEnvio?.classList.remove('envioDesativado');
+
         // Importante checar porque a fetch só é rejeitada em caso de erro de rede
-            return "Erro ao acessar o servidor";
+        if(!response.ok) return "Erro ao acessar o servidor";
 
         return response.text();
     })
@@ -118,23 +104,21 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
         if (text === 'OK') {
             togglePopUp(true);
             resetarForm(formulario, valores);
-            botaoEnvio?.toggleAttribute('disabled', false);
-            botaoEnvio?.classList.remove('envioDesativado');
 
             return true;
         } 
         else {
             toast.error(text,
             {position: toast.POSITION.BOTTOM_CENTER});
-            botaoEnvio?.toggleAttribute('disabled', false);
-            botaoEnvio?.classList.remove('envioDesativado');
+
             return false;
         }})
         .catch(err => {
-            toast.error("Erro de rede. Tente novamente mais tarde",
-            {position: toast.POSITION.BOTTOM_CENTER});
             botaoEnvio?.toggleAttribute('disabled', false);
             botaoEnvio?.classList.remove('envioDesativado');
+
+            toast.error("Erro de rede. Tente novamente mais tarde",
+            {position: toast.POSITION.BOTTOM_CENTER});
             return false;
         });
     

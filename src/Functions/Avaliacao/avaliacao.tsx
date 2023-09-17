@@ -1,40 +1,25 @@
 import { UseFormSetValue } from 'react-hook-form';
 import { formulario } from './enviar';
 
-export const textoParaData = () => {
-    const dataInput = document.getElementById('dataSelect');
-    dataInput?.parentElement?.focus();
-
-    if(dataInput?.getAttribute('type') === 'date') {
-        dataInput.click();
-        return;
-    }
-
-    dataInput?.setAttribute('type', 'date');
-    setTimeout(() => { dataInput?.click(); }, 100);
-}
-
 /*----------------------------------------------------------------------------*/
 
 export const selecionarTurno = (elem: HTMLButtonElement, setValue: UseFormSetValue<formulario>, form: formulario) => {
     const almoco = document.getElementById('almoco');
     const janta = document.getElementById('janta');
-    const data = document.getElementById('dataSelect');
+    const dataInput = document.getElementById('dataSelect');
 
     if(elem === almoco) {
         if(janta?.classList.contains('turnoSelecionado')) janta.classList.toggle('turnoSelecionado');
-        
+
         if(elem.classList.contains('turnoSelecionado')) {
             elem.classList.remove('turnoSelecionado');
-            data?.toggleAttribute('required', false);
-            if(!form.data) data?.setAttribute('type', 'text');
+            dataInput?.toggleAttribute('required', false);
             setValue('turno', '----');
         }
         else {
             elem.classList.add('turnoSelecionado');
-            data?.toggleAttribute('required', true);
-            data?.setAttribute('type', 'date');
-            textoParaData();
+            dataInput?.toggleAttribute('required', true);
+            if(!form.data) setTimeout(() => { dataInput?.click() }, 100);
             setValue('turno', 'Almoço');
         }
     }
@@ -43,15 +28,13 @@ export const selecionarTurno = (elem: HTMLButtonElement, setValue: UseFormSetVal
 
         if(elem.classList.contains('turnoSelecionado')) {
             elem.classList.remove('turnoSelecionado');
-            data?.toggleAttribute('required', false);
-            if(!form.data) data?.setAttribute('type', 'text');
+            dataInput?.toggleAttribute('required', false);
             setValue('turno', '----')
         }
         else {
             elem.classList.add('turnoSelecionado');
-            data?.toggleAttribute('required', true);
-            data?.setAttribute('type', 'date');
-            textoParaData();
+            dataInput?.toggleAttribute('required', true);
+            if(!form.data) setTimeout(() => { dataInput?.click(); }, 100);
             setValue('turno', 'Jantar');
         }
     }
