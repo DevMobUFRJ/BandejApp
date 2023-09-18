@@ -19,6 +19,7 @@ import { global } from "../../globalStyle";
 
 import logoIC from '../../Assets/FaleConosco/LogoIC.svg';
 import logoUfrj from '../../Assets/FaleConosco/LogoUFRJ.svg';
+import logoDevMob from '../../Assets/SideBar/DevMob.svg'
 
 type props = {
     fechaDiv: Function 
@@ -73,9 +74,9 @@ export default function SideBar({fechaDiv}: props) {
             <InstitutoDiv>
                 <img src={logoIC} style={{width: '35%'}}
                 alt="Logo do Institudo de Computação da UFRJ."/>
-                {/* <Linha/>
-                <img src={logoUfrj} style={{width: '35%'}}
-                alt="Logo da Universidade Federal do Rio de Janeiro."/> */}
+                <Linha/>
+                <img src={logoDevMob} style={{width: '22%', padding: '0 6.5% 0 6.5%'}}
+                alt="Logo da Universidade Federal do Rio de Janeiro."/>
             </InstitutoDiv>
             <FecharDiv onClick={() => fechaDiv()}>
                 <CloseImg id="closeButton" src={Close} alt='Ícone para fechar menu lateral'/>
