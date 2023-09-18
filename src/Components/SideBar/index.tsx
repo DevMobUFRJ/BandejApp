@@ -50,7 +50,7 @@ export default function SideBar({fechaDiv}: props) {
         <SideBarDiv id="sidebar">
             <SideHeader>
                 <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
-                <Versao>Versão 0.0.3</Versao>
+                <Versao>Versão 0.3.1</Versao>
             </SideHeader>
 
 {/*--------------------------------------------------------------------------*/}
