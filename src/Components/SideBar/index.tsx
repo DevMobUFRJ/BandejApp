@@ -73,9 +73,9 @@ export default function SideBar({fechaDiv}: props) {
             <InstitutoDiv>
                 <img src={logoIC} style={{width: '35%'}}
                 alt="Logo do Institudo de Computação da UFRJ."/>
-                <Linha/>
+                {/* <Linha/>
                 <img src={logoUfrj} style={{width: '35%'}}
-                alt="Logo da Universidade Federal do Rio de Janeiro."/>
+                alt="Logo da Universidade Federal do Rio de Janeiro."/> */}
             </InstitutoDiv>
             <FecharDiv onClick={() => fechaDiv()}>
                 <CloseImg id="closeButton" src={Close} alt='Ícone para fechar menu lateral'/>
