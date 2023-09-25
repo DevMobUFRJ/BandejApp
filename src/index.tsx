@@ -6,6 +6,10 @@ import Router from './Routes/Router';
 import { NotificationProvider } from './Contexts/PendingNotificationContext';
 import { InstallMessageProvider } from './Contexts/ShowInstallMessageContext';
 import Paisagem from './Pages/Paisagem/';
+import ReactGA from "react-ga4";
+
+const TRACKING_ID = "G-KZT0DEH3ZS";
+ReactGA.initialize(TRACKING_ID);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -16,6 +16,8 @@ import Cabecalho from "../../Components/Cabecalho";
 
 import "react-toastify/dist/ReactToastify.css";
 
+import ReactGA from "react-ga4";
+
 let consultando = false;
 
 const estadosRestaurante = ['ct', 'pv', 'dc', 'mc'];
@@ -41,6 +43,7 @@ export default function Cardapio() {
     
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
     useEffect(() => {
+        ReactGA.send({hitType: "pageview", page: "/Cardapio", title: 'Cardapio'});
         let tentativas = 0;
         async function consultarCardapio():Promise<boolean> {
             tentativas++;
