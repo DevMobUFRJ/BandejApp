@@ -26,10 +26,6 @@ const opcoesRestaurante = ['Central, CT e Letras', 'IFCS e Praia Vermelha',
 
 export default function Cardapio() {
     const history = useHistory();
-    if (!localStorage.getItem("bandejapp:ruDefault")) {
-        history.push('/Restaurante')
-
-    }
 
 
     const [cardapio, setCardapio] = useState<ICardapioProps>();
@@ -50,6 +46,9 @@ export default function Cardapio() {
     
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
     useEffect(() => {
+        if (!localStorage.getItem("bandejapp:ruDefault")) {
+        history.push('/Restaurante')
+    }
         let tentativas = 0;
         async function consultarCardapio():Promise<boolean> {
             tentativas++;
