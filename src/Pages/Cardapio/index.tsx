@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { CardapioDiv, Sombra, ActionsDiv, 
         DropHeader, AvisoAtt, Conteudo} from "./style";
+    
+import { useHistory } from "react-router-dom";
 
 import NavBar from "../../Components/Navbar";
 import Horario from "../../Components/Horario";
@@ -23,6 +25,13 @@ const opcoesRestaurante = ['Central, CT e Letras', 'IFCS e Praia Vermelha',
                         'Duque de Caxias', 'Macaé'];
 
 export default function Cardapio() {
+    const history = useHistory();
+    if (!localStorage.getItem("bandejapp:ruDefault")) {
+        history.push('/Restaurante')
+
+    }
+
+
     const [cardapio, setCardapio] = useState<ICardapioProps>();
 
     const [dia, tggDia] = useState(0);
