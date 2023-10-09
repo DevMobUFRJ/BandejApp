@@ -48,9 +48,7 @@ export default function Cardapio() {
     
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
     useEffect(() => {
-        if (!localStorage.getItem("bandejapp:ruDefault")) {
-        history.push('/Restaurante')
-        }
+        if (!localStorage.getItem("bandejapp:ruDefault")) history.push('/Restaurante');
         
         ReactGA.send({hitType: "pageview", page: "/Cardapio", title: 'Cardapio'});
         let tentativas = 0;
