@@ -33,7 +33,7 @@ export default function Avaliacao() {
     const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
     const valores = ['selec', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
 
-    const [dataSelecionada, setData] = useState<Date>();
+    const [dataSelecionada, setData] = useState<Date | null>();
 
 /*----------------------------------------------------------------------------*/
 
@@ -50,7 +50,7 @@ export default function Avaliacao() {
                 funcoesOpcoes={[() => togglePopUp(false)]}
             />
             <SombraPopUp id='sombra'/>
-            <AvaForm onSubmit={handleSubmit(async dados => { if(await enviar(dados, valores)) reset(); })}>
+            <AvaForm onSubmit={handleSubmit(async dados => { if(await enviar(dados, valores)) reset(); setData(null)})}>
                 <FormDiv>
                     <AvaSection>
                         <InfoTitle>Qual restaurante deseja avaliar?</InfoTitle>
