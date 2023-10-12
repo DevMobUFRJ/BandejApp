@@ -17,9 +17,8 @@ import { useContext } from "react";
 
 import { global } from "../../globalStyle";
 
-import logoIC from '../../Assets/FaleConosco/LogoIC.svg';
-import logoUfrj from '../../Assets/FaleConosco/LogoUFRJ.svg';
-import logoDevMob from '../../Assets/SideBar/DevMob.svg'
+import LogoIC from '../../Assets/SideBar/LogoIC.svg';
+import LogoDevmob from '../../Assets/SideBar/DevMob.svg';
 
 type props = {
     fechaDiv: Function 
@@ -71,13 +70,15 @@ export default function SideBar({fechaDiv}: props) {
                     )
                 }
             </ItemsDiv>
+
             <InstitutoDiv>
-                <img src={logoIC} style={{width: '35%'}}
+                <img src={LogoIC} style={{width: '35%'}}
                 alt="Logo do Institudo de Computação da UFRJ."/>
                 <Linha/>
-                <img src={logoDevMob} style={{width: '22%', padding: '0 6.5% 0 6.5%'}}
+                <img src={LogoDevmob} style={{width: '22%', padding: '0 6.5% 0 6.5%'}}
                 alt="Logo da Universidade Federal do Rio de Janeiro."/>
             </InstitutoDiv>
+
             <FecharDiv onClick={() => fechaDiv()}>
                 <CloseImg id="closeButton" src={Close} alt='Ícone para fechar menu lateral'/>
                 <TextoFechar>Fechar</TextoFechar>
