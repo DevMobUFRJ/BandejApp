@@ -1,4 +1,4 @@
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 import Avaliacao from '../Pages/Avaliacao';
 import Cardapio from '../Pages/Cardapio';
@@ -22,7 +22,7 @@ export default function Routes() {
     };   
 
     return (
-        <HashRouter basename='/'>
+        <Router basename='/'>
             <Switch>
                 <Route exact path='/'>
                     <Redirect to={localStorage.getItem("bandejapp:ruDefault")?
@@ -43,7 +43,15 @@ export default function Routes() {
                 </Route>
 
                 <Route path="/Cardapio">
-                    <Cardapio/>
+                    {() => {
+                        const ruDefault = localStorage.getItem("bandejapp:ruDefault");
+
+                        if (ruDefault) {
+                        return <Cardapio />;
+                        } else {
+                        return <Redirect to='/Restaurante' />;
+                        }
+                    }}
                 </Route>
 
                 <Route path="/Avaliacao">
@@ -62,6 +70,6 @@ export default function Routes() {
                     <FaleConosco/>
                 </Route>
             </Switch>
-        </HashRouter>
+        </Router>
     )
 } 
