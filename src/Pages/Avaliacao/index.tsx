@@ -1,4 +1,4 @@
-import { AvaSection, Avadiv, SombraPopUp, Comentario,
+import { AvaSection, Avadiv, Comentario,
         DateDiv, DateSelect, EmailInput, EnviarButton,
         AvaForm, TurnoButton, TurnoDiv, FormDiv,
         MensagemErro, DateIcon } from "./style";
@@ -49,7 +49,7 @@ export default function Avaliacao() {
                 tiposOpcoes={[0]}
                 funcoesOpcoes={[() => togglePopUp(false)]}
             />
-            <SombraPopUp id='sombra'/>
+
             <AvaForm onSubmit={handleSubmit(async dados => { if(await enviar(dados, valores)) reset(); setData(null)})}>
                 <FormDiv>
                     <AvaSection>

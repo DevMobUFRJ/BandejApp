@@ -53,7 +53,7 @@ export const Shade = styled.div `
     left: 0vw;
     position: fixed;
 
-    z-index: 2;
+    z-index: 3;
     
     background: rgba(0, 0, 0, 0.4);
 `;

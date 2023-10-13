@@ -8,7 +8,7 @@ export const SideBarDiv = styled.div `
     width: 0vw;
     height: 100vh;
 
-    z-index: 2;
+    z-index: 4;
     position: fixed;
     left: 0;
     top: 0;

@@ -1,7 +1,7 @@
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import { useContext } from "react";
 
-import { PlaceHolderCabecalho, Shade, CabecaDiv, PageTitle, 
+import { PlaceHolderCabecalho, CabecaDiv, PageTitle, 
     DivAjustes, IconeAjustes, NotifDiv, NotifInside, SideButton, NotifIcon } from "./style";    
 
 import SideBar from "../SideBar";
@@ -18,21 +18,20 @@ let aberto = true;
 
 const toggleSide = (abrindo: boolean) => {
     const sidebar = document.getElementById('sidebar');
-    const shade = document.getElementById('shade');
+    const abacate = document.getElementById('abacate');
     const closeButton = document.getElementById('closeButton');
-    if (!sidebar || !shade || !closeButton)
-        return;
+    if (!sidebar || !abacate || !closeButton) return;
 
-    shade.addEventListener('click', () => toggleSide(!abrindo));
+    abacate.addEventListener('click', () => toggleSide(!abrindo));
     closeButton.addEventListener('click', () => toggleSide(!abrindo));
 
     requestAnimationFrame(() => {
         if (abrindo) {
-            shade.style.display = 'block';
+            abacate.style.display = 'block';
             sidebar.style.width = '72.22vw';
         }
         else {
-            shade.style.display = 'none';
+            abacate.style.display = 'none';
             sidebar.style.width = '0';
         }
     });
@@ -72,6 +71,7 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
 
     return (
         <PlaceHolderCabecalho>
+            <SideBar fechaDiv={() => toggleSide(false)}/>
             <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
                 <NotifDiv onClick={() => toggleSide(true)}>
                     <SideButton src={Menu} alt='Ícone para abrir o menu lateral'/>
@@ -89,9 +89,6 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
                     alt={aberto ? 'Ícone para fechar ajustes' : 'Ícone para abrir ajustes'} 
                     onClick={() => clique(fadeAjustes, setOpcoes)}/>
                 </DivAjustes>
-
-                <Shade id="shade"/>
-                <SideBar fechaDiv={() => toggleSide(false)}/>
             </CabecaDiv>
         </PlaceHolderCabecalho>
     );

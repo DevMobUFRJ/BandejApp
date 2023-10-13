@@ -24,21 +24,6 @@ export const Avadiv = styled.div `
     }
 `;
 
-export const SombraPopUp = styled.div `
-    display: none;
-
-    width: 100vw;
-    height: 100vh;
-
-    top: 0vh;
-    left: 0vw;
-    position: fixed;
-
-    z-index: 2;
-
-    background: rgba(0, 0, 0, 0.4);
-`;
-
 /*----------------------------------------------------------------------------*/
 
 export const AvaForm = styled.form `
@@ -59,7 +44,6 @@ export const FormDiv = styled.div `
     border-radius: 4.44vw;
     background-color: ${global.colors.branco};
 `;
-
 
 export const AvaSection = styled.section `
     display: grid;
