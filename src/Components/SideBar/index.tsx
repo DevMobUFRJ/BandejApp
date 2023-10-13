@@ -18,7 +18,7 @@ import { useContext } from "react";
 import { global } from "../../globalStyle";
 
 import LogoIC from '../../Assets/SideBar/LogoIC.svg';
-import LogoDevmob from '../../Assets/SideBar/DevMob.svg';
+import LogoDevmob from '../../Assets/SideBar/LogoDevmob.svg';
 
 type props = {
     fechaDiv: Function 
