@@ -48,17 +48,6 @@ export const PopTitulo = styled.h2 `
     color: ${global.colors.cinza};
 `;
 
-export const PopTexto = styled.p `
-    margin: 2vh 0 2vh 0;
-
-    font-family: ${global.fonts.quickSand};
-    font-size: 4.44vw;
-    font-weight: 500;
-    text-align: center;
-
-    color: ${global.colors.cinzaPratos};
-`;
-
 /*----------------------------------------------------------------------------*/
 
 export const PopButtonDiv = styled.div `
@@ -80,4 +69,19 @@ export const PopButton = styled.button `
 
     background-color: ${global.colors.laranja};
     color: ${global.colors.branco};
+`;
+
+/*----------------------------------------------------------------------------*/
+/*     A partir daqui são os elementos para serem usados dentro do PopUp      */
+/*----------------------------------------------------------------------------*/
+
+export const PopTexto = styled.p `
+    margin: 2vh 0 2vh 0;
+
+    font-family: ${global.fonts.quickSand};
+    font-size: 4.44vw;
+    font-weight: 500;
+    text-align: center;
+
+    color: ${global.colors.cinzaPratos};
 `;
