@@ -36,7 +36,7 @@ export const LogoImg = styled.img `
     margin: 0 0 0 5vw;
 `;
 
-export const CloseImg = styled.img `
+export const CloseSide = styled.img `
     align-self: center;
     width: 3.8vw;
 `;

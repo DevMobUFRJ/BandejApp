@@ -1,11 +1,12 @@
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import { useContext } from "react";
 
-import { PlaceHolderCabecalho, CabecaDiv, PageTitle, 
-    DivAjustes, IconeAjustes, NotifDiv, NotifInside, SideButton, NotifIcon } from "./style";    
+import { PlaceHolderCabecalho, CabecaDiv, PageTitle, DivAjustes, IconeAjustes,
+    NotifDiv, NotifInside, SideButton, NotifIcon } from "./style";
+
+import { abrirSideBar, fecharSideBar } from "../../Functions/SideBar/abrirEfechar";
 
 import SideBar from "../SideBar";
-
 import Menu from '../../Assets/SideBar/menu.svg';
 import Ajustes from '../../Assets/Cardapio/Ajustes.svg';
 import Close from '../../Assets/Close.svg';
@@ -15,27 +16,6 @@ type Nome = { nome: string
 const boxshadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
 
 let aberto = true;
-
-const toggleSide = (abrindo: boolean) => {
-    const sidebar = document.getElementById('sidebar');
-    const abacate = document.getElementById('abacate');
-    const closeButton = document.getElementById('closeButton');
-    if (!sidebar || !abacate || !closeButton) return;
-
-    abacate.addEventListener('click', () => toggleSide(!abrindo));
-    closeButton.addEventListener('click', () => toggleSide(!abrindo));
-
-    requestAnimationFrame(() => {
-        if (abrindo) {
-            abacate.style.display = 'block';
-            sidebar.style.width = '72.22vw';
-        }
-        else {
-            abacate.style.display = 'none';
-            sidebar.style.width = '0';
-        }
-    });
-}
 
 const fadeAjustes = (abrindo: boolean, setOpcoes: Function) => {
     const acoes = document.getElementById('acoes');
@@ -71,9 +51,10 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
 
     return (
         <PlaceHolderCabecalho>
-            <SideBar fechaDiv={() => toggleSide(false)}/>
+            <SideBar/>
+    
             <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
-                <NotifDiv onClick={() => toggleSide(true)}>
+                <NotifDiv onClick={abrirSideBar}>
                     <SideButton src={Menu} alt='Ícone para abrir o menu lateral'/>
 
                     <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}>

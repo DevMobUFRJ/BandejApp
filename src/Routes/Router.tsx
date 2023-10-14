@@ -1,5 +1,4 @@
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { Shade } from '../Components/Cabecalho/style';
 
 import Avaliacao from '../Pages/Avaliacao';
 import Cardapio from '../Pages/Cardapio';
@@ -24,7 +23,11 @@ export default function Routes() {
 
     return (
         <HashRouter basename='/'>
-            <Shade id='abacate'/>
+            <div id='BlurDiv' style={{
+                display: 'none', width: '100vw', position: 'fixed',
+                zIndex: 3, background: 'rgba(0, 0, 0, 0.4)', height: '100vh'
+            }}/>
+
             <Switch>
                 <Route exact path='/'>
                     <Redirect to={localStorage.getItem("bandejapp:ruDefault")?
