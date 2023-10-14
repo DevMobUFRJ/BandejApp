@@ -1,10 +1,12 @@
 import ReactDOM from "react-dom";
 import { PopButton, PopButtonDiv, PopDiv, PopOuterDiv, PopTitulo } from "./style";
+import { useEffect } from "react";
+import { abrirPopUp } from "../../Functions/PopUp/abrirEfechar";
 
 type PopInfo = {
     mostrar: boolean;
     titulo: string;
-    componente?: JSX.Element;
+    componente: JSX.Element;
     opcoes: Array<string>;
     tiposOpcoes: Array<number>;
     funcoesOpcoes: Array<Function>;
@@ -13,6 +15,9 @@ type PopInfo = {
 export default function PopUp(
     {mostrar, titulo, componente, opcoes, tiposOpcoes, funcoesOpcoes}: PopInfo
 ) {
+
+    useEffect(() => { if(mostrar) abrirPopUp(); }, [mostrar]);
+
     if(!mostrar) return null;
 
     const blurdiv = document.getElementById('BlurDiv');

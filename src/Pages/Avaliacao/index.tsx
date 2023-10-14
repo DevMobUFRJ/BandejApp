@@ -4,7 +4,7 @@ import { AvaSection, Avadiv, Comentario,
         MensagemErro, DateIcon } from "./style";
 import { InfoSubtitle, InfoTitle } from "../Informacoes/style";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { ToastContainer } from 'react-toastify';
@@ -21,7 +21,7 @@ import datePicker from '../../Assets/Avaliacao/datePicker.svg';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import PopUp from "../../Components/PopUp";
-import { abrirPopUp, fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
+import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
 import { PopTexto } from "../../Components/PopUp/style";
 
 export default function Avaliacao() {
@@ -38,7 +38,6 @@ export default function Avaliacao() {
     const [dataSelecionada, setData] = useState<Date | null>();
 
     const [popUp, mostrarPopup] = useState(false);
-    useEffect(() => { abrirPopUp(); }, [popUp]);
 
 /*----------------------------------------------------------------------------*/
 
@@ -66,7 +65,6 @@ export default function Avaliacao() {
                     reset();
                     setData(null);
                     mostrarPopup(true);
-                    abrirPopUp();
                 }
             })}>
                 <FormDiv>

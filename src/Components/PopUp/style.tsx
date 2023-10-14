@@ -72,7 +72,7 @@ export const PopButton = styled.button `
 `;
 
 /*----------------------------------------------------------------------------*/
-/*     A partir daqui são os elementos para serem usados dentro do PopUp      */
+/*  A partir daqui são os elementos para serem usados como conteúdo do PopUp  */
 /*----------------------------------------------------------------------------*/
 
 export const PopTexto = styled.p `
