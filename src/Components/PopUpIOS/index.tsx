@@ -5,7 +5,7 @@ import Close from '../../Assets/Popup/close.svg';
 
 export default function DownPop() {
     const [visibility, setVisibility] = useState(true)
-    return(
+    return (
         <PopupDiv style={{display: (visibility) ? '' : 'none'}}>
             <PopText>
                 Instale esse aplicativo no seu Iphone: aperte

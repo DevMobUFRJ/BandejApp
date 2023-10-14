@@ -1,20 +1,21 @@
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import { useContext } from "react";
+import { abrirSideBar } from "../../Functions/SideBar/abrirEfechar";
 
 import { PlaceHolderCabecalho, CabecaDiv, PageTitle, DivAjustes, IconeAjustes,
     NotifDiv, NotifInside, SideButton, NotifIcon } from "./style";
-
-import { abrirSideBar, fecharSideBar } from "../../Functions/SideBar/abrirEfechar";
 
 import SideBar from "../SideBar";
 import Menu from '../../Assets/SideBar/menu.svg';
 import Ajustes from '../../Assets/Cardapio/Ajustes.svg';
 import Close from '../../Assets/Close.svg';
 
-type Nome = { nome: string 
-            setOpcoes?: Function};
-const boxshadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
+type Nome = { 
+    nome: string;
+    setOpcoes?: Function;
+}
 
+const boxshadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
 let aberto = true;
 
 const fadeAjustes = (abrindo: boolean, setOpcoes: Function) => {
