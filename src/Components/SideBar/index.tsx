@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { CloseSide, InstitutoDiv, ItemName, 
     ItemsDiv, Linha, LogoImg, NotifNumber, 
@@ -20,11 +20,15 @@ import Fale from '../../Assets/SideBar/faleconosco.svg';
 
 import LogoIC from '../../Assets/SideBar/LogoIC.svg';
 import LogoDevmob from '../../Assets/SideBar/LogoDevmob.svg';
+import PopUp from "../PopUp";
+import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
 
 
 export default function SideBar() {
+    const { pendingNotification } = useContext(NotificationContext);
+
     const history = useHistory();
-    const { pendingNotification } = useContext(NotificationContext); 
+    const [popUp, mostrarPopup] = useState(false);
 
     const rotaAtual = (onde: string):boolean => {
         return (history.location.pathname === onde)
@@ -41,36 +45,45 @@ export default function SideBar() {
             <SideHeader>
                 <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
                 <Versao>Versão 0.3.2 · 
-                    <Creditos>Ver créditos</Creditos>
+                    <Creditos onClick={() => mostrarPopup(true)}>Ver créditos</Creditos>
                 </Versao>
             </SideHeader>
+
+            <PopUp
+                mostrar={popUp}
+                titulo="Avaliação enviada"
+                componente={<></>}
+                opcoes={['Fechar']}
+                tiposOpcoes={[0]}
+                funcoesOpcoes={[() => fecharPopUp(mostrarPopup)]}
+            />
 
 {/*--------------------------------------------------------------------------*/}
 
             <ItemsDiv>
-                {
-                    rotasTelas.map((rota, indice) => 
-                        <SideItem key={indice} onClick={() => {
-                            if(!rotaAtual(rota)) history.push(rota);
-                            fecharSideBar();
-                        }}>
+            {
+                rotasTelas.map((rota, indice) => 
+                    <SideItem key={indice} onClick={() => {
+                        if(!rotaAtual(rota)) history.push(rota);
+                        fecharSideBar();
+                    }}>
 
-                            <SideIcon src={icones[indice]} alt={nomesTelas[indice]}
-                                style={{filter: rotaAtual(rota) ? laranjar : ''}}
-                            />
+                        <SideIcon src={icones[indice]} alt={nomesTelas[indice]}
+                            style={{filter: rotaAtual(rota) ? laranjar : ''}}
+                        />
 
-                            <ItemName style={{color: rotaAtual(rota) ? `${global.colors.laranja}`: ' '}}>
-                                {nomesTelas[indice]}
-                            </ItemName>
+                        <ItemName style={{color: rotaAtual(rota) ? `${global.colors.laranja}`: ' '}}>
+                            {nomesTelas[indice]}
+                        </ItemName>
 
-                            {(pendingNotification && nomesTelas[indice] === "Comunicados") ?
-                                <NotifNumber/>
-                                :
-                                null
-                            }
-                        </SideItem>
-                    )
-                }
+                        {(pendingNotification && nomesTelas[indice] === "Comunicados") ?
+                            <NotifNumber/>
+                            :
+                            null
+                        }
+                    </SideItem>
+                )
+            }
             </ItemsDiv>
 
             <InstitutoDiv>
