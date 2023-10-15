@@ -41,6 +41,22 @@ export const CloseSide = styled.img `
     width: 3.8vw;
 `;
 
+export const Versao = styled.p `
+    font-family: ${global.fonts.quickSand};
+    font-size: 3.33vw;
+    font-weight: 500;
+
+    color: ${global.colors.cinza};
+`;
+
+export const Creditos = styled.u `
+    font-family: ${global.fonts.quickSand};
+    font-size: 3.33vw;
+    font-weight: 500;
+
+    color: ${global.colors.cinza};
+`;
+
 /*----------------------------------------------------------------------------*/
 
 export const ItemsDiv = styled.ul `
@@ -100,17 +116,6 @@ export const NotifNumber = styled.p `
 
     background: ${global.colors.laranja};
     color: ${global.colors.branco};
-`;
-
-export const Versao = styled.p `
-    font-family: ${global.fonts.quickSand};
-    font-size: 12px;
-    
-    line-height: 12px;
-    text-align: center;
-    font-weight: 500;
-
-    color: ${global.colors.cinza};
 `;
 
 export const InstitutoDiv = styled.div `

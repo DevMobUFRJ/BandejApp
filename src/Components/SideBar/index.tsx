@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { CloseSide, InstitutoDiv, ItemName, 
     ItemsDiv, Linha, LogoImg, NotifNumber, 
     SideBarDiv, SideHeader, SideIcon, SideItem,
-    Versao, FecharDiv, TextoFechar } from "./style";
+    Versao, FecharDiv, TextoFechar, Creditos } from "./style";
 
 import { global } from "../../globalStyle";
 import { fecharSideBar } from "../../Functions/SideBar/abrirEfechar";
@@ -40,7 +40,9 @@ export default function SideBar() {
         <SideBarDiv id="sidebar">
             <SideHeader>
                 <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
-                <Versao>Versão 0.3.2</Versao>
+                <Versao>Versão 0.3.2 · 
+                    <Creditos>Ver créditos</Creditos>
+                </Versao>
             </SideHeader>
 
 {/*--------------------------------------------------------------------------*/}
