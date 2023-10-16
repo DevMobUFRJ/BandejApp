@@ -31,7 +31,7 @@ export default function Avaliacao() {
 
     /* Funções do useForm */
     const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} =
-    useForm<formulario>({defaultValues:{ru: 'CT', email: '', turno: '----', nota: 2, comentario: 'teste de popup'}});
+    useForm<formulario>({defaultValues:{ru: 'selec', email: '', turno: '----', nota: 0, comentario: ''}});
 
     /* Variáveis do Dropdown */
     const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
