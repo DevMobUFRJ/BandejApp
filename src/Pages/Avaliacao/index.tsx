@@ -20,24 +20,24 @@ import datePicker from '../../Assets/Avaliacao/datePicker.svg';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
 import PopUp from "../../Components/PopUp";
-import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
 import { PopTexto } from "../../Components/PopUp/style";
+import { PopupContext } from "../../Contexts/PopupContext";
 
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
+    const { mostrarPopup } = useContext(PopupContext);
 
     /* Funções do useForm */
     const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} =
-    useForm<formulario>({defaultValues:{ru: 'selec', email: '', turno: '----', nota: 0, comentario: ''}});
+    useForm<formulario>({defaultValues:{ru: 'CT', email: '', turno: '----', nota: 2, comentario: 'teste de popup'}});
 
     /* Variáveis do Dropdown */
     const opcoes = ['Selecione um Restaurante', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
     const valores = ['selec', 'CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
 
     const [dataSelecionada, setData] = useState<Date | null>();
-
-    const [popUp, mostrarPopup] = useState(false);
 
 /*----------------------------------------------------------------------------*/
 
@@ -47,24 +47,23 @@ export default function Avaliacao() {
 
             <Cabecalho nome='Avaliação'/>
 
-            <PopUp
-                mostrar={popUp}
-                titulo="Avaliação enviada"
+            <PopUp popID='avaliacao' titulo="Avaliação enviada"
+                opcoes={['Fechar']} tiposOpcoes={[0]}
+                funcoesOpcoes={[mostrarPopup]}
                 componente={
                     <PopTexto>
                         Caso tenha informado seu e-mail, o RU poderá entrar em contato com você.
                     </PopTexto>
                 }
-                opcoes={['Fechar']}
-                tiposOpcoes={[0]}
-                funcoesOpcoes={[() => fecharPopUp(mostrarPopup)]}
             />
+{/*--------------------------------------------------------------------------*/}
+
 
             <AvaForm onSubmit={handleSubmit(async dados => {
                 if(await enviar(dados, valores)) {
                     reset();
                     setData(null);
-                    mostrarPopup(true);
+                    mostrarPopup('avaliacao');
                 }
             })}>
                 <FormDiv>

@@ -49,7 +49,7 @@ export const Versao = styled.p `
     color: ${global.colors.cinza};
 `;
 
-export const Creditos = styled.u `
+export const MostrarCreditos = styled.u `
     font-family: ${global.fonts.quickSand};
     font-size: 3.33vw;
     font-weight: 500;

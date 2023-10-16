@@ -7,6 +7,7 @@ import Restaurante from '../Pages/Restaurante';
 import Notificacao from '../Pages/Comunicados';
 import Informacoes from '../Pages/Informacoes';
 import FaleConosco from '../Pages/FaleConosco';
+import GlobalComponents from '../Components/Global';
 
 export default function Routes() {
     const isIos = () => {
@@ -23,10 +24,7 @@ export default function Routes() {
 
     return (
         <HashRouter basename='/'>
-            <div id='BlurDiv' style={{
-                display: 'none', width: '100vw', position: 'fixed',
-                zIndex: 3, background: 'rgba(0, 0, 0, 0.4)', height: '100vh'
-            }}/>
+            <GlobalComponents/>
 
             <Switch>
                 <Route exact path='/'>

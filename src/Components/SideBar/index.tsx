@@ -1,14 +1,16 @@
 import { useHistory } from "react-router-dom";
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import { CloseSide, InstitutoDiv, ItemName, 
     ItemsDiv, Linha, LogoImg, NotifNumber, 
     SideBarDiv, SideHeader, SideIcon, SideItem,
-    Versao, FecharDiv, TextoFechar, Creditos } from "./style";
+    Versao, FecharDiv, TextoFechar, MostrarCreditos } from "./style";
 
 import { global } from "../../globalStyle";
 import { fecharSideBar } from "../../Functions/SideBar/abrirEfechar";
+import PopUp from "../PopUp";
+import Creditos from "../PopUp/Creditos";
 
 import Logo from '../../Assets/SideBar/logo.svg';
 import Close from '../../Assets/Close.svg';
@@ -17,18 +19,15 @@ import Aval from '../../Assets/SideBar/avaliacao.svg';
 import Comun from '../../Assets/SideBar/comunicados.svg';
 import Info from '../../Assets/SideBar/sobrenos.svg';
 import Fale from '../../Assets/SideBar/faleconosco.svg';
-
 import LogoIC from '../../Assets/SideBar/LogoIC.svg';
 import LogoDevmob from '../../Assets/SideBar/LogoDevmob.svg';
-import PopUp from "../PopUp";
-import { fecharPopUp } from "../../Functions/PopUp/abrirEfechar";
-
+import { PopupContext } from "../../Contexts/PopupContext";
 
 export default function SideBar() {
     const { pendingNotification } = useContext(NotificationContext);
+    const { mostrarPopup } = useContext(PopupContext);
 
     const history = useHistory();
-    const [popUp, mostrarPopup] = useState(false);
 
     const rotaAtual = (onde: string):boolean => {
         return (history.location.pathname === onde)
@@ -44,18 +43,16 @@ export default function SideBar() {
         <SideBarDiv id="sidebar">
             <SideHeader>
                 <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
-                <Versao>Versão 0.3.2 · 
-                    <Creditos onClick={() => mostrarPopup(true)}>Ver créditos</Creditos>
+                <Versao>Versão 0.3.2 · <MostrarCreditos onClick={() => mostrarPopup('creditos')}>
+                        Ver créditos
+                    </MostrarCreditos>
                 </Versao>
             </SideHeader>
 
-            <PopUp
-                mostrar={popUp}
-                titulo="Avaliação enviada"
-                componente={<></>}
-                opcoes={['Fechar']}
-                tiposOpcoes={[0]}
-                funcoesOpcoes={[() => fecharPopUp(mostrarPopup)]}
+            <PopUp popID='creditos' titulo="Créditos"
+                opcoes={['Fechar']} tiposOpcoes={[0]}
+                funcoesOpcoes={[mostrarPopup]}
+                componente={<Creditos/>}
             />
 
 {/*--------------------------------------------------------------------------*/}

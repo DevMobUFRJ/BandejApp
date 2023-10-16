@@ -1,34 +1,48 @@
 import ReactDOM from "react-dom";
-import { PopButton, PopButtonDiv, PopDiv, PopOuterDiv, PopTitulo } from "./style";
-import { useEffect } from "react";
-import { abrirPopUp } from "../../Functions/PopUp/abrirEfechar";
+import { useContext, useEffect } from "react";
+
+import { PopButton, PopButtonDiv, PopDiv, PopTitulo } from "./style";
+import { PopupContext } from "../../Contexts/PopupContext";
 
 type PopInfo = {
-    mostrar: boolean;
+    popID: string;
     titulo: string;
-    componente: JSX.Element;
     opcoes: Array<string>;
     tiposOpcoes: Array<number>;
     funcoesOpcoes: Array<Function>;
+    componente: JSX.Element;
 }
 
 export default function PopUp(
-    {mostrar, titulo, componente, opcoes, tiposOpcoes, funcoesOpcoes}: PopInfo
+    {popID, titulo, opcoes, tiposOpcoes, funcoesOpcoes, componente}: PopInfo
 ) {
+    const popOuter = document.getElementById('popOuter');
+    const { popupAtual } = useContext(PopupContext);
+    
+    useEffect(() => {
+        const popOuter = document.getElementById('popOuter');
+        const popup = document.getElementById('popup');
 
-    useEffect(() => { if(mostrar) abrirPopUp(); }, [mostrar]);
+        if(popOuter && popup && popupAtual) {
+            popOuter.style.display = 'flex';
+            
+            requestAnimationFrame (() => {
+                popup.style.transform = 'scale(1, 1)';
+            });
+        }
+    }, [popupAtual]);
 
-    if(!mostrar) return null;
+    if(popID !== popupAtual) return null;
 
-    const blurdiv = document.getElementById('BlurDiv');
-    if(blurdiv) return (
+    if(popOuter) return (
         ReactDOM.createPortal(
-            <PopOuterDiv id="popOuter">
                 <PopDiv id="popup">
                     <PopTitulo>{titulo}</PopTitulo>
-                    {
-                        componente
-                    }
+                    <div>
+                        {
+                            componente
+                        }
+                    </div>
                     <PopButtonDiv>
                         { opcoes?.map((opcao, index) =>
                             <PopButton key={index}
@@ -40,8 +54,7 @@ export default function PopUp(
                         )}
                     </PopButtonDiv>
                 </PopDiv>
-            </PopOuterDiv>
-        , blurdiv)
+        , popOuter)
     );
     else return null;
 }
