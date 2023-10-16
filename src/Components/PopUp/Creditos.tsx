@@ -50,7 +50,11 @@ export default function Creditos() {
                         <PopSection>
                             <PopSubtitle>DESIGNERS</PopSubtitle>
                             {credito.des.map((des, index) => 
-                                <PopLink key={index} href={des[1]}>{des[0]}</PopLink>
+                                <PopLink key={index} href={des[1]}
+                                onClick={(e) => { if(des[1] === '#') e.preventDefault(); }}>
+                                    {des[0]}
+                                    <br/>
+                                </PopLink>
                             )}
                         </PopSection>
                     </div>
