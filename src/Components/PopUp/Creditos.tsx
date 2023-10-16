@@ -1,4 +1,4 @@
-import { PopComponente, PopLink, PopSubtitle } from "./style";
+import { PopSection, PopLink, PopSubtitle } from "./style";
 
 type credito = {
     versao: string;
@@ -27,15 +27,17 @@ const creditos: Array<credito> = [
 
 export default function Creditos() {
     return (
-        <PopComponente>
+        <div>
             {
                 creditos.map((credito, index) => 
-                    <PopComponente key={index}> {/* Não sei porque de tanto <>, mas o TS reclamou */}
-                        <PopSubtitle>COORDENAÇÃO</PopSubtitle>
-                        <PopLink>{credito.prof}</PopLink>
+                    <div key={index}> {/* Não sei porque de tanto <>, mas o TS reclamou */}
+                        <PopSection>
+                            <PopSubtitle>COORDENAÇÃO</PopSubtitle>
+                            <PopLink>{credito.prof}</PopLink>
+                        </PopSection>
 
-                        <PopSubtitle>DESENVOLVEDORES</PopSubtitle>
-                        <PopComponente>
+                        <PopSection>
+                            <PopSubtitle>DESENVOLVEDORES</PopSubtitle>
                             {credito.devs.map((dev, index) => 
                                 <PopLink key={index} href={dev[1]}
                                 onClick={(e) => { if(dev[1] === '#') e.preventDefault(); }}>
@@ -43,17 +45,17 @@ export default function Creditos() {
                                     <br/>
                                 </PopLink>
                             )}
-                        </PopComponente>
+                        </PopSection>
 
-                        <PopSubtitle>DESIGNERS</PopSubtitle>
-                        <PopComponente>
+                        <PopSection>
+                            <PopSubtitle>DESIGNERS</PopSubtitle>
                             {credito.des.map((des, index) => 
                                 <PopLink key={index} href={des[1]}>{des[0]}</PopLink>
                             )}
-                        </PopComponente>
-                    </PopComponente>
+                        </PopSection>
+                    </div>
                 )
             }
-        </PopComponente>
+        </div>
     );
 }

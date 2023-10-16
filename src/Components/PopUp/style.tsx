@@ -11,6 +11,8 @@ export const PopDiv = styled.div `
     
     align-items: center;
 
+    overflow: auto;
+
     border: none;
     border-radius: 4.44vw;
 
@@ -23,7 +25,7 @@ export const PopDiv = styled.div `
 /*----------------------------------------------------------------------------*/
 
 export const PopTitulo = styled.h2 `
-    margin: 0 0 2vh 0;
+    margin: 0 0 3vh 0;
     font-family: ${global.fonts.quickSand};
     font-size: 3vh;
     font-weight: 700;
@@ -57,10 +59,11 @@ export const PopButton = styled.button `
 /*  A partir daqui são os elementos para serem usados como conteúdo do PopUp  */
 /*----------------------------------------------------------------------------*/
 
-export const PopComponente = styled.div `
+export const PopSection = styled.section `
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 0 3vh 0;
 `;
 
 export const PopTexto = styled.p `
@@ -75,6 +78,7 @@ export const PopTexto = styled.p `
 `;
 
 export const PopSubtitle = styled.h3 `
+    margin: 0 0 0.5vh 0;
     font-family: ${global.fonts.quickSand};
     font-size: 3.33vw;
     font-weight: 500;
@@ -85,4 +89,5 @@ export const PopLink = styled.a `
     font-size: 4.44vw;
     font-weight: 700;
     color: ${global.colors.cinzaPratos};
+    text-decoration: underline;
 `;
