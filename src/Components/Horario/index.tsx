@@ -1,30 +1,35 @@
 import { HoraButton, HorarioDiv } from "./style";
-
+import { global } from "../../globalStyle";
 import { useEffect } from "react";
 
-type horario = { hora: Function; }
-export default function Horario({hora,}: horario) {
-    const horaAtual = (((new Date().getHours())>14)? 1:0);
+type horario = { tggHora: Function, horaAtual: number }
+export default function Horario({tggHora, horaAtual}: horario) {
+    const agora = (((new Date().getHours())>14)? 1:0);
 
     useEffect(() => {
-        hora(horaAtual);
-        const setIcon = document.getElementById(horaAtual===0? 'Sol' : 'Lua');
+        tggHora(agora);
+        const setIcon = document.getElementById(agora===0? 'Sol' : 'Lua');
         setIcon?.classList.add('horaSelect');
-    }, [hora, horaAtual]);
+    }, [tggHora, agora]);
 
-    const switchHora = (index: number) => {
-        document.querySelector('.horaSelect')?.classList.remove('horaSelect');
-        const dia = document.getElementById(index===0 ? 'Sol' : 'Lua');
-        dia?.classList.add('horaSelect');
+    const selecionado = (turno: number) => {
+        if (turno == horaAtual)
+            return 
     }
 
     return(
         <HorarioDiv>
-            <HoraButton id="Sol" onClick={() => {switchHora(0); hora(0)}}>
+            <HoraButton id="Sol" onClick={() => {tggHora(0)}} 
+            style={{color: horaAtual === 0 ?`${global.colors.laranja}` : '', 
+            borderBottom: horaAtual === 0 ? `0.5vh solid ${global.colors.laranja}` : '',
+            fontWeight: horaAtual === 0 ? '700' : ''}}>
                 Almoço
             </HoraButton>
 
-            <HoraButton id="Lua" onClick={() => {switchHora(1); hora(1)}}>
+            <HoraButton id="Lua" onClick={() => {tggHora(1)}} 
+            style={{color: horaAtual === 1 ?`${global.colors.laranja}` : '', 
+            borderBottom: horaAtual === 1 ? `0.5vh solid ${global.colors.laranja}` : '',
+            fontWeight: horaAtual === 1 ? '700' : ''}}>
                 Jantar
             </HoraButton>
         </HorarioDiv>

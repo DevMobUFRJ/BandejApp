@@ -9,12 +9,6 @@ export const HorarioDiv = styled.div `
     height: 6vh;
 
     background: ${global.colors.branco};
-
-    .horaSelect {
-        color: ${global.colors.laranja};
-        border-bottom: 0.5vh solid ${global.colors.laranja};
-        font-weight: 700;
-    }
 `;
 
 export const HoraButton = styled.button `

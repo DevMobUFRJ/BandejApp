@@ -3,7 +3,7 @@ import { ICardapioProps, ISemana } from "../../Types/storage";
 import { ToastContainer, toast } from 'react-toastify';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { CardapioDiv, Sombra, ActionsDiv, 
-        DropHeader, AvisoAtt, Conteudo} from "./style";
+        DropHeader, AvisoAtt, Conteudo, Turno} from "./style";
     
 import { useHistory } from "react-router-dom";
 
@@ -33,7 +33,7 @@ export default function Cardapio() {
     const [cardapio, setCardapio] = useState<ICardapioProps>();
 
     const [dia, tggDia] = useState(0);
-    const [hora, tggHora] = useState();
+    const [hora, tggHora] = useState(0);
     const [ruAtual, setRuAtual] = useState<string>();
 
     const [opcoes, setOpcoes] = useState(true);
@@ -94,10 +94,48 @@ export default function Cardapio() {
                 },
                 {position: toast.POSITION.BOTTOM_CENTER}
             )
-        }        
+        }
+
+        const conteudo = document.getElementById('conteudo');
+        if (conteudo)
+            conteudo.scrollTo(hora === 0 ? 0 : 1000, 0);
     }, []);
 
     FontSize();
+
+    let scrolling: NodeJS.Timeout | null;
+    scrolling = null;
+
+    const scroll = () => {        
+        if (scrolling) {
+            clearTimeout(scrolling);
+        }
+        scrolling = setTimeout(() => {
+            console.log('resolveu')
+            const conteudo = document.getElementById('conteudo');
+
+            if (!conteudo)
+                return;
+            const vw = window.innerWidth / 100;
+
+            if (hora === 0 && conteudo.scrollLeft > 45.5 * vw) {
+                tggHora(1);
+                conteudo.scrollTo(1000, 0);
+            }
+            else if (hora === 1 && conteudo.scrollLeft < 55.5 * vw) {
+                tggHora(0);
+                conteudo.scrollTo(0, 0);
+            }
+            else 
+                conteudo.scrollTo(hora === 0 ? 0 : 1000, 0)
+            
+
+        }, 200);
+
+    
+        console.log('oie')
+    };
+
 
     function makePath(indexDia : Number) {
         let ru = localStorage.getItem("bandejapp:ruDefault");
@@ -193,14 +231,23 @@ export default function Cardapio() {
                     tggDia={tggDia}
                     semana={passaSemana(cardapio?.semana as ISemana)}/>
                     <Horario
-                    hora={tggHora}/>
+                    tggHora={tggHora} horaAtual={hora}/>
                 </ActionsDiv>
-                <Conteudo id='conteudo'>
-                    <Dia
-                    hora={hora}
-                    cardapio={makePath(dia)}
-                    />
-                    <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
+                <Conteudo id='conteudo' onScroll={scroll}>
+                    <Turno>
+                        <Dia
+                        hora={0}
+                        cardapio={makePath(dia)}
+                        />
+                        <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
+                    </Turno>
+                    <Turno>
+                        <Dia
+                        hora={1}
+                        cardapio={makePath(dia)}
+                        />
+                        <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
+                    </Turno>
                 </Conteudo>
                 {
                     showInstallMessage &&

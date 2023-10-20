@@ -55,10 +55,20 @@ export const DropHeader = styled.div `
 
 export const Conteudo = styled.div `
     display: flex;
+    flex-direction: row;
     margin-top: 29vh;
-    
+    width: 100%;
+
     transition: margin-top 300ms ease-in-out;
+    overflow: scroll;
+`;
+
+export const Turno = styled.div `
+    display: flex;
     flex-direction: column;
+    
+    margin: 0 4.45vw 0 4.45vw;
+
     align-items: center;
 `;
 
