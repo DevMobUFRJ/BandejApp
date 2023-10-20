@@ -14,7 +14,7 @@ export const NotificationProvider : React.FC<{ children: React.ReactNode }> = ( 
         fetch(`${process.env.REACT_APP_ULTIMO_COMUNICADO_API_URL}`)
         .then((data) => data.json())
         .then((post) => {
-            if(JSON.stringify(post) !== localStorage.getItem("bandejapp:ultimoAviso")){
+            if(JSON.stringify(post) !== localStorage.getItem("bandejapp:ultimoAviso") && post !== null){
                 setPendingNotification(true)
             }
         })
