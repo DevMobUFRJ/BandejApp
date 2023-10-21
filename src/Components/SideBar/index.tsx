@@ -91,7 +91,7 @@ export default function SideBar() {
                 alt="Logo da Universidade Federal do Rio de Janeiro."/>
             </InstitutoDiv>
 
-            <FecharDiv onClick={fecharSideBar} id="ABACATE">
+            <FecharDiv onClick={fecharSideBar} >
                 <CloseSide id="closeSide" src={Close} alt='Ícone para fechar menu lateral'/>
                 <TextoFechar>Fechar</TextoFechar>
             </FecharDiv>
