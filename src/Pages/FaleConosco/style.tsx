@@ -73,6 +73,8 @@ export const InfoLink = styled.a `
     border: solid 2px ${global.colors.cinzaOpaco(.24)};
     border-radius: 4.44vw;
 
+    text-decoration: none;
+
     transition: background-color 50ms ease;
     :active {
         background-color: ${global.colors.cinzaOpaco(0.05)};

@@ -8,7 +8,7 @@ export const SideBarDiv = styled.div `
     width: 0vw;
     height: 100vh;
 
-    z-index: 2;
+    z-index: 4;
     position: fixed;
     left: 0;
     top: 0;
@@ -36,9 +36,25 @@ export const LogoImg = styled.img `
     margin: 0 0 0 5vw;
 `;
 
-export const CloseImg = styled.img `
+export const CloseSide = styled.img `
     align-self: center;
     width: 3.8vw;
+`;
+
+export const Versao = styled.p `
+    font-family: ${global.fonts.quickSand};
+    font-size: 3.33vw;
+    font-weight: 500;
+
+    color: ${global.colors.cinza};
+`;
+
+export const MostrarCreditos = styled.u `
+    font-family: ${global.fonts.quickSand};
+    font-size: 3.33vw;
+    font-weight: 500;
+
+    color: ${global.colors.cinza};
 `;
 
 /*----------------------------------------------------------------------------*/
@@ -100,17 +116,6 @@ export const NotifNumber = styled.p `
 
     background: ${global.colors.laranja};
     color: ${global.colors.branco};
-`;
-
-export const Versao = styled.p `
-    font-family: ${global.fonts.quickSand};
-    font-size: 12px;
-    
-    line-height: 12px;
-    text-align: center;
-    font-weight: 500;
-
-    color: ${global.colors.cinza};
 `;
 
 export const InstitutoDiv = styled.div `

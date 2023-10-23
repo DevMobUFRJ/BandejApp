@@ -14,7 +14,6 @@ export const CardapioDiv = styled.div `
 `;
 /*-----------------------------------------------------------*/
 
-
 export const Sombra = styled.div `
     width: 100vw;
     height: 1px;

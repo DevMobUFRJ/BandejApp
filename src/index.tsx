@@ -5,6 +5,8 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import Router from './Routes/Router';
 import { NotificationProvider } from './Contexts/PendingNotificationContext';
 import { InstallMessageProvider } from './Contexts/ShowInstallMessageContext';
+import { PopupProvider } from './Contexts/PopupContext';
+
 import Paisagem from './Pages/Paisagem/';
 import ReactGA from "react-ga4";
 
@@ -28,11 +30,13 @@ function App() {
     if((window.innerWidth/window.innerHeight) <= 1) {
         return (
             <React.StrictMode>
-                <InstallMessageProvider>
-                    <NotificationProvider>
-                        <Router/>
-                    </NotificationProvider>
-                </InstallMessageProvider>
+                    <PopupProvider>
+                        <InstallMessageProvider>
+                            <NotificationProvider>
+                                <Router/>
+                            </NotificationProvider>
+                        </InstallMessageProvider>
+                    </PopupProvider>
             </React.StrictMode>
         );
     }
