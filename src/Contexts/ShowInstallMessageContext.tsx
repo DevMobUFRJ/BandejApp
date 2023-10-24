@@ -15,10 +15,10 @@ export const InstallMessageProvider : React.FC<{ children: React.ReactNode }> = 
         return /iphone|ipad|ipod/.test( userAgent );
       }
     // Detects if device is in standalone mode
-    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);   
+    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
 
     useEffect(() => {
-        if (isIos() && !isInStandaloneMode()) { 
+        if (isIos() && !isInStandaloneMode()) {
             setShowInstallMessage(true);
         } else{
             setShowInstallMessage(false);

@@ -1,4 +1,4 @@
-import { AvaSection, Avadiv, SombraPopUp, Comentario,
+import { AvaSection, Avadiv, Comentario,
         DateDiv, DateSelect, EmailInput, EnviarButton,
         AvaForm, TurnoButton, TurnoDiv, FormDiv,
         MensagemErro, DateIcon } from "./style";
@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { ToastContainer } from 'react-toastify';
+
 import { formulario, enviar } from "../../Functions/Avaliacao/enviar";
 import { selecionarTurno } from '../../Functions/Avaliacao/avaliacao';
 
@@ -16,14 +17,17 @@ import Cabecalho from "../../Components/Cabecalho";
 import DownPop from "../../Components/PopUpIOS";
 import DropDown from "../../Components/DropDown";
 import datePicker from '../../Assets/Avaliacao/datePicker.svg';
-import PopUp from "../../Components/PopUp";
-import { togglePopUp } from "../../Functions/PopUp/abrirEfechar";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import PopUp from "../../Components/PopUp";
+import { PopTexto } from "../../Components/PopUp/style";
+import { PopupContext } from "../../Contexts/PopupContext";
+
 export default function Avaliacao() {
     const { showInstallMessage } = useContext(InstallMessageContext);
+    const { mostrarPopup } = useContext(PopupContext);
 
     /* Funções do useForm */
     const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} =
@@ -42,15 +46,26 @@ export default function Avaliacao() {
             <ToastContainer autoClose={3000}/>
 
             <Cabecalho nome='Avaliação'/>
-            <PopUp
-                titulo="Avaliação enviada"
-                texto="Caso tenha informado seu e-mail, o RU poderá entrar em contato com você."
-                opcoes={['Fechar']}
-                tiposOpcoes={[0]}
-                funcoesOpcoes={[() => togglePopUp(false)]}
+
+            <PopUp popID='avaliacao' titulo="Avaliação enviada"
+                opcoes={['Fechar']} tiposOpcoes={[0]}
+                funcoesOpcoes={[mostrarPopup]}
+                componente={
+                    <PopTexto>
+                        Caso tenha informado seu e-mail, o RU poderá entrar em contato com você.
+                    </PopTexto>
+                }
             />
-            <SombraPopUp id='sombra'/>
-            <AvaForm onSubmit={handleSubmit(async dados => { if(await enviar(dados, valores)) reset(); setData(null)})}>
+{/*--------------------------------------------------------------------------*/}
+
+
+            <AvaForm onSubmit={handleSubmit(async dados => {
+                if(await enviar(dados, valores)) {
+                    reset();
+                    setData(null);
+                    mostrarPopup('avaliacao');
+                }
+            })}>
                 <FormDiv>
                     <AvaSection>
                         <InfoTitle>Qual restaurante deseja avaliar?</InfoTitle>

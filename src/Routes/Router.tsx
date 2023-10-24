@@ -1,4 +1,4 @@
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 import Avaliacao from '../Pages/Avaliacao';
 import Cardapio from '../Pages/Cardapio';
@@ -7,6 +7,7 @@ import Restaurante from '../Pages/Restaurante';
 import Notificacao from '../Pages/Comunicados';
 import Informacoes from '../Pages/Informacoes';
 import FaleConosco from '../Pages/FaleConosco';
+import GlobalComponents from '../Components/Global';
 
 export default function Routes() {
     const isIos = () => {
@@ -22,7 +23,8 @@ export default function Routes() {
     };   
 
     return (
-        <HashRouter basename='/'>
+        <Router basename='/'>
+            <GlobalComponents/>
             <Switch>
                 <Route exact path='/'>
                     <Redirect to={localStorage.getItem("bandejapp:ruDefault")?
@@ -43,7 +45,15 @@ export default function Routes() {
                 </Route>
 
                 <Route path="/Cardapio">
-                    <Cardapio/>
+                    {() => {
+                        const ruDefault = localStorage.getItem("bandejapp:ruDefault");
+
+                        if (ruDefault) {
+                        return <Cardapio />;
+                        } else {
+                        return <Redirect to='/Restaurante' />;
+                        }
+                    }}
                 </Route>
 
                 <Route path="/Avaliacao">
@@ -62,6 +72,6 @@ export default function Routes() {
                     <FaleConosco/>
                 </Route>
             </Switch>
-        </HashRouter>
+        </Router>
     )
 } 

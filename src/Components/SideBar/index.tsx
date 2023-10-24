@@ -1,7 +1,16 @@
-import { CloseImg, InstitutoDiv, ItemName, 
+import { useHistory } from "react-router-dom";
+import { NotificationContext } from "../../Contexts/PendingNotificationContext";
+import { useContext } from "react";
+
+import { CloseSide, InstitutoDiv, ItemName, 
     ItemsDiv, Linha, LogoImg, NotifNumber, 
     SideBarDiv, SideHeader, SideIcon, SideItem,
-    Versao, FecharDiv, TextoFechar } from "./style";
+    Versao, FecharDiv, TextoFechar, MostrarCreditos } from "./style";
+
+import { global } from "../../globalStyle";
+import { fecharSideBar } from "../../Functions/SideBar/abrirEfechar";
+import PopUp from "../PopUp";
+import Creditos from "../PopUp/Creditos";
 
 import Logo from '../../Assets/SideBar/logo.svg';
 import Close from '../../Assets/Close.svg';
@@ -10,33 +19,18 @@ import Aval from '../../Assets/SideBar/avaliacao.svg';
 import Comun from '../../Assets/SideBar/comunicados.svg';
 import Info from '../../Assets/SideBar/sobrenos.svg';
 import Fale from '../../Assets/SideBar/faleconosco.svg';
-
-import { useHistory } from "react-router-dom";
-import { NotificationContext } from "../../Contexts/PendingNotificationContext";
-import { useContext } from "react";
-
-import { global } from "../../globalStyle";
-
 import LogoIC from '../../Assets/SideBar/LogoIC.svg';
 import LogoDevmob from '../../Assets/SideBar/LogoDevmob.svg';
+import { PopupContext } from "../../Contexts/PopupContext";
 
-type props = {
-    fechaDiv: Function 
-}
+export default function SideBar() {
+    const { pendingNotification } = useContext(NotificationContext);
+    const { mostrarPopup } = useContext(PopupContext);
 
-export default function SideBar({fechaDiv}: props) {
     const history = useHistory();
-    const { pendingNotification } = useContext(NotificationContext); 
 
     const rotaAtual = (onde: string):boolean => {
         return (history.location.pathname === onde)
-    }
-
-    const cliqueHandler = (aqui: string) => {
-        if (!rotaAtual(aqui))
-            history.push(aqui)
-        else 
-            fechaDiv();
     }
 
     const nomesTelas = ['Cardapio', 'Comunicados', 'Avaliação', 'Informações', 'Fale conosco'];
@@ -49,26 +43,44 @@ export default function SideBar({fechaDiv}: props) {
         <SideBarDiv id="sidebar">
             <SideHeader>
                 <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
-                <Versao>Versão 0.3.2</Versao>
+                <Versao>Versão 0.3.2 · <MostrarCreditos onClick={() => mostrarPopup('creditos')}>
+                        Ver créditos
+                    </MostrarCreditos>
+                </Versao>
             </SideHeader>
+
+            <PopUp popID='creditos' titulo="Créditos"
+                opcoes={['Fechar']} tiposOpcoes={[0]}
+                funcoesOpcoes={[mostrarPopup]}
+                componente={<Creditos/>}
+            />
 
 {/*--------------------------------------------------------------------------*/}
 
             <ItemsDiv>
-                {
-                    rotasTelas.map((rota, indice) => 
-                        <SideItem key={indice} onClick={() => cliqueHandler(rota)}>
-                            <SideIcon src={icones[indice]} alt={nomesTelas[indice]} style={{filter: rotaAtual(rota) ? laranjar : ''}}/>
-                            <ItemName style={{color: rotaAtual(rota) ? `${global.colors.laranja}`: ' '}}>
-                                {nomesTelas[indice]}
-                            </ItemName>
-                            {(pendingNotification && nomesTelas[indice] === "Comunicados") ?
-                                <NotifNumber></NotifNumber>
-                                : null
-                            }
-                        </SideItem>
-                    )
-                }
+            {
+                rotasTelas.map((rota, indice) => 
+                    <SideItem key={indice} onClick={() => {
+                        if(!rotaAtual(rota)) history.push(rota);
+                        fecharSideBar();
+                    }}>
+
+                        <SideIcon src={icones[indice]} alt={nomesTelas[indice]}
+                            style={{filter: rotaAtual(rota) ? laranjar : ''}}
+                        />
+
+                        <ItemName style={{color: rotaAtual(rota) ? `${global.colors.laranja}`: ' '}}>
+                            {nomesTelas[indice]}
+                        </ItemName>
+
+                        {(pendingNotification && nomesTelas[indice] === "Comunicados") ?
+                            <NotifNumber/>
+                            :
+                            null
+                        }
+                    </SideItem>
+                )
+            }
             </ItemsDiv>
 
             <InstitutoDiv>
@@ -79,8 +91,8 @@ export default function SideBar({fechaDiv}: props) {
                 alt="Logo da Universidade Federal do Rio de Janeiro."/>
             </InstitutoDiv>
 
-            <FecharDiv onClick={() => fechaDiv()}>
-                <CloseImg id="closeButton" src={Close} alt='Ícone para fechar menu lateral'/>
+            <FecharDiv onClick={fecharSideBar} >
+                <CloseSide id="closeSide" src={Close} alt='Ícone para fechar menu lateral'/>
                 <TextoFechar>Fechar</TextoFechar>
             </FecharDiv>
         </SideBarDiv>
