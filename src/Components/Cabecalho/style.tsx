@@ -43,21 +43,6 @@ export const IconeAjustes = styled.img `
     height: 6.66vw;
 `;
 
-export const Shade = styled.div `
-    display: none;
-
-    width: 100vw;
-    height: 100vh;
-    
-    top: 0vh;
-    left: 0vw;
-    position: fixed;
-
-    z-index: 2;
-    
-    background: rgba(0, 0, 0, 0.4);
-`;
-
 export const SideButton = styled.img `
     width: 6.66vw;
     margin-left: 5.55vw;

@@ -7,6 +7,7 @@ import Restaurante from '../Pages/Restaurante';
 import Notificacao from '../Pages/Comunicados';
 import Informacoes from '../Pages/Informacoes';
 import FaleConosco from '../Pages/FaleConosco';
+import GlobalComponents from '../Components/Global';
 
 export default function Routes() {
     const isIos = () => {
@@ -23,6 +24,7 @@ export default function Routes() {
 
     return (
         <Router basename='/'>
+            <GlobalComponents/>
             <Switch>
                 <Route exact path='/'>
                     <Redirect to={localStorage.getItem("bandejapp:ruDefault")?

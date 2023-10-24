@@ -1,42 +1,22 @@
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
 import { useContext } from "react";
+import { abrirSideBar } from "../../Functions/SideBar/abrirEfechar";
 
-import { PlaceHolderCabecalho, Shade, CabecaDiv, PageTitle, 
-    DivAjustes, IconeAjustes, NotifDiv, NotifInside, SideButton, NotifIcon } from "./style";    
+import { PlaceHolderCabecalho, CabecaDiv, PageTitle, DivAjustes, IconeAjustes,
+    NotifDiv, NotifInside, SideButton, NotifIcon } from "./style";
 
 import SideBar from "../SideBar";
-
 import Menu from '../../Assets/SideBar/menu.svg';
 import Ajustes from '../../Assets/Cardapio/Ajustes.svg';
 import Close from '../../Assets/Close.svg';
 
-type Nome = { nome: string 
-            setOpcoes?: Function};
-const boxshadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
-
-let aberto = true;
-
-const toggleSide = (abrindo: boolean) => {
-    const sidebar = document.getElementById('sidebar');
-    const shade = document.getElementById('shade');
-    const closeButton = document.getElementById('closeButton');
-    if (!sidebar || !shade || !closeButton)
-        return;
-
-    shade.addEventListener('click', () => toggleSide(!abrindo));
-    closeButton.addEventListener('click', () => toggleSide(!abrindo));
-
-    requestAnimationFrame(() => {
-        if (abrindo) {
-            shade.style.display = 'block';
-            sidebar.style.width = '72.22vw';
-        }
-        else {
-            shade.style.display = 'none';
-            sidebar.style.width = '0';
-        }
-    });
+type Nome = { 
+    nome: string;
+    setOpcoes?: Function;
 }
+
+const boxshadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
+let aberto = true;
 
 const fadeAjustes = (abrindo: boolean, setOpcoes: Function) => {
     const acoes = document.getElementById('acoes');
@@ -72,8 +52,10 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
 
     return (
         <PlaceHolderCabecalho>
+            <SideBar/>
+    
             <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
-                <NotifDiv onClick={() => toggleSide(true)}>
+                <NotifDiv onClick={abrirSideBar}>
                     <SideButton src={Menu} alt='Ícone para abrir o menu lateral'/>
 
                     <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}>
@@ -89,9 +71,6 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
                     alt={aberto ? 'Ícone para fechar ajustes' : 'Ícone para abrir ajustes'} 
                     onClick={() => clique(fadeAjustes, setOpcoes)}/>
                 </DivAjustes>
-
-                <Shade id="shade"/>
-                <SideBar fechaDiv={() => toggleSide(false)}/>
             </CabecaDiv>
         </PlaceHolderCabecalho>
     );

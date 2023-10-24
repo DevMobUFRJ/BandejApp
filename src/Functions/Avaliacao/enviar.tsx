@@ -1,5 +1,4 @@
 import { toast } from 'react-toastify';
-import { togglePopUp } from '../PopUp/abrirEfechar';
 
 export type formulario = {
     ru: string;
@@ -102,9 +101,7 @@ export const enviar = async(formulario: formulario, valores: Array<string>): Pro
     })
       .then((text) =>{
         if (text === 'OK') {
-            togglePopUp(true);
             resetarForm(formulario, valores);
-
             return true;
         } 
         else {
