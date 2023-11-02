@@ -19,7 +19,7 @@ import Aval from '../../Assets/SideBar/avaliacao.svg';
 import Comun from '../../Assets/SideBar/comunicados.svg';
 import Info from '../../Assets/SideBar/sobrenos.svg';
 import Fale from '../../Assets/SideBar/faleconosco.svg';
-import LogoIC from '../../Assets/SideBar/logoIC.jpg';
+import LogoIC from '../../Assets/SideBar/LogoIC.png';
 import LogoDevmob from '../../Assets/SideBar/LogoDev.png';
 import { PopupContext } from "../../Contexts/PopupContext";
 
@@ -84,10 +84,10 @@ export default function SideBar() {
             </ItemsDiv>
 
             <InstitutoDiv>
-                <img src={LogoIC} style={{width: '32%', marginTop: '3.5%'}}
+                <img src={LogoIC} style={{width: '35%', marginTop: '3.5%'}}
                 alt="Logo do Institudo de Computação da UFRJ."/>
                 <Linha/>
-                <img src={LogoDevmob} style={{width: '30%', padding: '0 1% 0 1%'}}
+                <img src={LogoDevmob} style={{width: '25%', padding: '0 5% 0 5%'}}
                 alt="Logo da Universidade Federal do Rio de Janeiro."/>
             </InstitutoDiv>
 
