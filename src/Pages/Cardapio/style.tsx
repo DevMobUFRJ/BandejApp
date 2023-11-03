@@ -53,6 +53,37 @@ export const DropHeader = styled.div `
 
 /*-----------------------------------------------------------*/
 
+export const HorarioDiv = styled.div `
+    display: flex;
+    margin-top: 2vh;
+    width: 100vw;
+
+    height: 6vh;
+
+    background: ${global.colors.branco};
+`;
+
+export const HoraButton = styled.button `
+    display: flex;
+    width: 50%;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family: ${global.fonts.quickSand};
+    font-size: 16px;
+    font-weight: 500;
+
+    color: ${global.colors.cinzaOpaco(.6)};
+
+    outline: none;
+    border: none;
+    border-bottom: 0.5vh solid ${global.colors.cinzaOpaco(.4)};
+    transition: transform 0.5s ease;
+`;
+
+/*-----------------------------------------------------------*/
+
 export const Conteudo = styled.div `
     display: flex;
     flex-direction: row;

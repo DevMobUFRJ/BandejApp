@@ -2,13 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { ICardapioProps, ISemana } from "../../Types/storage";
 import { ToastContainer, toast } from 'react-toastify';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
-import { CardapioDiv, Sombra, ActionsDiv, 
+import { CardapioDiv, Sombra, ActionsDiv, HorarioDiv, HoraButton,
         DropHeader, AvisoAtt, Conteudo, Turno} from "./style";
+
+import { global } from "../../globalStyle";
     
 import { useHistory } from "react-router-dom";
 
 import NavBar from "../../Components/Navbar";
-import Horario from "../../Components/Horario";
 import DropDown from "../../Components/DropDown";
 import Dia from "../../Components/Dia";
 import DownPop from "../../Components/PopUpIOS";
@@ -45,10 +46,26 @@ export default function Cardapio() {
         localStorage.setItem("bandejapp:ruDefault", restaurante);
         setRuAtual(restaurante);
     }
-    
+
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+    const mudaHora = async (turno: number) => {
+        tggHora(turno);
+        const conteudo = document.getElementById('conteudo');
+        if (!conteudo){
+            await sleep(50);
+            mudaHora(turno);
+            return;
+        }
+
+        conteudo.scrollTo(turno === 0 ? 0 : 1000, 0);
+    }
+    
     useEffect(() => {
         if (!localStorage.getItem("bandejapp:ruDefault")) history.push('/Restaurante');
+
+        const agora = (((new Date().getHours()) > 14) ? 1 : 0);
+        mudaHora(agora);
         
         ReactGA.send({hitType: "pageview", page: "/Cardapio", title: 'Cardapio'});
         let tentativas = 0;
@@ -95,10 +112,6 @@ export default function Cardapio() {
                 {position: toast.POSITION.BOTTOM_CENTER}
             )
         }
-
-        const conteudo = document.getElementById('conteudo');
-        if (conteudo)
-            conteudo.scrollTo(hora === 0 ? 0 : 1000, 0);
     }, []);
 
     FontSize();
@@ -111,29 +124,21 @@ export default function Cardapio() {
             clearTimeout(scrolling);
         }
         scrolling = setTimeout(() => {
-            console.log('resolveu')
             const conteudo = document.getElementById('conteudo');
-
             if (!conteudo)
                 return;
+            
             const vw = window.innerWidth / 100;
 
-            if (hora === 0 && conteudo.scrollLeft > 45.5 * vw) {
-                tggHora(1);
-                conteudo.scrollTo(1000, 0);
-            }
-            else if (hora === 1 && conteudo.scrollLeft < 55.5 * vw) {
-                tggHora(0);
-                conteudo.scrollTo(0, 0);
-            }
+            if (hora === 0 && conteudo.scrollLeft > 45.5 * vw)
+                mudaHora(1);
+            else if (hora === 1 && conteudo.scrollLeft < 55.5 * vw)
+                mudaHora(0);
             else 
                 conteudo.scrollTo(hora === 0 ? 0 : 1000, 0)
             
 
         }, 200);
-
-    
-        console.log('oie')
     };
 
 
@@ -230,8 +235,21 @@ export default function Cardapio() {
                     <NavBar
                     tggDia={tggDia}
                     semana={passaSemana(cardapio?.semana as ISemana)}/>
-                    <Horario
-                    tggHora={tggHora} horaAtual={hora}/>
+                    <HorarioDiv>
+                        <HoraButton id="Sol" onClick={() => {mudaHora(0)}} 
+                        style={{color: hora === 0 ?`${global.colors.laranja}` : '', 
+                        borderBottom: hora === 0 ? `0.5vh solid ${global.colors.laranja}` : '',
+                        fontWeight: hora === 0 ? '700' : ''}}>
+                            Almoço
+                        </HoraButton>
+
+                        <HoraButton id="Lua" onClick={() => {mudaHora(1)}} 
+                        style={{color: hora === 1 ?`${global.colors.laranja}` : '', 
+                        borderBottom: hora === 1 ? `0.5vh solid ${global.colors.laranja}` : '',
+                        fontWeight: hora === 1 ? '700' : ''}}>
+                            Jantar
+                        </HoraButton>
+                    </HorarioDiv>
                 </ActionsDiv>
                 <Conteudo id='conteudo' onScroll={scroll}>
                     <Turno>
