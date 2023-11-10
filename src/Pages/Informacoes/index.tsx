@@ -1,4 +1,3 @@
-import Cabecalho from "../../Components/Cabecalho";
 import DownPop from "../../Components/PopUpIOS";
 
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
@@ -45,8 +44,6 @@ export default function Informacoes() {
 
     return (
         <InformDiv>
-            <Cabecalho nome="Informações"/>
-            
             <SelecionaInfoDiv>
                 <DropDown
                 opcaoInicial={ruSelecionado}

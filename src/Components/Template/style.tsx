@@ -1,6 +1,16 @@
 import styled from "styled-components";
 import { global } from "../../globalStyle";
 
+export const TemplateDiv = styled.div `
+    display: flex;
+    flex-direction: column;
+
+    width: 100vw;
+    min-height: 100vh;
+
+    background: ${global.colors.fundo};
+`;
+
 export const PlaceHolderCabecalho = styled.div `
     display: block;
 
@@ -95,4 +105,15 @@ export const NotifInside = styled.div `
 
     border-radius: 50%;
     background-color: ${global.colors.laranja};
+`;
+
+export const Fundo = styled.div `
+    display: flex;
+    flex-direction: column;
+    
+    width: 100vw;
+
+    align-items: center;
+
+    background: ${global.colors.fundo};
 `;

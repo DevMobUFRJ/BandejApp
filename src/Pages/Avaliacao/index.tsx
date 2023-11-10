@@ -12,7 +12,6 @@ import { formulario, enviar } from "../../Functions/Avaliacao/enviar";
 import { selecionarTurno } from '../../Functions/Avaliacao/avaliacao';
 
 import Nota from "../../Components/Nota";
-import Cabecalho from "../../Components/Cabecalho";
 import DownPop from "../../Components/PopUpIOS";
 import DropDown from "../../Components/DropDown";
 import datePicker from '../../Assets/Avaliacao/datePicker.svg';
@@ -41,7 +40,6 @@ export default function Avaliacao() {
         <Avadiv id="AvaPage">
             <ToastContainer autoClose={3000}/>
 
-            <Cabecalho nome='Avaliação'/>
             <PopUp
                 titulo="Avaliação enviada"
                 texto="Caso tenha informado seu e-mail, o RU poderá entrar em contato com você."

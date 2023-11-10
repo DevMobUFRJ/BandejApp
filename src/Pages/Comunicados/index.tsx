@@ -6,7 +6,6 @@ import { ComunicadoDiv, Card, Container, CardMensagem, CardData,
 import { ToastContainer, toast } from 'react-toastify';
 import Load from "../../Components/Load";
 import 'react-toastify/dist/ReactToastify.css';
-import Cabecalho from "../../Components/Cabecalho";
 import { Formatacao } from "../../Functions/Formatacao";
 import { useContext } from "react";
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
@@ -95,7 +94,6 @@ export default function Comunicados() {
     return (
         <ComunicadoDiv id="ComunicadoPage">
             <ToastContainer autoClose={2000}/>
-            <Cabecalho nome='Comunicados'/>
             {
                 (loading) ?
                     <Load />

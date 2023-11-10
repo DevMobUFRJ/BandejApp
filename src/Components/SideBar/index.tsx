@@ -33,11 +33,10 @@ export default function SideBar({fechaDiv}: props) {
         return (history.location.pathname === onde)
     }
 
-    const cliqueHandler = (aqui: string) => {
+    const selecionaTela = (aqui: string) => {
         if (!rotaAtual(aqui))
-            history.push(aqui)
-        else 
-            fechaDiv();
+            history.push(aqui);
+        fechaDiv();
     }
 
     const nomesTelas = ['Cardapio', 'Comunicados', 'Avaliação', 'Informações', 'Fale conosco'];
@@ -58,7 +57,7 @@ export default function SideBar({fechaDiv}: props) {
             <ItemsDiv>
                 {
                     rotasTelas.map((rota, indice) => 
-                        <SideItem key={indice} onClick={() => cliqueHandler(rota)}>
+                        <SideItem key={indice} onClick={() => selecionaTela(rota)}>
                             <SideIcon src={icones[indice]} alt={nomesTelas[indice]} style={{filter: rotaAtual(rota) ? laranjar : ''}}/>
                             <ItemName style={{color: rotaAtual(rota) ? `${global.colors.laranja}`: ' '}}>
                                 {nomesTelas[indice]}

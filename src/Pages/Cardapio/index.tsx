@@ -15,7 +15,6 @@ import Dia from "../../Components/Dia";
 import DownPop from "../../Components/PopUpIOS";
 import Load from "../../Components/Load";
 import FontSize from "../../Functions/Cardapio/FontSize";
-import Cabecalho from "../../Components/Cabecalho";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -37,7 +36,6 @@ export default function Cardapio() {
     const [hora, tggHora] = useState(0);
     const [ruAtual, setRuAtual] = useState<string>();
 
-    const [opcoes, setOpcoes] = useState(true);
     const [loading, setLoading] = useState(true);
 
     const { showInstallMessage } = useContext(InstallMessageContext);
@@ -53,7 +51,7 @@ export default function Cardapio() {
         tggHora(turno);
         const conteudo = document.getElementById('conteudo');
         if (!conteudo){
-            await sleep(50);
+            await sleep(20);
             mudaHora(turno);
             return;
         }
@@ -214,13 +212,11 @@ export default function Cardapio() {
     return(
         <CardapioDiv id="cardapio">
             <ToastContainer autoClose={2000}/>
-            <Cabecalho nome="Cardápio" setOpcoes={setOpcoes}/>
             {
                 (loading) ?
                     <Load />
             : 
             <>
-                <Sombra style={{display: opcoes ? 'none' : ''}}/>
 
                 <ActionsDiv id='acoes'>
                     <DropHeader>

@@ -2,8 +2,6 @@ import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext"
 import { useContext } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 
-import Cabecalho from "../../Components/Cabecalho";
-
 import { Balao, BalaoBanner, BalaoDescription, BalaoInfo, BalaoTitle,
     FaleDiv, InfoLink, LinkIcon, LinkName, Links } from "./style";
     
@@ -97,8 +95,6 @@ export default function FaleConosco() {
     return (
         <FaleDiv>
             <ToastContainer autoClose={2000}/>
-            <Cabecalho nome='Fale conosco'/>
-
             {
                 Baloes.map( (banner, indice) => 
                     <Balao key={indice}>

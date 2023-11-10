@@ -6,12 +6,10 @@ export const CardapioDiv = styled.div `
     flex-direction: column;
     
     width: 100vw;
-    min-height: 100vh;
 
     align-items: center;
-
-    background: ${global.colors.fundo};
 `;
+
 /*-----------------------------------------------------------*/
 
 
@@ -92,6 +90,10 @@ export const Conteudo = styled.div `
 
     transition: margin-top 300ms ease-in-out;
     overflow: scroll;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 export const Turno = styled.div `

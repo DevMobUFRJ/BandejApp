@@ -7,6 +7,7 @@ import Restaurante from '../Pages/Restaurante';
 import Notificacao from '../Pages/Comunicados';
 import Informacoes from '../Pages/Informacoes';
 import FaleConosco from '../Pages/FaleConosco';
+import Template from '../Components/Template';
 
 export default function Routes() {
     const isIos = () => {
@@ -43,23 +44,33 @@ export default function Routes() {
                 </Route>
 
                 <Route path="/Cardapio">
-                    <Cardapio/>
+                    <Template nome='Cardápio'>
+                        <Cardapio/>
+                    </Template>
                 </Route>
 
                 <Route path="/Avaliacao">
-                    <Avaliacao/>
+                    <Template nome='Avaliação'>
+                        <Avaliacao/>
+                    </Template>
                 </Route>
 
                 <Route path="/Notificacao">
-                    <Notificacao/>
+                    <Template nome='Comunicados'>
+                        <Notificacao/>
+                    </Template>
                 </Route>
 
                 <Route path='/Informacoes'>
-                    <Informacoes/>
+                    <Template nome='Informações'>
+                        <Informacoes/>
+                    </Template>
                 </Route>
 
                 <Route path='/FaleConosco'>
-                    <FaleConosco/>
+                    <Template nome='Fale conosco'>
+                        <FaleConosco/>
+                    </Template>
                 </Route>
             </Switch>
         </HashRouter>
