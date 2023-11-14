@@ -20,6 +20,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 import ReactGA from "react-ga4";
 
+import { useDrag } from '@use-gesture/react';
+
 let consultando = false;
 
 const estadosRestaurante = ['ct', 'pv', 'dc', 'mc'];
@@ -114,31 +116,17 @@ export default function Cardapio() {
 
     FontSize();
 
-    let scrolling: NodeJS.Timeout | null;
-    scrolling = null;
 
-    const scroll = () => {        
-        if (scrolling) {
-            clearTimeout(scrolling);
-        }
-        scrolling = setTimeout(() => {
-            const conteudo = document.getElementById('conteudo');
-            if (!conteudo)
-                return;
-            
-            const vw = window.innerWidth / 100;
+    const scrollEntreOsTurnos = useDrag(({last, velocity: [vx, vy], movement}) => {
+        const THRESHOLD = 0.6;
 
-            if (hora === 0 && conteudo.scrollLeft > 45.5 * vw)
+        if (last && vx > THRESHOLD) {
+            if (movement[0] > 0 && hora === 1)
+                mudaHora(0);    
+            else if (movement[0] < 0 && hora === 0) 
                 mudaHora(1);
-            else if (hora === 1 && conteudo.scrollLeft < 55.5 * vw)
-                mudaHora(0);
-            else 
-                conteudo.scrollTo(hora === 0 ? 0 : 1000, 0)
-            
-
-        }, 200);
-    };
-
+        }
+    })
 
     function makePath(indexDia : Number) {
         let ru = localStorage.getItem("bandejapp:ruDefault");
@@ -247,22 +235,22 @@ export default function Cardapio() {
                         </HoraButton>
                     </HorarioDiv>
                 </ActionsDiv>
-                <Conteudo id='conteudo' onScroll={scroll}>
-                    <Turno>
-                        <Dia
-                        hora={0}
-                        cardapio={makePath(dia)}
-                        />
-                        <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
-                    </Turno>
-                    <Turno>
-                        <Dia
-                        hora={1}
-                        cardapio={makePath(dia)}
-                        />
-                        <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
-                    </Turno>
-                </Conteudo>
+                    <Conteudo id='conteudo' {...scrollEntreOsTurnos()}>
+                        <Turno>
+                            <Dia
+                            hora={0}
+                            cardapio={makePath(dia)}
+                            />
+                            <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
+                        </Turno>
+                        <Turno>
+                            <Dia
+                            hora={1}
+                            cardapio={makePath(dia)}
+                            />
+                            <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
+                        </Turno>
+                    </Conteudo>
                 {
                     showInstallMessage &&
                     <DownPop/>

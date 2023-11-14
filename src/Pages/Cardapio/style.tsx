@@ -94,6 +94,8 @@ export const Conteudo = styled.div `
     ::-webkit-scrollbar {
         display: none;
     }
+
+    touch-action: none;
 `;
 
 export const Turno = styled.div `

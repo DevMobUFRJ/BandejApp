@@ -1,5 +1,5 @@
 import { NotificationContext } from "../../Contexts/PendingNotificationContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { TemplateDiv, PlaceHolderCabecalho, Shade, 
     CabecaDiv, PageTitle, DivAjustes, IconeAjustes, NotifDiv, 
@@ -12,10 +12,8 @@ import Ajustes from '../../Assets/Cardapio/Ajustes.svg';
 import Close from '../../Assets/Close.svg';
 
 import { useDrag } from '@use-gesture/react';
-import { useSpring, animated } from '@react-spring/web';
 
 const boxshadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
-let aberto = true;
 
 const toggleSide = (abrindo: boolean) => {
     const sidebar = document.getElementById('sidebar');
@@ -23,11 +21,6 @@ const toggleSide = (abrindo: boolean) => {
     const closeButton = document.getElementById('closeButton');
     if (!sidebar || !shade || !closeButton)
         return;
-
-    if (abrindo) {
-        shade.addEventListener('click', () => toggleSide(!abrindo));
-        closeButton.addEventListener('click', () => toggleSide(!abrindo));
-    }
 
     requestAnimationFrame(() => {
         if (abrindo) {
@@ -61,29 +54,36 @@ const fadeAjustes = (abrindo: boolean) => {
     })
 };
 
-const cliqueAjustes = (controle?: Function) => {
-    const cabecalho = document.getElementById('cabecalho');
-
-    if (controle) {
-        controle(!aberto); 
-        aberto = !aberto;
-
-        if (cabecalho) {
-                cabecalho.style.boxShadow = aberto ? '' : boxshadow;
-        }
-    }
-}
-
 export default function Template(props: {children: JSX.Element, nome: string}) {
     const { pendingNotification } = useContext(NotificationContext);
+    const [ajustesAbertos, setAjustes] = useState(true);
 
-    const abremenu = useDrag(params => {
-        const insensibilidade = 10;
+    const abremenu = useDrag(({last, velocity: [vx, vy], movement, xy}) => {
+        const THRESHOLD = 0.6;
         const vw = window.innerWidth / 100;
 
-        if (params.xy[0] < 30 * vw && params.movement[0] > insensibilidade)
+        if (last && xy[0] < 30 * vw && movement[0] > 0 && vx > THRESHOLD) {
             toggleSide(true);
+        }
     })
+
+    const cliqueAjustes = (valorAtual: boolean, animacao?: Function) => {
+        const cabecalho = document.getElementById('cabecalho');
+    
+        if (animacao) {
+            animacao(!ajustesAbertos); 
+            setAjustes(!ajustesAbertos);
+    
+            if (cabecalho) {
+                    cabecalho.style.boxShadow = valorAtual ? boxshadow : '';
+            }
+        }
+    }
+    
+
+    useEffect(() => {
+        
+    }, [])
 
     return (
         <TemplateDiv {...abremenu()}>
@@ -101,12 +101,12 @@ export default function Template(props: {children: JSX.Element, nome: string}) {
 
                     <DivAjustes>
                         <IconeAjustes style={{display: `${props.nome === 'Cardápio' ? '' : 'none'}`}}
-                        src={aberto ? Close : Ajustes} 
-                        alt={aberto ? 'Ícone para fechar ajustes' : 'Ícone para abrir ajustes'} 
-                        onClick={() => cliqueAjustes(fadeAjustes)}/>
+                        src={ajustesAbertos ? Close : Ajustes} 
+                        alt={ajustesAbertos ? 'Ícone para fechar ajustes' : 'Ícone para abrir ajustes'} 
+                        onClick={() => cliqueAjustes(ajustesAbertos, fadeAjustes)}/>
                     </DivAjustes>
 
-                    <Shade id="shade"/>
+                    <Shade id="shade" onClick={() => toggleSide(false)}/>
                     <SideBar fechaDiv={() => toggleSide(false)}/>
                 </CabecaDiv>
             </PlaceHolderCabecalho>

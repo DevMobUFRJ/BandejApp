@@ -7,7 +7,8 @@ export const TemplateDiv = styled.div `
 
     width: 100vw;
     min-height: 100vh;
-
+    touch-action: none;
+    
     background: ${global.colors.fundo};
 `;
 
