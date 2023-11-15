@@ -62,7 +62,7 @@ export default function Template(props: {children: JSX.Element, nome: string}) {
         const THRESHOLD = 0.6;
         const vw = window.innerWidth / 100;
 
-        if (last && xy[0] < 30 * vw && movement[0] > 0 && vx > THRESHOLD) {
+        if (last && xy[0] < 50 * vw && movement[0] > 0 && vx > THRESHOLD) {
             toggleSide(true);
         }
     })

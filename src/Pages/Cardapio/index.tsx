@@ -3,7 +3,7 @@ import { ICardapioProps, ISemana } from "../../Types/storage";
 import { ToastContainer, toast } from 'react-toastify';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { CardapioDiv, Sombra, ActionsDiv, HorarioDiv, HoraButton,
-        DropHeader, AvisoAtt, Conteudo, Turno} from "./style";
+        DropHeader, AvisoAtt, Conteudo, Turno, Swipe} from "./style";
 
 import { global } from "../../globalStyle";
     
@@ -235,7 +235,7 @@ export default function Cardapio() {
                         </HoraButton>
                     </HorarioDiv>
                 </ActionsDiv>
-                    <Conteudo id='conteudo' {...scrollEntreOsTurnos()}>
+                    <Conteudo id='conteudo'>
                         <Turno>
                             <Dia
                             hora={0}
@@ -250,6 +250,7 @@ export default function Cardapio() {
                             />
                             <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
                         </Turno>
+                        <Swipe {...scrollEntreOsTurnos()}></Swipe>
                     </Conteudo>
                 {
                     showInstallMessage &&

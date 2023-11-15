@@ -113,3 +113,13 @@ export const AvisoAtt = styled.h1 `
     font-size: 11px;
     color: ${global.colors.cinzaPratos};
 `;
+
+export const Swipe = styled.div `
+    position: fixed;
+    right: 0;
+
+    width: 70vw;
+    height: 100%;
+
+    touch-action: none;
+`;
