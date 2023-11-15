@@ -94,6 +94,8 @@ export const Conteudo = styled.div `
     ::-webkit-scrollbar {
         display: none;
     }
+
+    touch-action: pan-y;
 `;
 
 export const Turno = styled.div `
@@ -118,4 +120,6 @@ export const Swipe = styled.div `
 
     width: 70vw;
     height: 100%;
+
+    touch-action: pan-y;
 `;
