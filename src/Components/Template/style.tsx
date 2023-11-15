@@ -65,6 +65,8 @@ export const Shade = styled.div `
     position: fixed;
 
     z-index: 2;
+
+    touch-action: none;
     
     background: rgba(0, 0, 0, 0.4);
 `;

@@ -67,6 +67,15 @@ export default function Template(props: {children: JSX.Element, nome: string}) {
         }
     })
 
+    const fechamenu = useDrag(({last, velocity: [vx, vy], movement, xy}) => {
+        const THRESHOLD = 0.6;
+        const vw = window.innerWidth / 100;
+
+        if (last && xy[0] > 30 * vw && movement[0] < 0 && vx > THRESHOLD) {
+            toggleSide(false);
+        }
+    })
+
     const cliqueAjustes = (valorAtual: boolean, animacao?: Function) => {
         const cabecalho = document.getElementById('cabecalho');
     
@@ -106,7 +115,7 @@ export default function Template(props: {children: JSX.Element, nome: string}) {
                         onClick={() => cliqueAjustes(ajustesAbertos, fadeAjustes)}/>
                     </DivAjustes>
 
-                    <Shade id="shade" onClick={() => toggleSide(false)}/>
+                    <Shade id="shade" {...fechamenu()} onClick={() => toggleSide(false)}/>
                     <SideBar fechaDiv={() => toggleSide(false)}/>
                 </CabecaDiv>
             </PlaceHolderCabecalho>
