@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { BackImg, ButtonDiv, CurrentDiv,
@@ -14,9 +14,14 @@ import TempNotificacao from "../../Assets/Tutorial/TempNotificacao.svg"
 import LogoImg from '../../Assets/Tutorial/Logo.svg';
 import BackgroundRu from '../../Assets/Tutorial/BgRu.svg';
 
+import PopUp from "../../Components/PopUp";
+import { PopupContext } from "../../Contexts/PopupContext";
+import { PopTexto } from "../../Components/PopUp/style";
+
 
 export default function Tutorial() {
     const history = useHistory();
+    const { mostrarPopup } = useContext(PopupContext);
 
     const [page, tggPage] = useState(0);
     const [inicio, tggInicio] = useState(0);
@@ -65,8 +70,23 @@ export default function Tutorial() {
         pageIndex[page + direcao].classList.add('currentPage');
     }
 
+    useEffect(() => {
+        mostrarPopup('agradecimento');
+    }, [])
+
     return(
         <TutDiv>
+            <PopUp popID='agradecimento' titulo="Obrigado! 🥳"
+                opcoes={['Fechar']} tiposOpcoes={[0]}
+                funcoesOpcoes={[mostrarPopup]}
+                componente={
+                    <PopTexto>
+                        Estamos muito felizes em anunciar o lançamento oficial da primeira versão do BandejApp. 
+                        Esperamos que aproveitem e aguardamos ansiosamente seus feedbacks. 🎉🎉
+                    </PopTexto>
+                }
+            />
+
             <InitialPage style={{display: `${inicio?'none':'flex'}`}}>
                 <BackImg src={BackgroundRu} alt='Imagem de fundo com as cubas do RU em destaque'/>
 
