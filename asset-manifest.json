@@ -1,8 +1,10 @@
 {
   "files": {
-    "main.css": "./static/css/main.0f621e9d.css",
-    "main.js": "./static/js/main.a344d43b.js",
+    "main.css": "./static/css/main.36e2f807.css",
+    "main.js": "./static/js/main.9e05810b.js",
     "static/media/BgRu.svg": "./static/media/BgRu.edfd92bedd3fc141fe70abca60be6e72.svg",
+    "static/media/LogoDevmob.svg": "./static/media/LogoDevmob.e42863f98003bac86e7021030a98a06c.svg",
+    "static/media/LogoIC.svg": "./static/media/LogoIC.7efdb38fa68ecb5f2b00934b11ecedf3.svg",
     "static/media/RUcentral.jpg": "./static/media/RUcentral.f1db24c9e0dcf901eed8.jpg",
     "static/media/Entrada.svg": "./static/media/Entrada.158222536e7d75ecddf202b960c210e9.svg",
     "static/media/Logo.svg": "./static/media/Logo.b5dd1b79182c2d64fbbfb84c54a99641.svg",
@@ -12,9 +14,7 @@
     "static/media/Guarnicao.svg": "./static/media/Guarnicao.5ebc93eb652b41761f2ebc2233d1c034.svg",
     "static/media/PratoVegano.svg": "./static/media/PratoVegano.4bdd412488d5dc27958f52e6c9ec222b.svg",
     "static/media/nunito-all-400-normal.woff": "./static/media/nunito-all-400-normal.0c07f750f73ac5437580.woff",
-    "static/media/LogoIC.svg": "./static/media/LogoIC.d56e8acfc94e84ae14e158fc5c563382.svg",
     "static/media/ifcspv.png": "./static/media/ifcspv.2650769ccc6fbba32694.png",
-    "static/media/DevMob.svg": "./static/media/DevMob.7eb1d09fe14f603a0038b57b22d4f823.svg",
     "static/media/Sobremesa.svg": "./static/media/Sobremesa.acb08bf2e92ff16960d1fd34078b9f28.svg",
     "static/media/quicksand-all-400-normal.woff": "./static/media/quicksand-all-400-normal.3991594f0487f37c86d5.woff",
     "static/media/Acompanhamentos.svg": "./static/media/Acompanhamentos.8fdf62b0a4a9e5625043eb461e0e669f.svg",
@@ -59,11 +59,11 @@
     "static/media/check.svg": "./static/media/check.e661d108c11d2877a82e6081087f8e17.svg",
     "static/media/ArrowDown.svg": "./static/media/ArrowDown.58d508d255061cb733f550f8495f1126.svg",
     "static/media/menu.svg": "./static/media/menu.3104cc3bd86eef6bd8d0007e6387ae18.svg",
-    "main.0f621e9d.css.map": "./static/css/main.0f621e9d.css.map",
-    "main.a344d43b.js.map": "./static/js/main.a344d43b.js.map"
+    "main.36e2f807.css.map": "./static/css/main.36e2f807.css.map",
+    "main.9e05810b.js.map": "./static/js/main.9e05810b.js.map"
   },
   "entrypoints": [
-    "static/css/main.0f621e9d.css",
-    "static/js/main.a344d43b.js"
+    "static/css/main.36e2f807.css",
+    "static/js/main.9e05810b.js"
   ]
 }
