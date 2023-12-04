@@ -67,7 +67,7 @@ export default function Informacoes() {
                             <InfoValor>{`${horarios(ruSelecionado)[0]}`}</InfoValor>
                         </InfoBalao>
                         <InfoBalao>
-                            <InfoUndertitle>Janta</InfoUndertitle>
+                            <InfoUndertitle>Jantar</InfoUndertitle>
                             <InfoValor>{`${horarios(ruSelecionado)[1]}`}</InfoValor>
                         </InfoBalao>
                     </InfoArea>
@@ -81,7 +81,7 @@ export default function Informacoes() {
                             <InfoValor>{`${horarios(ruSelecionado)[2]}`}</InfoValor>
                         </InfoBalao>
                         <InfoBalao>
-                            <InfoUndertitle>Janta</InfoUndertitle>
+                            <InfoUndertitle>Jantar</InfoUndertitle>
                             <InfoValor>{`${horarios(ruSelecionado)[3]}`}</InfoValor>
                         </InfoBalao>
                     </InfoArea>
