@@ -29,9 +29,9 @@ export default function Prato({emoji, descricao, ru}: info) {
     return(
         <Conteudo style={{borderRadius: `${Formatacao.bordaRedonda(emoji, 6)}`}}>
             <PratoDiv>
-                <Emoji src={(ru!='mc')?`${icone[emoji]}`:`${iconeMc[emoji]}`} alt={(ru!='mc')?`Ícone de ${tipoRefeicao[emoji]}`:`Ícone de ${tipoRefeicaoMc[emoji]}`}/>
+                <Emoji src={(ru!=='mc')?`${icone[emoji]}`:`${iconeMc[emoji]}`} alt={(ru!=='mc')?`Ícone de ${tipoRefeicao[emoji]}`:`Ícone de ${tipoRefeicaoMc[emoji]}`}/>
                 <Infos>
-                    <Tipo>{(ru!='mc')?`${tipoRefeicao[emoji]}`:`${tipoRefeicaoMc[emoji]}`}</Tipo>
+                    <Tipo>{(ru!=='mc')?`${tipoRefeicao[emoji]}`:`${tipoRefeicaoMc[emoji]}`}</Tipo>
                     <Descricao id="prato">
                         {descricao}
                     </Descricao>
