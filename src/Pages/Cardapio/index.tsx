@@ -199,6 +199,7 @@ export default function Cardapio() {
                     <Dia
                     hora={hora}
                     cardapio={makePath(dia)}
+                    ru={localStorage.getItem("bandejapp:ruDefault")}
                     />
                     <AvisoAtt>Atualizado em: {`${getAtt(ruAtual + '')}`}</AvisoAtt>
                 </Conteudo>
