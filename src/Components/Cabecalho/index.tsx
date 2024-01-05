@@ -51,27 +51,28 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
     const { pendingNotification } = useContext(NotificationContext);
 
     return (
-        <PlaceHolderCabecalho>
+        <PlaceHolderCabecalho style={{height: (window.innerWidth/window.innerHeight) <= 1 ? 'calc(8vh + 2.25vh)' : 'unset'}}>
             <SideBar/>
     
-            <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
-                <NotifDiv onClick={abrirSideBar}>
-                    <SideButton src={Menu} alt='Ícone para abrir o menu lateral'/>
+            {(window.innerWidth/window.innerHeight) <= 1 &&
+                <CabecaDiv style={{boxShadow:`${nome === 'Cardápio' ? '' : boxshadow}`}}>
+                    <NotifDiv onClick={abrirSideBar}>
+                        <SideButton src={Menu} alt='Ícone para abrir o menu lateral'/>
 
-                    <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}>
-                        <NotifInside/>
-                    </NotifIcon>
-                </NotifDiv>
+                        <NotifIcon style={{display: `${pendingNotification? '':'none'}`}}>
+                            <NotifInside/>
+                        </NotifIcon>
+                    </NotifDiv>
 
-                <PageTitle>{nome}</PageTitle>
+                    <PageTitle>{nome}</PageTitle>
 
-                <DivAjustes>
-                    <IconeAjustes style={{display: `${nome === 'Cardápio' ? '' : 'none'}`}}
-                    src={aberto ? Close : Ajustes} 
-                    alt={aberto ? 'Ícone para fechar ajustes' : 'Ícone para abrir ajustes'} 
-                    onClick={() => clique(fadeAjustes, setOpcoes)}/>
-                </DivAjustes>
-            </CabecaDiv>
+                    <DivAjustes>
+                        <IconeAjustes style={{display: `${nome === 'Cardápio' ? '' : 'none'}`}}
+                        src={aberto ? Close : Ajustes} 
+                        alt={aberto ? 'Ícone para fechar ajustes' : 'Ícone para abrir ajustes'} 
+                        onClick={() => clique(fadeAjustes, setOpcoes)}/>
+                    </DivAjustes>
+                </CabecaDiv>}
         </PlaceHolderCabecalho>
     );
 }
