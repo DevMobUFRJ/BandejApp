@@ -30,7 +30,9 @@ export const NavButton = styled.button `
     
     align-items: center;
 
-    background: ${global.colors.cinzaOpaco(.07)};
+    // Tive q escurecer o cinza pq n era perceptivel em boa parte dos monitores de computador. cinza = branco
+    // background: ${global.colors.cinzaOpaco(.07)};
+    background: ${global.colors.cinzaOpaco(.2)};
     
     outline: none;
     border: none;
