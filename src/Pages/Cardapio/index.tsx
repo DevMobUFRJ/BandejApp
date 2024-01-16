@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { ICardapioProps, ISemana } from "../../Types/storage";
 import { ToastContainer, toast } from 'react-toastify';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
-import { CardapioDiv, Sombra, ActionsDiv, 
-        DropHeader, AvisoAtt, Conteudo} from "./style";
+// import { CardapioDiv, Sombra, ActionsDiv, 
+//         DropHeader, AvisoAtt, Conteudo} from "./style";
+import * as styleMobile from "./style";
+import * as styleWeb from "./styleWeb";
     
 import { useHistory } from "react-router-dom";
 
@@ -26,9 +28,15 @@ const estadosRestaurante = ['ct', 'pv', 'dc', 'mc'];
 const opcoesRestaurante = ['Central, CT e Letras', 'IFCS e Praia Vermelha',
                         'Duque de Caxias', 'Macaé'];
 
+const importStyle = (proporcaoTela: number) => {
+    const style = proporcaoTela <= 1 ? styleMobile : styleWeb;
+    return style;
+}
+
 export default function Cardapio() {
     const history = useHistory();
 
+    const { CardapioDiv, Sombra, ActionsDiv,  DropHeader, AvisoAtt, Conteudo} = importStyle(window.innerWidth/window.innerHeight);
 
     const [cardapio, setCardapio] = useState<ICardapioProps>();
 
