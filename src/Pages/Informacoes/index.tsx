@@ -4,7 +4,7 @@ import DownPop from "../../Components/PopUpIOS";
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { useContext, useState } from "react";
 import { SelecionaInfoDiv, InfoArea, InfoBalao, InfoGrid, InfoSubtitle, InfoTitle, 
-        InfoUndertitle, InformDiv, InfoValor, BalaoInfo } from "./style";
+        InfoUndertitle, InformDiv, InfoValor, BalaoInfo, SelecionaInfoDivBlock } from "./style";
 import DropDown from "../../Components/DropDown";
 
 
@@ -47,14 +47,16 @@ export default function Informacoes() {
         <InformDiv>
             <Cabecalho nome="Informações"/>
             
-            <SelecionaInfoDiv>
-                <DropDown
-                opcaoInicial={ruSelecionado}
-                valoresState={values}
-                valoresOpcoes={options}
-                tela="info"
-                alterarState={setRU}/>
-            </SelecionaInfoDiv>
+            <SelecionaInfoDivBlock>
+                <SelecionaInfoDiv>
+                        <DropDown
+                        opcaoInicial={ruSelecionado}
+                        valoresState={values}
+                        valoresOpcoes={options}
+                        tela="info"
+                        alterarState={setRU}/>
+                </SelecionaInfoDiv>
+            </SelecionaInfoDivBlock>
 
             <BalaoInfo>
                 <InfoTitle>Horário de funcionamento</InfoTitle>

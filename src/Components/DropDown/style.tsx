@@ -9,7 +9,6 @@ import { global } from "../../globalStyle";
 export const DropDiv = styled.div `
     display: flex;
     flex-direction: column;
-    width: calc(90vw + 4px); /* O border, 2px de cada lado */
     padding: 0;
 
     align-items: center;
@@ -39,16 +38,13 @@ export const DropArrow = styled.img `
 export const Opcoes = styled.div `
     display: block;
     height: 0;
+    width: 95%;
 
-    position: absolute;
     z-index: 1;
 
     opacity: 0;
     pointer-events: none;
     
-    /* Sabe-se lá deus por que, o "top" não funcionava... Invertia na 
-        página de informações. Fazia ficar mais pra cima. */
-    margin-top: 7.75vh; 
     overflow: hidden;
 
     transform: translateY(-7.5vh);

@@ -142,9 +142,9 @@ export default function DropDown(
     }
 
     return (
-        <DropDiv style={{width: `calc(${tamanho(tela)} + 4px)`}} 
+        <DropDiv style={{width: `100%`}} 
                 id='dropdown' onClick={OpenDrop}>
-            <Selecionado style={{width: `${tamanho(tela)}`}} id='selecionado' >
+            <Selecionado style={{width: `95%`}} id='selecionado' >
                 <IconeEsquerda src={escolheIcone(tela)} style={{width: `${tela === 'cardapio'? '':'5vw'}` }}
                 alt='Ícone para selecionar restaurante'/>
                 <DropArrow id='seta' src={arrowDown} 
@@ -155,7 +155,7 @@ export default function DropDown(
                     valoresState.map((estado, indice) => 
                         <DropItem type='button' 
                         key={indice}
-                        style={{width: `${tamanho(tela)}`}}
+                        style={{width: `100%`}}
                         id={estado}>{valoresOpcoes[indice]}
                         </DropItem>
                     )
