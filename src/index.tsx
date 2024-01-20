@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import * as serviceWorkerRegistration from './Service/serviceWorkerRegistration';
 import Router from './Routes/Router';
 import { NotificationProvider } from './Contexts/PendingNotificationContext';
 import { InstallMessageProvider } from './Contexts/ShowInstallMessageContext';
