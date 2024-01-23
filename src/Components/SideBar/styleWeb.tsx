@@ -9,8 +9,8 @@ export const SideBarDiv = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 100vw;
-    width: 100vw;
+    min-width: 100%;
+    width: 100%;
 
     z-index: 4;
 
