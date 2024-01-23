@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { global } from "../../globalStyle";
 
 export const CardapioDiv = styled.div `
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
 
     align-items: center;
@@ -25,10 +26,10 @@ export const Sombra = styled.div `
 export const ActionsDiv = styled.div `
     display: flex;
     flex-direction: column;
-    width: 75%;
-    height: 29vh;
+    width: 78.125vw;
+
     margin-top: 2vw;
-    padding: 16px;
+    padding: 3vw 0;
 
     border-radius: 16px;
     
@@ -44,15 +45,14 @@ export const ActionsDiv = styled.div `
 export const DropHeader = styled.div `
     display: block;
     flex-direction: column;
-    width: 91.1%;
-    height: 7.5vh;
+    width: 92%;
+    height: 4.6875vw;
 `;
 
 /*-----------------------------------------------------------*/
 
 export const Conteudo = styled.div `
     display: flex;
-    margin-top: 29vh;
     
     transition: margin-top 300ms ease-in-out;
     flex-direction: column;

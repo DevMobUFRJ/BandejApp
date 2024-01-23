@@ -15,6 +15,9 @@ export const global = {
         azul: '#2452A9',
         branco: '#FFF',
         preto: '#353637',
+        corHorario: (horario: number | undefined) => horario ? '#746A9E': '#E19500',
+        corAlmoco: '#746A9E',
+        corJanta: '#746A9E',
 /*---------------------------------------------------- */
         cinzaTitulo: '#818181',
         cinza1: '#f4f4f4',
