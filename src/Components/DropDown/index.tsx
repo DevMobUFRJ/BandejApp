@@ -1,10 +1,11 @@
-import { DropDiv, Opcoes, DropItem, 
-    IconeEsquerda, Selecionado, DropArrow } from './style';
+import * as styleMobile from './style';
+import * as styleWeb from './styleWeb';
     
 import arrowDown from '../../Assets/Cardapio/ArrowDown.svg';
 import Pin from '../../Assets/Cardapio/Pin.svg';
 import Rest from '../../Assets/Informacoes/Ajustes.svg'
 import { useEffect } from 'react';
+import ImportStyle from '../../Functions/ImportStyle';
 
 type DropDownProps = {
     opcaoInicial: string, // Valor que o useState está definido quando o componente é renderizado
@@ -81,7 +82,7 @@ export default function DropDown(
                 containerOpcoes.style.opacity = '1';
                 containerOpcoes.style.transform = 'translateY(0vh)';
                 containerOpcoes.style.pointerEvents = 'auto';
-                containerOpcoes.style.height = `${(valoresState.length - 1) * 7.5}vh`;
+                containerOpcoes.style.height = window.innerWidth/window.innerHeight <= 1 ? `${(valoresState.length - 1) * 7.5}vh` : `${(valoresState.length - 1) * 4.6875}vw`;
             }
         })
     };
@@ -141,10 +142,12 @@ export default function DropDown(
 
     }
 
+    const { DropDiv, Opcoes, DropItem, 
+        IconeEsquerda, Selecionado, DropArrow } = ImportStyle(styleMobile, styleWeb);
+
     return (
-        <DropDiv style={{width: `100%`}} 
-                id='dropdown' onClick={OpenDrop}>
-            <Selecionado style={{width: `95%`}} id='selecionado' >
+        <DropDiv id='dropdown' onClick={OpenDrop}>
+            <Selecionado id='selecionado' >
                 <IconeEsquerda src={escolheIcone(tela)} style={{width: `${tela === 'cardapio'? '':'5vw'}` }}
                 alt='Ícone para selecionar restaurante'/>
                 <DropArrow id='seta' src={arrowDown} 
@@ -155,7 +158,6 @@ export default function DropDown(
                     valoresState.map((estado, indice) => 
                         <DropItem type='button' 
                         key={indice}
-                        style={{width: `100%`}}
                         id={estado}>{valoresOpcoes[indice]}
                         </DropItem>
                     )

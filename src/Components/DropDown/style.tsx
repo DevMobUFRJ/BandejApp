@@ -13,12 +13,15 @@ export const DropDiv = styled.div `
 
     align-items: center;
     overflow-y: hidden;
+
+    width: 100%;
 `;
 
 export const Selecionado = styled.div `
     display: flex;
     flex-direction: row;
     height: 7.5vh;
+    width: 95%;
     
     background: ${global.colors.branco};
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
@@ -61,7 +64,7 @@ export const DropItem = styled.button `
     padding-left: 3.6vw;
     align-items: center;
 
-    width: 90vw;
+    width: 100%;
     height: 7.5vh;
 
     z-index: 1;
