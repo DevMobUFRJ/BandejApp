@@ -110,8 +110,8 @@ export const ItemName = styled.p `
 
 export const NotifNumber = styled.p `
     display: flex;
-    width: 4vw;
-    height: 4vw;
+    width: 1vw;
+    height: 1vw;
 
     align-items: center;
     justify-content: center;
