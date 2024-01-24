@@ -9,8 +9,8 @@ export const SideBarDiv = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 100vw;
-    width: 100vw;
+    min-width: 100%;
+    width: 100%;
 
     z-index: 4;
 
@@ -110,8 +110,8 @@ export const ItemName = styled.p `
 
 export const NotifNumber = styled.p `
     display: flex;
-    width: 4vw;
-    height: 4vw;
+    width: 1vw;
+    height: 1vw;
 
     align-items: center;
     justify-content: center;

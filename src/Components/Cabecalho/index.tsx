@@ -51,7 +51,9 @@ export default function Cabecalho({nome, setOpcoes}: Nome) {
     const { pendingNotification } = useContext(NotificationContext);
 
     return (
-        <PlaceHolderCabecalho style={{height: (window.innerWidth/window.innerHeight) <= 1 ? 'calc(8vh + 2.25vh)' : 'unset'}}>
+        <PlaceHolderCabecalho style={window.innerWidth/window.innerHeight <= 1 ? {height: 'calc(8vh + 2.25vh)'} : {height: 'unset', width: '100%'}}
+            // style={{height: (window.innerWidth/window.innerHeight) <= 1 ? 'calc(8vh + 2.25vh)' : 'unset'}}
+        >
             <SideBar/>
     
             {(window.innerWidth/window.innerHeight) <= 1 &&

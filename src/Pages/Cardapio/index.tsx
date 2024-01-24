@@ -21,6 +21,8 @@ import Cabecalho from "../../Components/Cabecalho";
 import "react-toastify/dist/ReactToastify.css";
 
 import ReactGA from "react-ga4";
+import ImportStyle from "../../Functions/ImportStyle";
+import Footer from "../../Components/Footer";
 
 let consultando = false;
 
@@ -28,15 +30,10 @@ const estadosRestaurante = ['ct', 'pv', 'dc', 'mc'];
 const opcoesRestaurante = ['Central, CT e Letras', 'IFCS e Praia Vermelha',
                         'Duque de Caxias', 'Macaé'];
 
-const importStyle = (proporcaoTela: number) => {
-    const style = proporcaoTela <= 1 ? styleMobile : styleWeb;
-    return style;
-}
-
 export default function Cardapio() {
     const history = useHistory();
 
-    const { CardapioDiv, Sombra, ActionsDiv,  DropHeader, AvisoAtt, Conteudo} = importStyle(window.innerWidth/window.innerHeight);
+    const { CardapioDiv, Sombra, ActionsDiv,  DropHeader, AvisoAtt, Conteudo} = ImportStyle(styleMobile, styleWeb);
 
     const [cardapio, setCardapio] = useState<ICardapioProps>();
 
@@ -200,8 +197,10 @@ export default function Cardapio() {
                     <NavBar
                     tggDia={tggDia}
                     semana={passaSemana(cardapio?.semana as ISemana)}/>
-                    <Horario
-                    hora={tggHora}/>
+                    {window.innerWidth/window.innerHeight <= 1 && 
+                        <Horario
+                        hora={tggHora}/>
+                    }
                 </ActionsDiv>
                 <Conteudo id='conteudo'>
                     <Dia
@@ -217,6 +216,7 @@ export default function Cardapio() {
                 }
             </>
             }
+            <Footer/>
         </CardapioDiv>
     );
 }

@@ -16,7 +16,10 @@ import BackgroundRu from '../../Assets/Tutorial/BgRu.svg';
 
 import PopUp from "../../Components/PopUp";
 import { PopupContext } from "../../Contexts/PopupContext";
-import { PopTexto } from "../../Components/PopUp/style";
+
+import * as styleMobile from "../../Components/PopUp/style";
+import * as styleWeb from "../../Components/PopUp/styleWeb";
+import ImportStyle from "../../Functions/ImportStyle";
 
 
 export default function Tutorial() {
@@ -73,6 +76,8 @@ export default function Tutorial() {
     useEffect(() => {
         mostrarPopup('agradecimento');
     }, [])
+
+    const { PopTexto } = ImportStyle(styleMobile, styleWeb);
 
     return(
         <TutDiv>

@@ -1,17 +1,11 @@
 import { useHistory } from "react-router-dom";
 
-import { InstitutoDiv, ItemName, 
-    ItemsDiv, Linha, LogoImg, NotifNumber, 
-    SideBarDiv, SideHeader, SideIcon, SideItem,
-    Versao, MostrarCreditos } from "./styleWeb";
+import { ItemName, ItemsDiv, LogoImg, NotifNumber, 
+         SideBarDiv, SideHeader, SideIcon, SideItem } from "./styleWeb";
 
 import { global } from "../../globalStyle";
-import PopUp from "../PopUp";
-import Creditos from "../PopUp/Creditos";
 
 import Logo from '../../Assets/SideBar/logo.svg';
-import LogoIC from '../../Assets/SideBar/LogoIC.svg';
-import LogoDevmob from '../../Assets/SideBar/LogoDevmob.svg';
 
 type SideBarProps = { 
     pendingNotification: boolean;
@@ -31,20 +25,8 @@ export default function SideBarWeb({pendingNotification, mostrarPopup, rotaAtual
         <SideBarDiv id="sidebar">
             <SideHeader>
                 <LogoImg src={Logo} alt="Logo do aplicativo BandejApp."/>
-                {/* <Versao>Versão {versao} · <MostrarCreditos onClick={() => mostrarPopup('creditos')}>
-                        Ver créditos
-                    </MostrarCreditos>
-                </Versao> */}
             </SideHeader>
-
-            <PopUp popID='creditos' titulo="Créditos"
-                opcoes={['Fechar']} tiposOpcoes={[0]}
-                funcoesOpcoes={[mostrarPopup]}
-                componente={<Creditos/>}
-            />
-
 {/*--------------------------------------------------------------------------*/}
-{/* `3px solid ${global.colors.laranja};` */}
             <ItemsDiv>
             {
                 rotasTelas.map((rota, indice) => 
@@ -69,14 +51,6 @@ export default function SideBarWeb({pendingNotification, mostrarPopup, rotaAtual
                 )
             }
             </ItemsDiv>
-
-            {/* <InstitutoDiv>
-                <img src={LogoIC} style={{width: '35%'}}
-                alt="Logo do Institudo de Computação da UFRJ."/>
-                <Linha/>
-                <img src={LogoDevmob} style={{width: '22%', padding: '0 6.5% 0 6.5%'}}
-                alt="Logo da Universidade Federal do Rio de Janeiro."/>
-            </InstitutoDiv> */}
         </SideBarDiv>
     );
 }
