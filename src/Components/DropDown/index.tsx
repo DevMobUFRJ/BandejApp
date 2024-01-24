@@ -14,7 +14,8 @@ type DropDownProps = {
                             i-ésima posição desse array vai ativar o estado na i-ésima posição 
                             do array anterior. Por isso, obviamente, os arrays devem ter o mesmo tamanho */
     tela: string, // Quem é o pai (Pra definir qual ícone fica à esquerda, no switch ali embaixo)
-    alterarState: Function
+    alterarState: Function,
+    height?: string
 };
 
 const escolheIcone = (lugar: string) => {
@@ -36,7 +37,7 @@ const tamanho = (lugar: string) => {
 };
 
 export default function DropDown(
-    {opcaoInicial, valoresState, valoresOpcoes,tela, alterarState}: DropDownProps
+    {opcaoInicial, valoresState, valoresOpcoes, tela, alterarState, height}: DropDownProps
     ) {
     
     useEffect(() => {
@@ -147,7 +148,7 @@ export default function DropDown(
 
     return (
         <DropDiv id='dropdown' onClick={OpenDrop}>
-            <Selecionado id='selecionado' >
+            <Selecionado id='selecionado' style={{height}}>
                 <IconeEsquerda src={escolheIcone(tela)} style={{width: `${tela === 'cardapio'? '':'5vw'}` }}
                 alt='Ícone para selecionar restaurante'/>
                 <DropArrow id='seta' src={arrowDown} 
@@ -156,7 +157,7 @@ export default function DropDown(
             <Opcoes id='opcoes'>
                 {
                     valoresState.map((estado, indice) => 
-                        <DropItem type='button' 
+                        <DropItem type='button' style={{height}}
                         key={indice}
                         id={estado}>{valoresOpcoes[indice]}
                         </DropItem>
