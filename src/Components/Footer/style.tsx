@@ -17,6 +17,8 @@ export const FooterDiv = styled.div `
   color: ${global.colors.branco};
 
   padding: 2vw 12vw;
+
+  margin-top: auto;
 `;
 
 export const CreditosDiv = styled.div `
