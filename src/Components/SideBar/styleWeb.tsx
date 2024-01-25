@@ -25,14 +25,13 @@ export const SideHeader = styled.section `
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px 0;
+    padding: 2.25vw 0;
 `;
 
 export const LogoImg = styled.img `
     height: 3.75vw;
 
     margin-right: -3.5vw;
-    margin-top: 1.5vw;
 `;
 
 export const CloseSide = styled.img `
@@ -63,7 +62,7 @@ export const ItemsDiv = styled.ul `
     flex-direction: row;
     align-items: center;
 
-    margin-top: 6vh;
+    margin-top: .35vw;
 
     width: 75%;
 `;
