@@ -41,23 +41,20 @@ export const FormDiv = styled.div `
     padding: 24px;
     
     border-radius: 24px;
-    // background-color: ${global.colors.branco};
-    background-color: black;
+    background-color: ${global.colors.cinza1};
 `;
 
 export const SubFormDiv = styled.div `
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    // gap: 32px;
-    justify-content: space-between;
+    flex-direction: row;
+    gap: 24px;
 `;
 
 export const AvaSection = styled.section `
+    width: 100%;
     display: grid;
     grid-template-rows: auto auto;
-    grid-gap: 9px;
+    position: relative;
 `;
 
 /*----------------------------------------------------------------------------*/
@@ -67,6 +64,7 @@ export const AvaTitle = styled.h3 `
     font-size: 1.25vw;
     font-weight: 700;
 
+    margin-bottom: 5px;
     color: ${global.colors.cinza};
 `;
 
@@ -85,6 +83,7 @@ export const OBS = styled.h3 `
     font-size: 1.09vw;
     font-weight: 500;
 
+    margin-top: 9px;
     color: ${global.colors.cinza};
 `;
 
@@ -99,8 +98,7 @@ export const SelecionaAvaDivBlock = styled.div`
     width: 100%;
 
     border-radius: 16px;
-    // background: ${global.colors.branco};
-    background: blue;
+    background: ${global.colors.branco};
 `;
 
 export const SelecionaAvaDiv = styled.div `
@@ -145,7 +143,7 @@ export const TurnoDiv = styled.div `
 `;
 
 export const TurnoButton = styled.button `
-    width: 48.64%;                          //toDOOOOOOOOOOOOOOOOOOOOOOO
+    width: 100%;
     height: 4.375vw;
 
     border: none;
@@ -156,8 +154,7 @@ export const TurnoButton = styled.button `
     font-weight: 700;
 
     color: ${global.colors.cinza};
-    // background-color: ${global.colors.cinzaOpaco(0.08)};
-    background-color: red;
+    background-color: ${global.colors.cinzaOpaco(0.08)};
 
     transition: transform 0.5s ease;
 `;
@@ -166,10 +163,8 @@ export const TurnoButton = styled.button `
 
 export const DateDiv = styled.div `
     display: flex;
-    // width: 100%;
     height: 4.375vw;
 
-    // position: relative;
 
     outline: none;
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
@@ -183,7 +178,6 @@ export const DateSelect = styled.input `
     width: 100%;
     height: 100%;
 
-    // position: relative;
     padding-left: 16px;
     
     outline: none;
@@ -201,7 +195,6 @@ export const DateSelect = styled.input `
 
 export const DateIcon = styled.img `
     width: 1.875vw;
-    height: 2.46vw;
 
     
     align-self: center;
@@ -236,9 +229,8 @@ export const Comentario = styled.textarea<mostrarErro> `
 /*----------------------------------------------------------------------------*/
 
 export const EnviarButton = styled.button `
-    width: 100%;
     height: 3.83vw;
-    margin-top: 15px;
+    margin-top: 24px;
 
     font-family: ${global.fonts.quickSand};
     font-size: 1.56vw;
@@ -248,6 +240,7 @@ export const EnviarButton = styled.button `
     outline: none;
     border: none;
     border-radius: 12px;
+    
 
     background-color: ${global.colors.laranja};
     transition: transform 0.3s ease;
@@ -260,5 +253,7 @@ export const MensagemErro = styled.p `
     font-family: ${global.fonts.quickSand};
     font-size: 0.845vw;
     font-weight: 700;
+
+    margin-bottom: 5px;
     color: red;
 `;

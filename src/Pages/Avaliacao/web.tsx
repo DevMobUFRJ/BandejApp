@@ -4,7 +4,7 @@ import { AvaSection, Avadiv, Comentario,
         MensagemErro, DateIcon, SelecionaAvaDivBlock, SelecionaAvaDiv, AvaTitle, AvaSubtitle, SubFormDiv, OBS } from "./styleWeb";
 
 import { useContext, useState } from "react";
-import { useForm } from 'react-hook-form';
+import { UseFormReturn, useForm } from 'react-hook-form';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { ToastContainer } from 'react-toastify';
 
@@ -25,6 +25,7 @@ import { PopTexto } from "../../Components/PopUp/style";
 import { PopupContext } from "../../Contexts/PopupContext";
 
 type AvaliacaoProps = {
+    UseForm: UseFormReturn<formulario>;
     showInstallMessage: boolean;
     mostrarPopup: Function;
     opcoes: string[];
@@ -33,11 +34,10 @@ type AvaliacaoProps = {
     setData: React.Dispatch<React.SetStateAction<Date | null | undefined>>;
 };
 
-export default function AvaliacaoWeb({showInstallMessage, mostrarPopup, opcoes, valores, dataSelecionada, setData}: AvaliacaoProps) {
+export default function AvaliacaoWeb({UseForm, showInstallMessage, mostrarPopup, opcoes, valores, dataSelecionada, setData}: AvaliacaoProps) {
 
     /* Funções do useForm */
-    const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} =
-    useForm<formulario>({defaultValues:{ru: 'selec', email: '', turno: '----', nota: 0, comentario: ''}});
+    const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} = UseForm;
 
 /*----------------------------------------------------------------------------*/
 
@@ -66,10 +66,10 @@ export default function AvaliacaoWeb({showInstallMessage, mostrarPopup, opcoes, 
                     mostrarPopup('avaliacao');
                 }
             })}>
-                <FormDiv style={{flexDirection: 'row', gap: '24px'}}>
+                <FormDiv style={{ gap: '24px'}}>
                     <SubFormDiv>
 
-                        <AvaSection>
+                        <AvaSection style={{marginBottom: 'auto'}}>
                             <AvaTitle>Qual restaurante deseja avaliar?</AvaTitle>
                             <input type="hidden" {...register('ru', {
                                 required: true, 
@@ -82,10 +82,12 @@ export default function AvaliacaoWeb({showInstallMessage, mostrarPopup, opcoes, 
                                     }
                                 }})}
                             />
-                            {errors.ru? <MensagemErro>{errors.ru.message}</MensagemErro>:null}
+                            {errors.ru? <MensagemErro>{errors.ru.message}</MensagemErro>:
+                            <MensagemErro style={{opacity: '0', pointerEvents: 'none', userSelect: 'none'}}>Sem erro</MensagemErro>}
                             <SelecionaAvaDivBlock>
                                 <SelecionaAvaDiv>
                                     <DropDown
+                                        height='4.375vw'
                                         opcaoInicial={getValues('ru')}
                                         valoresState={valores}
                                         valoresOpcoes={opcoes}
@@ -98,10 +100,29 @@ export default function AvaliacaoWeb({showInstallMessage, mostrarPopup, opcoes, 
 
                         <AvaSection>
                             <div style={{display: 'inline-flex'}}>
+                                <AvaTitle>Seu e-mail</AvaTitle>
+                                <AvaSubtitle>(Opcional)</AvaSubtitle>
+                            </div>
+                            
+                            <MensagemErro style={{opacity: '0', pointerEvents: 'none', userSelect: 'none'}}>sem erro</MensagemErro>
+                            <EmailInput {...register('email')} autoComplete="on"
+                            name="email" type="email" placeholder="Insira seu e-mail..."/>
+                            <OBS>O RU poderá te enviar uma resposta.</OBS>
+                            
+                        </AvaSection>
+
+                    </SubFormDiv>
+
+{/*--------------------------------------------------------------------------*/}
+                    <SubFormDiv>
+
+                        <AvaSection>
+                            <div style={{display: 'inline-flex'}}>
                                 <AvaTitle>Avaliar refeição específica</AvaTitle>
                                 <AvaSubtitle>(Opcional)</AvaSubtitle>
                             </div>
-
+                            
+                            <MensagemErro style={{opacity: '0', pointerEvents: 'none', userSelect: 'none'}}>Sem erro</MensagemErro>
                             <TurnoDiv {...register('turno', {value: '----'})}>
                                 <TurnoButton name="almoco" id="almoco" type="button"
                                 onClick={(elem) => selecionarTurno(elem.currentTarget, setValue, getValues())}
@@ -114,25 +135,9 @@ export default function AvaliacaoWeb({showInstallMessage, mostrarPopup, opcoes, 
                             </TurnoDiv>
                         </AvaSection>
 
-                    </SubFormDiv>
-
-{/*--------------------------------------------------------------------------*/}
-                    <SubFormDiv>
-
-                        <AvaSection>
-                            <div style={{display: 'inline-flex'}}>
-                                <AvaTitle>Seu e-mail</AvaTitle>
-                                <AvaSubtitle>(Opcional)</AvaSubtitle>
-                            </div>
-
-                            <EmailInput {...register('email')} autoComplete="on"
-                            name="email" type="email" placeholder="Insira seu e-mail..."/>
-                            <OBS>O RU poderá te enviar uma resposta.</OBS>
-                            
-                        </AvaSection>
-
-                        <AvaSection style={{gridGap: '0px'}}>
-                            {errors.data? <MensagemErro>{errors.data.message}</MensagemErro>:null}
+                        <AvaSection style={{marginTop: 'auto'}}>
+                            {errors.data? <MensagemErro>{errors.data.message}</MensagemErro>:
+                            <MensagemErro style={{opacity: '0', pointerEvents: 'none', userSelect: 'none'}}>Sem erro</MensagemErro>}
                             <DateDiv>
                                 <DatePicker
                                     id="dataSelect"
@@ -180,13 +185,15 @@ export default function AvaliacaoWeb({showInstallMessage, mostrarPopup, opcoes, 
                                 min: { value: 1, message: 'Selecione uma nota!' }
                             })}
                             />
-                        {errors.nota? <MensagemErro>{errors.nota.message}</MensagemErro>:null}
-                        
+                            
+                        {errors.nota? <MensagemErro>{errors.nota.message}</MensagemErro>:
+                        <MensagemErro style={{opacity: '0', pointerEvents: 'none', userSelect: 'none'}}>Sem erro</MensagemErro>}
                         <div style={{width:'30%'}}>
                             <Nota fontSize='5vw' NotaToParent={(nota: number) => setValue('nota', nota)}/>
                         </div>
                         
-                        {errors.comentario? <MensagemErro>{errors.comentario.message}</MensagemErro>:null}
+                        {errors.comentario? <MensagemErro>{errors.comentario.message}</MensagemErro>:
+                        <MensagemErro style={{opacity: '0', pointerEvents: 'none', userSelect: 'none'}}>Sem erro</MensagemErro>}
                         <Comentario {...register('comentario',{
                             required: true,
                             maxLength: {value: 200, message: 'Comentário deve conter no máximo 200 caracteres'},

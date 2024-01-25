@@ -4,7 +4,7 @@ import { AvaSection, Avadiv, Comentario,
         MensagemErro, DateIcon, SelecionaAvaDivBlock, SelecionaAvaDiv, AvaTitle, AvaSubtitle } from "./styleMobile";
 
 import { useContext, useState } from "react";
-import { useForm } from 'react-hook-form';
+import { UseFormReturn, useForm } from 'react-hook-form';
 import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
 import { ToastContainer } from 'react-toastify';
 
@@ -25,6 +25,7 @@ import { PopTexto } from "../../Components/PopUp/style";
 import { PopupContext } from "../../Contexts/PopupContext";
 
 type AvaliacaoProps = {
+    UseForm: UseFormReturn<formulario>;
     showInstallMessage: boolean;
     mostrarPopup: Function;
     opcoes: string[];
@@ -33,11 +34,10 @@ type AvaliacaoProps = {
     setData: React.Dispatch<React.SetStateAction<Date | null | undefined>>;
 };
 
-export default function AvaliacaoMobile({showInstallMessage, mostrarPopup, opcoes, valores, dataSelecionada, setData}: AvaliacaoProps) {
+export default function AvaliacaoMobile({UseForm, showInstallMessage, mostrarPopup, opcoes, valores, dataSelecionada, setData}: AvaliacaoProps) {
 
     /* Funções do useForm */
-    const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} =
-    useForm<formulario>({defaultValues:{ru: 'selec', email: '', turno: '----', nota: 0, comentario: ''}});
+    const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} = UseForm;
 
 /*----------------------------------------------------------------------------*/
 

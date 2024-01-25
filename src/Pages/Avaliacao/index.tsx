@@ -32,7 +32,7 @@ export default function Avaliacao() {
     const { mostrarPopup } = useContext(PopupContext);
 
     /* Funções do useForm */
-    const {register, handleSubmit, formState: { errors }, setValue, getValues, reset} =
+    const UseForm =
     useForm<formulario>({defaultValues:{ru: 'selec', email: '', turno: '----', nota: 0, comentario: ''}});
 
     /* Variáveis do Dropdown */
@@ -46,6 +46,7 @@ export default function Avaliacao() {
     return (
         (window.innerWidth/window.innerHeight) <= 1 ?
         <AvaliacaoMobile 
+            UseForm={UseForm}
             showInstallMessage={showInstallMessage}
             mostrarPopup={mostrarPopup}
             opcoes={opcoes}
@@ -54,6 +55,7 @@ export default function Avaliacao() {
             setData={setData}
         />:
         <AvaliacaoWeb
+            UseForm={UseForm}
             showInstallMessage={showInstallMessage}
             mostrarPopup={mostrarPopup}
             opcoes={opcoes}
