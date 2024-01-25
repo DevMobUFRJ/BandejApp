@@ -24,6 +24,8 @@ export const Selecionado = styled.div `
     align-items: center;
     height: 4.6875vw;
     width: 100%;
+
+    padding: 0 1.5vw;
     
     background: ${global.colors.branco};
     border: 2px solid ${global.colors.cinzaOpaco(0.24)};
@@ -35,13 +37,11 @@ export const Selecionado = styled.div `
 `;
 
 export const IconeEsquerda = styled.img `
-    width: 2.48vw;
-    margin-left: 6.1vw;
+    width: 1.405vw;
 `;
 
 export const DropArrow = styled.img `
-    width: 3.33vw;
-    margin-right: 6.1vw;
+    width: 1.405vw;
 `;
 
 export const Opcoes = styled.div `
