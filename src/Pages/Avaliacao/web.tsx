@@ -3,9 +3,7 @@ import { AvaSection, Avadiv, Comentario,
         AvaForm, TurnoButton, TurnoDiv, FormDiv,
         MensagemErro, DateIcon, SelecionaAvaDivBlock, SelecionaAvaDiv, AvaTitle, AvaSubtitle, SubFormDiv, OBS } from "./styleWeb";
 
-import { useContext, useState } from "react";
-import { UseFormReturn, useForm } from 'react-hook-form';
-import { InstallMessageContext } from "../../Contexts/ShowInstallMessageContext";
+import { UseFormReturn } from 'react-hook-form';
 import { ToastContainer } from 'react-toastify';
 
 import { formulario, enviar } from "../../Functions/Avaliacao/enviar";
@@ -22,7 +20,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import PopUp from "../../Components/PopUp";
 import { PopTexto } from "../../Components/PopUp/style";
-import { PopupContext } from "../../Contexts/PopupContext";
 
 type AvaliacaoProps = {
     UseForm: UseFormReturn<formulario>;
