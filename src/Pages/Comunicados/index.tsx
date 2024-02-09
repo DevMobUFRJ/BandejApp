@@ -135,7 +135,7 @@ export default function Comunicados() {
                                         </TextData>
                                     </CardData>
                                     
-                                    <CardMensagem><TextMensagem>{comentario.comunicado}</TextMensagem></CardMensagem>
+                                    <CardMensagem><TextMensagem dangerouslySetInnerHTML={{ __html: comentario.comunicado.replace(/\n/g, '<br>') }}></TextMensagem></CardMensagem>
                                 </Card>
                             )})}
                     </Container>
