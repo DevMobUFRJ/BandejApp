@@ -14,8 +14,8 @@ export default function Informacoes() {
 
 /*----------------------------------------------------------------------------*/
 
-    const options = ['CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias'];
-    const values = ['ct', 'central', 'lt', 'centro', 'pv', 'dc'];
+    const options = ['CT', 'Central', 'Letras', 'Centro', 'Praia Vermelha', 'Duque de Caxias', 'Macaé - Centro Multidisciplinar', 'Macaé - NUPEM'];
+    const values = ['ct', 'central', 'lt', 'centro', 'pv', 'dc', 'mc-cm', 'mc-nupem'];
     const [ruSelecionado, setRU] = useState('ct');
 
     const horarios  = (option: string): Array<string> => {
@@ -37,6 +37,12 @@ export default function Informacoes() {
 
             case 'dc':
                 return ['11:00h às 14:15h', 'Fechado', 'Fechado', 'Fechado', '12,80'];
+
+            case 'mc-cm':
+                return ['11:00h às 14:00h', 'Fechado', 'Fechado', 'Fechado', '?'];
+
+            case 'mc-nupem':
+                return ['11:30h às 14:00h', 'Fechado', 'Fechado', 'Fechado', '?'];
             
             default:
             return [];
@@ -67,7 +73,7 @@ export default function Informacoes() {
                             <InfoValor>{`${horarios(ruSelecionado)[0]}`}</InfoValor>
                         </InfoBalao>
                         <InfoBalao>
-                            <InfoUndertitle>Janta</InfoUndertitle>
+                            <InfoUndertitle>Jantar</InfoUndertitle>
                             <InfoValor>{`${horarios(ruSelecionado)[1]}`}</InfoValor>
                         </InfoBalao>
                     </InfoArea>
@@ -81,7 +87,7 @@ export default function Informacoes() {
                             <InfoValor>{`${horarios(ruSelecionado)[2]}`}</InfoValor>
                         </InfoBalao>
                         <InfoBalao>
-                            <InfoUndertitle>Janta</InfoUndertitle>
+                            <InfoUndertitle>Jantar</InfoUndertitle>
                             <InfoValor>{`${horarios(ruSelecionado)[3]}`}</InfoValor>
                         </InfoBalao>
                     </InfoArea>
