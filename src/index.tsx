@@ -7,6 +7,7 @@ import { NotificationProvider } from './Contexts/PendingNotificationContext';
 import { InstallMessageProvider } from './Contexts/ShowInstallMessageContext';
 import { PopupProvider } from './Contexts/PopupContext';
 
+// Apagar quando a versão desktop estiver pronta
 import Paisagem from './Pages/Paisagem/';
 import ReactGA from "react-ga4";
 
