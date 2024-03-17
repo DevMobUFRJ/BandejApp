@@ -72,7 +72,7 @@ export default function Tutorial() {
 
     useEffect(() => {
         mostrarPopup('agradecimento');
-    }, [])
+    }, [mostrarPopup])
 
     return(
         <TutDiv>

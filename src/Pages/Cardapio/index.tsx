@@ -95,7 +95,7 @@ export default function Cardapio() {
                 {position: toast.POSITION.BOTTOM_CENTER}
             )
         }        
-    }, []);
+    }, [history]);
 
     FontSize();
 
