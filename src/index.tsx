@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import ReactGA from "react-ga4";
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import * as serviceWorkerRegistration from './Service/serviceWorkerRegistration';
 import Router from './Routes/Router';
+import './index.css';
+
+/*----------------   SERVICE   ----------------*/
+import * as serviceWorkerRegistration from './Service/serviceWorkerRegistration';
+
+/*----------------   CONTEXTOS   ----------------*/
 import { NotificationProvider } from './Contexts/PendingNotificationContext';
 import { InstallMessageProvider } from './Contexts/ShowInstallMessageContext';
 import { PopupProvider } from './Contexts/PopupContext';
 
-// Apagar quando a versão desktop estiver pronta
+/*     Apagar quando a versão desktop estiver pronta     */
 import Paisagem from './Pages/Paisagem/';
-import ReactGA from "react-ga4";
 
-const TRACKING_ID = "G-KZT0DEH3ZS";
-ReactGA.initialize(TRACKING_ID);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
+
+ReactGA.initialize("G-KZT0DEH3ZS");
 
 function App() {
     const [proporcao, setProporcao] = useState(window.innerWidth/window.innerHeight);
