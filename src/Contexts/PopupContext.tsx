@@ -1,11 +1,31 @@
 import React, { createContext, useState } from 'react';
+import PopUp from '../Components/PopUp';
+import { PopSection, PopTexto, PopSubtitle, PopLink } from '../Components/PopUp/style';
+import { StyledComponent } from "styled-components";
 
 type popAtual = {
     popupAtual: string;
     mostrarPopup: Function;
+    PopUp: Function;
+    Components: {
+        PopSection: StyledComponent<"section", any, {}, never>,
+        PopTexto: StyledComponent<"p", any, {}, never>,
+        PopLink: StyledComponent<"a", any, {}, never>,
+        PopSubtitle: StyledComponent<"h3", any, {}, never>
+    }
 }
 
-export const PopupContext = createContext<popAtual>({popupAtual: '', mostrarPopup: () => {}});
+export const PopupContext = createContext<popAtual>({
+    popupAtual: '',
+    mostrarPopup: () => {},
+    PopUp: PopUp,
+    Components: {
+        PopSection: PopSection,
+        PopLink: PopLink,
+        PopTexto: PopTexto,
+        PopSubtitle: PopSubtitle
+    }
+});
 
 export const PopupProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
     const [popupAtual, setPopup] = useState('');
@@ -31,7 +51,9 @@ export const PopupProvider: React.FC<{ children: React.ReactNode }> = ({children
     }
 
     return (
-        <PopupContext.Provider value={{popupAtual, mostrarPopup}}>
+        <PopupContext.Provider value={{
+            popupAtual, mostrarPopup, PopUp, Components:{PopLink, PopSection, PopSubtitle, PopTexto}
+        }}>
             {children}
         </PopupContext.Provider>
     );

@@ -9,7 +9,6 @@ import { CloseSide, InstitutoDiv, ItemName,
 
 import { global } from "../../globalStyle";
 import { fecharSideBar } from "../../Functions/SideBar/abrirEfechar";
-import PopUp from "../PopUp";
 import Creditos from "../PopUp/Creditos";
 
 import Logo from '../../Assets/SideBar/logo.svg';
@@ -25,7 +24,7 @@ import { PopupContext } from "../../Contexts/PopupContext";
 
 export default function SideBar() {
     const { pendingNotification } = useContext(NotificationContext);
-    const { mostrarPopup } = useContext(PopupContext);
+    const { mostrarPopup, PopUp } = useContext(PopupContext);
 
     const history = useHistory();
 
