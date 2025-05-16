@@ -23,19 +23,19 @@ export default function Informacoes() {
     const horarios  = (option: string): Array<string> => {
         switch(option) {
             case 'central':
-                return ['11:00h às 14:15h', '17:30h às 20:15h', '12:00h às 14:00h', '17:30h às 19:15h', '14,00'];
+                return ['11:00h às 14:15h', '17:30h às 20:15h', '12:00h às 14:00h', '17:30h às 19:15h', '15,35'];
 
             case 'ct':
-                return ['10:30h às 14:30h', '17:30h às 20:15h', 'Somente no Central', 'Somente no Central', '14,86'];
+                return ['10:30h às 14:30h', '17:30h às 20:15h', 'Somente no Central', 'Somente no Central', '16,30'];
 
             case 'lt':
-                return ['11:00h às 14:15h', '17:30h às 20:15h', 'Somente no Central', 'Somente no Central', '14,86'];
+                return ['11:00h às 14:15h', '17:30h às 20:15h', 'Somente no Central', 'Somente no Central', '16,30'];
             
             case 'centro':
-                return ['11:00h às 14:15h', '17:30h às 20:00h', 'Fechado', 'Fechado', '14,76'];
+                return ['11:00h às 14:15h', '17:30h às 20:00h', 'Fechado', 'Fechado', '16,18'];
 
             case 'pv':
-                return ['11:00h às 14:15h', '17:30h às 20:00h', 'Fechado', 'Fechado', '15,87'];
+                return ['11:00h às 14:15h', '17:30h às 20:00h', 'Fechado', 'Fechado', '17,40'];
 
             case 'dc':
                 return ['11:00h às 14:15h', 'Fechado', 'Fechado', 'Fechado', '13,54'];
@@ -47,7 +47,7 @@ export default function Informacoes() {
                 return ['11:30h às 14:00h', 'Fechado', 'Fechado', 'Fechado', '?'];
             
             case '2ct' :
-                return ['11:00h às 14:15h', '17:30h às 20:15h', 'Somente no Central', 'Somente no Central', '14,86'];
+                return ['11:00h às 14:15h', '17:30h às 20:15h', 'Somente no Central', 'Somente no Central', '15,35'];
 
             default:
             return [];
